@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /style/
+Disallow /error/
+Disallow /templates/
+Disallow /nbproject/
