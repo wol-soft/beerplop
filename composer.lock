@@ -4,8 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9d2cb12d745363426817215f0eb69d96",
+    "hash": "eb2d1abc5e1b29ffc894f9042a29f5a4",
     "packages": [
+        {
+            "name": "a8m/angular-filter",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/a8m/angular-filter/archive/master.zip",
+                "reference": "master",
+                "shasum": null
+            },
+            "type": "library"
+        },
         {
             "name": "aferrandini/phpqrcode",
             "version": "1.0.1",
@@ -543,6 +554,17 @@
                 "chart"
             ],
             "time": "2014-08-15 11:21:12"
+        },
+        {
+            "name": "timschlechter/bootstraptagsinput",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/timschlechter/bootstrap-tagsinput/archive/master.zip",
+                "reference": "master",
+                "shasum": null
+            },
+            "type": "library"
         }
     ],
     "packages-dev": [],
@@ -552,7 +574,9 @@
         "components/jqueryui": 20,
         "nnnick/chartjs": 20,
         "malihu/mcustomscrollbar": 20,
-        "ianwalter/ngcontextmenu": 20
+        "ianwalter/ngcontextmenu": 20,
+        "a8m/angular-filter": 20,
+        "timschlechter/bootstraptagsinput": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
