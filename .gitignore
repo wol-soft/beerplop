@@ -3,3 +3,5 @@
 /test/testconf.php
 /vendor/
 /node_modules/
+/apps/mediacenter/dist/js/mediacenter2.0.0-alpha.js
+/apps/user/dist/js/user1.0.0-alpha.js
