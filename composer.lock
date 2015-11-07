@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d84e942d5d56da64c0dee0051f5047c",
+    "hash": "32b086c4067050bde1a47f51acfc92c4",
     "packages": [
         {
             "name": "EnWo/bootstrap-tagsinput",
@@ -71,6 +71,17 @@
                 "qrcode"
             ],
             "time": "2013-07-08 09:39:08"
+        },
+        {
+            "name": "angular-ui/ui-sortable",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/angular-ui/ui-sortable/archive/master.zip",
+                "reference": "master",
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "components/angular.js",
@@ -1483,23 +1494,20 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.7.5",
+            "version": "v2.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "31cb2ad0155c95b88ee55fe12bc7ff92232c1770"
+                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/31cb2ad0155c95b88ee55fe12bc7ff92232c1770",
-                "reference": "31cb2ad0155c95b88ee55fe12bc7ff92232c1770",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca9019c88fbe250164affd107bc8057771f3f4d",
+                "reference": "eca9019c88fbe250164affd107bc8057771f3f4d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
             },
             "type": "library",
             "extra": {
@@ -1528,7 +1536,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-14 14:14:09"
+            "time": "2015-10-11 09:39:48"
         }
     ],
     "aliases": [],
@@ -1540,6 +1548,7 @@
         "michaelbromley/angularutils": 20,
         "ianwalter/ngcontextmenu": 20,
         "a8m/angular-filter": 20,
+        "angular-ui/ui-sortable": 20,
         "enwo/bootstrap-tagsinput": 20
     },
     "prefer-stable": false,
