@@ -3,7 +3,5 @@
 /test/testconf.php
 /vendor/
 /node_modules/
-/apps/user/dist/js/user1.0.0-alpha.js
-/apps/mediacenter/dist/css/Solid.css
-/apps/mediacenter/dist/js/mediacenter2.0.0-beta.js
-/apps/user/dist/css/user.css
+/apps/mediacenter/dist/
+/apps/user/dist/
