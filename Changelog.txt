@@ -1,0 +1,256 @@
+2.1.14
+10.04.2016
+* Anzeige des Changelogs auf der Startseite für die letzten drei Versionen,
+  einstellbar in den Benutzereinstellungen
+* Gepflegtes Changelog ab der Version 2.0.0 aufrufbar über das Menü unter Einstellungen
+
+2.1.13
+09.04.2016
+* Autocomplete bei der Eingabe neuer Tags ab zwei eingegebenen Zeichen
+* Anzeige des Benutzers, der einen Tag angelegt hat, für Tag-Admins
+
+2.1.12
+08.04.2016
+* Alternative Ansicht für Alben und Playlists einstellbar in den Benutzereinstellugnen
+* Während des Alben-Imports können Tags für das Album gesetzt werden
+* Bugfixes:
+    - Songs von der Song-Detailseite an eine Playlist anfügen
+    - Überprüfung der Berechtigung Playlists zu editieren auf der Song-Detailseite
+
+2.1.11
+05.04.2016
+* Automatische generierung von Playlists anhand der häufig gehörten Tags
+  des Benutzers über einen Button auf der Playlist-Übersichtsseite
+* Bei der Suche werden für Lieder die Tags des Liedes mit angezeigt
+
+2.1.10
+02.04.2016
+* Speichern der eingestellten Lautstärke je genutztem Gerät
+* Aktualisierung von Dateneinträgen nach einem definierten Zeitraum
+* Bugfixes:
+    - Suche nach Interpreten
+    - Anzeige mehrerer Interpreten für Lieder in der Suche
+    - Neue Tags erscheinen nach dem Hinzufügen auf der Tag-Übersichtsseite
+    - Wird ein Lied zu einer Playlist hinzugefügt und es ist die Song-Detailseite geöffnet,
+      so aktualisiert sich der Bereich "Playlists, die den Song beinhalten"
+
+2.1.9
+29.03.2016
+* Verspeicherung einer Bearbeitungshistorie an Basisobjekten (Lieder/Alben/Interpreten)
+* Aufruf der Bearbeitungshistorie aus den entsprechenden Bearbeitungsdialogen
+
+2.1.8
+26.03.2016
+* Tag-Übersichtsseite mit allen vorhandenen Tags alphabetisch sortiert und gruppiert
+* Top-Songs Seite und Meistgespielte Songs Seite zusammengefasst auf der Top-Songs Seite
+* Import erweitert, sodass bis zu 150 Lieder pro CD Importiert werden können
+* Größenlimitierung für Tags in der Tag-Cloud
+* Anzahl der Tags in der Tag-Cloud angepasst
+* Bugfixes:
+    - Klick auf einen Tag mit einem einfachen Anführungszeichen schlug fehl
+    - Suche mit deaktivierter Suche nach Interpreten führte zu einem internen Fehler
+    - Parsen mehrerer Interpreten je Song/Album während des Imports
+    - Zurücksetzen der Mitteilung an den Server, ob ein Lied abgespielt wurde,
+      nachdem ein Lied beendet wurde
+
+2.1.7
+21.03.2016
+* Hinzufügen von Liedern zu einer Playlist von der Song-Detailseite über ein Dropdown-Menü
+* Anzeige von Interpreten beim Überfahren des Covers des aktuell abspielenden Songs mit der Maus
+* Bugfixes:
+    - Farbänderung der Abspiel-Kontrollbuttons beim Überfahren mit der Maus
+    - Nach der Bearbeitung von Tags werden die Datensätze korrekt aktualisiert
+
+2.1.6
+19.03.2016
+* Intervallauswahl bei zeitlich bezogenen Statistiken
+    - Je Tag
+    - Je Woche
+    - Je Monat
+* Zeige die Anzahl der gespielten Lieder für die Meistgespielten Interpreten auf der Startseite
+* Anzeige der nie gespielten Songs eines Interpreten von der Interpreten-Detailseite aus
+* Bugfixes:
+    - Spracheintrag für 'Gesamtspielzeit'
+
+2.1.5
+17.03.2016
+* Neue Sprache: Ostfreesk Platt
+* Zum Bearbeiten-Dialog über das Kontektmenü von Liedern, Alben und Playlists
+* Bugfixes:
+    - Hinter aktuellem Song abspielen im zufälligen Wiedergabemodus
+
+2.1.4
+13.02.2016
+* Tag-Cloud auf der Startseite, einstellbar in den Benutzereinstellungen
+* Validierung des Interpretenformats während des Imports
+* Limitierung der Suchergebnisse bei der Suche nach einem Tag
+  (Möglichkeit über den Mehr-Button alle Ergebnisse einer Kategorie zu sehen)
+* Bugfixes:
+    - Setzen von Jahresangaben und Coverangaben für Alben
+    - Anzeige des Default-Covers auf der Alben-Detailseite, wenn kein Cover hinterlegt wurde
+    - Layout des Tag/Bewertenbereichs auf den Detailseiten
+    - Bearbeiten von Objekten nach dem Hinzufügen von Tags
+    - Nach dem Klick auf einen Tag wurde die Seitenhistorie nicht korrekt angelegt
+
+2.1.3
+12.03.2016
+* Dauerhaftes Mischen von Playlists von der Playlist-Detailseite aus,
+  wenn man Schreibrechte an der Playlist besitzt
+* Anzeige des Albumtitels beim Überfahren des Covers des aktuell abspielenden Songs mit der Maus
+
+2.1.2
+12.03.2016
+* Nur der Benutzer, der einen Tag angelegt hat, kann diesen löschen
+* Neues Benutzerrecht: Tag-Admin.
+  Ein Tag-Admin kann Tags aller Benutzer und vom System gesetzte Tags wieder entfernen
+* Erhöhung der maximalen Länge eines Tags auf 25 Zeichen
+* Tag-Unterstützung für Songs beim Import
+* Import des Erscheinungsjahres eines Albums
+* Bugfixes:
+    - Berechnung der Positionierung des FastNavigation-Menüs
+    - Übersetzungen im Statistik-Bereich
+
+2.1.1
+07.03.2016
+* Globale Statistiken, nur aufrufbar mit einem neuen Benutzerrecht:
+    - Benutzer je Tag
+    - Gehörte Songs je Tag
+    - Gehörte Songs je Stunde
+* Auswählen eines Zeitintervalls für die Statistik 'Gehörte Songs je Stunde'
+    - Gesamt
+    - Letzter Monat
+    - Letzte Woche
+* Bugfixes:
+    - Korrektur des Layouts der Detailseiten und von Dropdown-Menüs mit einem Eintrag
+    - Überarbeiten des Imports für die Kompatibilität mit PHP7
+
+2.1.0
+25.02.2016
+* Umstellung auf PHP7
+* Bearbeiten von Alben, Songs und Interpreten über entsprechende Dialoge,
+  aufrufbar von den entsprechenden Detailseiten, wenn der User das benötigte Benutzerrecht besitzt
+* Direktes Aufrufen von Basisobjekten mit #(a|i|p|s)[ObjektID] über die Suche
+    - a -> Album
+    - i -> Interpret
+    - p -> Playlist
+    - s -> Song
+* Bugfixes:
+    - Falsche Suchergebnisse
+    - Anzeige von Statistiken erst beginnen, sobald alle Abhängigkeiten geladen sind
+    - XSS Verhinderung beim Editieren einer Playlist
+
+2.0.10
+23.02.2016
+* Erweiterte Statistiken des Benutzers im Statistik-Bereich über Diagramme:
+    - Gehörte Songs je Tag
+    - Gehörte Songs je Stunde
+
+2.0.9
+21.02.2016
+* Mehr-Button auf der Interpret-Detailseite für die
+    - Meistgespielten Songs  des Interpreten
+    - Bestbewerteten Songs des Interpreten
+  Jeweils aufrufbar, wenn mehr als 10 Songs in der entsprechenden Liste auftauchen würden
+* Pre-Release der Bearbeitung der Basisobjekte Song, Interpret und Album
+    - Validierung der Eingaben
+    - Clientseitige Dialoge
+
+2.0.8
+12.02.2016
+* Clientseitige Validierung von Eingabedialogen vor dem Absenden beim Speichern
+* Bugfixes:
+    - Laden von Alben mit einem angegebenen Benutzer
+
+2.0.7
+04.02.2016
+* Suche in der aktuellen Playlist über ein Eingabefeld über der Playlist
+  (nur passenden Einträge werden gefiltert angezeigt)
+* Anpassen der Geschwindigkeit beim Scrollen in der aktuellen Playlist
+* Bugfixes:
+    - Scrollen nach oben im FastNavigation-Menü über das Mausrad
+    - Validierung beim Import
+
+2.0.6
+13.01.2016
+* Entfernen von Liedern aus einer Playlist über das Kontextmenü auf der
+  Playlist-Detailseite, wenn der Benutzer Schreibrechte für die Playlist besitzt
+
+2.0.5
+21.12.2015
+* Ladeanimation während der Client mit dem Server kommuniziert
+* Bugfixes:
+    - Nutzen der aktuellen Versionsnummer zur Sicherstellung
+      korrekt geladener Abhängigkeiten
+    - Neu Laden einer geöffneten Playlist-Detailseite,
+      wenn der Playlist ein Song hinzugefügt wurde
+    - Senden von Songs an andere Benutzer
+
+2.0.4
+17.12.2015
+* Umfangreichere Notizen für Alben und Playlists, Anpassung des Layouts
+  auf der entsprechenden Detailseite
+* Aufrufen einer Liste aller Songs eines Interpreten von der entsprechenden
+  Interpreten-Detailseite
+* Bugfixes:
+    - Import von Musik nutzt falsche Struktur
+    - Wenn eine Playlist-Detailseite nicht geladen werden kann, wird auf
+      die Playlistübersicht gewechselt
+    - Korrigierte Anzeige einer Songliste für Alben und Playlists,
+      wenn ein identischer Song mehrfach in der Liste vorkommt
+    - Abspielen einer Playlist bei einem Doppelklick auf die Playlist
+      auf der Playlistübersichtsseite
+
+2.0.3
+14.12.2015
+* Bearbeiten von Playlistinformationen
+* Buttons auf der Album-Detailseite für eine Interaktion mit der aktuellen Playlist
+    - Abspielen
+    - Anfügen
+    - Als nächstes abspielen
+* Buttons auf der Interpret-Detailseite für eine Interaktion mit der aktuellen Playlist
+    - Abspielen
+    - Anfügen
+    - Als nächstes abspielen
+  bezieht sich jeweils auf alle Songs des Interpreten
+* Bugfixes:
+    - Laden des Default-Covers
+    - Anzeige eines Suchergebnisses, wenn kein Interpret gefunden wurde
+    - Suche nach Playlists liefert die Anzahl der Lieder nicht
+
+2.0.2
+09.12.2015
+* Pre-Release Mobile Testclient
+* Bugfixes:
+    - Abfrage der Statistiken
+    - Kontextmenüs reichen über den Bildschirmrand hinaus
+    - Verspeicherung von Playlistinformationen
+
+2.0.1
+27.11.2015
+* Bearbeiten von Playlists
+* Anzeigen von ObjektIDs im Kontextmenü mit dem entsprechenden Benutzerrecht,
+  einstellbar in den Benutzereinstellungen
+* Bugfixes:
+    - Login mit Enter
+    - Anzeige von Nachrichten auf der Login-Seite (zB. Login nicht erfolgreich)
+    - Scrollgeschwindigkeit auf großen Seiten
+    - Anzeige des Default Covers im Bereich der aktuellen Wiedergabe
+    - Kompatibilität mit unterschiedlichen Zeitzonen
+    - Scrollen für zu lange Einträge im FastNavigation-Menü
+    - Korrekte Verspeicherung von Datumsangaben
+
+2.0.0
+21.11.2015
+* Vollständige Umstrukturierung
+* Überarbeitetes Design
+* Verbesserte Suchfunktionalitäten
+* Tagging von Liedern, Alben, Interpreten und Playlists
+* Optimierte Handhabung von Playlists, Interaktion mit Playlists aus dem
+  Kontextmenü von Songs heraus
+* Bessere Individualisierbarkeit in den Einstellungen, Bearbeiten von Benutzerinformationen
+* Auflisten nie gehörter Lieder
+* FastNavigation-Menü um schnell Interpreten und Alben zu finden,
+  einstellbar in den Benutzereinstellungen
+* Auflistung verscheidener Versionen eines Liedes
+* Dynamische, interaktive Listen für Songs
+* Seitenhistorie und das Aufrufen vorangegangener Seiten
