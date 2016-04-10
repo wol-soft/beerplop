@@ -1,8 +1,24 @@
+2.1.15
+10.04.2016
+* Buttons beim Überfahren eines Albums/einer Playlist in der alternativen Ansicht
+  für die Interaktion mit der aktuellen Playlist
+    - Abspielen
+    - Anfügen
+    - Als nächstes abspielen
+* Anzeige der Länge einer Playlist beim Überfahren mit der Maus in der Standardansicht
+  auf der Playlist-Übersichtsseite und bei der Suche nach Playlists
+* Bugfixes:
+    - Lautstärke-Icon beim Neuladen der Seite an die gespeicherte Lautstärke anpassen
+    - Mischung von generierten Playlists optimiert
+    - Farbe des Abspielbuttons für Songlisten, Alben etc. bleibt, ebenso wie die restlichen
+      Control-Buttons, beim Überfahren mit der Maus weiß. Gleiches gilt für die Buttons
+      zur Steuerung des Wiedergabemodus der aktuellen Playlist
+
 2.1.14
 10.04.2016
 * Anzeige des Changelogs auf der Startseite für die letzten drei Versionen,
   einstellbar in den Benutzereinstellungen
-* Gepflegtes Changelog ab der Version 2.0.0 aufrufbar über das Menü unter Einstellungen
+* Gepflegtes Changelog ab der Version 2.0.0, aufrufbar über das Menü unter Einstellungen
 
 2.1.13
 09.04.2016
@@ -11,7 +27,7 @@
 
 2.1.12
 08.04.2016
-* Alternative Ansicht für Alben und Playlists einstellbar in den Benutzereinstellugnen
+* Alternative Ansicht für Alben und Playlists, einstellbar in den Benutzereinstellungen
 * Während des Alben-Imports können Tags für das Album gesetzt werden
 * Bugfixes:
     - Songs von der Song-Detailseite an eine Playlist anfügen
@@ -19,7 +35,7 @@
 
 2.1.11
 05.04.2016
-* Automatische generierung von Playlists anhand der häufig gehörten Tags
+* Automatische Generierung von Playlists anhand der am Häufigsten gehörten Tags
   des Benutzers über einen Button auf der Playlist-Übersichtsseite
 * Bei der Suche werden für Lieder die Tags des Liedes mit angezeigt
 
@@ -41,7 +57,7 @@
 
 2.1.8
 26.03.2016
-* Tag-Übersichtsseite mit allen vorhandenen Tags alphabetisch sortiert und gruppiert
+* Tag-Übersichtsseite mit allen vorhandenen Tags, alphabetisch sortiert und gruppiert
 * Top-Songs Seite und Meistgespielte Songs Seite zusammengefasst auf der Top-Songs Seite
 * Import erweitert, sodass bis zu 150 Lieder pro CD Importiert werden können
 * Größenlimitierung für Tags in der Tag-Cloud
