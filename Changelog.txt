@@ -1,4 +1,4 @@
-2.1.6
+2.1.16
 12.04.2016
 * Bei der Generierung einer Playlist können jetzt bis zu fünf Tags angegeben werden,
   welche die Basis der erzeugten Playlist definieren
