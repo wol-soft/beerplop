@@ -1,3 +1,14 @@
+2.1.6
+12.04.2016
+* Bei der Generierung einer Playlist können jetzt bis zu fünf Tags angegeben werden,
+  welche die Basis der erzeugten Playlist definieren
+* Bugfixes
+    - Setzen der Länge und der Songanzahl von Alben beim Import
+    - Aktualisieren der Länge und der Songanzahl von Playlists beim
+      Hinzufügen oder Entfernen von Liedern
+    - Neu laden der Playlist-Übersichtsseite nach dem Hinzufügen eines Songs
+      zu einer Playlist
+
 2.1.15
 10.04.2016
 * Buttons beim Überfahren eines Albums/einer Playlist in der alternativen Ansicht
@@ -96,7 +107,7 @@
     - Hinter aktuellem Song abspielen im zufälligen Wiedergabemodus
 
 2.1.4
-13.02.2016
+13.03.2016
 * Tag-Cloud auf der Startseite, einstellbar in den Benutzereinstellungen
 * Validierung des Interpretenformats während des Imports
 * Limitierung der Suchergebnisse bei der Suche nach einem Tag
