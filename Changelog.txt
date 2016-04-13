@@ -1,3 +1,12 @@
+2.1.7
+
+* Bugfixes:
+    - Tags mit der Admin-Option der Anzeige des Benutzers, der einen Tag angelegt hat,
+      konnten nicht mehr angeklickt werden
+    - Anzahl Playlists, auf denen ein Song
+    - Layout des Bereichs "Andere Versionen eines Songs", wenn keine anderen Versionen
+      gefunden wurden
+
 2.1.16
 12.04.2016
 * Bei der Generierung einer Playlist können jetzt bis zu fünf Tags angegeben werden,
