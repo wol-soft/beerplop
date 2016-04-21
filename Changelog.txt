@@ -1,5 +1,7 @@
-2.1.7
-
+2.2
+* Achievement-System, mit dem der Benutzer für verschiedene Aktionen Achievements
+  erreichen kann.
+* Bewerten von Playlists
 * Bugfixes:
     - Tags mit der Admin-Option der Anzeige des Benutzers, der einen Tag angelegt hat,
       konnten nicht mehr angeklickt werden
