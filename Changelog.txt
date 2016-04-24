@@ -5,9 +5,10 @@
 * Bugfixes:
     - Tags mit der Admin-Option der Anzeige des Benutzers, der einen Tag angelegt hat,
       konnten nicht mehr angeklickt werden
-    - Anzahl Playlists, auf denen ein Song
+    - Anzahl Playlists, die einen Song beinhalten, ist verkehrt
     - Layout des Bereichs "Andere Versionen eines Songs", wenn keine anderen Versionen
       gefunden wurden
+    - Fehler beim Import von Lossless Musik
 
 2.1.16
 12.04.2016
