@@ -1,7 +1,11 @@
 2.2
 * Achievement-System, mit dem der Benutzer für verschiedene Aktionen Achievements
-  erreichen kann.
+  erreichen kann
 * Bewerten von Playlists
+* Songs, Alben und Playlists können per Drag 'n' Drop direkt abgespielt werden,
+  indem sie in den Kontrollbereich der Wiedergabe gezogen werden
+* Songs, Alben und Playlists können per Drag 'n' Drop in die aktuelle
+  Wiedergabeliste eingefügt werden
 * Bugfixes:
     - Tags mit der Admin-Option der Anzeige des Benutzers, der einen Tag angelegt hat,
       konnten nicht mehr angeklickt werden
