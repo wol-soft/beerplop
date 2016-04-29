@@ -8,6 +8,8 @@
   Wiedergabeliste eingefügt werden
 * Der Interpret und der Titel eines Albums, Songs oder einer Playlist kann per
   Rechtsklick aus dem Menü heraus kopiert werden
+* Tags werden alphabetisch sortiert angezeigt
+* Wird die Suche fokussiert, so wird sie auch beim Verlassen der Maus nicht mehr ausgeblendet
 * Bugfixes:
     - Tags mit der Admin-Option der Anzeige des Benutzers, der einen Tag angelegt hat,
       konnten nicht mehr angeklickt werden
@@ -15,6 +17,9 @@
     - Layout des Bereichs "Andere Versionen eines Songs", wenn keine anderen Versionen
       gefunden wurden
     - Fehler beim Import von Lossless Musik
+    - Die Songlänge von Songs, die länger als eine Stunde sind, wird in der aktuellen
+      Playlist nicht korrekt angezeigt
+    - Flackern des Menüs in FireFox beim Bewegen der Maus an den linken Rand
 
 2.1.16
 12.04.2016
