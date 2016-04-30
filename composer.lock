@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3099da79e852ae90ee5e3296d08b012d",
+    "hash": "83ec838411c637d17f231bad14c17c98",
     "packages": [
         {
             "name": "EnWo/bootstrap-tagsinput",
@@ -542,12 +542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nnnick/Chart.js.git",
-                "reference": "d7117bc79235f23832cec04568cad8a808f82737"
+                "reference": "13e038730cdebbfb2790ded18354e76a6e444ffe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nnnick/Chart.js/zipball/d7117bc79235f23832cec04568cad8a808f82737",
-                "reference": "d7117bc79235f23832cec04568cad8a808f82737",
+                "url": "https://api.github.com/repos/nnnick/Chart.js/zipball/13e038730cdebbfb2790ded18354e76a6e444ffe",
+                "reference": "13e038730cdebbfb2790ded18354e76a6e444ffe",
                 "shasum": ""
             },
             "require": {
@@ -575,7 +575,7 @@
                 "JS",
                 "chart"
             ],
-            "time": "2016-03-13 14:20:24"
+            "time": "2016-04-20 23:47:24"
         },
         {
             "name": "twbs/bootstrap",
@@ -583,12 +583,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "7cbd9a181a970b306f1963a612c5cd45aef60f8c"
+                "reference": "795d2208b882e194e6059a1639e056e020d64072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/7cbd9a181a970b306f1963a612c5cd45aef60f8c",
-                "reference": "7cbd9a181a970b306f1963a612c5cd45aef60f8c",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/795d2208b882e194e6059a1639e056e020d64072",
+                "reference": "795d2208b882e194e6059a1639e056e020d64072",
                 "shasum": ""
             },
             "replace": {
@@ -626,7 +626,18 @@
                 "responsive",
                 "web"
             ],
-            "time": "2016-03-27 04:50:20"
+            "time": "2016-04-15 19:11:23"
+        },
+        {
+            "name": "zenorocha/clipboardjs",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/zenorocha/clipboard.js/archive/master.zip",
+                "reference": "master",
+                "shasum": null
+            },
+            "type": "library"
         }
     ],
     "packages-dev": [
@@ -799,16 +810,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.2.3",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b"
+                "reference": "31382fef2889136415751badebbd1cb022a4ed72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/2e89629ff057ebb49492ba08e6995d3a6a80021b",
-                "reference": "2e89629ff057ebb49492ba08e6995d3a6a80021b",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/31382fef2889136415751badebbd1cb022a4ed72",
+                "reference": "31382fef2889136415751badebbd1cb022a4ed72",
                 "shasum": ""
             },
             "require": {
@@ -853,7 +864,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2016-02-18 21:54:00"
+            "time": "2016-04-13 19:56:01"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -1809,6 +1820,7 @@
     "stability-flags": {
         "components/jqueryui": 20,
         "nnnick/chartjs": 20,
+        "zenorocha/clipboardjs": 20,
         "malihu/mcustomscrollbar": 20,
         "michaelbromley/angularutils": 20,
         "swimlane/ngcontextmenu": 20,
