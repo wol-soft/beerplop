@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "83ec838411c637d17f231bad14c17c98",
+    "content-hash": "bbca289eed4d5fec270c93becaa068af",
     "packages": [
         {
             "name": "EnWo/bootstrap-tagsinput",
@@ -379,7 +380,7 @@
                     ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -415,7 +416,7 @@
                     ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -541,13 +542,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nnnick/Chart.js.git",
-                "reference": "13e038730cdebbfb2790ded18354e76a6e444ffe"
+                "url": "https://github.com/chartjs/Chart.js.git",
+                "reference": "7cbc08aed7698e82f041dd4464384a1b1b1ea816"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nnnick/Chart.js/zipball/13e038730cdebbfb2790ded18354e76a6e444ffe",
-                "reference": "13e038730cdebbfb2790ded18354e76a6e444ffe",
+                "url": "https://api.github.com/repos/chartjs/Chart.js/zipball/7cbc08aed7698e82f041dd4464384a1b1b1ea816",
+                "reference": "7cbc08aed7698e82f041dd4464384a1b1b1ea816",
                 "shasum": ""
             },
             "require": {
@@ -575,7 +576,7 @@
                 "JS",
                 "chart"
             ],
-            "time": "2016-04-20 23:47:24"
+            "time": "2016-04-29 03:23:13"
         },
         {
             "name": "twbs/bootstrap",
@@ -1767,25 +1768,25 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.4",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "584e52cb8f788a887553ba82db6caacb1d6260bb"
+                "reference": "0047c8366744a16de7516622c5b7355336afae96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/584e52cb8f788a887553ba82db6caacb1d6260bb",
-                "reference": "584e52cb8f788a887553ba82db6caacb1d6260bb",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/0047c8366744a16de7516622c5b7355336afae96",
+                "reference": "0047c8366744a16de7516622c5b7355336afae96",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -1812,7 +1813,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:54:35"
+            "time": "2016-03-04 07:55:57"
         }
     ],
     "aliases": [],
