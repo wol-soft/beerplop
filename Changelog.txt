@@ -1,5 +1,14 @@
 2.2.1
+04.05.2016
 * Anzeige des Achievementfortschritts auf der Achievement-Seite
+* Drag 'n' Drop eines Songs von der Song-Detailseite über den Titel zur Wiedergabe oder
+  in die aktuelle Playlist
+* Bugfixes:
+    - Einreihen von Liedern führt zu einer falschen Wiedergabereihenfolge
+    - Hinter aktuelles verschieben von Songs die oberhalb des aktuellen Songs angeordnet sind
+    - Reset des Bewerten-Elements nach dem Wechsel eines Songs, den man bewertet hat, zu einem,
+      den man nicht bewertet hat
+    - Als nächstes abspielen wählen, wenn gerade das letzte Lied abgespielt wird
 
 2.2
 30.04.2016
