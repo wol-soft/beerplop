@@ -1,3 +1,10 @@
+2.2.2
+* Manuelles Aktualisieren der Songanzahl und der Länge eines Albums
+* Bugfixes:
+    - Aktualisieren der Songanzahl und der Länge eines Albums beim Import
+      nach der Konfliktbearbeitung
+    - Fortschrittsanzeige aller Achievements
+
 2.2.1
 04.05.2016
 * Anzeige des Achievementfortschritts auf der Achievement-Seite
