@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "59edefa52c2516d59374e1a283a291d4",
-    "content-hash": "21214e64506ac76665bbc1421e79450a",
+    "hash": "124997eb9ae4e8e466a769577af7c0e7",
     "packages": [
         {
             "name": "EnWo/bootstrap-tagsinput",
@@ -13,7 +12,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/EnWo/bootstrap-tagsinput/archive/master.zip",
-                "reference": null,
+                "reference": "master",
                 "shasum": null
             },
             "type": "library"
@@ -24,7 +23,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/Swimlane/ng-context-menu/archive/master.zip",
-                "reference": null,
+                "reference": "master",
                 "shasum": null
             },
             "type": "library"
@@ -79,7 +78,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/angular-ui/ui-sortable/archive/master.zip",
-                "reference": null,
+                "reference": "master",
                 "shasum": null
             },
             "type": "library"
@@ -380,7 +379,7 @@
                     ]
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -416,7 +415,7 @@
                     ]
                 }
             },
-            "notification-url": "http://packagist.org/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -521,7 +520,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/malihu/malihu-custom-scrollbar-plugin/archive/master.zip",
-                "reference": null,
+                "reference": "master",
                 "shasum": null
             },
             "type": "library"
@@ -532,23 +531,23 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/michaelbromley/angularUtils/archive/master.zip",
-                "reference": null,
+                "reference": "master",
                 "shasum": null
             },
             "type": "library"
         },
         {
             "name": "nnnick/chartjs",
-            "version": "dev-master",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/chartjs/Chart.js.git",
-                "reference": "b2dc292437c6630ad37f1b085218cdac93899a10"
+                "url": "https://github.com/nnnick/Chart.js.git",
+                "reference": "a62537a80029cd5a2e230769a652904e2de2d5d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chartjs/Chart.js/zipball/b2dc292437c6630ad37f1b085218cdac93899a10",
-                "reference": "b2dc292437c6630ad37f1b085218cdac93899a10",
+                "url": "https://api.github.com/repos/nnnick/Chart.js/zipball/a62537a80029cd5a2e230769a652904e2de2d5d4",
+                "reference": "a62537a80029cd5a2e230769a652904e2de2d5d4",
                 "shasum": ""
             },
             "require": {
@@ -576,7 +575,7 @@
                 "JS",
                 "chart"
             ],
-            "time": "2016-05-06 11:29:04"
+            "time": "2016-04-05 22:27:27"
         },
         {
             "name": "twbs/bootstrap",
@@ -635,7 +634,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/zenorocha/clipboard.js/archive/master.zip",
-                "reference": null,
+                "reference": "master",
                 "shasum": null
             },
             "type": "library"
@@ -959,20 +958,23 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b"
+                "reference": "38e9124049cf1a164f1e4537caf19c99bf1eb260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
-                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/38e9124049cf1a164f1e4537caf19c99bf1eb260",
+                "reference": "38e9124049cf1a164f1e4537caf19c99bf1eb260",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4|~5"
             },
             "type": "library",
             "autoload": {
@@ -996,7 +998,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2015-06-21 08:01:12"
+            "time": "2016-05-12 18:03:57"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -1293,16 +1295,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.6",
+            "version": "1.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "2292b116f43c272ff4328083096114f84ea46a56"
+                "reference": "4e8f0da10ac5802913afc151413bc8c53b6c2716"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/2292b116f43c272ff4328083096114f84ea46a56",
-                "reference": "2292b116f43c272ff4328083096114f84ea46a56",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/4e8f0da10ac5802913afc151413bc8c53b6c2716",
+                "reference": "4e8f0da10ac5802913afc151413bc8c53b6c2716",
                 "shasum": ""
             },
             "require": {
@@ -1339,7 +1341,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-05-04 07:59:13"
+            "time": "2016-05-17 03:18:57"
         },
         {
             "name": "sebastian/exporter",
@@ -1548,25 +1550,25 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.0.6",
+            "version": "v2.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "0047c8366744a16de7516622c5b7355336afae96"
+                "reference": "e4fbcc65f90909c999ac3b4dfa699ee6563a9940"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/0047c8366744a16de7516622c5b7355336afae96",
-                "reference": "0047c8366744a16de7516622c5b7355336afae96",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e4fbcc65f90909c999ac3b4dfa699ee6563a9940",
+                "reference": "e4fbcc65f90909c999ac3b4dfa699ee6563a9940",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=5.3.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -1593,14 +1595,13 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:55:57"
+            "time": "2016-03-29 19:00:15"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "components/jqueryui": 20,
-        "nnnick/chartjs": 20,
         "zenorocha/clipboardjs": 20,
         "malihu/mcustomscrollbar": 20,
         "michaelbromley/angularutils": 20,
