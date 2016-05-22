@@ -3,6 +3,7 @@
 * Hinweis des Systems, wenn es ein neues Release gegeben hat
 * Bugfixes:
     - Laden des aktuellen Changelogs nach einem neuen Release
+    - Coveranzeige in der aktuellen Wiedergabe bei Songs von Alben, die kein Cover besitzen
 
 2.2.2
 17.05.2016
