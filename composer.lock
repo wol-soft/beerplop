@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "124997eb9ae4e8e466a769577af7c0e7",
+    "hash": "bd48165967588be692dd655243457bcd",
+    "content-hash": "1d39b8fb115acde853b2fa723d3a7a88",
     "packages": [
         {
             "name": "EnWo/bootstrap-tagsinput",
@@ -12,7 +13,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/EnWo/bootstrap-tagsinput/archive/master.zip",
-                "reference": "master",
+                "reference": null,
                 "shasum": null
             },
             "type": "library"
@@ -23,7 +24,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/Swimlane/ng-context-menu/archive/master.zip",
-                "reference": "master",
+                "reference": null,
                 "shasum": null
             },
             "type": "library"
@@ -78,7 +79,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/angular-ui/ui-sortable/archive/master.zip",
-                "reference": "master",
+                "reference": null,
                 "shasum": null
             },
             "type": "library"
@@ -515,12 +516,34 @@
             "time": "2015-10-22 05:54:29"
         },
         {
+            "name": "frapontillo/angular-bootstrap-duallistbox",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/frapontillo/angular-bootstrap-duallistbox/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "istvan-ujjmeszaros/bootstrap-duallistbox",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/istvan-ujjmeszaros/bootstrap-duallistbox/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
             "name": "malihu/mCustomScrollbar",
             "version": "master",
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/malihu/malihu-custom-scrollbar-plugin/archive/master.zip",
-                "reference": "master",
+                "reference": null,
                 "shasum": null
             },
             "type": "library"
@@ -531,7 +554,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/michaelbromley/angularUtils/archive/master.zip",
-                "reference": "master",
+                "reference": null,
                 "shasum": null
             },
             "type": "library"
@@ -583,12 +606,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "795d2208b882e194e6059a1639e056e020d64072"
+                "reference": "349cc8c3b4440645f5bf0c51055fd44e1cad3804"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/795d2208b882e194e6059a1639e056e020d64072",
-                "reference": "795d2208b882e194e6059a1639e056e020d64072",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/349cc8c3b4440645f5bf0c51055fd44e1cad3804",
+                "reference": "349cc8c3b4440645f5bf0c51055fd44e1cad3804",
                 "shasum": ""
             },
             "replace": {
@@ -626,7 +649,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2016-04-15 19:11:23"
+            "time": "2016-05-29 09:18:29"
         },
         {
             "name": "zenorocha/clipboardjs",
@@ -634,7 +657,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/zenorocha/clipboard.js/archive/master.zip",
-                "reference": "master",
+                "reference": null,
                 "shasum": null
             },
             "type": "library"
@@ -1608,6 +1631,8 @@
         "swimlane/ngcontextmenu": 20,
         "angular-ui/ui-sortable": 20,
         "enwo/bootstrap-tagsinput": 20,
+        "frapontillo/angular-bootstrap-duallistbox": 20,
+        "istvan-ujjmeszaros/bootstrap-duallistbox": 20,
         "twbs/bootstrap": 20
     },
     "prefer-stable": false,
