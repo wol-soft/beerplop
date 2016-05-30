@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bd48165967588be692dd655243457bcd",
-    "content-hash": "1d39b8fb115acde853b2fa723d3a7a88",
+    "hash": "24a79efba64ab1183e970dbbca8201ff",
+    "content-hash": "ebaa3c9b2aa352eccb77b85f245796b7",
     "packages": [
         {
             "name": "EnWo/bootstrap-tagsinput",
@@ -601,17 +601,28 @@
             "time": "2016-04-05 22:27:27"
         },
         {
+            "name": "sebastianha/angular-bootstrap-multiselect",
+            "version": "master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/sebastianha/angular-bootstrap-multiselect/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
             "name": "twbs/bootstrap",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "349cc8c3b4440645f5bf0c51055fd44e1cad3804"
+                "reference": "f01f3e5f34c1acdd802cc61ea9aae9f9b14169c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/349cc8c3b4440645f5bf0c51055fd44e1cad3804",
-                "reference": "349cc8c3b4440645f5bf0c51055fd44e1cad3804",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/f01f3e5f34c1acdd802cc61ea9aae9f9b14169c3",
+                "reference": "f01f3e5f34c1acdd802cc61ea9aae9f9b14169c3",
                 "shasum": ""
             },
             "replace": {
@@ -649,7 +660,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2016-05-29 09:18:29"
+            "time": "2016-05-30 00:43:40"
         },
         {
             "name": "zenorocha/clipboardjs",
@@ -1633,6 +1644,7 @@
         "enwo/bootstrap-tagsinput": 20,
         "frapontillo/angular-bootstrap-duallistbox": 20,
         "istvan-ujjmeszaros/bootstrap-duallistbox": 20,
+        "sebastianha/angular-bootstrap-multiselect": 20,
         "twbs/bootstrap": 20
     },
     "prefer-stable": false,
