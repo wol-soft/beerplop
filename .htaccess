@@ -33,3 +33,7 @@
 <Files "sonar-project.properties">
 	Require all denied
 </Files>
+
+<Files "deploy.sh">
+	Require all denied
+</Files>
