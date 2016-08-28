@@ -9,3 +9,5 @@
 reports
 dist
 /composer.lock
+/updateDBconfig.php
+/updateDB.php

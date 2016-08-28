@@ -37,3 +37,11 @@
 <Files "deploy.sh">
 	Require all denied
 </Files>
+
+<Files "updateDB.php">
+	Require all denied
+</Files>
+
+<Files "updateDBconfig.php">
+	Require all denied
+</Files>
