@@ -8,4 +8,4 @@ testing:
     - composer update
     - cd test
     - cp /var/gitlab-ci/testconf.php testconf.php
-    - phpunit --bootstrap bootstrap.php --config phpunit.xml
+    - phpunit --bootstrap bootstrap.php --config phpunit.xml --coverage-text --colors=never
