@@ -1,32 +1,11 @@
-# Select what we should cache
-cache:
-  paths:
-  - vendor/
-
-before_script:
-# Install git, the php image doesn't have installed
-- apt-get update -yqq
-- apt-get install git -yqq
-
-# Install mysql driver
-- docker-php-ext-install pdo_mysql
-
-# Install composer
-- curl -sS https://getcomposer.org/installer | php
-
-# Install all project dependencies
-- php composer.phar install
-
-services:
-- mysql
-
-variables:
-  # Configure mysql service (https://hub.docker.com/_/mysql/)
-  MYSQL_DATABASE: wol_soft
-  MYSQL_ROOT_PASSWORD: unittest
-
-# We test PHP7.0
-test:7.0:
-  image: php:7.0
+testing:
+  cache:
+    paths:
+    - vendor/
   script:
-  - phpunit --configuration test/phpunit.xml --coverage-text
+    - echo "Testing WOL-Soft with:"
+    - phpunit --version
+    - composer update
+    - cd test
+    - cp /var/gitlab-ci/testconf.php testconf.php
+    - phpunit --bootstrap bootstrap.php --config phpunit.xml --coverage-text --colors=never
