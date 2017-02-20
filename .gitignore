@@ -11,3 +11,4 @@ dist
 /composer.lock
 /updateDBconfig.php
 /updateDB.php
+style
