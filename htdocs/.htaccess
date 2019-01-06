@@ -3,6 +3,7 @@ RewriteEngine On
 #RewriteCond %{HTTP_HOST} !=localhost
 #RewriteCond %{HTTP_HOST} !=127.0.0.1
 #RewriteCond %{HTTPS} !=on
+#RewriteCond %{REQUEST_URI} !^/.well-known/ [NC]
 #RewriteRule ^/?(.*) https://%{SERVER_NAME}/apps/$1 [R,L]
 
 # don't rewrite calls to specific files or dist directory
