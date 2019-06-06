@@ -1,5 +1,16 @@
 # Beerplop
 
+Repository for the incremental game Beerplop.
+
+If you encounter a bug, have a feature request or an idea for an improvement just open an issue.
+
+Some links:
+
+- [Beerplop game](https://wol-soft.de/apps/beerplop/plop)
+- [Beerplop wiki](https://wol-soft.de/apps/beerplop/wiki)
+
+## Development
+
 To have a running Beerplop instance ready to develop execute the following steps:
 
 * clone the repository
