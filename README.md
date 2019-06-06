@@ -1,4 +1,4 @@
-# beerplop-issues
+# Beerplop issues
 Issue tracker for the incremental game Beerplop.
 
 If you encounter a bug, have a feature request or an idea for an improvement just open an issue.
