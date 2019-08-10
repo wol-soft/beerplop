@@ -1,5 +1,9 @@
 RewriteEngine On
 
+# Don't use HTTP1.0 header
+Header unset Pragma
+Header unset Expires
+
 #RewriteCond %{HTTP_HOST} !=localhost
 #RewriteCond %{HTTP_HOST} !=127.0.0.1
 #RewriteCond %{HTTPS} !=on
