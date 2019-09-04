@@ -1,7 +1,4 @@
 testing:
-  cache:
-    paths:
-    - vendor/
   script:
     - echo "Testing WOL-Soft with:"
     - phpunit --version
