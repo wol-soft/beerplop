@@ -1,14 +1,9 @@
-RewriteEngine On
-
-#RewriteCond %{HTTP_HOST} !=localhost
-#RewriteCond %{HTTP_HOST} !=127.0.0.1
-#RewriteCond %{HTTPS} !=on
-#RewriteCond %{REQUEST_URI} !^/.well-known/ [NC]
-#RewriteRule ^/?(.*) https://%{SERVER_NAME}/apps/$1 [R,L]
+# Don't use HTTP1.0 header
+Header unset Pragma
+Header unset Expires
 
 # don't rewrite calls to specific files or dist directory
-RewriteRule (.*)(.css|.js|.png|.jpg|.jpeg|.php|.pdf|.gif|.txt|.svg|.ico) - [L]
+RewriteEngine On
+RewriteRule (.*)\.(css|js|png|jpg|jpeg|php|pdf|gif|txt|svg|ico) - [L]
 RewriteRule (.*)/dist/(.*) - [L]
 RewriteRule (.*) bootstrap.php?route=/$1&%{QUERY_STRING}
-
-#Header set Content-Security-Policy "media-src https://wol-soft.selfhost.me http://wol-soft.selfhost.me;"
