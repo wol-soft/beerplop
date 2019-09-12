@@ -1,4 +1,3 @@
-/phpqrcode/cache
 /apps/server/Conf.php
 /test/TestConf.php
 /vendor/
@@ -8,6 +7,7 @@
 /apps/bingo/dist/
 /apps/cookbook/dist/
 /apps/stories/dist/
+/src/Mediacenter/Server/Model/Request/
 /nbproject/private/
 /apps/user/dist/
 reports
