@@ -1,7 +1,7 @@
 image: php:7.3
 
 services:
-  - mysql:latest
+  - mysql:8.0
 
 variables:
   MYSQL_DATABASE: wol_soft_test
