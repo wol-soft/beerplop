@@ -1,8 +1,19 @@
-testing:
+image: php:7.3
+
+services:
+  - mysql:8
+
+variables:
+  MYSQL_DATABASE: wol_soft_test
+  MYSQL_USER: wol_soft_test
+  MYSQL_PASSWORD: wol_soft_test
+
+stages:
+  - build
+  - test
+  - publish
+
+build:
+  stage: build
   script:
-    - echo "Testing WOL-Soft with:"
-    - phpunit --version
-    - composer update
-    - cd test
-    - cp /var/gitlab-ci/testconf.php testconf.php
-    - phpunit --bootstrap bootstrap.php --config phpunit.xml --coverage-text --colors=never
+  - echo "Hallo"
