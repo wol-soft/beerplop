@@ -32,6 +32,7 @@ build:
     when: always
     expire_in: 1 day
   cache:
+    key: wol-soft-pipeline-cache
     paths:
       - ./node_modules/
       - ./vendor/
