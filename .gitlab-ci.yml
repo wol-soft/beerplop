@@ -17,6 +17,7 @@ build:
     - npm install
     - npm install grunt -g
     - grunt default
+    - npm install --only=prod
     - composer update --no-dev -o --ignore-platform-reqs
   artifacts:
     name: "${CI_PIPELINE_ID}"
@@ -24,11 +25,14 @@ build:
       - htdocs
       - src
       - vendor
+      - node_modules
       - Gruntfile.js
       - deploy.sh
       - index.js
       - composer.json
       - package.json
+      - updateDB.php
+      - updateDBconfig.php
     when: always
     expire_in: 1 day
   cache:
