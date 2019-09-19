@@ -1,8 +1,35 @@
-testing:
+image: php:7.3
+
+stages:
+  - build
+
+build:
+  stage: build
   script:
-    - echo "Testing WOL-Soft with:"
-    - phpunit --version
-    - composer update
-    - cd test
-    - cp /var/gitlab-ci/testconf.php testconf.php
-    - phpunit --bootstrap bootstrap.php --config phpunit.xml --coverage-text --colors=never
+    - apt-get update
+    - apt-get install -y npm ruby ruby-dev git unzip
+    - gem install sass
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - composer update -o --ignore-platform-reqs
+    - php install/generateModels.php
+    - npm install
+    - npm install grunt -g
+    - grunt default
+    - composer update --no-dev -o --ignore-platform-reqs
+  artifacts:
+    name: "${CI_PIPELINE_ID}"
+    paths:
+      - htdocs
+      - src
+      - vendor
+      - Gruntfile.js
+      - deploy.sh
+      - index.js
+      - composer.json
+      - package.json
+    when: always
+    expire_in: 1 day
+  cache:
+    paths:
+      - ./node_modules/
+      - ./vendor/
