@@ -1,18 +1,10 @@
-image: php:7.3
-
 stages:
   - build
 
 build:
   stage: build
   script:
-    - apt-get update
-    - apt-get install -y npm ruby ruby-dev git unzip
-    - gem install sass
-    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
     - composer update -o --ignore-platform-reqs
-    - mkdir /etc/wol-soft
-    - touch /etc/wol-soft/Conf.php
     - php install/generateModels.php
     - npm install
     - npm install grunt -g
