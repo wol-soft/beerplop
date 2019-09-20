@@ -7,7 +7,6 @@ build:
     - composer update -o --ignore-platform-reqs
     - php install/generateModels.php
     - npm install
-    - npm install grunt -g
     - grunt default
     - npm install --only=prod
     - composer update --no-dev -o --ignore-platform-reqs
