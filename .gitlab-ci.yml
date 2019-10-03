@@ -4,6 +4,7 @@ stages:
 build:
   stage: build
   script:
+    - echo "<?php" > ../Conf.php
     - composer update -o --ignore-platform-reqs
     - php install/generateModels.php
     - npm install
