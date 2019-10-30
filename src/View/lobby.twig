@@ -1,0 +1,79 @@
+<!Doctype html>
+<html>
+  {% include '/View/Modules/head.twig' with {
+      'js' : 'lobby'
+    }
+  %}
+
+  <body class="overlay scrollable">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-0 col-lg-1 col-xl-2"></div>
+        <div class="col-xs-12 col-lg-8 col-xl-6">
+          {% include '/View/Modules/local-save-state-warning.twig' with {
+            'action': translator.translate('save.localSave.warning.action.' ~ (isAdmin ? 'startLobby' : 'joinLobby'))
+            }
+          %}
+
+          <h1>{{ translator.translate('lobby.head') }}: <span class="header__lobby-title">{{ translator.translate('lobby.defaultTitle') }}</span></h1>
+          <br />
+
+          {% if isAdmin %}
+            <div class="alert alert-dark" role="alert">
+              {{ translator.translate('lobby.description') }}
+            </div>
+
+            <div class="mt-5">
+              <label for="lobby-title">{{ translator.translate('lobby.label.title') }}:</label>
+              <input type="text" class="form-control" id="lobby-title" value="{{ translator.translate('lobby.defaultTitle') }}" />
+            </div>
+            <div class="mb-5">
+              <label for="join-link">{{ translator.translate('lobby.label.link') }}:</label>
+              <input type="text" class="form-control" id="join-link" />
+            </div>
+          {% endif %}
+
+          <div class="players-list hidden-element">
+            <h4>{{ translator.translate('lobby.players') }}:</h4>
+            <table class="table">
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <br />
+          <br />
+
+          {% if isAdmin %}
+            <button id="close-lobby" type="button" class="btn btn-default">
+              {{ translator.translate('lobby.close') }}
+            </button>
+            <button id="start-match"
+                    type="button"
+                    class="btn btn-primary"
+            >
+              {{ translator.translate('lobby.start') }}&nbsp;&raquo;
+            </button>
+          {% else %}
+            <button id="leave-lobby" type="button" class="btn btn-default">
+              {{ translator.translate('lobby.leave') }}
+            </button>
+          {% endif %}
+        </div>
+        <div class="col-xs-0 col-lg-1 col-xl-2"></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    new Beerplop.LobbyController({
+        lobbyId: '{{ lobbyId }}',
+        userId: '{{ app.getUser().getId() }}',
+        nickName: '{{ app.getUser().getName() }}',
+        nodeServer: '{{ app.conf.nodeServer['host'] }}',
+        nodePort: '{{ app.conf.nodeServer['port'] }}',
+        {% if isAdmin %}
+          isAdmin: true
+        {% endif %}
+    });
+  </script>
+</html>
