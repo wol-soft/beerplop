@@ -1,0 +1,62 @@
+<!Doctype html>
+<html>
+  {% include '/View/Modules/head.twig' with {
+      'js' : 'lobby'
+    }
+  %}
+
+  <body class="overlay scrollable">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-0 col-lg-1 col-xl-2"></div>
+        <div class="col-xs-12 col-lg-8 col-xl-6 mt-5">
+          <h1 class="text-center">{{ translator.translate('demo.title') }}</h1>
+
+          {% include '/View/Modules/local-save-state-warning.twig' with {
+              'action': translator.translate('save.localSave.warning.action.loadDemo')
+            }
+          %}
+
+          <hr />
+          {{ translator.translate('demo.hint') }}
+          <table class="table-hover table-responsive mt-5">
+            <thead>
+              <tr>
+                <th>{{ translator.translate('demo.availableDemos') }}:</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for saveState in demoSaveStates %}
+                <tr>
+                  <td>{{ saveState['title'] }}</td>
+                  <td>
+                    <button type="button"
+                            class="btn btn-raised btn-secondary btn-load-save-state m-3"
+                            data-save-state-id="{{ saveState['id'] }}"
+                    >
+                      {{ translator.translate('save.load') }}
+                    </button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <a href="plop" class="btn btn-raised btn-primary mt-5">
+            {{ translator.translate('save.startOwn') }}
+          </a>
+        </div>
+        <div class="col-xs-0 col-lg-1 col-xl-2"></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+      $(function() {
+          $('.btn-load-save-state').on('click', function () {
+              window.location.href = '/plop/' + $(this).data('saveStateId');
+          });
+      });
+  </script>
+</html>

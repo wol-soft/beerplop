@@ -5,5 +5,5 @@ Header unset Expires
 # don't rewrite calls to specific files or dist directory
 RewriteEngine On
 RewriteRule (.*)\.(css|js|png|jpg|jpeg|php|pdf|gif|txt|svg|ico) - [L]
-RewriteRule (.*)/dist/(.*) - [L]
+RewriteRule (.*)dist/(.*) - [L]
 RewriteRule (.*) bootstrap.php?route=/$1&%{QUERY_STRING}

@@ -1,0 +1,47 @@
+<div id="game-options-modal" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ translator.translate('options') }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        {% include '/View/Modules/option-list.twig' with {
+            'options' : ['disableFlyoutLabels', 'sliderOverfading', 'scientificNotation', 'iftttNotifications']
+          }
+        %}
+
+        <div id="ifttt-container" class="container d-none">
+          <div class="ifttt-toggle">
+            <button id="ifttt-connect" class="btn btn-primary">{{ translator.translate('options.ifttt.start') }}</button>
+          </div>
+          <div class="ifttt-toggle d-none">
+            <p>{{ translator.translate('options.ifttt.channel') }}:</p>
+
+            {% include '/View/Modules/option-list.twig' with {
+                'options' : [
+                  'ifttt_system',
+                  'ifttt_stockMarket',
+                  'ifttt_buildingMinigame',
+                  'ifttt_beerFactory',
+                  'ifttt_beerwarts',
+                  'ifttt_research',
+                  'ifttt_beerBank'
+                ]
+              }
+            %}
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          {{ translator.translate('ok') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
