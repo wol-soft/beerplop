@@ -1,0 +1,28 @@
+<div id="save-state-persistence-lead-warn-modal" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ translator.translate('save.conflict.title') }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        {{ translator.translate('save.conflict.description') | raw }}
+      </div>
+      <div class="modal-footer">
+        <button id="update-save-state-persistence" type="button" class="btn btn-danger" data-dismiss="modal">
+          {{ translator.translate('save.conflict.update') }}
+        </button>
+        <button id="cancel-update-save-state-persistence"
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+        >
+          {{ translator.translate('save.conflict.continue') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

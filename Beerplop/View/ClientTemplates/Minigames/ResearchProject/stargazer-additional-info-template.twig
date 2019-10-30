@@ -1,0 +1,13 @@
+{% verbatim %}
+  <script id="stargazer-additional-info-template" type="text/template">
+    {{ #stage }}
+      {{ #t }}"research.stargazer.effectTooltip", {"__STAGE__": "{{ stage }}"}{{ /t }}
+      <br />
+      <ul>
+        {{ #buildings }}
+          <li>{{ #t }}"building.{{ . }}.plural"{{ /t }}</li>
+        {{ /buildings }}
+      </ul>
+    {{ /stage }}
+  </script>
+{% endverbatim %}

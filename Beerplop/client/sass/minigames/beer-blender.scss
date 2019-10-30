@@ -1,0 +1,58 @@
+@import "../colors";
+
+.beer-blender__effects {
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 0;
+    padding: 0 0 5px;
+    list-style: none;
+  }
+}
+
+.beer-blender {
+  &__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .beer-blender__slot {
+      width: 70px;
+      height: 70px;
+      margin: 5px;
+      border: 5px solid $color-secondary-contrast-border;
+      background-color: $color-secondary-contrast;
+
+      .beer-blender__ingredient {
+        width: 60px;
+        height: 60px;
+        margin: 0;
+      }
+    }
+
+    .beer-blender__ingredient {
+      width: 70px;
+      height: 70px;
+      margin: 5px;
+      cursor: move;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__preset-container {
+    margin-bottom: 2rem;
+
+    .beer-blender__ingredient {
+      cursor: default !important;
+    }
+
+    button {
+      width: 50px;
+    }
+  }
+}

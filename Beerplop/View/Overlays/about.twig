@@ -1,0 +1,25 @@
+<div class="d-none overlay-container" data-overlay="about-overlay">
+  <div class="close-overlay">
+    <h2 class="overlay-title">{{ translator.translate('about.title') }}</h2>
+    <button type="button" class="close" aria-label="Close">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="full overlay-body">
+    <div class="row">
+      <div class="col-sm-0 col-md-1 col-lg-3"></div>
+      <div class="col-sm-12 col-md-10 col-lg-6">
+        <h1>{{ translator.translate('game.name') }}</h1>
+        <h2>{{ translator.translate('about.head.about') }}</h2>
+        <p>
+          {{ translator.translate('about.description') }}
+        </p>
+        <p>Developed by <a href="/" target="_blank">Enno Woortmann</a> aka WOL-Soft.</p>
+        <h2>{{ translator.translate('about.head.changelog') }}</h2>
+        {{ changelog | raw }}
+      </div>
+      <div class="col-sm-0 col-md-1 col-lg-3"></div>
+    </div>
+  </div>
+</div>

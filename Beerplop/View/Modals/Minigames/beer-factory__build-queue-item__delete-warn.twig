@@ -1,0 +1,27 @@
+<div id="beer-factory__build-queue-item__delete-warn-modal" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ translator.translate('beerFactory.modal.dropQueue.title') }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        {{ translator.translate('beerFactory.modal.dropQueue.description') }}
+      </div>
+      <div class="modal-footer">
+        <button id="beer-factory__build-queue-item__delete"
+                type="button"
+                class="btn btn-danger"
+                data-dismiss="modal"
+                data-item-id=""
+        >
+          {{ translator.translate('delete') }}
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ translator.translate('cancel') }}</button>
+      </div>
+    </div>
+  </div>
+</div>

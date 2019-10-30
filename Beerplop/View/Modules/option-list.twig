@@ -1,0 +1,8 @@
+{% for option in options %}
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="{{ option }}" class="game-option-checkbox">
+      {{ translator.translate('options.' ~ option) }}
+    </label>
+  </div>
+{% endfor %}

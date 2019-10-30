@@ -1,0 +1,16 @@
+{% verbatim %}
+  <script id="automated-bar__cell-status" type="text/template">
+    {{ #t }}"automatedBar.itemLevel"{{ /t }}: {{ level }}<br />
+    {{ #t }}"automatedBar.popover.base"{{ /t }}: {{ base }}<br />
+    {{ #t }}"automatedBar.popover.available"{{ /t }}: {{ available }}<br />
+    {{ #t }}"automatedBar.popover.delivered"{{ /t }}: {{ delivered }}
+    <hr />
+    {{ #t }}"automatedBar.popover.load"{{ /t }}: {{ load }}%
+    {{ #showAffectedLoad }}
+      <hr />
+      <b>{{ #t }}"automatedBar.popover.activeItem"{{ /t }}:</b><br />
+      {{ #t }}"automatedBar.popover.delivered"{{ /t }}: {{ affectedDelivered }}<br />
+      {{ #t }}"automatedBar.popover.load"{{ /t }}: {{ affectedLoad }}%
+    {{ /showAffectedLoad }}
+  </script>
+{% endverbatim %}

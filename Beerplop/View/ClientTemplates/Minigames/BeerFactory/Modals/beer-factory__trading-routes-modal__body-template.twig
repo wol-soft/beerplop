@@ -1,0 +1,40 @@
+{% verbatim %}
+  <script id="beer-factory__trading-routes-modal__body-template" type="text/template">
+    {{ #routes }}
+      <div class="beer-factory__trading-route__container card p-2 d-block clearfix" data-route-id="{{ id }}">
+        <h3 class="naming-container" data-naming-id="{{ id }}">
+          {{ #t }}
+            "beerFactory.tradingRoute.name",
+            {
+              "__ROUTE__": "<div class='beer-factory__trading-route__name'>{{ name }}</div>"
+            }
+          {{ /t }}
+          <div class="checkbox float-right">
+            <label>
+              <input type="checkbox" class="beer-factory__trading-route__enable-switch" {{ #active }}checked{{ /active }}> {{ #t }}"beerFactory.tradingRoute.active"{{ /t }}
+            </label>
+          </div>
+        </h3>
+
+        {{ #empty }}
+          <p>{{ #t }}"beerFactory.tradingRoute.empty"{{ /t }}</p>
+        {{ /empty }}
+        {{ ^empty }}
+          <p class="beer-factory__trading-route__deal-container">
+            <span class="beer-factory__trading-route__material">{{ sell }}</span>
+            <span class="beer-factory__trading-route__exchange">
+              {{ sellAmount }}
+              <i class="fas fa-exchange"></i>
+              {{ purchaseAmount }}
+            </span>
+            <span class="beer-factory__trading-route__material">{{ purchase }}</span>
+          </p>
+        {{ /empty }}
+
+        <button class="btn btn-raised btn-secondary float-right beer-factory__trading-route__manage">
+          {{ #t }}"beerFactory.tradingRoute.manage"{{ /t }}
+        </button>
+      </div>
+    {{ /routes }}
+  </script>
+{% endverbatim %}

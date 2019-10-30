@@ -1,0 +1,53 @@
+{% verbatim %}
+  <script id="beer-bank-banker__overlay-template" type="text/template">
+    <div class="float-left">
+      {{ #t }}"beerBankBanker.hired", {"__AMOUNT__":{{ amount }}}{{ /t }}<br />
+      {{ #t }}"beerBankBanker.description"{{ /t }}<br /><br />
+    </div>
+
+    <table class="table table-responsive table-hover">
+      <tr>
+        <th>
+          <small>
+            {{ #t }}"beerBankBanker.table.description"{{ /t }}<br>
+          </small>
+        </th>
+        <th>{{ #t }}"beerBankBanker.table.head.stats"{{ /t }}</th>
+        <th>{{ #t }}"beerBankBanker.table.head.investment"{{ /t }}</th>
+        <th></th>
+      </tr>
+      {{ #banker }}
+        <tr id="beer-bank-banker__banker-row__id-{{ id }}" class="beer-bank-banker__banker-row">
+          <td class="beer-bank-banker__banker-row__base-data naming-container" data-naming-id="{{ id }}">
+            <i><div class="beer-bank-banker__banker-name">{{ name }}</div></i>
+            {{ #t }}"age"{{ /t }}: <span class="beer-bank-banker__banker__age">{{ age }}</span><br />
+            {{ #t }}"beerBankBanker.table.level"{{ /t }}: <span class="beer-bank-banker__banker-level">{{ level }}</span>
+          </td>
+          <td>
+            {{ #t }}"beerBankBanker.table.investments"{{ /t }}: <b class="beer-bank-banker__banker__total-investments">{{ totalInvestments }}</b><br />
+            {{ #t }}"beerBankBanker.table.balance"{{ /t }}: <b class="beer-bank-banker__banker__balance {{ balanceClass }}">{{ balance }}</b>
+          </td>
+          <td>
+            <div class="beer-bank-banker__banker-current-investment {{ ^hasCurrentInvestment }}d-none{{ /hasCurrentInvestment }}">
+              {{ #t }}"beerBankBanker.table.stock"{{ /t }}: <b class="beer-bank-banker__banker__investment-stock">{{ #ucfirst }}{{ investmentName }}{{ /ucfirst }}</b><br />
+              {{ #t }}"beerBankBanker.table.investment"{{ /t }}: <span class="beer-bank-banker__banker__investment">{{ investment }}</span> {{ #t }}"plop.plural"{{ /t }}<br />
+              {{ #t }}"beerBankBanker.table.balance"{{ /t }}: <b class="beer-bank-banker__banker__investment-balance {{ investmentBalanceClass }}">{{ investmentBalance }}</b>
+            </div>
+            <div class="beer-bank-banker__banker-current-investment {{ #hasCurrentInvestment }}d-none{{ /hasCurrentInvestment }}">
+              {{ #t }}"beerBankBanker.table.break"{{ /t }}<br />
+              <span class="beer-bank-banker__cheer-banker" data-banker-id="{{ id }}">&#127866;</span>
+            </div>
+          </td>
+          <td>
+            <button type="button"
+                    class="btn btn-raised btn-secondary beer-bank-banker__start-training"
+                    data-banker-id="{{ id }}"
+            >
+              {{ #t }}"beerBankBanker.table.training"{{ /t }}
+            </button>
+          </td>
+        </tr>
+      {{ /banker }}
+    </table>
+  </script>
+{% endverbatim %}

@@ -1,0 +1,14 @@
+{% verbatim %}
+  <script id="beer-factory__slot-item-popover-template" type="text/template">
+    <p>{{ effect }}</p>
+    <hr />
+    <p>{{ #t }}"beerFactory.popover.slot.requiredMaterials"{{ /t }}:</p>
+    <ul class="beer-factory__material-list">
+      {{ #materials }}
+        <li>{{ name }}: <b>{{ amount }}</b></li>
+      {{ /materials }}
+    </ul>
+    <hr />
+    <p>{{ #t }}"beerFactory.popover.slot.clickHint"{{ /t }}</p>
+  </script>
+{% endverbatim %}

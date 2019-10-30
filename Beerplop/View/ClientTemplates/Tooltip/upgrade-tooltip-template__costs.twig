@@ -1,0 +1,12 @@
+{% verbatim %}
+  <script id="upgrade-tooltip-template__costs" type="text/template">
+    <b>{{ #t }}"{{ path }}.title"{{ /t }}</b><br />
+    {{ #t }}"{{ path }}.description"{{ /t }}<br />
+    {{ #t }}"effect"{{ /t }}: {{ #t }}"{{ path }}.effect"{{ /t }}<br />
+    {{ costsLabel }}: <b>{{ costs }}</b>
+    {{ #hint }}
+      <hr />
+      {{{ hint }}}
+    {{ /hint }}
+  </script>
+{% endverbatim %}

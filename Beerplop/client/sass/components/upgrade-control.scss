@@ -1,0 +1,46 @@
+@import "../colors";
+
+.upgrade-control {
+  padding: 10px;
+
+  .upgrades-title:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, .5);
+  }
+
+  #upgrade-item-container {
+    min-height: 60px;
+    border-top: 1px solid $color-secondary-border;
+    display: flex;
+    flex-flow: row wrap;
+
+    @media (min-width: 767px) {
+      max-height: 165px;
+      overflow-y: scroll;
+    }
+  }
+
+  .upgrade-item {
+    height: 50px;
+    width: 50px;
+    border: 2px solid #455A64;
+    color: #455A64;
+    background-color: #607D8B;
+    line-height: 46px;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 5px;
+    margin-right: 5px;
+
+    &.available-upgrade {
+      border: 2px solid #FBC02D;
+      color: #FBC02D;
+      background-color: #FFEE58;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

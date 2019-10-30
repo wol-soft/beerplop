@@ -1,0 +1,24 @@
+
+.beer-bank-banker__cheer-banker:hover {
+  cursor: pointer;
+}
+
+.cheers-text-top {
+  top: 0 !important;
+}
+
+.beer-bank-banker__banker-name {
+  &:hover {
+    cursor: text;
+  }
+
+  input {
+    max-width: 300px;
+  }
+}
+
+.training-container {
+  padding: 20px;
+  margin: 10px;
+  display: block;
+}

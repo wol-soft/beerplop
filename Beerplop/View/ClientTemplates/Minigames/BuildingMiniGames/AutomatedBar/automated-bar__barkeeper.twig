@@ -1,0 +1,20 @@
+{% verbatim %}
+  <script id="automated-bar__barkeeper-template" type="text/template">
+    <div id="minigame-collapse__automatedBar"
+         class="collapse show p-3 automated-bar__barkeeper__container building-minigame__container"
+    >
+      <h3>{{ #t }}"automatedBar.barkeeper.title"{{ /t }}</h3>
+      <p>{{ #t }}"automatedBar.barkeeper.description"{{ /t }}</p>
+      <p>{{ #t }}"automatedBar.barkeeper.boosts"{{ /t }}:</p>
+      <ul class="automated-bar__boosts-list"></ul>
+      <button id="automated-bar__barkeeper__manage"
+              type="button"
+              class="btn btn-raised btn-primary float-left toggle-overlay"
+              data-target="automated-bar-overlay"
+              data-callback="automated-bar"
+      >
+        {{ #t }}"automatedBar.barkeeper.manage"{{ /t }}
+      </button>
+    </div>
+  </script>
+{% endverbatim %}

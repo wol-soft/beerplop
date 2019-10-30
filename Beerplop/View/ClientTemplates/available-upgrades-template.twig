@@ -1,0 +1,15 @@
+{% verbatim %}
+  <script id="available-upgrades-template" type="text/template">
+    {{ #upgrades }}
+      <div class="upgrade-item {{ #available }}available-upgrade{{ /available }}"
+           data-toggle="tooltip"
+           data-boundary="window"
+           data-placement="top"
+           data-html="true"
+           data-upgrade="{{ key }}"
+      >
+        +
+      </div>
+    {{ /upgrades }}
+  </script>
+{% endverbatim %}

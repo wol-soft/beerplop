@@ -1,0 +1,19 @@
+
+.adv {
+  text-align: center;
+  margin: 10px;
+
+  a {
+    img {
+      width: 300px;
+      max-width: 80%;
+    }
+
+    &:hover {
+      img {
+        box-shadow: 3px 3px 8px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.16);
+        border: 1px solid #22262D;
+      }
+    }
+  }
+}

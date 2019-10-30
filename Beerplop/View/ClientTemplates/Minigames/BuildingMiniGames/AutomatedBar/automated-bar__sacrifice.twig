@@ -1,0 +1,17 @@
+{% verbatim %}
+  <script id="automated-bar__sacrifice-template" type="text/template">
+    <p>{{ #t }}"automatedBar.sacrifice.warning"{{ /t }}</p>
+    <hr />
+    <label for="automated-bar__sacrifice-boost">{{ #t }}"automatedBar.sacrifice.selectBoost"{{ /t }}:</label>
+    <div class="sacrifice-boost-options">
+      {{ #boost }}
+        <div class="radio">
+          <label>
+            <input type="radio" name="automated-bar__sacrifice-boost" value="{{ boost }}" required/>
+            {{ #t }}"automatedBar.sacrifice.boost.{{ boost }}"{{ /t }} ({{ #t }}"sacrifice.level"{{ /t }}: {{ level }})
+          </label>
+        </div>
+      {{ /boost }}
+    </div>
+  </script>
+{% endverbatim %}

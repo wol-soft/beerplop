@@ -1,0 +1,65 @@
+{% verbatim %}
+  <script id="building-popover-template" type="text/template">
+    <b>{{ description }}</b>
+    {{ #showBuildingStats }}
+      <hr />
+      <table>
+        <tr>
+          <td>{{ #t }}"building.details.owned"{{ /t }}:</td><td>{{ owned }}</td>
+        </tr>
+        <tr>
+          <td>{{ #t }}"building.details.total"{{ /t }}:</td>
+          <td>
+            {{ #t }}
+              "plopValue",
+              {"__PLOPS__": "<span id='total-production-{{ buildingKey }}'>{{ totalProduction }}</span>"}
+            {{ /t }}
+          </td>
+        </tr>
+        <tr>
+          <td>{{ #t }}"building.details.production"{{ /t }}:</td>
+          <td>
+            {{ #t }}
+              "building.details.production.value",
+              {
+                "__PRODUCTION__": "<span id='production-iteration-{{ buildingKey }}'>{{ production }}</span>",
+                "__PERCENTAGE__": "<span id='production-percentage-{{buildingKey}}'>{{ percentage }}</span>"
+              }
+            {{ /t }}
+          </td>
+        </tr>
+        <tr>
+          <td>{{ #t }}"building.details.productionEach"{{ /t }}:</td>
+          <td>{{ #t }}"plopValue", {"__PLOPS__": "<span id='production-each-{{ buildingKey }}'>{{ productionEach }}</span>"}{{ /t }}</td>
+        </tr>
+      </table>
+    {{ /showBuildingStats }}
+
+    {{ #specialInfo }}
+      <hr />
+      {{{ specialInfo }}}
+    {{ /specialInfo }}
+
+    {{ #slotsEnabled }}
+      <hr />
+      <b>{{ #t }}"building.details.slots"{{ /t }}:</b>
+      <div class="beer-factory__slot-container">
+        {{ #slots }}
+          <div class="beer-factory__slot
+                      {{ #underConstruction }}beer-factory__slot--under-construction{{ /underConstruction }}
+                      {{ #active }}beer-factory__slot--active{{ /active }}
+                      card"
+          >
+            <svg viewBox="0 0 44 44">
+              <use xlink:href="#svg-slot-item__{{ key }}"></use>
+            </svg>
+            <div class="beer-factory__slot--under-construction-overlay"></div>
+          </div>
+        {{ /slots }}
+        {{ ^slots }}
+          {{ #t }}"building.details.noSlotHint"{{ /t }}
+        {{ /slots }}
+      </div>
+    {{ /slotsEnabled }}
+  </script>
+{% endverbatim %}

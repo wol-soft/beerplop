@@ -1,0 +1,45 @@
+{% verbatim %}
+  <script id="beer-cloner__building-cloning-template" type="text/template">
+    <div id="minigame-collapse__beerCloner"
+         class="collapse show p-3 beer-cloner__building-cloning__container building-minigame__container"
+    >
+      <h3>{{ #t }}"beerCloner.cloning.title"{{ /t }}</h3>
+      <p>
+        <span id="beer-cloner__building-cloning__cooldown-container" class="d-none">
+          {{ #t }}
+            "beerCloner.cloning.cooldown",
+            {
+              "__TIMESPAN__":"<span id='beer-cloner__building-cloning__cooldown'>{{ cooldown }}</span>"
+            }
+          {{ /t }}
+        </span>
+      </p>
+      <p>{{ #t }}"beerCloner.cloning.description"{{ /t }}</p>
+
+      {{ #autoCloningUnlocked }}
+        <div class="d-flex flex-row mt-2 mb-2">
+          <div class="material-switch ml-4 mr-4">
+            <input id="beer-cloner__building-cloning__toggle-auto-cloning"
+                   type="checkbox"
+                   {{ #autoCloningEnabled }}checked{{ /autoCloningEnabled }}
+            />
+            <label for="beer-cloner__building-cloning__toggle-auto-cloning" class="label-warning"></label>
+          </div>
+          <p>{{ #t }}"beerCloner.cloning.autoCloning"{{ /t }}</p>
+        </div>
+      {{ /autoCloningUnlocked }}
+
+      <fieldset class="float-left" disabled>
+        <button id="beer-cloner__building-cloning__clone" type="button" class="btn btn-raised btn-primary">
+          {{ #t }}"beerCloner.cloning.clone"{{ /t }}
+        </button>
+      </fieldset>
+      <button id="beer-cloner__building-cloning__cancel-clone"
+              type="button"
+              class="btn btn-raised btn-secondary d-none"
+      >
+        {{ #t }}"beerCloner.cloning.cancelClone"{{ /t }}
+      </button>
+    </div>
+  </script>
+{% endverbatim %}

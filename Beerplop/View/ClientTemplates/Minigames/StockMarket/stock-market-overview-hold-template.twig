@@ -1,0 +1,27 @@
+{% verbatim %}
+  <script id="stock-market-overview-hold-template" type="text/template">
+    <h5>{{ #t }}"stockMarket.tab.holds"{{ /t }}:</h5>
+    <table id="stock-market-overview-hold-table" class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>{{ #t }}"stockMarket.table.stock"{{ /t }}</th>
+          <th>{{ #t }}"stockMarket.table.balance"{{ /t }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ #holds }}
+          <tr>
+            <td>
+              <button type="button" class="btn btn-raised btn-secondary close-stock" data-stock-id="{{ id }}">
+                {{ #t }}"stockMarket.hold.close"{{ /t }}
+              </button>
+            </td>
+            <td class="table-responsive__no-break">{{ name }}<br />({{ #ucfirst }}{{ method }}{{ /ucfirst }})</td>
+            <td><span class="stock-market-balance__{{ id }}"></span> {{ #t }}"plop.plural"{{ /t }}</td>
+          </tr>
+        {{ /holds }}
+      </tbody>
+    </table>
+  </script>
+{% endverbatim %}

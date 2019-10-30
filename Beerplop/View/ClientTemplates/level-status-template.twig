@@ -1,0 +1,15 @@
+{% verbatim %}
+  <script id="level-status-template" type="text/template">
+    {{ #t }}"sacrifice.level"{{ /t }}: {{ level }}<br />
+    {{ #t }}"sacrifice.beermats"{{ /t }}: {{ beermats }}
+    <hr />
+    {{ #sacrificeEnabled }}
+      {{ #t }}"sacrifice.description", {"__BEERMATS__": "{{ level }}"}{{ /t }}
+    {{ /sacrificeEnabled }}
+    {{ ^sacrificeEnabled }}
+      {{ #t }}"sacrifice.limit", {"__LEVEL__": "{{ minimumLevel }}"}{{ /t }}
+    {{ /sacrificeEnabled }}
+    <hr />
+    {{ #t }}"sacrifice.boost", {"__BOOST__": "{{ levelBonus }}"}{{ /t }}
+  </script>
+{% endverbatim %}

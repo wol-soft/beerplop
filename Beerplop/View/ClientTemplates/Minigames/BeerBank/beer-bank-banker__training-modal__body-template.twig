@@ -1,0 +1,36 @@
+{% verbatim %}
+  <script id="beer-bank-banker__training-modal__body-template" type="text/template">
+    {{ #t }}
+      "beerBankBanker.training.description",
+      {
+        "__NAME__":  "{{{ name }}}",
+        "__LEVEL__": "{{{ level }}}"
+      }
+    {{ /t }}
+    <div class="training-hint {{ ^inTraining }}d-none{{ /inTraining }}">
+      <br />
+      <br />
+      {{ #t }}"beerBankBanker.training.inTraining"{{ /t }}: <b id="beer-bank-banker__remaining-training-time">{{ trainingTime }}</b>
+    </div>
+    <hr />
+    <div class="beer-bank-banker__training-container" data-banker-id="{{ id }}">
+      {{ #trainings }}
+        <div class="training-container card">
+          <h5>{{ title }}</h5>
+          {{ description }}<br />
+          {{ #t }}"beerBankBanker.training.level"{{ /t }}: <b class="beer-bank-banker__training-modal__level__{{ key }}">{{ level }}</b><br />
+          {{ #t }}"beerBankBanker.training.cost"{{ /t }}: <b class="beer-bank-banker__training-modal__cost" data-training="{{ key }}">{{ cost }}</b> {{ #t }}"plop.plural"{{ /t }}<br />
+
+          <fieldset disabled>
+            <button type="button"
+                    class="btn btn-raised btn-secondary beer-bank-banker__train"
+                    data-training="{{ key }}"
+            >
+              {{ #t }}"beerBankBanker.training.start"{{ /t }}
+            </button>
+          </fieldset>
+        </div>
+      {{ /trainings }}
+    </div>
+  </script>
+{% endverbatim %}

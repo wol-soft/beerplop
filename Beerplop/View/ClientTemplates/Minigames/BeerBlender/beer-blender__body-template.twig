@@ -1,0 +1,50 @@
+{% verbatim %}
+  <script id="beer-blender__body-template" type="text/template">
+    <p>{{ #t }}"beerBlender.description"{{ /t }}</p>
+
+    {{> equipTemplate }}
+
+    {{ #availablePresets }}
+      <h5>{{ #t }}"beerBlender.presets"{{ /t }}:</h5>
+      {{ #presets }}
+        <div class="beer-blender__preset-container d-flex flex-row" data-preset-id="{{ presetId }}">
+          <div class="d-flex flex-column">
+            <abbr title="{{ #t }}"beerBlender.preset.equip"{{ /t }}">
+              <button class="btn btn-primary btn-raised beer-blender__preset-equip">
+                <i class="fas fa-arrow-circle-up" aria-hidden="true"></i>
+              </button>
+            </abbr>
+            <abbr title="{{ #t }}"beerBlender.preset.delete"{{ /t }}">
+              <button class="btn btn-danger btn-raised beer-blender__preset-delete">
+                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+              </button>
+            </abbr>
+          </div>
+          <div class="beer-blender__container flex-grow-1">
+            {{ #ingredients }}
+              {{ #. }}
+                <div class="beer-blender__ingredient"
+                     data-toggle="tooltip"
+                     data-boundary="window"
+                     data-placement="right"
+                     data-html="true"
+                     data-ingredient="{{ . }}"
+                >
+                  <svg>
+                    <use xlink:href="#svg-beer-blender-{{ . }}"></use>
+                  </svg>
+                </div>
+              {{ /. }}
+            {{ /ingredients }}
+          </div>
+        </div>
+      {{ /presets }}
+
+      {{ #createNewPreset }}
+        <button id="beer-blender__preset-new" class="btn btn-primary btn-raised">
+          {{ #t }}"beerBlender.preset.new"{{ /t }}
+        </button>
+      {{ /createNewPreset }}
+    {{ /availablePresets }}
+  </script>
+{% endverbatim %}

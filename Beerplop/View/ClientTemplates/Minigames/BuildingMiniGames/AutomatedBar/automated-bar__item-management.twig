@@ -1,0 +1,60 @@
+{% verbatim %}
+  <script id="automated-bar__item-management-template" type="text/template">
+    <div class="clearfix pb-2">
+      <h4>
+        {{ #t }}"automatedBar.item.{{ item }}"{{ /t }}
+        {{ #upgradePath }}
+          <div class="automated-bar__tooltip automated-bar__item-level-up-tooltip float-right"
+               data-toggle="tooltip"
+               data-boundary="window"
+               data-placement="top"
+               data-html="true"
+               data-upgrade="{{ upgradePath }}"
+          >
+            <fieldset {{ ^upgradeAvailable }}disabled="disabled"{{ /upgradeAvailable }}>
+              <button id="automated-bar__item-upgrade"
+                      type="button"
+                      class="btn btn-raised btn-secondary btn__automated-bar__move-disabled"
+                      data-upgrade="{{ upgradePath }}"
+              >
+                {{ #t }}"upgrade"{{ /t }}
+              </button>
+            </fieldset>
+          </div>
+        {{ /upgradePath }}
+      </h4>
+
+      <p>{{ #t }}"automatedBar.itemLevel"{{ /t }}: <span>{{ level }}</span></p>
+      <p>
+        {{ #t }}"automatedBar.value"{{ /t }}: <span>{{ #t }}"automatedBar.beers", {"__AMOUNT__":"{{ value }}"}{{ /t }}</span>
+      </p>
+      <p>{{ #t }}"automatedBar.popover.load"{{ /t }}: <span>{{ load }}</span></p>
+      <fieldset class="float-left">
+        <button id="automated-bar__item-sell"
+                type="button"
+                class="btn btn-raised btn-warning btn__automated-bar__move-disabled"
+        >
+          {{ #t }}"automatedBar.sell"{{ /t }}
+        </button>
+      </fieldset>
+
+      <button id="automated-bar__item-move"
+              type="button"
+              class="btn btn-raised btn-secondary float-left"
+      >
+        <span class="automated-bar__item-move__label">{{ #t }}"automatedBar.move"{{ /t }}</span>
+        <span class="automated-bar__item-move__label d-none">{{ #t }}"automatedBar.cancelMove"{{ /t }}</span>
+      </button>
+
+      <fieldset class="float-right">
+        <button id="automated-bar__item-close"
+                type="button"
+                class="btn btn-raised btn-secondary btn__automated-bar__move-disabled"
+        >
+          {{ #t }}"close"{{ /t }}
+        </button>
+      </fieldset>
+    </div>
+    <hr />
+  </script>
+{% endverbatim %}

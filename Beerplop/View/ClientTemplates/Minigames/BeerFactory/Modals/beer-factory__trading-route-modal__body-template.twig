@@ -1,0 +1,41 @@
+{% verbatim %}
+  <script id="beer-factory__trading-route-modal__body-template" type="text/template">
+    <p id="beer-factory__trading-route__current-deal">
+      {{ #empty }}{{ #t }}"beerFactory.tradingRoute.dealDescription"{{ /t }}{{ /empty }}
+    </p>
+    <div class="d-flex flex-row beer-factory__trading-route__materials">
+      <div>
+        <h4>{{ #t }}"beerFactory.tradingRoute.sell"{{ /t }}:</h4>
+        {{ #materials }}
+          <div class="radio">
+            <label>
+              <input type="radio"
+                     name="beer-factory__trading-route__material-sell"
+                     class="beer-factory__trading-route__material-select"
+                     data-material="{{ key }}"
+                     data-trade="sell"
+              >
+              {{ label }}
+            </label>
+          </div>
+        {{ /materials }}
+      </div>
+      <div>
+        <h4>{{ #t }}"beerFactory.tradingRoute.purchase"{{ /t }}:</h4>
+        {{ #materials }}
+          <div class="radio">
+            <label>
+              <input type="radio"
+                     name="beer-factory__trading-route__material-purchase"
+                     class="beer-factory__trading-route__material-select"
+                     data-material="{{ key }}"
+                     data-trade="purchase"
+              >
+              {{ label }}
+            </label>
+          </div>
+        {{ /materials }}
+      </div>
+    </div>
+  </script>
+{% endverbatim %}

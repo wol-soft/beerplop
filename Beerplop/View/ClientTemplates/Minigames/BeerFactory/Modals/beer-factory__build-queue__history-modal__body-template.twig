@@ -1,0 +1,18 @@
+{% verbatim %}
+  <script id="beer-factory__build-queue__history-modal__body-template" type="text/template">
+    <table class="table table-responsive">
+      <tbody>
+        {{ #jobs }}
+          <tr>
+            <td>{{ label }}</td>
+            <td>{{ #formatTs }}{{ ts }}{{ /formatTs }}</td>
+          </tr>
+        {{ /jobs }}
+      </tbody>
+    </table>
+
+    <button type="button" class="btn btn-danger beer-factory__build-queue__clear-history">
+      {{ #t }}"beerFactory.modal.queueHistory.clear"{{ /t }}
+    </button>
+  </script>
+{% endverbatim %}

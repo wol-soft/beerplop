@@ -1,0 +1,17 @@
+{% verbatim %}
+  <script id="beer-factory__back-room-modal-template" type="text/template">
+    {{ #lobbyists }}
+      <div class="form-group naming-container" data-naming-id="{{ id }}" data-lobbyist-id="{{ id }}">
+        <div class='beer-factory__back-room__lobbyist__name'>{{ name }}</div>
+        <select id="beer-factory__back-room__lobbyist--{{ id }}"
+                class="form-control beer-factory__back-room__lobbyist__factory"
+        >
+          <option></option>
+          {{ #factories }}
+            <option value="{{ . }}">{{ #t }}"beerFactory.factory.{{ . }}"{{ /t }}</option>
+          {{ /factories }}
+        </select>
+      </div>
+    {{ /lobbyists }}
+  </script>
+{% endverbatim %}

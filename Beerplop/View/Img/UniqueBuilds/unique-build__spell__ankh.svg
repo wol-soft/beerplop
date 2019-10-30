@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   width="40mm"
+   height="40mm"
+   viewBox="0 0 40 40"
+   version="1.1"
+   id="svg3150">
+  <defs
+     id="defs3144">
+    <linearGradient
+       id="linearGradient9209">
+      <stop
+         id="stop9205"
+         offset="0"
+         style="stop-color:#6246e0;stop-opacity:1;" />
+      <stop
+         id="stop9207"
+         offset="1"
+         style="stop-color:#631111;stop-opacity:0.63548386" />
+    </linearGradient>
+    <radialGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(5.0423775,0.0234982,-0.0150003,2.8772825,-60.211562,-42.368357)"
+       r="8.1986566"
+       fy="21.543598"
+       fx="15.875"
+       cy="21.543598"
+       cx="15.875"
+       id="radialGradient9211"
+       xlink:href="#linearGradient9209" />
+  </defs>
+  <metadata
+     id="metadata3147">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path
+     id="path9198"
+     d="m 19.518188,2.7178021 c -3.312147,0 -6.619751,1.5634463 -6.619751,6.2537878 0,4.6903411 4.960938,9.3806821 4.960938,9.3806821 0,0 -3.307292,0 -8.2682293,-1.563447 1.6536453,3.126893 1.6536453,3.126892 0,6.253787 4.9609373,-1.563448 8.2682293,-1.563446 8.2682293,-1.563446 0,0 -2e-6,10.944128 -1.653647,15.634469 3.307292,-1.563448 3.307293,-1.563448 6.614584,0 -1.653646,-4.690341 -1.653646,-15.634469 -1.653646,-15.634469 0,0 3.307291,-2e-6 8.268228,1.563446 -1.653645,-3.126895 -1.653645,-3.126894 0,-6.253787 -4.960937,1.563447 -8.268228,1.563447 -8.268228,1.563447 0,0 4.96223,-4.682401 4.96223,-9.3727429 0,-4.6903415 -3.308271,-6.2617274 -6.610708,-6.261727 z m -0.0052,3.1268939 c 0,0 3.307291,-3e-7 3.307291,3.1268939 0,3.1268941 -3.307291,7.8172351 -3.307291,7.8172351 0,0 -3.307293,-4.690341 -3.307293,-7.8172351 0,-3.1268942 3.307293,-3.1268939 3.307293,-3.1268939 z"
+     style="fill:url(#radialGradient9211);fill-opacity:1;stroke:#000000;stroke-width:0.32158279px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+</svg>

@@ -1,0 +1,47 @@
+{% verbatim %}
+  <script id="stock-market-hold-history-template" type="text/template">
+    <br />
+    {{ #t }}"stockMarket.totalBalance"{{ /t }}: {{ #t }}"plopValue", {"__PLOPS__": "{{{ balance }}}"}{{ /t }}
+    <button id="stock-market__clear-history" class="btn btn-raised btn-warning float-right">
+      {{ #t }}"stockMarket.clearHistory"{{ /t }}
+    </button>
+    <br /><br />
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>{{ #t }}"stockMarket.table.stock"{{ /t }}</th>
+          <th class="d-none d-sm-table-cell">{{ #t }}"stockMarket.table.method"{{ /t }}</th>
+          <th class="d-none d-lg-table-cell">{{ #t }}"stockMarket.table.amount"{{ /t }}</th>
+          <th class="d-none d-lg-table-cell">{{ #t }}"stockMarket.table.lever"{{ /t }}</th>
+          <th class="d-none d-sm-table-cell">{{ #t }}"stockMarket.table.investment"{{ /t }}</th>
+          <th class="d-none d-md-table-cell">{{ #t }}"stockMarket.table.start"{{ /t }}</th>
+          <th class="d-none d-md-table-cell">{{ #t }}"stockMarket.table.end"{{ /t }}</th>
+          <th>{{ #t }}"stockMarket.table.balance"{{ /t }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ #holds }}
+          <tr>
+            <td>{{ name }}</td>
+            <td class="d-none d-sm-table-cell">{{ method }}</td>
+            <td class="d-none d-lg-table-cell">{{ amount }}</td>
+            <td class="d-none d-lg-table-cell">1:{{ lever }}</td>
+            <td class="d-none d-sm-table-cell">{{ investment }}</td>
+            <td class="d-none d-md-table-cell">{{ startValue }}</td>
+            <td class="d-none d-md-table-cell">{{ endValue }}</td>
+            <td>{{ #t }}"plopValue", {"__PLOPS__": "{{{ balance }}}"}{{ /t }}</td>
+            <td>
+              {{ #autoClose }}
+                {{ #t }}"stockMarket.closed.system"{{ /t }}
+              {{ /autoClose }}
+              {{ ^autoClose }}
+                {{ #t }}"stockMarket.closed.user"{{ /t }}
+              {{ /autoClose }}
+            </td>
+          </tr>
+        {{ /holds }}
+      </tbody>
+    </table>
+  </script>
+{% endverbatim %}

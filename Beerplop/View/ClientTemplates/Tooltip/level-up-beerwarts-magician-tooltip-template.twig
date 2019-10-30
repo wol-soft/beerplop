@@ -1,0 +1,11 @@
+{% verbatim %}
+  <script id="level-up-beerwarts-magician-tooltip-template" type="text/template">
+    <p>{{ #t }}"beerwarts.duration"{{ /t }}: {{ duration }}</p>
+    {{ #autoTraining }}
+      <p>{{ #t }}"beerwarts.durationAutoTraining"{{ /t }}: {{ durationAutoTraining }}</p>
+    {{ /autoTraining }}
+    {{ #groupTraining }}
+      <p>{{ #t }}"beerwarts.groupTraining"{{ /t }}: {{ supported }}</p>
+    {{ /groupTraining }}
+  </script>
+{% endverbatim %}

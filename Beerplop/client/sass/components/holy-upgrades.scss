@@ -1,0 +1,90 @@
+@import "../colors";
+
+#holy-upgrades-map-svg {
+  margin: 150px;
+}
+
+.holy-upgrade-identifier {
+  pointer-events: all;
+  stroke: red;
+}
+
+.holy-upgrade-reached .holy-upgrade-identifier {
+  stroke: $color-reached;
+}
+
+.holy-upgrade-not-available {
+  filter:url(#filter-not-available);
+}
+
+.holy-upgrade-item {
+  pointer-events: all;
+
+  &:hover {
+    cursor: pointer;
+
+    .holy-upgrade-identifier {
+      stroke: #ffffff;
+    }
+  }
+}
+
+#sacrifice-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  background-color: $color-secondary-bg;
+  z-index: 100;
+  padding-top: 30px;
+  text-align: center;
+
+  .btn-group {
+    position: fixed;
+    margin: 0.5rem;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 1000;
+      color: #7f6e26;
+    }
+  }
+
+  .holy-upgrade__dependency-line {
+    animation: dash 120s linear infinite;
+    stroke: lightslategray;
+    stroke-width: 3;
+    stroke-dasharray: 4;
+  }
+
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .sacrifice-head {
+    width: 100%;
+    position: fixed;
+  }
+
+  svg {
+    overflow: scroll;
+    min-width: 800px;
+    margin-top: 120px;
+  }
+
+  .background-hover {
+    color: #F5F5F5;
+    background-color: #000915;
+    box-shadow: 0 0 60px #000915;
+  }
+}
+
+.dragscroll {
+  cursor: hand;
+}

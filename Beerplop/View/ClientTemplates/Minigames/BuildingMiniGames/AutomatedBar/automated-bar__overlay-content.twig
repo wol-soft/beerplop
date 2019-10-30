@@ -1,0 +1,66 @@
+{% verbatim %}
+  <script id="automated-bar__overlay-content-template" type="text/template">
+    <div class="d-flex flex-column flex-lg-row mh-100">
+      <div class="col-xxl-9 col-xl-8 col-lg-7 overflow-auto mh-100">
+        <div id="grid-table__container" class="grid-table__container">
+          {{{ grid }}}
+        </div>
+      </div>
+      <div class="col-xxl-3 col-xl-4 col-lg-5 overflow-auto">
+        <h3>{{ name }}</h3>
+
+        {{ #tutorial }}
+          <div id="automated-bar__tutorial" class="alert alert-info" role="alert">
+            {{ #t }}"automatedBar.tutorial.{{ tutorialStep }}"{{ /t }}
+          </div>
+        {{ /tutorial }}
+
+        <hr />
+
+        <div id="automated-bar__item-management-container" class="d-none"></div>
+
+        <p>{{ #t }}"automatedBar.level"{{ /t }}: {{ level }}</p><br />
+        <p>{{ #t }}"automatedBar.owned"{{ /t }}: <span id="automated-bar__owned">{{ owned }}</span></p>
+        <p>{{ #t }}"automatedBar.perSecond"{{ /t }}: <span id="automated-bar__per-second">{{ perSecond }}</span></p>
+        <p>{{ #t }}"automatedBar.total"{{ /t }}: <span id="automated-bar__total">{{ total }}</span></p>
+        <div class="d-flex flex-row mt-2">
+          <p>{{ #t }}"automatedBar.conf.showLoad"{{ /t }}</p>
+          <div class="material-switch ml-4">
+            <input id="automated-bar__show-load-map" type="checkbox" {{ #loadMapActive }}checked{{ /loadMapActive }} />
+            <label for="automated-bar__show-load-map" class="label-warning"></label>
+          </div>
+        </div>
+        <div class="d-flex flex-row mt-2">
+          <p>{{ #t }}"automatedBar.conf.showLevel"{{ /t }}</p>
+          <div class="material-switch ml-4">
+            <input id="automated-bar__show-level-map" type="checkbox" {{ #levelMapActive }}checked{{ /levelMapActive }} />
+            <label for="automated-bar__show-level-map" class="label-warning"></label>
+          </div>
+        </div>
+
+        <hr />
+
+        <h4>
+          {{ #t }}"upgrades.title"{{ /t }}:
+          <button id="automated-bar__view-upgrades" class="btn btn-raised btn-secondary">
+            {{ #t }}"upgrades.view"{{ /t }}
+          </button>
+        </h4>
+        <div id="automated-bar__available-upgrades-container" class="upgrade-control"></div>
+
+        <hr />
+        <p>{{ #t }}"automatedBar.progress"{{ /t }}: <span id="automated-bar__progress">{{ progress }}</span>%</p>
+
+
+        <fieldset>
+          <button id="automated-bar__sacrifice"
+                  type="button"
+                  class="btn btn-raised btn-warning float-left {{ ^showSacrifice }}d-none{{ /showSacrifice }} btn__automated-bar__move-disabled"
+          >
+            {{ #t }}"sacrifice.seeYouAgain"{{ /t }}
+          </button>
+        </fieldset>
+      </div>
+    </div>
+  </script>
+{% endverbatim %}

@@ -1,0 +1,27 @@
+
+.snackbar {
+  &-content {
+    border-radius: 10rem;
+  }
+
+  &-success &-content {
+    background-color: #4caf50;
+  }
+
+  &-error &-content {
+    background-color: #f44336;
+  }
+
+  &-info &-content {
+    background-color: #00a4ff;
+  }
+}
+
+// TODO: PR https://github.com/FezVrasta/snackbarjs/pull/58
+#snackbar-container {
+  pointer-events: none;
+
+  * {
+    pointer-events: all;
+  }
+}

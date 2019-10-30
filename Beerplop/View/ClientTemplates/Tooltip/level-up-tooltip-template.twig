@@ -1,0 +1,20 @@
+{% verbatim %}
+  <script id="level-up-tooltip-template" type="text/template">
+    {{ #t }}"tooltip.requirements"{{ /t }}:<br />
+    {{ #t }}"building.amount"{{ /t }}: <b>{{ buildings }}</b>
+      {{ #buildingsReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /buildingsReached }}
+      {{ ^buildingsReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /buildingsReached }}
+    <br />
+    {{ #t }}"bottleCap.plural"{{ /t }}: <b>{{ bottleCaps }}</b>
+      {{ #bottleCapsReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /bottleCapsReached }}
+      {{ ^bottleCapsReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /bottleCapsReached }}
+  </script>
+{% endverbatim %}

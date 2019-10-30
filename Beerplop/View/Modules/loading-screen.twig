@@ -1,0 +1,26 @@
+<div id="preparation-overlay" class="overlay">
+  <h1 class="text-center">{{ translator.translate('welcome') }}</h1>
+  <h3 class="text-center">{{ translator.translate('save.preparation.title') }}</h3>
+  <h3 class="text-center">{{ translator.translate('save.preparation.subtitle') }}</h3>
+
+  {% if not saveStateId %}
+    <div class="container">
+      <table class="mt-5 table table-responsive">
+        {% for asset in ['template', 'modal', 'image', 'script'] %}
+          <tr>
+            <td>Loading {{ asset }} assets</td>
+            <td id="load-asset__{{ asset }}s"></td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td>Initializing scripts</td>
+          <td id="init-asset__scripts"></td>
+        </tr>
+        <tr>
+          <td>Starting game</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  {% endif %}
+</div>

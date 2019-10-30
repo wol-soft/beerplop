@@ -1,0 +1,127 @@
+{% verbatim %}
+  <script id="building-details-modal__body-template" type="text/template">
+    <div class="clearfix">
+      <b class="float-left">{{ #t }}"building.details.head", {"__BUILDING__": "{{ building }}"}{{ /t }}</b>
+      <div class="float-right d-flex flex-row flex-nowrap">
+        <fieldset {{ ^lastBuilding }}disabled{{ /lastBuilding }}>
+          <button class="btn btn-raised btn-default building-details__fast-switch"
+                  data-target-building="{{ lastBuilding }}"
+          >
+            <i class="fas fa-arrow-left"></i>
+          </button>
+        </fieldset>
+
+        <div class="form-group">
+          <select class="form-control ml-2" id="building-details__fast-switch-select">
+            {{ #buildings }}
+              <option value="{{ . }}">{{ #t }}"building.{{ . }}.plural"{{ /t }}</option>
+            {{ /buildings }}
+          </select>
+        </div>
+
+        <fieldset {{ ^nextBuilding }}disabled{{ /nextBuilding }}>
+          <button class="btn btn-raised btn-default building-details__fast-switch ml-3"
+                  data-target-building="{{ nextBuilding }}"
+          >
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </fieldset>
+      </div>
+    </div>
+    <br /><br />
+
+    {{ #slotsEnabled }}
+      <h3>{{ #t }}"building.details.slots"{{ /t }}:</h3>
+      <div id="building-details__beer-factory-slots" class="beer-factory__slot-container pb-4">
+        {{ #slots }}
+          <div class="beer-factory__slot
+                      {{ #underConstruction }}beer-factory__slot--under-construction{{ /underConstruction }}
+                      {{ #active }}beer-factory__slot--active{{ /active }}
+                      card"
+               data-trigger="hover"
+               data-boundary="window"
+               data-toggle="popover"
+               data-placement="right"
+               data-html="true"
+               data-title="{{ label }}"
+               data-content="{{{ content }}}{{ #underConstruction }}<br />({{ #t }}"building.details.construction"{{ /t }}){{ /underConstruction }}"
+               data-building="{{ key }}"
+               data-slot-index="{{ index }}"
+               data-slot-key="{{ slotKey }}"
+          >
+            <svg viewBox="0 0 44 44">
+              <use xlink:href="#svg-slot-item__{{ slotKey }}"></use>
+            </svg>
+            <div class="beer-factory__slot--under-construction-overlay"></div>
+          </div>
+        {{ /slots }}
+        {{ ^slots }}
+          {{ #t }}"building.details.noSlot"{{ /t }}
+        {{ /slots }}
+      </div>
+      <button class="btn btn-raised btn-primary beer-factory__material-tooltip"
+              type="button"
+              data-toggle="tooltip"
+              data-boundary="window"
+              data-placement="right"
+              data-html="true"
+      >
+        {{ #t }}"building.details.construct"{{ /t }}
+      </button>
+      <p>{{ #t }}"building.details.slotsUnderConstruction"{{ /t }}: <span class="beer-factory__slots-under-construction">{{ slotsUnderConstruction }}</span></p>
+
+      {{ #hasAutoBuyer }}
+        <hr />
+        <div class="d-flex flex-row mt-2">
+          <div class="material-switch ml-4 mr-4">
+            <input id="beer-factory__toggle-auto-buyer"
+                   class="beer-factory__toggle-auto-buyer"
+                   type="checkbox"
+                   {{ #autoBuyerEnabled }}checked{{ /autoBuyerEnabled }}
+            />
+            <label for="beer-factory__toggle-auto-buyer" class="label-warning"></label>
+          </div>
+          <p>{{ #t }}"building.details.enableAutoBuyer"{{ /t }}</p>
+        </div>
+      {{ /hasAutoBuyer }}
+
+      {{ #hasAutoLevelUp }}
+        {{ ^hasAutoBuyer }}
+          <hr />
+        {{ /hasAutoBuyer }}
+        <div class="d-flex flex-row mt-2">
+          <div class="material-switch ml-4 mr-4">
+            <input id="beer-factory__toggle-auto-level-up"
+                   class="beer-factory__toggle-auto-level-up"
+                   type="checkbox"
+                   {{ #autoLevelUpEnabled }}checked{{ /autoLevelUpEnabled }}
+            />
+            <label for="beer-factory__toggle-auto-level-up" class="label-warning"></label>
+          </div>
+          <p>{{ #t }}"building.details.enableAutoLevelUp"{{ /t }}</p>
+        </div>
+      {{ /hasAutoLevelUp }}
+      <hr />
+    {{ /slotsEnabled }}
+
+    {{ #autoCloning }}
+      <div class="form-group mw-300-px">
+        <label for="beer-cloner__auto-cloning__priority">{{ #t }}"beerCloner.cloning.priority"{{ /t }}:</label>
+        <select class="form-control" id="beer-cloner__auto-cloning__priority">
+          <option value="0">{{ #t }}"beerCloner.cloning.disable"{{ /t }}</option>
+          {{ #priority }}
+            <option value="{{ . }}">{{ . }}</option>
+          {{ /priority }}
+        </select>
+      </div>
+      <hr />
+    {{ /autoCloning }}
+
+    <h3>{{ #t }}"building.details.total"{{ /t }}:</h3>
+    <div id="building-details-modal__graph__total-production" class="pb-4"></div>
+    <h3>{{ #t }}"building.details.stats.pps"{{ /t }}:</h3>
+    <div id="building-details-modal__graph__production-per-second" class="pb-4"></div>
+    <h3>{{ #t }}"building.details.stats.owned", {"__BUILDING__": "{{ building }}"}{{ /t }}:</h3>
+    <div id="building-details-modal__graph__owned" class="pb-4"></div>
+  </script>
+{% endverbatim %}

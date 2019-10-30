@@ -1,0 +1,27 @@
+<!Doctype html>
+<html>
+  {% include '/Beerplop/View/Modules/head.twig' %}
+
+  <body class="overlay scrollable">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-0 col-lg-1 col-xl-2"></div>
+        <div class="col-xs-12 col-lg-8 col-xl-6 mt-5">
+          Hi {{ app.getUser().getName() }},
+          <hr />
+          <h1 class="text-center">{{ translator.translate('IFTTT.title') }}</h1>
+
+          <hr />
+          {{ translator.translate('IFTTT.description') }}
+
+          <form method="POST">
+            <button class="btn btn-raised btn-primary mt-5">
+              {{ translator.translate('IFTTT.authorize') }}
+            </button>
+          </form>
+        </div>
+        <div class="col-xs-0 col-lg-1 col-xl-2"></div>
+      </div>
+    </div>
+  </body>
+</html>

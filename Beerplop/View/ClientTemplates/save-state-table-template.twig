@@ -1,0 +1,30 @@
+{% verbatim %}
+  <script id="save-state-table-template" type="text/template">
+    <table class="table table-responsive table-hover" data-save-state-amount="{{ saveStateAmount }}">
+      <thead>
+        <tr>
+          <th>{{ #t }}"save.name"{{ /t }}</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ #saveStates }}
+          <tr data-save-state-id="{{ id }}">
+            <td class="font-weight-bold">{{ title }}</td>
+            <td class="font-weight-bold d-none d-md-block">{{ modified }}</td>
+            <td style="width: 50px">
+              <button class="btn btn-raised btn-danger btn-delete-save-state">
+                <i class="fas fa-trash-alt" aria-hidden="true"></i>
+              </button>
+            </td>
+            <td style="width: 100px">
+              <button class="btn btn-raised btn-secondary btn-load-save-state">{{ #t }}"save.load"{{ /t }}</button>
+            </td>
+          </tr>
+        {{ /saveStates }}
+      </tbody>
+    </table>
+  </script>
+{% endverbatim %}

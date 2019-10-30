@@ -1,0 +1,68 @@
+<!Doctype html>
+<html>
+  {% include '/Beerplop/View/Modules/head.twig' with {
+      'js' : 'init'
+    }
+  %}
+
+  <body data-savestate-id="{{ saveStateId }}">
+    {% include '/Beerplop/View/Modules/loading-screen.twig' %}
+
+    {% if not saveStateId %}
+      {% if app.conf.environment == 'PROD' %}
+        <noscript>
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MW75T2D"
+                  height="0"
+                  width="0"
+                  style="display:none;visibility:hidden"
+          ></iframe>
+        </noscript>
+      {% endif %}
+
+      <div id="select-game-speed-overlay" class="overlay scrollable d-none">
+        <h1 class="text-center">{{ translator.translate('welcome') }}</h1>
+        <h2 class="text-center">{{ translator.translate('speedSelection.hint') }}</h2>
+        <div class="row">
+          <div class="col-xs-0 col-md-1 col-lg-3"></div>
+          <div class="col-xs-12 col-md-10 col-lg-6">
+            <hr />
+            <div class="row">
+              <div class="col-xs-0 col-md-4 d-none d-md-block">
+                <svg viewBox="0 0 100 100">
+                  <use xlink:href="#svg-main-beer"></use>
+                </svg>
+              </div>
+              <div class="col-xs-12 col-md-8">
+                <div class="container">
+                  <br />
+                  <br />
+                  {% for speed in [0.5, 1, 2, 5, 10, 25] %}
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="gameSpeed" data-speed="{{ speed }}" {% if speed == 1 %}checked{% endif %}/>
+                        {{ translator.translate('speedSelection.speed.' ~ speed) }}
+                      </label>
+                    </div>
+                  {% endfor %}
+
+                  <a href="demo" class="btn btn-raised btn-secondary float-left">
+                    {{ translator.translate('speedSelection.demo') }}
+                  </a>
+                  <button id="select-speed" type="button" class="btn btn-raised btn-primary float-right">
+                    {{ translator.translate('speedSelection.start') }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-0 col-md-1 col-lg-3"></div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% include '/Beerplop/View/content.twig' %}
+  </body>
+
+  <script defer type="text/javascript" src="/apps/beerplop/dist/js/beerplop-game-{{ app.conf.beerplopversion }}.min.js"></script>
+  <script defer type="text/javascript" src="/apps/beerplop/dist/js/beerplop-game-{{ app.conf.beerplopversion }}-deferred.min.js"></script>
+</html>

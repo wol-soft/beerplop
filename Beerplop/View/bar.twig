@@ -1,0 +1,81 @@
+<!Doctype html>
+<html>
+  {% include '/Beerplop/View/Modules/head.twig' with {
+      'js' : 'init'
+    }
+  %}
+
+  <body>
+    <!-- Styling hacks to make beer factories the main game -->
+    <style type="text/css">
+      #automated-bar-overlay__container.overlay-container {
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        z-index: 8;
+      }
+
+      #automated-bar-overlay__container .close-overlay,
+      .buff-bottle {
+        display: none !important;
+      }
+
+      .info-container, #bar-menu {
+        display: flex;
+        padding-bottom: 5px;
+        font-size: 0.8rem;
+        border-bottom: 1px solid lightgray;
+        margin-bottom: 10px;
+      }
+
+      .info-container .flex-column {
+        width: 100%;
+      }
+    </style>
+    {% if app.conf.environment == 'PROD' %}
+      <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MW75T2D"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"
+        ></iframe>
+      </noscript>
+    {% endif %}
+
+    {% include '/Beerplop/View/Modules/loading-screen.twig' %}
+    {% include '/Beerplop/View/content.twig' %}
+
+    <div id="bar-menu" class="row">
+      <button class="btn btn-raised btn-secondary toggle-overlay float-right" type="button" data-target="about-overlay">
+        About
+      </button>
+    </div>
+    <!-- JS hacks to make beer factories the main game -->
+    <script type="application/javascript">
+        onCoreInitialized = function () {
+            let bar = (new BuildingMinigames.AutomatedBar());
+
+            bar.unlock();
+            window.setTimeout(() => bar._renderBarManagementOverlayContent(), 10);
+
+            (new Beerplop.GamePersistor()).setSaveSemaphore(false);
+
+            const parent        = $('#automated-bar__item-management-container').parent(),
+                  menuContainer = $('#bar-menu');
+
+            parent.prepend(menuContainer);
+            parent.prepend($('.info-container'));
+
+            menuContainer.prepend($('#wipe-game'));
+
+            $('*[data-overlay="automated-bar-overlay"]').addClass('active-overlay');
+        };
+    </script>
+  </body>
+
+  <script defer type="text/javascript" src="/apps/beerplop/dist/js/beerplop-game-{{ app.conf.beerplopversion }}.min.js"></script>
+  <script defer type="text/javascript" src="/apps/beerplop/dist/js/beerplop-game-{{ app.conf.beerplopversion }}-deferred.min.js"></script>
+</html>

@@ -1,0 +1,122 @@
+@import "../colors";
+
+/** complete overlay for starting game etc. */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-secondary-bg;
+  z-index: 9999;
+
+  h1 {
+    margin-top: 5%;
+  }
+}
+
+/** in game dialog like overlays */
+.overlay-bg.active-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.5s;
+  z-index: 9;
+
+  &.fade-overlay-in {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.overlay-container.active-overlay {
+  position: absolute;
+  top: -30%;
+  left: 3%;
+  width: 94%;
+  height: 94%;
+  display: block !important;
+  padding-top: 80px;
+  z-index: 9;
+  opacity: 0;
+  transition: opacity 0.5s, top 0.5s;
+
+  &.fade-overlay-in {
+    opacity: 1;
+
+    &:not(.overlay--full) {
+      top: 3%;
+    }
+
+    &.overlay--full {
+      top: 0;
+    }
+  }
+
+  &.overlay--full {
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+
+  .close-overlay:nth-of-type(1) {
+    display: block;
+
+    &:hover {
+      background-color: $color-secondary-hover;
+    }
+  }
+
+  button {
+    float: right;
+  }
+
+  .overlay-body {
+    background-color: $color-secondary-bg;
+    overflow-y: scroll;
+    padding: 20px;
+
+    &__no-scroll {
+      overflow: hidden;
+    }
+  }
+
+  .overlay-container {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.close-overlay {
+  width: 100%;
+  height: 80px;
+  display: none;
+  padding: 10px;
+  margin-top: -80px;
+  background-color: $color-secondary-bg;
+
+  .overlay-title {
+    line-height: 60px;
+    width: calc(100% - 60px);
+    float: left;
+    font-weight: bolder;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .close {
+    line-height: 60px;
+    width: 60px;
+    float: right;
+    font-size: 60px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

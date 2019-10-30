@@ -1,0 +1,39 @@
+{% verbatim %}
+  <script id="achievement-overview-template" type="text/template">
+    <p>
+      {{ #t }}
+        "achievements.reached",
+        {
+          "__REACHED__":"{{ reached }}",
+          "__TOTAL__"  :"{{ total }}"
+        }
+      {{ /t }}
+    </p>
+    <div class="container">
+      {{ #achievementGroups }}
+        <div class="achievement-list">
+          <h4>{{ name }} ({{ reached }}/{{ total }})</h4>
+          {{ #achievements }}
+            <div class="achievement-item"
+                 data-toggle="tooltip"
+                 data-boundary="window"
+                 data-placement="top"
+                 data-html="true"
+                 data-key="{{ key }}"
+            >
+              {{ #reached }}
+                <span class="achievement-reached">&#x2713;</span>
+                <svg>
+                  <use xlink:href="#svg-{{ #replaceDots }}{{ key }}{{ /replaceDots }}"></use>
+                </svg>
+              {{ /reached }}
+              {{ ^reached }}
+                <span class="achievement-not-reached">?</span>
+              {{ /reached }}
+            </div>
+          {{ /achievements }}
+        </div>
+      {{ /achievementGroups }}
+    </div>
+  </script>
+{% endverbatim %}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg>
+  <defs>
+    <filter style="color-interpolation-filters:sRGB;" id="not-available">
+        <feColorMatrix values="0.21 0.72 0.072 0 0 0.21 0.72 0.072 0 0 0.21 0.72 0.072 0 0 0 0 0 1 0 "
+                       id="feColorMatrix5495"
+        />
+    </filter>
+  </defs>
+</svg>

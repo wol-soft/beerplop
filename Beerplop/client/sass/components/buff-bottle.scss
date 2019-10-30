@@ -1,0 +1,77 @@
+.manual-plop, .buff-text {
+  position: absolute;
+  transition: top 5s, left 5s, opacity 500ms linear;
+  font-weight: bolder;
+  color: #0a0a0a;
+  z-index: 2001;
+  pointer-events: none;
+
+  &.fade-out {
+    opacity: 0;
+  }
+}
+
+.buff-text {
+  transition: top 8s;
+  font-size: 16px;
+}
+
+.manual-plop-top {
+  top: 0 !important;
+  left: 50% !important;
+}
+
+.buff-text-top {
+  top: 0 !important;
+}
+
+.buff-bottle {
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  opacity: 1;
+  transition: width 3s, height 3s, opacity 3s, top 3s, left 3s;
+  transform: translate3d(0, 0, 0) rotate(0);
+  animation: shake 4s cubic-bezier(.36,.07,.19,.97) both;
+  animation-iteration-count:infinite;
+  z-index: 2002;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.buff-bottle-spawn {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0) rotate(-5deg);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0) rotate(10deg);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0) rotate(-20deg);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0) rotate(20deg);
+  }
+}
+
+.buff-progress-container {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+
+  .buff-label {
+    text-align: left;
+    font-size: 14px;
+  }
+}

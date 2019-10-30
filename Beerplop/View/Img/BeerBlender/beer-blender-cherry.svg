@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="40mm"
+   height="40mm"
+   viewBox="0 0 40 40"
+   version="1.1"
+   id="svg3150"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="beer-blender-cherry.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="56.104763"
+     inkscape:cy="35.776247"
+     inkscape:document-units="mm"
+     inkscape:current-layer="beer-blender-apple"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid834" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3147">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-257)">
+    <g
+       id="beer-blender-cherry"
+       inkscape:label="#g878">
+      <path
+         sodipodi:nodetypes="ccsssscc"
+         inkscape:connector-curvature="0"
+         id="path869"
+         d="m 10.583333,278.47917 c 3.96875,-10.58334 10.583334,-13.22917 17.197917,-15.875 6.614583,-1.32292 4.289405,-2.84629 5.612322,-1.52337 1.322917,1.32292 2.625856,2.39854 2.625856,2.39854 -2.679242,0.84865 -11.365164,9.57453 -10.042247,18.83495 1.322916,9.26041 -2.208922,5.75107 -1.877434,-0.8552 C 24.654264,270.40803 31.75,263.92708 31.75,263.92708 c 0,0 -14.552084,0 -19.84375,14.55209"
+         style="fill:#803300;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <ellipse
+         ry="6.8350134"
+         rx="6.9018307"
+         cy="284.67252"
+         cx="11.15128"
+         id="path828"
+         style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.22894467" />
+      <ellipse
+         ry="6.7681956"
+         rx="6.9018307"
+         cy="287.54565"
+         cx="25.463631"
+         id="path828-4"
+         style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.22782287" />
+      <ellipse
+         style="fill:#ff2a2a;fill-opacity:1;stroke-width:0.17800342"
+         id="path838"
+         cx="-281.89139"
+         cy="-161.07568"
+         rx="3.7490375"
+         ry="2.3770022"
+         transform="matrix(-0.60284566,-0.79785783,0.91492268,-0.40362915,0,0)" />
+      <ellipse
+         style="fill:#ffaaaa;fill-opacity:1;stroke-width:0.17800342"
+         id="path838-9"
+         transform="matrix(-0.60284566,-0.79785783,0.91492268,-0.40362915,0,0)"
+         ry="0.89346242"
+         rx="1.8506964"
+         cy="-161.99934"
+         cx="-282.25134" />
+      <ellipse
+         style="fill:#ff2a2a;fill-opacity:1;stroke-width:0.17800342"
+         id="path838-1"
+         cx="-273.2803"
+         cy="-170.9133"
+         rx="3.7490375"
+         ry="2.3770022"
+         transform="matrix(-0.60284567,-0.79785782,0.91492268,-0.40362915,0,0)" />
+      <ellipse
+         style="fill:#ffaaaa;fill-opacity:1;stroke-width:0.17800342"
+         id="path838-9-3"
+         transform="matrix(-0.60284567,-0.79785782,0.91492268,-0.40362915,0,0)"
+         ry="0.89346242"
+         rx="1.8506964"
+         cy="-171.83696"
+         cx="-273.64026" />
+    </g>
+  </g>
+</svg>

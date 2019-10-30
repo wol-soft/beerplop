@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="40mm"
+   height="40mm"
+   viewBox="0 0 40 40"
+   version="1.1"
+   id="svg3150"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="holy-upgrade-beerTime.svg">
+  <defs
+     id="defs3144">
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="scale(0.77777778,1.2857143)"
+       x1="184.5"
+       y1="35.965008"
+       x2="184.5"
+       y2="166.87286"
+       id="linearGradient-1">
+      <stop
+         stop-color="#F7E2A8"
+         offset="0%"
+         id="stop994" />
+      <stop
+         stop-color="#F1DDAF"
+         offset="100%"
+         id="stop996" />
+    </linearGradient>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="scale(0.8359397,1.1962585)"
+       x1="90.915649"
+       y1="40.125107"
+       x2="90.915649"
+       y2="178.8911"
+       id="linearGradient-2">
+      <stop
+         stop-color="#F7E2A8"
+         offset="0%"
+         id="stop999" />
+      <stop
+         stop-color="#F1DDAF"
+         offset="100%"
+         id="stop1001" />
+    </linearGradient>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="scale(0.83405766,1.1989579)"
+       x1="91.120796"
+       y1="55.047806"
+       x2="91.120796"
+       y2="170.14777"
+       id="linearGradient-3">
+      <stop
+         stop-color="#F3B011"
+         offset="0%"
+         id="stop1004" />
+      <stop
+         stop-color="#F5A711"
+         offset="100%"
+         id="stop1006" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient-3"
+       id="linearGradient7503"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.23166445,0,0,0.36049773,859.36289,237.6385)"
+       x1="91.120796"
+       y1="55.047806"
+       x2="91.120796"
+       y2="170.14777" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="-23.863506"
+     inkscape:cy="95.090911"
+     inkscape:document-units="mm"
+     inkscape:current-layer="beerGuru"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3147">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-257)">
+    <g
+       transform="matrix(0.3783058,0,0,0.3783058,-312.8271,255.76587)"
+       id="beerGuru"
+       class="holy-upgrade-item"
+       inkscape:label="#g7367">
+      <g
+         transform="translate(-2.0028027,-215.882)"
+         id="beerTime"
+         class="holy-upgrade-item"
+         inkscape:label="#g7579">
+        <g
+           id="g4595-1-1-3-5"
+           transform="matrix(-1,0,0,1,1172.0204,-129.55097)">
+          <circle
+             id="path3771-7-6-1-3"
+             style="fill:#e6e6e6;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+             r="48.061165"
+             cy="401.30939"
+             cx="290.28085" />
+          <circle
+             id="path3771-4-2-4-2-5"
+             class="holy-upgrade-identifier"
+             style="fill:none;stroke-width:5.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             cy="401.5625"
+             cx="290.23438"
+             r="52.867283" />
+        </g>
+        <path
+           id="Schaum-7"
+           d="M 884.58379,252.97297 C 885.92955,254.10359 887.62152,254.77703 889.45927,254.77703 890.52618,254.77703 891.54396,254.55005 892.47339,254.13841 893.18941,255.92648 894.87677,257.18243 896.84425,257.18243 899.46072,257.18243 901.58179,254.96125 901.58179,252.22128 901.58179,249.65636 899.72308,247.54606 897.33924,247.28688 897.38044,246.93342 897.40164,246.57327 897.40164,246.20776 897.40164,241.47509 893.84573,237.6385 889.4593,237.6385 887.09358,237.6385 884.96944,238.75445 883.51443,240.52507 882.876,240.21779 882.14899,240.04391 881.37761,240.04391 880.21629,240.04391 879.15551,240.43803 878.34619,241.08815 877.21931,239.0189 875.1918,237.6385 872.87791,237.6385 870.0039,237.6385 867.57169,239.76811 866.75832,242.70216 866.08737,242.34846 865.3254,242.14864 864.51755,242.14864 861.82413,242.14864 859.64068,244.36982 859.64068,247.10979 859.64068,249.84976 861.82413,252.07094 864.51755,252.07094 V 252.97297 Z"
+           inkscape:connector-curvature="0"
+           style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:0.28898877" />
+        <path
+           id="Henkel-5"
+           d="M 894.63789,262.29392 H 903.80384 C 905.03104,262.29392 906.02588,263.37086 906.02588,264.69933 V 284.24326 C 906.02588,285.57173 905.03104,286.64867 903.80384,286.64867 H 894.63789 V 286.64867 C 893.41069,286.64867 892.41584,285.57173 892.41584,284.24326 V 264.69933 264.69933 C 892.41584,263.37086 893.41069,262.29392 894.63789,262.29392 Z M 892.41584,266.20271 V 283.04056 H 901.30403 C 902.22444,283.04056 902.97057,282.23286 902.97057,281.2365 V 268.00676 C 902.97057,267.01041 902.22444,266.20271 901.30403,266.20271 Z"
+           inkscape:connector-curvature="0"
+           style="fill:#6a8000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.28898877" />
+        <path
+           id="Glass-9"
+           d="M 864.3625,252.07094 H 896.58218 V 297.17233 297.17233 C 896.58218,299.82927 894.5925,301.98314 892.13809,301.98314 H 868.80659 V 301.98314 C 866.35219,301.98314 864.3625,299.82927 864.3625,297.17233 Z"
+           inkscape:connector-curvature="0"
+           style="fill:#6a8000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.28898877" />
+        <path
+           id="path1014-1"
+           d="M 867.14006,257.48311 H 893.80462 V 296.57097 296.57097 C 893.80462,297.89944 892.80978,298.97638 891.58258,298.97638 H 869.3621 V 298.97638 C 868.1349,298.97638 867.14006,297.89944 867.14006,296.57097 Z"
+           inkscape:connector-curvature="0"
+           style="fill:url(#linearGradient7503);fill-rule:evenodd;stroke:none;stroke-width:0.28898877" />
+        <path
+           id="Schaum-2-5"
+           d="M 873.66732,248.76351 V 248.76351 C 874.97122,248.76351 876.02825,249.90775 876.02825,251.31925 V 269.66048 269.66048 C 876.02825,271.07198 874.97122,272.21623 873.66732,272.21623 V 272.21623 C 872.36342,272.21623 871.30639,271.07198 871.30639,269.66048 V 251.31925 251.31925 C 871.30639,249.90775 872.36342,248.76351 873.66732,248.76351 Z M 873.66732,278.53042 C 872.36342,278.53042 871.30639,277.38617 871.30639,275.97468 871.30639,274.56318 872.36342,273.41893 873.66732,273.41893 874.97122,273.41893 876.02825,274.56318 876.02825,275.97468 876.02825,277.38617 874.97122,278.53042 873.66732,278.53042 Z M 882,249.66554 C 883.3039,249.66554 884.36092,250.80978 884.36092,252.22128 V 262.44426 C 884.36092,263.85576 883.3039,265.00001 882,265.00001 V 265.00001 265.00001 C 880.69609,265.00001 879.63907,263.85576 879.63907,262.44426 V 252.22128 252.22128 C 879.63907,250.80978 880.69609,249.66554 882,249.66554 Z"
+           inkscape:connector-curvature="0"
+           style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:0.28898877" />
+      </g>
+    </g>
+  </g>
+</svg>

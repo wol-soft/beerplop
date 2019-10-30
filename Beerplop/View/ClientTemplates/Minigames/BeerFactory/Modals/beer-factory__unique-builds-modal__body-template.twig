@@ -1,0 +1,75 @@
+{% verbatim %}
+  <script id="beer-factory__unique-builds-modal__body-template" type="text/template">
+    {{ #builds }}
+      <h2>{{ title }}</h2>
+      <div class="row" data-build-key="{{ key }}">
+        <div class="col-lg-5 col-sm-12">
+          <p>{{ #t }}"beerFactory.uniqueBuilds.state"{{ /t }}</p>
+          <p>{{{ state }}}</p>
+
+          {{ #queuedKey }}
+            <hr />
+            <p>{{ #t }}"beerFactory.uniqueBuilds.underConstruction"{{ /t }}</p>
+            <b>{{ #t }}"beerFactory.uniqueBuilds.{{ key }}.{{ queuedKey }}.title"{{ /t }}</b>
+            <p>{{ #t }}"beerFactory.uniqueBuilds.{{ key }}.{{ queuedKey }}.description"{{ /t }}</p>
+          {{ /queuedKey }}
+
+          {{ #nextStep }}
+            <div class="beer-factory__unique-build__next-step-tooltip"
+                 data-toggle="tooltip"
+                 data-boundary="window"
+                 data-placement="right"
+                 data-html="true"
+            >
+              <fieldset>
+                <button class="btn btn-raised btn-secondary w-100 beer-factory__unique-build__construct"
+                        data-build-key="{{ key }}"
+                >
+                  {{ #t }}"beerFactory.uniqueBuilds.next"{{ /t }}
+                </button>
+              </fieldset>
+            </div>
+          {{ /nextStep }}
+
+          {{ #completed }}
+            <p>{{ #t }}"beerFactory.uniqueBuilds.spell"{{ /t }}</p>
+            {{ #selectSpell }}
+              <button class="btn btn-raised btn-secondary w-100 beer-factory__unique-build__select-spell">
+                {{ #t }}"beerFactory.uniqueBuilds.spell.title"{{ /t }}
+              </button>
+            {{ /selectSpell }}
+            <div class="beer-factory__slot-container pb-4">
+              {{ #spells }}
+               <div class="beer-factory__slot card"
+                    data-trigger="hover"
+                    data-boundary="window"
+                    data-toggle="popover"
+                    data-placement="right"
+                    data-html="true"
+                    data-title="{{ #t }}"beerFactory.uniqueBuilds.spell.{{ . }}.title"{{ /t }}"
+                    data-spell="{{ . }}"
+               >
+                  <svg viewBox="0 0 44 44">
+                    <use xlink:href="#svg-unique-build__spell__{{ . }}"></use>
+                  </svg>
+                </div>
+              {{ /spells }}
+            </div>
+          {{ /completed }}
+        </div>
+
+        <div class="col-lg-7 col-sm-12">
+          <svg data-svg-key="svg-unique-builds__{{ key }}"
+               class="beer-factory__unique-build__svg {{ classes }}"
+               viewBox="0 0 200 100"
+          />
+        </div>
+      </div>
+    {{ /builds }}
+    {{ ^builds }}
+      <div class="alert alert-info" role="alert">
+        {{ #t }}"beerFactory.modal.uniqueBuilds.empty"{{ /t }}
+      </div>
+    {{ /builds }}
+  </script>
+{% endverbatim %}

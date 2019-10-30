@@ -1,0 +1,72 @@
+{% verbatim %}
+  <script id="stock-market-purchase-template" type="text/template">
+    <form id="stock-market-purchase">
+      <h3>{{ name }}</h3>
+      <h6>{{ #t }}"stockMarket.table.method"{{ /t }}: {{ methodLabel }}</h6>
+      <p>{{ description }}</p>
+      <p>{{ #t }}"stockMarket.purchase.available"{{ /t }}:<br /><span id="stock-purchase-max-investment"></span></p>
+
+      <div class="form-group">
+        <label for="stock-purchase-amount" class="bmd-label-floating">{{ #t }}"stockMarket.table.amount"{{ /t }}</label>
+        <span class="input-group-btn">
+          <input type="number" class="form-control" id="stock-purchase-amount" value="1" min="1"/>
+          <button id="stock-purchase-all-in" class="btn btn-default" type="button" style="margin-left: 10px;z-index:100;">
+            {{ #t }}"stockMarket.purchase.allIn"{{ /t }}
+          </button>
+        </span>
+      </div>
+
+      {{ #leverEnabled }}
+        <div class="form-group">
+          <label for="stock-purchase-lever">{{ #t }}"stockMarket.table.lever"{{ /t }}</label>
+          <select class="form-control" id="stock-purchase-lever">
+            {{ #lever }}
+              <option value="{{ value }}">1:{{ value }}</option>
+            {{ /lever }}
+          </select>
+        </div>
+      {{ /leverEnabled }}
+
+      <table class="table table-responsive table-responsive__no-break" id="stock-market__purchase-table">
+        <tr>
+          <td>{{ #t }}"stockMarket.table.current"{{ /t }}: </td>
+          <td class="{{ key }}-value"></td>
+        </tr>
+        <tr>
+          <td>{{ #t }}"stockMarket.table.investment"{{ /t }}: </td>
+          <td><span class="stock-investment">0</span> {{ #t }}"plop.plural"{{ /t }}</td>
+        </tr>
+        <tr>
+          <td>{{ #t }}"stockMarket.purchase.availablePlops"{{ /t }}: </td>
+          <td><span id="stock-market__purchase__current-plops">0</span> {{ #t }}"plop.plural"{{ /t }}</td>
+        </tr>
+        {{ #leverEnabled }}
+          <tr>
+            <td>{{ #t }}"stockMarket.purchase.traded"{{ /t }}: </td>
+            <td><span id="stock-market__purchase__traded-plops">0</span> {{ #t }}"plop.plural"{{ /t }}</td>
+          </tr>
+        {{ /leverEnabled }}
+      </table>
+
+      {{ #t }}
+        "stockMarket.purchase.description",
+        {
+          "__INVESTMENT_FEE__": "{{ investmentFee }}",
+          "__LOSS_PERCENTAGE__": "{{ lossPercentage }}",
+          "__SYSTEM_CLOSE__": "<span id='investment-close-value'></span>"
+        }
+      {{ /t }}
+
+      <br /><br />
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="stock-purchase__another" name="stock-purchase__another"> {{ #t }}"stockMarket.purchase.another"{{ /t }}
+        </label>
+      </div>
+
+      <button id="cancel-purchase" class="btn btn-default" type="button">{{ #t }}"cancel"{{ /t }}</button>
+      <button class="btn btn-primary btn-raised">{{ #t }}"stockMarket.purchase"{{ /t }}</button>
+    </form>
+  </script>
+{% endverbatim %}

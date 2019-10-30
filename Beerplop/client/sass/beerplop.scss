@@ -1,0 +1,376 @@
+@import "colors";
+
+html, body, .full {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  color: $color-text;
+
+  user-select: none;
+  -moz-user-select: none;
+}
+
+.scrollable {
+  overflow: scroll;
+}
+
+.main-container {
+  background-color: $color-secondary-bg;
+  padding: 0;
+
+  > div:first-child {
+    padding: 0;
+    width: 100%;
+    position: relative;
+  }
+
+  @media (min-width: 1200px) {
+    > div:first-child {
+      height: 100%;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    > div:first-child {
+      height: calc(100% - 50px);
+    }
+  }
+
+  .bottom-navigation {
+    height: 50px;
+    
+    ul {
+      width: 100%;
+
+      @media (min-width: 768px) {
+        li {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 767px) {
+        li {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+.nav-item:hover {
+  color: rgba(0,0,0,.9);
+  cursor: pointer;
+}
+
+.main-container-inner {
+  padding: 30px;
+  position: relative;
+}
+
+.main-beer-container {
+  position: relative;
+  width: 40%;
+
+  svg {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    transition: width 0.2s, height 0.2s, margin 0.2s;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+a.svg-container:active svg {
+  width: 94%;
+  height: 94%;
+  margin: 3%;
+}
+
+.building-container-popover {
+  height: 80px;
+  width: 80px;
+  float: left;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  svg {
+    width: inherit;
+    height: inherit;
+  }
+}
+
+.building {
+  float: left;
+  padding: 5px;
+  min-height: 110px;
+  width: calc(100% - 80px);
+  position: relative;
+
+  .fieldset-buy {
+    width: 60%;
+
+    @media (max-width: 450px) {
+      width: 100%
+    }
+
+    .buy {
+      width: 100%;
+    }
+  }
+
+  .level-up-tooltip {
+    width: 40%;
+
+    @media (max-width: 450px) {
+      width: 100%
+    }
+
+    .level-up {
+      width: 100%;
+    }
+  }
+}
+
+fieldset:disabled,
+.level-up:disabled {
+  pointer-events: none;
+}
+
+.building-section {
+  background-color: $color-secondary-bg;
+  padding: 0;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, .26);
+  z-index: 2;
+  height: 100%;
+
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .building-section-overlay__content-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      @media (max-width: 767px) {
+        overflow-y: scroll;
+      }
+    }
+  }
+
+  .secondary-border__bottom {
+    border-bottom: 3px solid $color-secondary-border;
+  }
+
+  .buildings-flex-container {
+    flex: 1;
+    display: flex;
+
+    @media (min-width: 767px) {
+      overflow-y: scroll;
+    }
+  }
+
+  #buildings-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+
+    > div:not(:nth-last-of-type(1)) {
+      border-bottom: 1px solid $color-secondary-border;
+    }
+
+    h3 {
+      padding-left: 10px;
+    }
+  }
+
+  .building-container {
+    transition: box-shadow 0.5s;
+    position: relative;
+
+    &:hover {
+      background-color: $color-secondary-hover;
+    }
+
+    .toggle-minigame {
+      position: absolute;
+      top: 80px;
+      width: 80px;
+      line-height: 30px;
+      color: white;
+      background-color: #6c757d;
+      border-radius: 8px;
+      text-align: center;
+
+      &:hover {
+        background-color: #636b72;
+        cursor: pointer;
+      }
+
+      &.minigame-cta {
+        background-color: $color-cta;
+      }
+    }
+  }
+}
+
+.special-buildings-container {
+  background-color: $color-secondary-bg;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, .26);
+  z-index: 2;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 0;
+
+  > div {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 150px;
+  }
+
+  .panel-group a {
+    color: $color-text;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-text;
+      text-decoration: none;
+    }
+  }
+
+  .panel-heading {
+    border-bottom: 1px solid $color-secondary-contrast-border;
+    background-color: $color-secondary-contrast;
+    padding: 5px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-secondary-contrast-hover;
+    }
+  }
+
+  .panel-body {
+    padding: 10px;
+
+    &.stock-market-panel {
+      padding: 0;
+    }
+  }
+
+  .info-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+  }
+}
+
+.tooltip-inner {
+  max-width: 300px;
+  text-align: left;
+}
+
+.building-buy-control {
+  height: 80px;
+  padding: 10px 10px 15px;
+
+  .buy-amount {
+    width: 50px;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
+
+    &.active {
+      font-weight: 900;
+      color: $color-gui-primary;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $color-gui-primary-hover;
+      background-color: lightgrey;
+    }
+  }
+}
+
+.beer-sale .fieldset-buy:enabled button {
+  box-shadow: 0 0 118px 0 rgba(255,183,0,1);
+}
+
+.level-container {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  right: 0;
+
+  .level-label {
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
+.ranking__inactive-player {
+  color: grey;
+}
+
+.popover {
+  max-width: 450px;
+}
+
+.requirement-reached {
+  color: #00bf00;
+  font-weight: bold;
+}
+
+.requirement-not-reached {
+  color: red;
+}
+
+.input-group-btn button {
+  margin-left: 15px;
+}
+
+.upgrade-available {
+  color: darkred;
+  margin-right: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.slider-handle {
+  background: $color-gui-primary none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-gui-primary-hover;
+  }
+}
+
+.balance {
+  &-positive {
+    color: #2E7D32;
+  }
+
+  &-0 {
+    color: inherit;
+  }
+
+  &-negative {
+    color: #F4511E;
+  }
+}

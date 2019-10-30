@@ -1,0 +1,22 @@
+{% verbatim %}
+  <script id="building-clone-tooltip-template" type="text/template">
+    {{ #t }}"beerCloner.cloning.requirements"{{ /t }}:<br />
+    {{ #t }}"building.amount"{{ /t }}: <b>{{ buildings }}</b>
+      {{ #buildingsReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /buildingsReached }}
+      {{ ^buildingsReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /buildingsReached }}
+    <br />
+    {{ #t }}"building.beerCloner.plural"{{ /t }}: <b>{{ cloners }}</b>
+      {{ #clonersReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /clonersReached }}
+      {{ ^clonersReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /clonersReached }}
+    <hr />
+    {{ #t }}"beerCloner.cloning.paymentDescription"{{ /t }}
+  </script>
+{% endverbatim %}

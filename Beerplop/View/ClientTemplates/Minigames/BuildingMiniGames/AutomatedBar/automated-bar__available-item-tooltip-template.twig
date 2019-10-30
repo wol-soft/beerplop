@@ -1,0 +1,13 @@
+{% verbatim %}
+  <script id="automated-bar__available-item-tooltip-template" type="text/template">
+    {{ #t }}"automatedBar.item.{{ index }}.title"{{ /t }}
+    <br />
+    {{ #t }}"costs"{{ /t }}: <b>{{ cost }}</b>
+    {{ #available }}
+      (<span class='requirement-reached'>&#10003;</span>)
+    {{ /available }}
+    {{ ^available }}
+      (<span class='requirement-not-reached'>x</span>)
+    {{ /available }}
+  </script>
+{% endverbatim %}

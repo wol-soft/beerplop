@@ -1,0 +1,1126 @@
+**1.61.0** - 04.09.2019
+The big patch release
+* Added a new building to the Beer Factories, the Back Room (#46)
+* Added additional achievements
+* Added an additional Holy Upgrade
+* Added automation of research project restarts
+* Automated Bars: Added an upgrade overview (#44)
+* Enable sacrifice after reaching the highest possible amount of Plops
+* UI polishing:
+    - Added a border to the expanded buy automation controls
+    - Beer Factory: Aligned expand buttons for non buildable buildings
+* Bugfixes:
+    - Fix auto buyer/auto level up disabled if plops are invested somewhere else (#52)
+    - Bottle Cap Factory purchase and level up button stays active after an automated purchase
+    - Total statistics for all buildings contains a cloning priority configuration
+    - Page refresh after several modals
+        - configuring a custom buy amount
+        - Creating a new save state
+        - Sacrificing the enchantments of a building
+        - Login from a modal
+    - Added additional checks to avoid double auto cloning (#61)
+    - Achievements and Upgrades don't render
+    - After sacrificing the enchantments of a building the enchantment modal doesn't open
+    - Checkboxes in game option modal aren't rendered
+    - Dragging the screen after sacrificing
+
+**1.60.0** - 26.08.2019
+* Added a fast switch navigation to the building detail modal (#60)
+* Bugfixes
+    - Script loading errors in Edge and Pale Moon (#64)
+    - Beer Blender Bar not rendered
+    - Save States not accessible (#63)
+
+**1.59.0** - 23.08.2019
+* Added a loading screen which displays the component loading state
+* Technical improvements:
+    - Improved beerwarts auto training performance (#57)
+    - Removed client side templates from the DOM (#18)
+    - Reduced page load size for same version from 1.1MB down to 21KB (#59)
+* Bugfixes:
+    - Missing achievement descriptions
+    - New version hint is not displayed
+
+**1.58.0** - 19.08.2019
+* Added an additional Holy Upgrade
+* Added additional achievements
+* Added cloning automation (#40)
+* Bugfixes:
+    - Beer Factory: Wrong trading route amount after reload (#56)
+
+**1.57.0** - 16.08.2019
+* Upgrade from Ubuntu 16.04 to Ubuntu 18.04
+* Upgrade from MySQL 5.7 to 8.0
+* Bugfixes:
+    - Automated Bar: Missing CSS classes for higher levels (#51)
+
+**1.56.0** - 11.08.2019
+* Added production statistics to Bottle Cap Factories
+* Added Beer Factory slot construction to Bottle Cap Factories (#38)
+    - Auto-Building via Diastatic Enzyme
+    - Auto-Level-Up via Amylase
+    - Extending the duration of Bottle Cap Storms with Degradation
+    - Increasing the Bottle Cap production with Hydrolysis and Fermentation
+* Added additional notifications
+    - Notify if a new cloning is available (IFTTT channel "Building Minigames")
+    - Notify if the Automated Bar reached 100% and a new sacrifice is possible (IFTTT channel "Building Minigames")
+    - If an IFTTT connection is configured the user will be notified if a save state is offline
+* Mark the "Minigame" toggle if an action is possible
+    - If a sacrifice at the Automated Bar is possible
+    - If a new cloning is available
+* Prevent infinite values breaking the game (#37)
+* Cache language file to speed up reloading the game on the same version
+* Bugfixes:
+    - Usage of double-quotes in custom names (#45)
+    - Fix label for "Disable Flyout Labels" option
+    - Beer Factory: Fix Beer Factory Boost impact on Trading Routes (#49)
+        - The traded amount isn't increased by Beer Factory Boosts
+        - Manually increased traded amount isn't reset after the Beer Factory Boost finished
+        - Trading Route management modals don't update after the traded amount is updated
+    - Automated Bar: Scroll reset on various actions (#48)
+    - Automated Bar: All fields are enabled when moving an item, closing the overlay and opening the overlay again
+    - Automated Bar: Game breaks when selling an item or sacrificing during the movement of the item
+    - Automated Bar: Popover on disconnected elements when an item-specific load map is active
+
+---
+**1.55.0** - 31.07.2019
+* Show the level of each boost in the Automated Bars boost overview
+* Added four additional stages of Automated Bar upgrades
+* Added additional achievements
+* Added the possibility to see reached upgrades dor Beer Factory factories (#42)
+* Bugfixes:
+    - Wrong numbers displayed in the Automated Bars boost overview
+    - double sent IFTTT messages
+
+---
+**1.54.0** - 29.07.2019
+* Added an <a href="wiki/index.php/Telegram_notifications_via_IFTTT" target="_blank">IFTTT connector</a> to receive Beerplop notifications in Telegram
+
+---
+**1.53.0** - 26.07.2019
+* Added an option to switch to scientific notation (#41)
+* Show required Bottle Caps/Plops for building/Bottle Cap Factory level ups not as pointed numbers
+* Filter out completed materials in Build Queue item configuration modal (#43)
+* Close Build Queue item configuration/deletion modal if the item is completed
+* Added an additional achievement
+
+---
+**1.52.0** - 21.07.2019
+* Group training notifications for magicians (#29)
+* Bugfixes:
+    - Notifications overlap other elements (#29)
+    - Investing into multiple Research Projects and afterwards setting the Beer Bank investment in a
+      single step to 100% leads to a wrong slider state of one Research Project
+
+---
+**1.51.0** - 20.07.2019
+* Jobs in the build queue of the Beer Factory are collapsible (#33)
+* Added an option to disable flyout labels
+* Added an option to make Beer Bank and Research Project sliders interactable (#12)
+* Reworked the changelog to be readable on any device (#30)
+* Decoupled scrolling of sidebar and bar-area in Automated Bar minigame (#8)
+* Upgraded bootstrap-material-design dependency to 4.1.2
+* Refactored some numbers to follow the modular ComposedValueRegistry pattern
+    - Bottle Cap Production
+    - Mana Production
+    - Manual Plop Production
+
+---
+**1.50.0** - 18.07.2019
+* Disable Upgrade button for an item at the Automated Bar
+  if not enough beers are available (#35)
+* Bugfixes:
+    - After a Beer Factory Boost the stock contains more materials than allowed
+      and the total amount of materials in the stock is calculated wrong (#34)
+
+---
+**1.49.0** - 15.07.2019
+* Upgraded a lot of dependencies. Cheers to all open source developers!
+    - FontAwesome 4 --> FontAwesome 5 (#22)
+    - Bootstrap-Slider 10.5 --> 10.6
+    - Decimal.js 10.0 --> 10.2
+    - Highcharts 7.0 --> 7.1
+    - jQuery 3.3 --> 3.4
+    - Mustache.js 2.3 --> 3.0
+    - Popper.js 1.12 --> 1.15
+* Bugfixes:
+    - Bottle Cap production doesn't update after the Automated Bars boost has changed
+
+---
+**1.48.0** - 14.07.2019
+* Added additional achievements
+* Added the "Automated Bar" minigame to the main game unlocked via a new Holy Upgrade
+* Balancing for late game to avoid number explosions (Research projects in
+  two hours is not the time they are supposed to be finished in 😉)
+    - Reworked the calculation of Research Project costs
+    - Reworked the Beer Bank Boost calculation
+    - Buffed the effect of the "Training Center"
+    - Nerfed the effect of "Clonedike"
+* Bugfixes:
+    - Building Detail Modal doesn't open
+    - Enchantment effects aren't calculated correctly after purchasing  buildings
+    - During the purchase of a new stock at the Stock Market the value
+      for a system close may be calculated wrong (#31)
+    - Wrong effect percentage in description of Clonedike Holy Upgrade
+    - After a Beer Factory Boost the stock contains more materials than allowed (#32)
+
+---
+**1.47.0** - 09.07.2019
+* Show a notification after finishing a Research Project
+* Added additional Buff Bottles unlocked by new Holy Upgrades
+    - Shorten current magician trainings (#28)
+    - Boost Beer Factories production (#26)
+* Bugfixes:
+    - Beer Factories: Factory extensions and trading routes aren't aware of the game speed
+
+---
+**1.46.0** - 06.07.2019
+* Added a progress label to the Beer Factory Build Queue
+* Added additional achievements
+* Added additional Holy Upgrades
+* Bugfixes:
+    - Fast clicking on sacrifice enables multiple sacrifices (#25)
+    - Added additional checks to avoid negative delivered materials
+      and an update script to reset negative numbers (#24)
+    - Building enchantment modal opens after sacrificing the main game
+
+---
+**1.45.0** - 28.06.2019
+(The 100th feature release of Beerplop!)
+* Added an additional Holy Upgrade
+* Added additional achievements
+* Added sacrifice mechanism for building enchantments (#7)
+* Added additional statistics to the building enchantment modal
+* Message for started Magician training sessions now contains the amount of shortened sessions
+* Message for started Magician training sessions also displays on manually started sessions
+* Change labels on sacrifice-modals and wipe-warning-modal from "close" to "cancel"
+* Bugfixes:
+    - Negative storage in factory extensions (#23)
+
+---
+**1.44.0** - 25.06.2019
+* Added a lot of additional Beer Factory upgrade paths (#15, #21)
+
+---
+**1.43.0** - 24.06.2019
+* Added additional Holy Upgrades
+* Added Beer Blender Bar presets
+* Added the possibility to move items in the Automated Bar preview
+* Added additional achievements
+* Bugfixes:
+    - Added missing achievement title for unlocking the Beer Blender Bar
+    - Configuring a new custom buy amount when the custom buy amount is not
+      active triggers a recalculation of all prices
+    - Some Buff Bottle combinations lead to a drastically lowered Auto-Plop rate
+    - Fix pluralization of 0
+
+---
+**1.42.0** - 16.06.2019
+* Added an additional achievement
+* Show the amount of active Magician training sessions in magician overview table
+* Added a filter to the Magician overview
+* Bugfixes:
+    - After deconstructing an auto-buyer or an auto-level-up the automation is not deactivated
+
+---
+**1.41.0** - 15.06.2019
+* Magician trainings can be cancelled (#17)
+* Added additional achievements
+* Added additional upgrade paths to the Beer Factory Academy
+* Issues are clickable in the changelog
+* Improved number formatting:
+    - Avoid fractional number formatting for large numbers
+    - Switch to scientific notation for large numbers
+* Bugfixes:
+    - Fixed description label for Clonedike (#16)
+    - After reaching "Declaration Of Beer" not all Buff Bottle related upgrades are unlocked
+    - Production each in building popover gets -NaN if no building owned
+
+---
+**1.40.0** - 12.06.2019
+* Beer Blender Bar ingredients can be equipped/unequipped with a double click (#10)
+* Added a "close all" button to the Stock Market overview
+* Modified Stock Market layout to avoid "jumping" from changing numbers (#3)
+* Added direct link to GitHub issue project
+* Bugfixes:
+    - Broken arrow symbol in level popover (#6)
+    - Building prices get negative after too many enchantments
+
+---
+**1.39.0** - 11.06.2019
+* Indicate which skill is currently trained in Magician overview
+* Bugfixes:
+    - Wrong numbers in labels
+    - Building price not updated after configuring new buy amount
+    - Bottle Cap Factory purchase button is enabled even if no factory is available
+    - Auto-Buyer and Auto-Level-Up can be activated before the slot item is completed
+    - Drinker upgrades are unlocked based on a wrong achievement amount after loading
+      a save state
+
+---
+**1.38.0** - 03.06.2019
+* Added additional upgrades
+* Added additional achievements
+* Added a custom buy charge button
+* Extended the <a href="bar" target="_blank">Bar</a> minigame preview
+    - Added additional upgrades
+        * Upgrade Sets up to level V
+        * Capacity Upgrades
+        * Price Upgrades
+    - Added a level map
+    - Show a specific load map for each item. The specific load map is visible
+      if an item is selected and the load map is activated
+    - Added level and base beer capacity to item popover
+    - Fixed upgrade labels
+* Clear building statistics on page refresh to avoid lags when opening overlays
+* Bugfixes:
+    - Level bonus before last sacrifice in stats shows wrong number
+
+---
+**1.37.0** - 14.05.2019
+* Added a tooltip to Magician level up buttons showing the training duration
+  for the level up and, if unlocked, the supported Magicians via "Group Training"
+* In the <a href="bar" target="_blank">Bar</a> minigame each sacrifice now doubles the capacity
+* Bugfixes:
+    - Tooltips from an overlay don't dispose after closing the overlay
+    - Trading routes don't automatically MAX sometimes
+    - Unique Build part finished not recognized correctly
+
+---
+**1.36.0** - 10.05.2019
+* Extended the <a href="bar" target="_blank">Bar</a> minigame
+    - Added two new stages of upgrades unlocked after sacrificing
+    - Added an additional equipment, the "Cooling Engine"
+    - Added achievements
+* Changed some Research Projects to be repeatable infinitely
+    - Beer Oceans
+    - Refilling Bottle Caps
+    - Training Center
+    - Clonedike
+* Added some additional achievements (now over 1.000)
+* Added an additional Drinker Upgrade
+* Adjusted prices for late game Drinker Upgrades
+* Nerfed Beerwarts "Group Training" to shorten training times by 5%
+* Optimize Beer Factory breakpoints to avoid overlapping
+* Clear overlays and modals after closing to reduce DOM size
+* Optimize some selectors in main iteration to optimize performance
+* Bugfixes:
+    - Achievement check after completing an Unique Build
+    - Bar Manager: Rendering of item management
+    - Beer Factory: Production balance in stock table isn't rendered after update
+    - Cloning sometimes results in not being available any longer until
+      a reload without executing the requested cloning
+    - Opening of wrong modal after selecting a spell for a unique build
+    - Toggling of the loading empty state when opening Beer Factory material flow charts
+    - Research project popover doesn't dispose on UI update
+
+---
+**1.35.0** - 05.05.2019
+* Start prototype for new minigame <a href="bar" target="_blank">Bar</a>
+* Show the level and the level bonus before last sacrifice in statistics
+
+---
+**1.34.0** - 28.04.2019
+* Added an additional Holy Upgrade
+* Nerf the effect of Clonedike to 15%
+* Change production graphs to display the data on a logarithmic scale
+* Bugfixes:
+    - Save state achievement check during auto save to make it possible to reach
+      the achievement when playing in a lobby
+    - Missing stage bar for Research Projects reaching stage 14
+    - Missing materials hint for Beer Factory extensions
+
+---
+**1.33.0** - 23.04.2019
+* Set up a <a href="wiki" target="_blank">Beerplop Wiki</a>, feel free to contribute
+* Added additional upgrade paths to Beer Factories
+* Added a new Building to the Beer Factories allowing to explore unique builds.
+  The unique build has to be constructed from several parts to be completed.
+  Unique builds provide strong spells after being completed.
+* Added additional achievements
+* Avoid some expensive DOM operations in the main game loop
+* Speed up save state loading by avoiding unnecessary recalculations
+* Bugfixes:
+    - Label issue in total statistics overlay
+    - Label issue on special buildings button
+    - Building statistics memory leak causing lags
+
+---
+**1.32.0** - 11.04.2019
+* Added additional upgrades incuding a Drinker Upgrade
+* Added total production statistics
+* Show the reached and the total available achievements for achievement groups
+* Added an additional Holy Upgrade including additional achievements
+* Added an option to hide completed research projects
+* Added an additional Research Project
+* Added additional stages to Research Projects "Training Center" and "Refilling Bottle Caps"
+* Adjusted the calculation of cloning boosts to grow slower right after cloning
+* Bugfixes:
+    - Builder Yard reduction doesn't apply for all materials
+
+---
+**1.31.0** - 07.04.2019
+* Added additional upgrade paths to the academy of the Beer Factories
+* Added two new items which can be equipped as a slot item
+    - Enable an auto-buyer for the equipped building
+    - Enable automatic level ups for the equipped building
+* Adjusted the calculation of cloning boosts
+* Added additional achievements
+
+---
+**1.30.0** - 29.03.2019
+* Added additional holy upgrades
+* Added building cloning
+    - Clone the production of buildings by paying with the current production and
+      some Beer Cloners
+    - The production of cloned buildings will raise over time
+    - Multiple clonings per building
+    - Added additional achievements
+* Check for an available Magician training after hiring a new Magician
+* The "Higher Volume" upgrades for Storage Places now quadruples the available storage
+* Added additional Beer Factory upgrade paths
+* Live update production and production each in building popover
+* Bugfixes:
+    - Correct values for the production and transport multiplicand of Lodges
+    - Increasing the production multiplicand of Lodges didn't update the view
+
+---
+**1.29.0** - 21.03.2019
+* Added additional stages to the Research Project Beer Oceans
+* Show the amount of magicians which are currently in a training session
+* Gain abstinence Plops when loading a Save State
+* Use a generic solution for building level calculation to avoid NaN
+  when reaching large building amounts
+* Bugfixes:
+    - Bottle Cap Factory reduction enchantment isn't accounted when purchasing
+      Bottle Cap Factories on MAX buy charge
+    - Beer Sale reduction isn't accounted when purchasing Bottle Cap Factories
+      on MAX buy charge
+
+---
+**1.28.0** - 15.03.2019
+* Added additional Beer Factory upgrades
+* Order materials of new Build Queue jobs ascending
+  by the average material production amount
+* Added an option to the Build Queue to hide completed materials
+* Extract all Beer Factory texts into language file and thus complete the
+  refactoring project to extract all texts into a language file (nearly 3.000 entries!)
+* Show a notification when enlarging the volume of a trading route automatically
+* Fixed typos
+
+---
+**1.27.0** - 08.03.2019
+* Added additional Drinker Upgrades
+* Added a lot of additional achievements
+* If supported, use IndexedDB to store building statistics to keep
+  long-term statistics even after a page reload
+
+---
+**1.26.0** - 04.03.2019
+* Added additional Holy Upgrades
+* Added zooming to Heaven Of Beer
+* Added additional stages to Training Center Research Project
+* Adjusted Beer Bank Banker and Magician training time calculation
+* The game must not be running to complete
+  Beer Bank Banker and Magician training sessions
+
+---
+**1.25.0** - 02.03.2019
+* Check for new unlocked Beer Factory buildings on game startup
+* Group achievements in the achievement overview
+* Clean up the internal achievement storage
+* Update to Highcharts 7
+* Bugfixes:
+    - Color of plot lines for active Stock Market holds is missing
+
+---
+**1.24.0** - 28.02.2019
+* Enchantment of Bottle Cap Factories
+* Added a new building to the Beer Factories: The Trading Post
+    - Trade materials you produce with merchants
+    - Added new achievements
+* Double the Beer Factories base stock capacity
+* Bugfixes:
+    - After equipping a Mana production affecting ingredient at the
+      Beer Blender Bar the Mana per second value wasn't updated
+
+---
+**1.23.0** - 21.02.2019
+* Large technical changes: Modularization of "Beer Factories"
+* Added a material flow chart to the Beer Factories
+* Fix a lot of typos
+
+---
+**1.22.0** - 08.02.2019
+* Added an additional Holy Upgrade
+* Reworked the "Heaven Of Beer"
+    - Display only reachable Holy Upgrades
+    - Animate dependency lines
+    - Animated night sky background
+    - Center the view to the Source Of Life
+
+---
+**1.21.0** - 07.02.2019
+* Show current Beer Bank investment percentage in head
+* Show amount of active research projects and current investment percentage in head
+* Added an additional Holy Upgrade
+* Added the Magician School where magicians can start trainings automatically
+* Show a message after a magician or a Beer Bank banker has finished a training session
+* Added additional achievements
+* Bugfixes:
+    - Pre select the default game speed
+
+---
+**1.20.0** - 03.02.2019
+* Added missing icons for Workers' Lodge, Queue Control and Academy
+* Added additional upgrades and achievements
+* Added an additional button to equip Proxy Factory Extensions
+* Extract texts from modals into language files
+* Bugfixes:
+    - Bottle Chain shows wrong Plop amount
+
+---
+**1.19.0** - 27.01.2019
+* Show the auto plop rate of the last period in statistics
+* Extract all achievement titles and descriptions into language file
+* Added an age to Magicians at Beerwarts and to Beer Bank Banker
+
+---
+**1.18.0** - 25.01.2019
+* Extended Beer Factories
+    - Added proxy factory extensions as upgrade paths which allow to mirror the
+      production of another factory extension
+    - Added additional upgrade paths
+    - Adjusted some prices
+    - Added an additional achievement
+    - Added missing icon for Base Plates
+    - Show the amount of queued jobs and max jobs at the top of the Build Queue
+* Close modals and overlays with ESC
+* Added a "Clear history" button to the Stock Market
+* Added additional holy upgrades
+* Bugfixes:
+    - Undefined label for grapes at the Beer Blender Bar
+    - Total Mana production counter of magicians didn't include boosts
+
+---
+**1.17.0** - 21.01.2019
+* Continue extracting texts into language file
+    - Remaining client side templates
+    - All upgrades (including holy upgrades)
+* Bugfixes:
+    - Unlocked upgrade counting results in wrong amount
+    - Wrong label after finishing a Bottle Chain
+
+---
+**1.16.0** - 14.01.2016
+* Adjusted some Beer Factory upgrade prices
+* Manual harvest of Beer Factory materials may also result in additional unlocked materials
+* Bugfixes:
+    - Manual harvest for "Precious Mine"
+    - Missing Stock Market labels
+    - Unable to open Stock Market history
+    - Stock Market "All In!" button is not clickable sometimes
+    - Loading issues with multiple save states
+    - Overlapping modals in save state administration
+
+---
+**1.15.0** - 13.01.2019
+* Start extracting texts into language file
+* Extended Beer Factories
+    - Added an additional building "Builder's Yard"
+    - Adjusted prices for upgrades
+    - Added new achievements
+* Bugfixes:
+    - Fixed some typos
+
+---
+**1.14.0** - 09.01.2019
+* Extend Beer Factories
+    - Show average Beer Factories item production
+    - Show duration of running jobs
+    - Add missing icons for Storage Place, Transport System and Precious Mine
+* Add 'Purchase another' option to purchasing holds at the stock market
+* Bugfixes:
+    - Save state loading issue
+
+---
+**1.13.0** - 06.01.2019
+* Show the amount of jobs in the build queue
+* Add an additional factory extension to Precious Mines
+* Add additional equipments for slots
+* Added new achievements
+* Adjust prices for a few upgrade paths
+* Adjust prices for building slots
+* Adjust Hydrolysis and Fermentation effect
+* Added an additional speed setting (x25)
+* Added missing icon image for Blacksmith
+* Optimize Beer Factory redraw
+* Bugfixes:
+    - If a job to construct a new factory gets deleted the amount of queued jobs is not updated
+
+---
+**1.12.1** - 29.12.2018
+* Fix Beer Blender Bar slot unlocking issue
+
+---
+**1.12.0** - 28.12.2018
+<b>The marriage update</b>
+* Connect the <a href="beerfactory" target="_blank">Beer Factories Preview</a> with the Beerplop main game
+    - Beer Factories is unlocked via a new Holy Upgrade
+    - Base Plates can be used to build slots for a building
+    - Slots can be equipped with boosting items
+    - Added many additional achievements
+* Extend Beer Factories
+    - Added additional upgrade paths and materials
+    - Added an additional building to gain knowledge
+    - Adjust some prices
+    - Boosting items can be researched using knowledge
+    - Build history can be cleared
+* Bugfixes:
+    - If the 'Buy max amount' option is activated and a building gets enchanted
+      the costs for the available buildings don't update
+
+---
+**1.11.0** - 26.11.2018
+* Extended <a href="beerfactory" target="_blank">Beer Factories Preview</a>
+    - Fixed issue with material delivery priority switch
+    - Added popovers to factory extensions which show
+        - The current storage of the extension
+        - produced materials per second (for simple materials)
+        - production progress (for advanced materials)
+    - Add hint on factory which indicates missing materials for factory extensions
+    - Add additional upgrade paths
+
+---
+**1.10.0** - 25.11.2018
+* Extended <a href="beerfactory" target="_blank">Beer Factories Preview</a>
+    - Add Build Queue history
+    - Add hint to upgrade available animation
+    - Add additional upgrade paths
+    - Add advanced factory for "Base Plates"
+    - Add hint to stock if the resource is more requested or more produced
+    - Adjust some prices
+
+---
+**1.9.1** - 20.11.2018
+* Fix last stage of "Stargazer" research project
+
+---
+**1.9.0** - 19.11.2018
+* Add a new building "Beer Cloner" including new achievements
+* Add an additional Holy Upgrade
+* Add a new ingredient to the Beer Blender Bar
+* Extended <a href="beerfactory" target="_blank">Beer Factories Preview</a>
+    - Add new upgrade paths
+    - Fix ordering of Build Queue using drag 'n' drop
+    - Management of build queue items
+        - Arrange the priority of the required materials
+        - pause the delivery of specific materials
+
+---
+**1.8.0** - 16.11.2018
+* Extended <a href="beerfactory" target="_blank">Beer Factories Preview</a>
+    - Add progress bar to Build Queue items
+    - Optimize Build Queue management buttons
+    - Build Queue items can be reordered using drag 'n' drop
+    - Move pause production buttons from factories to factory extensions
+    - Add upgrade available identifier to building so collapsed buildings
+      show an information if an upgrade is available
+    - Add additional buildings (Precious Mine, Queue Control)
+    - Add option for material delivery preference.
+        - Prefer delivery to factory extensions (more items produced)
+        - Prefer delivery to Build Queue (faster completed jobs)
+    - Don't show a warning if dropping a job from the Build Queue which
+      hasn't been started yet
+* Improve Beerplop Lobby start page
+    - Add instruction how lobbies work
+    - Add a warning if a local save state is found to avoid loosing save states
+    - Add styling
+* Bugfixes:
+    - Scroll issue on new game and demo save states pages
+
+---
+**1.7.3** - 15.11.2018
+* Fix storage capacity not updated correctly
+
+---
+**1.7.2** - 15.11.2018
+* Fix Beer Factory jobs are not removed from build queue correctly
+
+---
+**1.7.1** - 14.11.2018
+* Fix Beer Factories issues
+    - Labels for queued builds
+    - Game crashes after unlocking a new building
+    - Storage stock issue fixed by splitting storage into capacities for each resource.
+      Consequently removed resource management options
+
+---
+**1.7.0** - 13.11.2018
+* Extended <a href="beerfactory" target="_blank">Beer Factories Preview</a>
+    - Add a new building "Workers' Lodge"
+    - Add additional upgrade paths including new factory extensions
+    - Add additional materials "Marble" and "Tools"
+    - Add more material icons
+    - Show queued builds in factory overview
+    - Fix issues with factory extensions
+
+---
+**1.6.0** - 12.11.2018
+* Show message if stock market hold gets closed by system
+* Extended <a href="beerfactory" target="_blank">Beer Factories Preview</a>
+    - Show tooltip with costs of actions before queue add
+    - Show produced items per second and produced materials in factory details
+    - Show upgrade effect in queue
+    - Optimize message when queue add is rejected
+    - Show a message when a queue job is finished
+    - Display an arrow for the stock control which can be folded down
+    - Show version and a hint if a new version is available
+    - Optimize factory level indication
+    - Fix UI update issues
+* Bugfixes:
+    - Order of ranking table in lobby matches with large numbers
+
+---
+**1.5.0** - 10.11.2018
+* Prototype of "Beer Factories", the idleception, which will be added in a later stage.
+  Currently available at <a href="beerfactory" target="_blank">Beer Factories Preview</a>
+* Added "Beer Blender Bar" where different equipped ingredients effect production numbers
+* Advanced building statistics available by clicking the building image
+* Added new holy upgrades
+* Added additional achievements
+* Added additional stages to the research project "Refilling Bottle Caps"
+* Reduce redraws of the "Available Upgrades" area
+* Bugfixes:
+    - negative production after purchasing a new research project
+    - Level progress bar stops moving in late game
+    - Update building costs if buy charge is set to "max. available" and the
+      building gets enchanted
+    - Wrong text in "Beer Laser" popover after multiple iterations
+
+---
+**1.4.0** - 15.10.2018
+(possibly AKA "The hate the developer upgrade")
+* Slow the game (especially in late game) down as the numbers increase too fast
+  due to the amount of available upgrades. Adjusted two formulas to achieve a
+  more controlled late game:
+    - Calculation of the boost which is given by plops invested in the Beer Bank
+    - Calculation of the boost which is given by sacrified level
+* Bugfixes:
+    - Floating point bug in Service Assistant tooltip
+    - FireFox scroll issue
+
+---
+**1.3.0** - 06.10.2018
+* Limited the building reduction which can be achieved by service assistants
+* Additional Click Bar upgrades are only unlocked after purchasing the Click Bar
+* Layout fixes
+    - Building section on mobile devices
+    - Text on building buttons on mobile devices
+    - Save state table on mobile devices
+    - Building popover contains HTML
+* Bugfixes
+    - Training of Magicians is not finished correctly resulting in no Mana production
+
+---
+**1.2.0** - 03.10.2018
+* Added an additional research project
+* Added additional stages to "Beer Oceans"
+* Added additional achievements
+* Added a buy max option
+* The buy charge now also affects the bottle cap factories
+* Disable autosave if the loading of a save state fails
+* Buffed Beer Bank Banker
+* Bugfixes
+    - Game speed reset
+    - Unlocking of some upgrades
+    - Mana production isn't aware of the game speed
+    - Buff progress bar calculation
+    - display of reached research project stages
+    - Layout fixes
+
+---
+**1.1.0** - 14.09.2018
+* Show available Mana in enchantment overlay
+* Colorize enchantment wands if an enchantment is available
+* Demo save states
+* Bugfixes
+
+---
+**1.0.0** - 03.09.2018
+* Added many additional achievements (over 200!)
+* Added additional upgrades
+* Added additional stages to "Beer Oceans" and "The Beer Laser"
+* Added additional holy upgrades
+* Added "Beerwarts"
+  - Learn up to three skills
+  - Train magicians to generate Mana
+  - Enchant Buildings with three different spells
+* Added "Beer Bank Banker"
+  - Reinvest your Beer Bank Plops
+  - Train Banker for better investments
+* Fix performance issues
+* Bugfixes
+
+---
+**0.55.0** - 01.08.2018
+* Added additional achievements
+* Added additional upgrades
+* Added a new holy upgrade
+* Added a new research project
+* Balanced building level up costs
+
+---
+**0.54.0** - 30.07.2018
+* Added a button to buy all available upgrades
+* Fix performance issues
+* Bugfixes
+
+---
+**0.53.0** - 27.07.2018
+* Added new holy upgrades
+* Balanced building boosts
+* Added an additional stage to the research project "Beer Laser"
+* Running research projects show the remaining time
+* Bugfixes
+
+---
+**0.52.0** - 13.07.2018
+* Added new holy upgrades
+* Added additional achievements
+* Research projects are ordered now
+* Running research projects show the running time
+
+---
+**0.51.0** - 04.07.2018
+* Added additional hints for repeatable research projects
+* Bugfixes
+* Updated Dependencies
+
+---
+**0.50.0** - 13.06.2018
+* Added additional statistics
+* Added a new buff bottle
+* Bugfixes
+
+---
+**0.49.0** - 13.06.2018
+* Added a new holy upgrade "Beer Bank"
+* Added new achievements
+
+---
+**0.48.0** - 05.06.2018
+* The research project "Beer Laser" is repeatable
+* Balanced prices for repeatable research projects
+* Bugfixes
+
+---
+**0.47.0** - 28.05.2018
+* Repeatable research projects
+* Added new achievements
+
+---
+**0.46.0** - 15.05.2018
+* Added new upgrades
+* Added new achievements
+* Balanced some upgrade prices
+
+---
+**0.45.0** - 17.04.2018
+* Added a new research project including new achievements and upgrades
+
+---
+**0.44.0** - 29.03.2018
+* Added a new research project including new achievements and upgrades
+
+---
+**0.43.0** - 21.03.2018
+* Added a game speed selection at the beginning of a game
+* Added more holy upgrades
+* Ultra buff boosts (combinations from assembly lines,
+  building boosts and master opener) are more unlikely
+
+---
+**0.42.0** - 20.03.2018
+* Added a new research project
+* Added new achievements and upgrades
+* balanced Opener and Service Assistant upgrades
+* Bugfixes
+
+---
+**0.41.0** - 15.03.2018
+* Added a new research project
+
+---
+**0.40.0** - 11.03.2018
+* Added research projects including new holy upgrades and achievements
+* Bugfixes
+
+---
+**0.39.0** - 07.03.2018
+* Added Click Bar including new upgrades and achievements
+
+---
+**0.38.0** - 05.03.2018
+* Added more achievements
+* Added version check
+* Bugfixes
+
+---
+**0.37.0** - 28.02.2018
+* Changed level speed
+
+---
+**0.36.0** - 09.02.2018
+* Added multiplayer lobby module
+* Added success messages for autosaving
+
+---
+**0.35.0** - 04.02.2018
+* Reworked internal calculation mechanics
+  - Changed building level up costs calculation
+  - Changed upgrade impact
+  - Changed bottle cap production
+  - Changed level calculation
+* Added more achievements
+* Added more upgrades
+* Changed some holy upgrade effects
+* Available upgrade order is updated now if the auto plops change for a
+  correct order of dynamic priced upgrades
+* Bugfixes
+
+---
+**0.34.0** - 01.02.2018
+* Added a LOT of new holy upgrades
+
+---
+**0.33.0** - 29.01.2018
+* Added more upgrades
+* Added more achievements
+* Added a new buff bottle
+* If the game is closed some plops keep on ploppin'
+* Bugfixes
+
+---
+**0.32.0** - 21.01.2018
+* Added new holy upgrades
+* Holy upgrades are shown with their icons in upgrade overview
+* Added more achievements
+* Bugfixes
+
+---
+**0.31.0** - 17.01.2018
+* Added a new holy upgrade
+* Added holy upgrades to upgrade overview
+* Added additional stats
+* Minor improvements and bugfixes
+
+---
+**0.30.0** - 14.01.2018
+* Save state module
+* Added more achievements
+* Updated login module
+* Bugfixes
+
+---
+**0.29.0** - 11.01.2018
+* Added more holy upgrades
+* Added a new buff bottle
+* Balanced stock market buff bottle
+* Bugfixes
+
+---
+**0.28.0** - 09.01.2018
+* Added more holy upgrades
+* Added new achievements
+* Available upgrades are sorted by their price
+
+---
+**0.27.0** - 08.01.2018
+* Added holy upgrades which can be purchased after plops were sacrificed
+* Added new achievements
+* Bugfixes
+
+---
+**0.26.0** - 06.01.2018
+* Sacrifice your plops
+* Added more upgrades
+* Added more achievements
+
+---
+**0.25.0** - 11.12.2017
+* Reworked achievement images
+* Connected with login and registration module
+
+---
+**0.24.0** - 10.12.2017
+* Added new achievements
+* Responsive layout for the stock market
+* Show the total balance on the history list at the stock market
+* Limit achievement container size so it won't overflow the window
+* Bugfixes
+
+---
+**0.23.0** - 09.12.2017
+* Added service assistant upgrades
+* Added new stock market upgrades
+* Changed stock market lever
+
+---
+**0.22.0** - 07.12.2017
+* Added more upgrades
+
+---
+**0.21.0** - 03.12.2017
+* Added more achievement images
+* Refactoring
+
+---
+**0.20.0** - 02.12.2017
+* Added statistics page
+* Added building images
+* Added achievement images
+* Changed some upgrade behaviour
+* Bugfixes
+
+---
+**0.19.0** - 30.11.2017
+* Optimized building popovers to show upgrade details
+* Optimized level up tooltips to show which requirements are fulfilled
+* Addded building images
+* Limited Stock Market investments
+* Shortened Stock Market buff bottle duration
+* Bugfixes
+
+---
+**0.18.0** - 29.11.2017
+* Added bottle cap factory upgrades
+* Addded building images
+* Added achievement titles
+* Optimized enabled/disabled buttons UI
+
+---
+**0.17.0** - 28.11.2017
+* Added new dispenser upgrades
+* Added about page including the changelog
+* Added building images
+
+---
+**0.16.0** - 27.11.2017
+* Added new opener upgrades
+* Bugfixes
+
+---
+**0.15.0** - 26.11.2017
+* Added new upgrades
+* Added Twitter link
+
+---
+**0.14.0** - 24.11.2017
+* Added new buff bottle
+* Bugfixes
+
+---
+**0.13.0** - 23.11.2017
+* Balanced upgrades and lucky bottles
+* Added new achievements
+* Added new upgrades
+* Added "All in!" Button to stock market purchase
+* When purchasing a new hold the highest available lever is selected by default
+* Show the total amount and the reached amount in upgrade view
+* Bugfixes
+
+---
+**0.12.0** - 22.11.2017
+* Buffed bottle chain
+* Increased max level for bottle cap factories
+* Added new achievement boosting upgrades
+* Bugfixes
+
+---
+**0.11.0** - 20.11.2017
+* Added a new building: Beer teleporter
+* Added more achievements
+* Fix total plop calculation
+
+---
+**0.10.0** - 19.11.2017
+* Added more achievements
+* Added more upgrades
+* Changed the order of the hold history
+* Extended stock market
+    - Added a new stock
+    - Added levers
+* Bugfixes
+
+---
+**0.9.0** - 17.11.2017
+* Added stock market
+    - Two different stocks (hop, malt)
+    - Purchase your holds long or short
+* Added more upgrades
+* Added more achievements
+* Bugfixes
+
+---
+**0.8.0** - 13.11.2017
+* Large numbers are now shortened and supplied with a label
+* Added auto plop upgrades
+* Added more buff upgrades
+* balanced click achievements
+* Bugfixes
+
+---
+**0.7.0** - 12.11.2017
+* Added buff upgrades
+* Added upgrades overview
+* balanced buffs
+
+---
+**0.6.0** - 11.11.2017
+* Added more achievements
+* Added upgrades which randomly appear when clicking a buff bottle
+* Optimized building information popover
+    - added building description
+    - added total production of the building
+
+---
+**0.5.0** - 09.11.2017
+* Achievement overview page
+* New buff: bottle chain
+* Balanced buff 'master opener'
+* Added more achievements
+* Changed buffs occurrence possibilities
+* Bugfixes
+
+---
+**0.4.0** - 08.11.2017
+* Responsive layout
+* Achievements
+* Fixes for loading a save state
+
+---
+**0.3.1** - 05.11.2017
+* Fix hidden buff bottles
+
+---
+**0.3.0** - 05.11.2017
+* Updated layout
+* Fixed auto plop bug if buildings are bought during a buff
+* Count the total amount of bottle caps produced
+* Level up buildings is more expensive
+* Manual click boost buff lasts now for 10 seconds
+
+---
+**0.2.0** - 05.11.2017
+* level up bottle cap factories
+
+---
+**0.1.0** - 04.11.2017
+* Initial release including:
+    - manual plopping
+    - buying eleven different building types in 1/10/100 charges
+    - level the buildings up with bottle caps
+    - buy bottle cap factories
+    - auto saving the current game state in the local storage of the browser
+    - different buffs which appear randomly

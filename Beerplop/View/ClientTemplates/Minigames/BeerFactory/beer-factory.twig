@@ -1,0 +1,55 @@
+{% verbatim %}
+  <script id="beer-factory-template" type="text/template">
+    <div class="row">
+      <div class="col-x3l-2 col-xl-3 col-lg-4 col-md-5 col-sm-12">
+        <div id="beer-factory__stock">
+          {{{ stockTable }}}
+        </div>
+      </div>
+
+      <div class="col-x3l-10 col-xl-9 col-lg-8 col-md-7 col-sm-12">
+        <div id="beer-factory__factories-map">
+          {{{ factoriesMap }}}
+        </div>
+
+        <div id="beer-factory__build-queue-container">
+          <div>
+            <button type="button"
+                    class="btn btn-raised btn-secondary float-left build-queue__toggle-queue"
+            >
+              <i class="fa
+                        {{ #buildQueueExpanded }}fa-angle-double-right{{ /buildQueueExpanded }}
+                        {{ ^buildQueueExpanded }}fa-angle-double-left{{ /buildQueueExpanded }}"
+              ></i>
+            </button>
+          </div>
+
+          <div class="build-queue__content-container" {{ ^buildQueueExpanded }}style="display:none;"{{ /buildQueueExpanded }}>
+            <h3>{{ #t }}"beerFactory.queue.title"{{ /t }} (<span id="build-queue__queued-jobs">0</span>/<span id="build-queue__max-jobs">0</span>)</h3>
+
+            <div class="d-flex flex-row mt-2">
+              <p>{{ #t }}"beerFactory.queue.hideCompleted"{{ /t }}</p>
+              <div class="material-switch ml-4">
+                <input id="beer-factory__build-queue__hide-completed-materials"
+                       type="checkbox"
+                       {{ #hideCompletedMaterials }}checked{{ /hideCompletedMaterials }}
+                />
+                <label for="beer-factory__build-queue__hide-completed-materials" class="label-warning"></label>
+              </div>
+            </div>
+
+            <div id="beer-factory__build-queue">
+              {{{ buildQueue }}}
+            </div>
+            <button id="beer-factory__build-queue__history"
+                    class="btn btn-raised btn-secondary float-right mt-2 mr-2 d-none"
+                    type="button"
+            >
+              {{ #t }}"beerFactory.queue.history"{{ /t }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+{% endverbatim %}

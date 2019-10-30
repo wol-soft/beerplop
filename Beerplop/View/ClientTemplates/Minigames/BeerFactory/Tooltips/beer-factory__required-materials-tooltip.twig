@@ -1,0 +1,10 @@
+{% verbatim %}
+  <script id="beer-factory__required-materials-tooltip-template" type="text/template">
+    <p>{{ #t }}"beerFactory.popover.requiredMaterials"{{ /t }}:</p>
+    <ul class="beer-factory__material-list">
+      {{ #materials }}
+        <li>{{ name }}: <b>{{ amount }}</b></li>
+      {{ /materials }}
+    </ul>
+  </script>
+{% endverbatim %}

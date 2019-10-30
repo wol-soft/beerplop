@@ -1,0 +1,71 @@
+@import "../colors";
+
+.research-project-container {
+  position: relative;
+  min-height: 80px;
+  padding: 10px;
+
+  .research-project-popover {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .research-project-completed {
+    color: $color-reached;
+    font-weight: bold;
+  }
+
+  .research-project-icon {
+    width: inherit;
+    height: inherit;
+  }
+
+  .slider-horizontal {
+    margin: 10px;
+  }
+
+  &:hover {
+    background-color: $color-secondary-hover;
+  }
+
+  .restart-research-project {
+    margin-left: 25px;
+  }
+}
+
+.research-projects-container {
+  padding: 0 !important;
+
+  > .research-project-container {
+    border-bottom: 1px solid $color-secondary-border;
+
+    + .d-flex {
+      margin-top: 2rem !important;
+    }
+  }
+}
+
+.research-project-stage {
+  .stage-bar {
+    background-color: $color-reached;
+    width: 20px;
+    height: 5px;
+    margin-right: 2px;
+    float: left;
+    bottom: 0;
+    display: none;
+  }
+
+  @for $i from 1 through 20 {
+    &.stage-#{$i} {
+      @for $j from 1 through $i {
+        .stage-bar__stage-#{$j} {
+          display: block;
+        }
+      }
+    }
+  }
+}

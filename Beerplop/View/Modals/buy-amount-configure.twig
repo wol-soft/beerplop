@@ -1,0 +1,40 @@
+<div id="buy-amount-configure-modal" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="form-buy-amount-configure">
+        <div class="modal-header">
+          <h4 class="modal-title">{{ translator.translate('buildings.buyCharge.configure') }}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          {{ translator.translate('buildings.buyCharge.configure.description') }}
+          <div class="form-group">
+            <input type="number"
+                   class="form-control"
+                   id="buy-amount-configure"
+                   name="buy-charge"
+                   placeholder="{{ translator.translate('buildings.buyCharge') }}"
+                   autocomplete="off"
+                   min="1"
+                   max="500"
+                   step="1"
+                   required
+            />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-raised btn-success">
+            {{ translator.translate('ok') }}
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            {{ translator.translate('cancel') }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

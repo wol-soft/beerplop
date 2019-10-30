@@ -1,0 +1,67 @@
+{% verbatim %}
+  <script id="beer-factory__extension-popover-template" type="text/template">
+    {{ #activeExtension }}
+      {{ #isProxyExtension }}
+        <p>
+          {{ #t }}
+            "beerFactory.popover.extension.proxy",
+            {"__PROXY__": "<b>{{ mirroredExtension }}</b>"}
+          {{ /t }}
+        </p>
+      {{ /isProxyExtension }}
+      <p>
+        {{ #t }}"beerFactory.popover.extension.capacity"{{ /t }}: <span id="beer-factory__extension-popover__storage-{{ extension }}">{{ storedItems }}</span>/{{ storageCapacity }}
+      </p>
+      <div class="beer-factory__extension-popover__flex-container
+                  {{ #listProductionPerSecond }}flex-column{{ /listProductionPerSecond }}"
+      >
+        <table class="table table-sm">
+          <tr>
+            <th colspan="2">{{ #t }}"beerFactory.popover.extension.storage"{{ /t }}:</th>
+          </tr>
+          {{ #storage }}
+            <tr>
+              <td>{{ name }}</td>
+              <td id="beer-factory__extension-popover__storage-{{ key }}">{{ amount }}</td>
+            </tr>
+          {{ /storage }}
+        </table>
+
+        {{ #listProductionPerSecond }}
+          <table class="table table-sm">
+            <tr>
+              <th colspan="2">{{ #t }}"beerFactory.popover.extension.average"{{ /t }}:</th>
+            </tr>
+            {{ #production }}
+              <tr>
+                <td>{{ name }}</td>
+                <td id="beer-factory__extension-popover__production-{{ key }}">{{ amount }}</td>
+              </tr>
+            {{ /production }}
+          </table>
+        {{ /listProductionPerSecond }}
+
+        {{ ^listProductionPerSecond }}
+          <table class="table table-sm">
+            <tr>
+              <th colspan="2">{{ #t }}"beerFactory.popover.extension.progress"{{ /t }}:</th>
+            </tr>
+            {{ #projectProgress }}
+              <tr>
+                <td>{{ name }}</td>
+                <td>
+                  <span id="beer-factory__extension-popover__production-progress-{{ key }}"
+                        class="{{ progressClass }}"
+                  >{{ delivered }}</span>/{{ required}}
+                </td>
+              </tr>
+            {{ /projectProgress }}
+          </table>
+        {{ /listProductionPerSecond }}
+      </div>
+    {{ /activeExtension }}
+    {{ ^activeExtension }}
+      {{ #t }}"beerFactory.popover.extension.proxy.empty"{{ /t }}
+    {{ /activeExtension }}
+  </script>
+{% endverbatim %}

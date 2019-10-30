@@ -1,0 +1,24 @@
+<div id="login-modal" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ translator.translate('login.title') }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        {{ translator.translate('login.hint') }}
+
+        <div class="modal-login">
+          {% include "/User/View/Modules/login.twig" with {
+              'version': app.conf.beerplopversion,
+              'forceLanguage': 2
+            }
+          %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

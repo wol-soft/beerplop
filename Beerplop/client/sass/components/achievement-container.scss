@@ -1,0 +1,117 @@
+@import "../colors";
+
+#achievements-container {
+  position: absolute;
+  padding: 10px;
+  width: 370px;
+  background-color: $color-secondary-border;
+  margin-left: 0;
+  left: 0;
+  bottom: 50px;
+  z-index: 10;
+
+  @media (min-width: 1200px) {
+    margin-left: -185px;
+    left: 50%;
+    bottom: 0;
+  }
+
+  @media (max-width: 767px) {
+    margin-left: -185px;
+    left: 50%;
+  }
+
+  @media (max-width: 400px) {
+    width: 300px;
+    margin-left: -150px;
+    left: 50%;
+  }
+
+  &:hover {
+    background-color: $color-secondary-contrast;
+  }
+
+  .achievements-list {
+    max-height: 300px;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .achievement {
+    width: 340px;
+    padding: 4px;
+    background-color: $color-secondary-bg;
+    border-bottom: 1px solid $color-secondary-border;
+  }
+}
+
+.close-achievements {
+  background-color: $color-secondary-border;
+  border-radius: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 26px;
+  position: absolute;
+  right: 5px;
+  text-align: center;
+  top: -10px;
+  width: 30px;
+
+  &.close-achievements:hover {
+    background-color: $color-secondary-contrast;
+    cursor: pointer;
+  }
+}
+
+.achievement-list,
+.upgrade-list {
+  display: flex;
+  flex-flow: row wrap;
+
+  h4 {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .achievement-item,
+  .upgrade-item {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    border: 1px solid $color-secondary-border;
+    margin: 3px;
+    font-size: 28px;
+    position: relative;
+
+    &.upgrade-item__holy-upgrade {
+      width: 90px;
+      height: 90px;
+      border: none;
+    }
+
+    .achievement-reached,
+    .upgrade-reached {
+      color: #4CAF50;
+    }
+
+    .achievement-not-reached,
+    .upgrade-not-reached {
+      color: #F44336;
+    }
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

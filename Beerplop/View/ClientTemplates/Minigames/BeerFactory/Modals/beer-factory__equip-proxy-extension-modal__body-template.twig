@@ -1,0 +1,51 @@
+{% verbatim %}
+  <script id="beer-factory__equip-proxy-extension-modal__body-template" type="text/template">
+    {{ #equipped }}
+      <div class="beer-factory__centered-slot-container">
+        <b>{{ #t }}"beerFactory.modal.proxyExtension.mirrored"{{ /t }}:</b>
+        <div class="beer-factory__slot-container pb-4">
+          <div class="beer-factory__slot beer-factory__slot--equipped card"
+               data-trigger="hover"
+               data-boundary="window"
+               data-toggle="popover"
+               data-placement="right"
+               data-html="true"
+               data-title="{{ equippedLabel }}"
+               data-content="{{ equippedContent }}"
+          >
+            <svg viewBox="0 0 44 44">
+              <use xlink:href="#svg-beer-factory__{{ equippedKey }}"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+    {{ /equipped }}
+    {{ ^equipped }}
+      <div class="alert alert-info" role="alert">
+        {{ #t }}"beerFactory.modal.proxyExtension.description"{{ /t }}
+      </div>
+    {{ /equipped }}
+
+    <div class="beer-factory__centered-slot-container">
+      <b>{{ #t }}"beerFactory.modal.proxyExtension.available"{{ /t }}:</b>
+      <div class="beer-factory__slot-container pb-4">
+        {{ #availableExtensions }}
+          <div class="beer-factory__slot card"
+               data-trigger="hover"
+               data-boundary="window"
+               data-toggle="popover"
+               data-placement="right"
+               data-html="true"
+               data-title="{{ label }}"
+               data-content="{{ description }}"
+               data-extension-key="{{ key }}"
+          >
+            <svg viewBox="0 0 44 44">
+              <use xlink:href="#svg-beer-factory__{{ key }}"></use>
+            </svg>
+          </div>
+        {{ /availableExtensions }}
+      </div>
+    </div>
+  </script>
+{% endverbatim %}

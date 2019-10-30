@@ -1,0 +1,50 @@
+{% verbatim %}
+  <script id="beer-blender__equip-template" type="text/template">
+    <b>{{ #t }}"beerBlender.effects"{{ /t }}:</b><br />
+    {{ #effectLabels }}
+      {{{ description }}}<br />
+    {{ /effectLabels }}
+    {{ ^effectLabels }}
+      {{ #t }}"beerBlender.equipHint"{{ /t }}<br />
+    {{ /effectLabels }}
+
+    <br />
+
+    <h5>{{ #t }}"beerBlender.slots"{{ /t }}:</h5>
+    <div class="beer-blender__available-slots beer-blender__container">
+      {{ #availableSlots }}
+        <div class="beer-blender__slot {{ ^equipped }}beer-blender__free-slot{{ /equipped }}" data-slot="{{ slotKey }}">
+          {{ #equipped }}
+            <div class="beer-blender__ingredient beer-blender__ingredient-manual beer-blender__ingredient-equipped"
+                 data-toggle="tooltip"
+                 data-boundary="window"
+                 data-placement="right"
+                 data-html="true"
+                 data-ingredient="{{ key }}"
+            >
+              <svg>
+                <use xlink:href="#svg-beer-blender-{{ key }}"></use>
+              </svg>
+            </div>
+          {{ /equipped }}
+        </div>
+      {{ /availableSlots }}
+    </div>
+    <h5>{{ #t }}"beerBlender.ingredients"{{ /t }}:</h5>
+    <div class="beer-blender__available-ingredients beer-blender__container">
+      {{ #availableIngredients }}
+        <div class="beer-blender__ingredient beer-blender__ingredient-manual beer-blender__ingredient-available"
+             data-toggle="tooltip"
+             data-boundary="window"
+             data-placement="right"
+             data-html="true"
+             data-ingredient="{{key}}"
+        >
+          <svg>
+            <use xlink:href="#svg-beer-blender-{{ key }}"></use>
+          </svg>
+        </div>
+      {{ /availableIngredients }}
+    </div>
+  </script>
+{% endverbatim %}

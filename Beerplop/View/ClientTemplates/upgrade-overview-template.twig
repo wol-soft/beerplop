@@ -1,0 +1,60 @@
+{% verbatim %}
+  <script id="upgrade-overview-template" type="text/template">
+    <p>
+      {{ #t }}
+        "upgrades.reached",
+        {
+          "__REACHED__":"{{ reached }}",
+          "__TOTAL__"  :"{{ total }}"
+        }
+      {{ /t }}
+    </p>
+    <div class="upgrade-list">
+      {{ #upgrades }}
+        <div class="upgrade-item"
+             data-toggle="tooltip"
+             data-boundary="window"
+             data-placement="top"
+             data-html="true"
+             data-upgrade-key="{{ key }}"
+        >
+          {{ #reached }}
+            <span class="upgrade-reached">&#x2713;</span>
+          {{ /reached }}
+          {{ ^reached }}
+            <span class="upgrade-not-reached">?</span>
+          {{ /reached }}
+        </div>
+      {{ /upgrades }}
+    </div>
+
+    {{ #showHolyUpgrades }}
+      <h1>{{ #t }}"holyUpgrades.head"{{ /t }}</h1>
+      <p>
+        {{ #t }}
+          "reached.amount",
+          {
+            "__REACHED__":"{{ holyUpgradesReached }}"
+          }
+        {{ /t }}
+      </p>
+      <div class="upgrade-list">
+        {{ #holyUpgrades }}
+          <div class="upgrade-item upgrade-item__holy-upgrade"
+               data-toggle="tooltip"
+               data-boundary="window"
+               data-placement="top"
+               data-html="true"
+               data-upgrade-key="{{ key }}"
+          >
+            <svg data-svg-key="svg-holy-upgrade-{{ key }}"
+                 class="holy-upgrade-overview-svg holy-upgrade-reached"
+                 viewBox="-2 -2 44 44"
+            >
+            </svg>
+          </div>
+        {{ /holyUpgrades }}
+      </div>
+    {{ /showHolyUpgrades }}
+  </script>
+{% endverbatim %}

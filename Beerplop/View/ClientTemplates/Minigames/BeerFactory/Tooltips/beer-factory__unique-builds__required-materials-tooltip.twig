@@ -1,0 +1,12 @@
+{% verbatim %}
+  <script id="beer-factory__unique-builds__required-materials-tooltip" type="text/template">
+    <b>{{ #t }}"beerFactory.uniqueBuilds.{{ buildKey }}.{{ stageKey }}.title"{{ /t }}</b>
+    <p>{{ #t }}"beerFactory.uniqueBuilds.{{ buildKey }}.{{ stageKey }}.description"{{ /t }}</p>
+    <p>{{ #t }}"beerFactory.popover.requiredMaterials"{{ /t }}:</p>
+    <ul class="beer-factory__material-list">
+      {{ #materials }}
+        <li>{{ name }}: <b>{{ amount }}</b></li>
+      {{ /materials }}
+    </ul>
+  </script>
+{% endverbatim %}

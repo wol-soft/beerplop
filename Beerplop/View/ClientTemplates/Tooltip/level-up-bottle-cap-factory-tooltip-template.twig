@@ -1,0 +1,28 @@
+{% verbatim %}
+  <script id="level-up-bottle-cap-factory-tooltip-template" type="text/template">
+    {{ #t }}"tooltip.requirements"{{ /t }}:<br />
+    {{ #t }}"building.differentTypes"{{ /t }}: <b>{{ buildingTypes }}</b>
+      {{ #buildingTypesReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /buildingTypesReached }}
+      {{ ^buildingTypesReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /buildingTypesReached }}
+    <br />
+    {{ #t }}"plop.plural"{{ /t }}: <b>{{ plops }}</b>
+      {{ #plopsReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /plopsReached }}
+      {{ ^plopsReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /plopsReached }}
+    <br />
+    {{ #t }}"building.bottleCapFactory.plural"{{ /t }}: <b>{{ bottleCapFactories }}</b>
+      {{ #bottleCapFactoriesReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /bottleCapFactoriesReached }}
+      {{ ^bottleCapFactoriesReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /bottleCapFactoriesReached }}
+  </script>
+{% endverbatim %}

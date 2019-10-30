@@ -1,0 +1,22 @@
+{% verbatim %}
+  <script id="ranking-template" type="text/template">
+    <br />
+    <h3>{{ #t }}"lobby.table.head"{{ /t }}:</h3>
+    <table class="table table-responsive table-hover">
+      <thead>
+        <tr>
+          <th>{{ #t }}"lobby.table.name"{{ /t }}</th>
+          <th>{{ #t }}"plop.plural"{{ /t }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ #ranking }}
+          <tr {{ ^active }}class="ranking__inactive-player"{{ /active }}>
+            <td>{{ nickName }}</td>
+            <td>{{ plops }}</td>
+          </tr>
+        {{ /ranking }}
+      </tbody>
+    </table>
+  </script>
+{% endverbatim %}

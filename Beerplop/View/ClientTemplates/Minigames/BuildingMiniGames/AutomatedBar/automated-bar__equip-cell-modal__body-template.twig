@@ -1,0 +1,23 @@
+{% verbatim %}
+  <script id="automated-bar__equip-cell-modal__body-template" type="text/template">
+    <div class="beer-factory__centered-slot-container">
+      <p>{{ #t }}"automatedBar.modal.available"{{ /t }}</p>
+      <div class="beer-factory__slot-container pb-4">
+        {{ #availableItems }}
+          <div class="beer-factory__slot card"
+               data-trigger="hover"
+               data-boundary="window"
+               data-toggle="tooltip"
+               data-placement="right"
+               data-html="true"
+               data-item="{{ . }}"
+          >
+            <svg viewBox="0 0 44 44">
+              <use xlink:href="#svg-bar__{{ . }}"></use>
+            </svg>
+          </div>
+        {{ /availableItems }}
+      </div>
+    </div>
+  </script>
+{% endverbatim %}

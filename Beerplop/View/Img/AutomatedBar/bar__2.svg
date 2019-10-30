@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   width="40mm"
+   height="40mm"
+   viewBox="0 0 40 40"
+   version="1.1"
+   id="svg3150">
+  <defs
+     id="defs1039">
+    <linearGradient
+       id="linearGradient1678">
+      <stop
+         style="stop-color:#1a0f07;stop-opacity:1"
+         offset="0"
+         id="stop1674" />
+      <stop
+         style="stop-color:#8a8a8a;stop-opacity:1"
+         offset="1"
+         id="stop1676" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient1678"
+       id="linearGradient1680"
+       x1="10.583333"
+       y1="20.15625"
+       x2="22.489583"
+       y2="20.000704"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.50388879,2.6458335,6.973514e-4)" />
+    <linearGradient
+       gradientTransform="matrix(1,0,0,0.49611119,-37.354166,-6.9842533e-4)"
+       xlink:href="#linearGradient1678"
+       id="linearGradient1680-7"
+       x1="10.583333"
+       y1="20.15625"
+       x2="22.489582"
+       y2="20.000704"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       gradientTransform="matrix(1,0,0,0.50411458,-37.354168,19.843041)"
+       xlink:href="#linearGradient1678"
+       id="linearGradient1680-7-5"
+       x1="10.583333"
+       y1="20.15625"
+       x2="22.489582"
+       y2="20.000704"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       xlink:href="#linearGradient1678"
+       id="linearGradient1680-78"
+       x1="10.583333"
+       y1="20.15625"
+       x2="22.489582"
+       y2="20.000704"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.50388879,2.6458325,19.844446)" />
+  </defs>
+  <rect
+     y="0.00037435765"
+     x="-1.7763632e-015"
+     height="39.999626"
+     width="40.001896"
+     id="rect979"
+     style="fill:#ffe6d5;fill-opacity:1;stroke:none;stroke-width:23.1295433;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+  <rect
+     id="rect1788"
+     style="fill:url(#linearGradient1680-7-5);fill-opacity:1;stroke:none;stroke-width:3.77183414;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+     class="pipe-right"
+     width="9.260417"
+     height="20.163874"
+     x="-24.125"
+     y="19.84375"
+     transform="rotate(-90)" />
+  <rect
+     id="rect1790"
+     style="fill:url(#linearGradient1680);fill-opacity:1;stroke:none;stroke-width:3.77098918;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+     class="pipe-top"
+     width="9.260417"
+     height="20.154842"
+     x="15.875"
+     y="0.0014067653" />
+  <rect
+     id="rect1792"
+     style="fill:url(#linearGradient1680-7);fill-opacity:1;stroke:none;stroke-width:3.74177313;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+     class="pipe-left"
+     width="9.260417"
+     height="19.84375"
+     x="-24.125"
+     y="7.3284624e-016"
+     transform="rotate(-90)" />
+  <rect
+     id="rect1794"
+     style="fill:url(#linearGradient1680-78);fill-opacity:1;stroke:none;stroke-width:3.77098918;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+     class="pipe-bottom"
+     width="9.260417"
+     height="20.154842"
+     x="15.874999"
+     y="19.845156" />
+  <circle
+     style="fill:#bfaf55;fill-opacity:1;stroke:#5e5e5e;stroke-width:2.64583326;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+     id="path1706"
+     cx="20.505209"
+     cy="19.494791"
+     r="7.2760415"
+     class="pipe-cap" />
+</svg>

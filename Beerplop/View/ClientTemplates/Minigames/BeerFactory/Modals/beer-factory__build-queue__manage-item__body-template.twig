@@ -1,0 +1,22 @@
+{% verbatim %}
+  <script id="beer-factory__build-queue__manage-item__body-template" type="text/template">
+    <p>{{ #t }}"beerFactory.job"{{ /t }}: {{ job }}</p>
+    <p>{{ #t }}"beerFactory.modal.jobManagement.description"{{ /t }}</p>
+    <table id="beer-factory__build-queue__manage-item__material-table" class="table table-responsive">
+      <tbody>
+        {{ #materials }}
+          <tr data-material-key="{{ key }}">
+            <td>{{ name }}</td>
+            <td>
+              <abbr title="{{ #paused }}{{ #t }}"beerFactory.modal.jobManagement.start"{{ /t }}{{ /paused }}{{ ^paused }}{{ #t }}"beerFactory.modal.jobManagement.pause"{{ /t }}{{ /paused }}">
+                <button class="btn btn-secondary build-queue__manage-item__material__toggle-pause float-right">
+                  <i class="fas fa-{{ #paused }}play{{ /paused }}{{ ^paused }}pause{{ /paused }}"></i>
+                </button>
+              </abbr>
+            </td>
+          </tr>
+        {{ /materials }}
+      </tbody>
+    </table>
+  </script>
+{% endverbatim %}

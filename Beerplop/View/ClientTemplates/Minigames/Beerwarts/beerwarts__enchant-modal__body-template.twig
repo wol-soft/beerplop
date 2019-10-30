@@ -1,0 +1,46 @@
+{% verbatim %}
+  <script id="beerwarts__enchant-modal__body-template" type="text/template">
+    {{ #t }}"beerwarts.enchantment.head", {"__BUILDING__":"{{{ building }}}"}{{ /t }}<br />
+    {{ #t }}"beerwarts.enchantment.currentBuildingLevel"{{ /t }}: <b class="enchantment-level__{{ buildingKey }}">{{ buildingLevel }}</b>
+    <br /><br />
+    {{ #t }}"beerwarts.enchantment.effects"{{ /t }}<br />
+    <ul>
+      <li>{{ #t }}"beerwarts.enchantment.buildingBoost", {"__BUILDING__":"{{{ building }}}","__BOOST__":"<b>{{ buildingBoost }}%</b>"}{{ /t }}</li>
+      <li>{{ #t }}"beerwarts.enchantment.otherBuildingsBoost", {"__BOOST__":"<b>{{ boostOthers }}%</b>"}{{ /t }}</li>
+      <li>{{ #t }}"beerwarts.enchantment.reduction", {"__BUILDING__":"{{{ building }}}","__REDUCTION__":"<b>{{ reduction }}%</b>"}{{ /t }}</li>
+    </ul>
+    <br />
+    {{ #t }}"beerwarts.enchantment.availableMana"{{ /t }}: <b id="beerwarts__enchantment-modal__available-mana">{{ availableMana }}</b>
+    <hr />
+    <div class="enchantment-options" data-building-key="{{ buildingKey }}">
+      {{ #enchantments }}
+        <div class="enchantment-container card">
+          <h5>{{ title }}</h5>
+          <fieldset disabled>
+            <button type="button" class="btn btn-raised btn-secondary beerwarts__enchant" data-enchantment="{{ key }}">
+              {{ #t }}"beerwarts.enchantment.enchant"{{ /t }}
+              <small>{{ #getSpell }}{{ /getSpell }}</small>
+            </button>
+          </fieldset>
+
+          <div class="enchantment-details">
+            {{ description }}<br />
+            {{ #t }}"beerwarts.enchantment.currentLevel"{{ /t }}: <b class="beerwarts__enchantment-modal__level__{{ key }}">{{ level }}</b><br />
+            {{ #t }}"beerwarts.enchantment.costNext"{{ /t }}: <b class="beerwarts__enchantment-modal__cost" data-enchantment="{{ key }}">{{ cost }}</b> {{ #t }}"beerwarts.mana"{{ /t }}
+          </div>
+        </div>
+      {{ /enchantments }}
+    </div>
+    {{ #sacrificeEnabled }}
+      <hr />
+      {{ #t }}"beerwarts.enchantment.currentSacrificeLevel"{{ /t }}: <b>{{ sacrificeLevel }}</b>
+      <br /><br />
+      {{ #sacrifice }}
+        <button type="button" class="btn btn-raised btn-danger beerwarts_sacrifice">{{ #t }}"beerwarts.enchantment.sacrifice"{{ /t }}</button>
+      {{ /sacrifice }}
+      {{ ^sacrifice }}
+        {{ #t }}"beerwarts.enchantment.nextSacrifice", {"__LEVEL__":"<b>{{ nextSacrifice }}</b>"}{{ /t }}
+      {{ /sacrifice }}
+    {{ /sacrificeEnabled }}
+  </script>
+{% endverbatim %}

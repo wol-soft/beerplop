@@ -1,0 +1,24 @@
+<div id="load-save-state-warn-modal" class="modal fade" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ translator.translate('save.load.title') }}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        {{ translator.translate('save.load.warning', {'__NAME__': '<b id="load-save-state-name"></b>'}) | raw }}
+      </div>
+      <div class="modal-footer">
+        <button id="load-save-state" type="button" class="btn btn-danger" data-dismiss="modal" data-save-state-id="">
+          {{ translator.translate('save.load') }}
+        </button>
+        <button id="cancel-load-save-state" type="button" class="btn btn-default" data-dismiss="modal">
+          {{ translator.translate('cancel') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

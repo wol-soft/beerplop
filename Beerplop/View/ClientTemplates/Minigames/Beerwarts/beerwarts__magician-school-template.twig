@@ -1,0 +1,33 @@
+{% verbatim %}
+  <script id="beerwarts__magician-school-template" type="text/template">
+    {{ #skills }}
+      <div class="form-group">
+        <label for="beerwarts__auto-training-control__{{ key }}">
+          <b>{{ #t }}"beerwarts.skill.{{ key }}"{{ /t }}:</b>
+        </label>
+        <select class="form-control beerwarts__auto-training-control"
+                id="beerwarts__auto-training-control__{{ key }}"
+                data-skill="{{ key }}"
+        >
+          {{ #level }}
+            <option value="{{ value }}" {{ #selected }}selected{{ /selected }}>{{ label }}</option>
+          {{ /level }}
+        </select>
+      </div>
+    {{ /skills }}
+    {{ ^skills }}
+      <p>{{ #t }}"beerwarts.school.learnSkills"{{ /t }}</p>
+    {{ /skills }}
+
+    <div class="d-flex flex-row mt-2">
+      <p>{{ #t }}"beerwarts.school.enable"{{ /t }}</p>
+      <div class="material-switch ml-4">
+        <input id="beerwarts__magician-school__enabled"
+               type="checkbox"
+               {{ #enabled }}checked{{ /enabled }}
+        />
+        <label for="beerwarts__magician-school__enabled" class="label-warning"></label>
+      </div>
+    </div>
+  </script>
+{% endverbatim %}

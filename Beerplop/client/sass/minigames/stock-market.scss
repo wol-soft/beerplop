@@ -1,0 +1,36 @@
+@import "../colors";
+
+#stock-market-list-container {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-flow: row;
+
+  div:first-child {
+    flex-grow: 1;
+    padding-right: 25px;
+  }
+
+  @media (min-width: 992px) {
+    .stock-market-purchase-container {
+      width: 400px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .purchase-container {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      overflow: hidden;
+      color: $color-text;
+      background-color: $color-secondary-bg;
+      overflow-y: scroll;
+      padding: 20px;
+    }
+  }
+}
+
+.missing-plops {
+  color: #F4511E;
+}

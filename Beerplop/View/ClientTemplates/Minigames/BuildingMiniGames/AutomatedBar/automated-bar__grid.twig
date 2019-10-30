@@ -1,0 +1,33 @@
+{% verbatim %}
+  <script id="automated-bar__grid-table-template" type="text/template">
+    <table class="grid-table">
+      {{ #grid }}
+        <tr>
+          {{ #. }}
+            <td>
+              <div class="grid-table__cell automated-bar__grid-cell clickable {{ #. }}automated-bar__grid-cell__popover{{ /. }}"
+                   {{ #. }}
+                     data-trigger="hover"
+                     data-boundary="window"
+                     data-toggle="popover"
+                     data-html="true"
+                     data-placement="right"
+                     title="{{ #t }}"automatedBar.popover.title"{{ /t }}"
+                   {{ /. }}
+              >
+                <div class="automated-bar__grid-cell__overlay automated-bar__grid-cell__overlay__load d-none"></div>
+                <div class="automated-bar__grid-cell__overlay automated-bar__grid-cell__overlay__level d-none"></div>
+                <div class="automated-bar__grid-cell__overlay automated-bar__grid-cell__overlay__distribution d-none"></div>
+                <svg class="automated-bar__equipment-svg"
+                     data-svg-key="{{ #. }}{{ item }}{{ /. }}{{ ^. }}empty{{ /. }}"
+                     viewBox="0 0 40 40"
+                >
+                </svg>
+              </div>
+            </td>
+          {{ /. }}
+        </tr>
+      {{ /grid }}
+    </table>
+  </script>
+{% endverbatim %}

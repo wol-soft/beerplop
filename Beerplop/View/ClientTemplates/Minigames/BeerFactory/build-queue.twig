@@ -1,0 +1,78 @@
+{% verbatim %}
+  <script id="beer-factory__build-queue-template" type="text/template">
+    {{ #buildQueue }}
+      <div class="build-queue__item-container card" data-item-id="{{ id }}">
+        <h6>
+          <span class="build-queue__item__toggle-collapse clickable"
+                data-toggle="collapse"
+                href="#build-queue__item-{{ id }}__collapse"
+          >
+            <i class="build-queue__item__toggle-collapse__icon fas {{ ^collapsed }}fa-angle-down{{ /collapsed }}{{ #collapsed }}fa-angle-right{{ /collapsed }}"></i> {{ label }}
+          </span>
+          <abbr title="{{ #t }}"beerFactory.queue.job.manage"{{ /t }}">
+            <button class="btn btn-secondary build-queue__manage-item float-right">
+              <i class="fas fa-cog"></i>
+            </button>
+          </abbr>
+        </h6>
+
+        <div id="build-queue__item-{{ id }}__collapse" class="collapse {{ ^collapsed }}show{{ /collapsed }}">
+          <p>{{ #t }}"beerFactory.queue.job.since"{{ /t }}:<br /><span id="build-queue__item-{{ id }}__running">{{ running }}</span></p>
+
+          {{ #details }}
+            <p>{{{ details }}}</p>
+          {{ /details }}
+
+          <ul>
+            {{ #materials }}
+              {{ ^hidden }}
+                <li id="build-queue__item-{{ id }}__material-{{ key }}__container"
+                    class="item__material-delivery__{{ #completed }}complete{{ /completed }}{{ ^completed }}{{ #materialPaused }}paused{{ /materialPaused }}{{ ^materialPaused }}in-progress{{ /materialPaused }}{{ /completed }}"
+                >
+                  {{ name }} [<span id="build-queue__item-{{ id }}__material-{{ key }}__delivered">{{ delivered }}</span>/{{ required }}]
+                </li>
+              {{ /hidden }}
+            {{ /materials}}
+          </ul>
+        </div>
+
+        <div>
+          <abbr title="{{ #t }}"beerFactory.queue.job.up"{{ /t }}">
+            <button class="btn btn-secondary build-queue__move-item float-left" data-direction="up">
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </abbr>
+          <abbr title="{{ #t }}"beerFactory.queue.job.down"{{ /t }}">
+            <button class="btn btn-secondary build-queue__move-item float-left" data-direction="down">
+              <i class="fas fa-arrow-down"></i>
+            </button>
+          </abbr>
+
+          <span id="build-queue__item-{{ id }}__progress-label" class="build-queue__item__progress-label">
+            {{ formattedProgress }}%
+          </span>
+
+          <abbr title="{{ #paused }}{{ #t }}"beerFactory.queue.job.start"{{ /t }}{{ /paused }}{{ ^paused }}{{ #t }}"beerFactory.queue.job.pause"{{ /t }}{{ /paused }}">
+            <button class="btn btn-secondary build-queue__toggle-pause float-right">
+              <i class="fas fa-{{ #paused }}play{{ /paused }}{{ ^paused }}pause{{ /paused }}"></i>
+            </button>
+          </abbr>
+          <abbr title="{{ #t }}"beerFactory.queue.job.drop"{{ /t }}">
+            <button class="btn btn-secondary build-queue__drop-job float-right">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </abbr>
+        </div>
+
+        <div class="progress">
+          <div id="build-queue__item-{{ id }}__progress"
+               class="progress-bar"
+               role="progressbar"
+               style="width:{{ progress }}%"
+          >
+          </div>
+        </div>
+      </div>
+    {{ /buildQueue }}
+  </script>
+{% endverbatim %}

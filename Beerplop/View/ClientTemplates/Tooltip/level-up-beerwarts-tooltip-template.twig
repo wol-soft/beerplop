@@ -1,0 +1,20 @@
+{% verbatim %}
+  <script id="level-up-beerwarts-tooltip-template" type="text/template">
+    {{ #t }}"tooltip.requirements"{{ /t }}:<br />
+    {{ #t }}"beerwarts.hired"{{ /t }}: <b>{{ magicians }}</b>
+      {{ #magiciansReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /magiciansReached }}
+      {{ ^magiciansReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /magiciansReached }}
+    <br />
+    {{ #t }}"plop.plural"{{ /t }}: <b>{{ plops }}</b>
+      {{ #plopsReached }}
+        (<span class="requirement-reached">&#10003;</span>)
+      {{ /plopsReached }}
+      {{ ^plopsReached }}
+        (<span class="requirement-not-reached">x</span>)
+      {{ /plopsReached }}
+  </script>
+{% endverbatim %}

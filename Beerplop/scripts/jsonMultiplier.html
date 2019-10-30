@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>JSON Multiplier</title>
+  </head>
+  <body>
+    Multiplicand:<input id="multiplicand" type="text">
+    <button id="calculate">Calculate</button>
+    <br />
+    <br />
+    <textarea id="source" rows="20" cols="50"></textarea>
+    <textarea id="dest" rows="20" cols="50"></textarea>
+
+    <script>
+      document.getElementById('calculate').addEventListener('click', function () {
+          let source       = JSON.parse(
+                document.getElementById('source').value
+                    .replace(/([a-z]+)/ig, '"$1"')
+                    .replace(/\s/g, '')
+                    .replace(',}', '}')
+              ),
+              multiplicand = parseFloat(document.getElementById('multiplicand').value);
+
+          Object.keys(source).forEach((key) => source[key] = Math.round(source[key] * multiplicand));
+          document.getElementById('dest').value = JSON.stringify(source, null, 4)
+              .replace(/"/g, '')
+              .replace(/(\d+)(\s)/g, '$1,$2');
+      });
+    </script>
+  </body>
+</html>

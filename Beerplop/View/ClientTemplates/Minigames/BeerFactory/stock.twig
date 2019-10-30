@@ -1,0 +1,42 @@
+{% verbatim %}
+  <script id="beer-factory__stock-template" type="text/template">
+    {{ #t }}"beerFactory.stock.materials"{{ /t }}: <span id="beer-factory__stock__total">{{ currentStock }}</span>
+    <br /><br />
+    {{ #t }}"beerFactory.stock.transportCapacity"{{ /t }}: <span id="beer-factory__delivery-capacity">{{ deliveryCapacity }}</span><br />
+    {{ #t }}"beerFactory.stock.avgProduction"{{ /t }}: <span id="beer-factory__average-production">0</span>
+
+    {{ #hasFactoryExtensions }}
+      <div class="d-flex flex-row mt-2">
+        <p>{{ #t }}"beerFactory.stock.preferQueue"{{ /t }}</p>
+        <div class="material-switch ml-4">
+          <input id="beer-factory__transport-preference"
+                 type="checkbox"
+                 {{ #deliveryPreferQueue }}checked{{ /deliveryPreferQueue }}
+          />
+          <label for="beer-factory__transport-preference" class="label-warning"></label>
+        </div>
+      </div>
+    {{ /hasFactoryExtensions }}
+
+    <br /><br />
+
+    <h4>{{ #t }}"beerFactory.stock.current"{{ /t }}:</h4>
+    <table class="table">
+      <tbody>
+        {{ #materials }}
+          {{ #enabled }}
+            {{ ^hidden }}
+              <tr class="beer-factory__stock__container" data-material="{{ key }}">
+                <td>{{ name }}</td>
+                <td>
+                  <span id="beer-factory__stock__amount-{{ key }}">{{ amount }}</span> / {{ capacity }}
+                </td>
+                <td id="beer-factory__stock__balance-{{ key }}"></td>
+              </tr>
+            {{ /hidden }}
+          {{ /enabled }}
+        {{ /materials }}
+      </tbody>
+    </table>
+  </script>
+{% endverbatim %}

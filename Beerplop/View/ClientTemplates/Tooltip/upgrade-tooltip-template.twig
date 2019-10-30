@@ -1,0 +1,12 @@
+{% verbatim %}
+  <script id="upgrade-tooltip-template" type="text/template">
+    {{ #reached }}
+      <b>{{ #t }}"{{ path }}.title"{{ /t }}</b><br />
+      {{ #t }}"{{ path }}.description"{{ /t }}<br />
+      {{ #t }}"effect"{{ /t }}: {{ #t }}"{{ path }}.effect"{{ /t }}<br />
+    {{ /reached }}
+    {{ ^reached }}
+      <b>???</b><br />???
+    {{ /reached }}
+  </script>
+{% endverbatim %}

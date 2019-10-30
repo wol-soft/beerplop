@@ -1,0 +1,88 @@
+{% verbatim %}
+  <script id="research-project-template" type="text/template">
+    <div class="research-projects-container panel-body clearfix">
+      {{ #projects }}
+        <div class="research-project-container {{ #hidden }}d-none{{ /hidden }}" data-project-key="{{ key }}">
+          <h3>{{ title }}</h3>
+          {{ #completed }}
+            <span class="research-project-completed">&#10003;</span> {{ #t }}"research.completedUC"{{ /t }}
+            {{ #possibleNextStage }}
+              <abbr title="{{ #t }}"research.restartHint"{{ /t }}">
+                <button class="btn btn-raised btn-success restart-research-project">
+                  <i class="fas fa-redo" aria-hidden="true"></i>
+                </button>
+              </abbr>
+            {{ /possibleNextStage }}
+          {{ /completed }}
+          {{ ^completed }}
+            {{ #t }}"costs"{{ /t }}: {{ costs }} {{ #t }}"plop.plural"{{ /t }}<br />
+            {{ #t }}"research.invested"{{ /t }}: <span id="research-project-{{ key }}-invested">{{ invested }}</span> {{ #t }}"plop.plural"{{ /t }}<br />
+            <span id="research-project-{{ key }}-completed">{{ completedPercentage }}</span>% {{ #t }}"research.completedLC"{{ /t }}
+            <br /><br />
+            {{ #t }}"research.running"{{ /t }}: <span id="research-project-{{ key }}-started-at">{{ startedAt }}</span><br />
+            {{ #t }}"research.remaining"{{ /t }}: <span id="research-project-{{ key }}-remaining">&infin;</span><br />
+
+            {{ #t }}"research.investment"{{ /t }}:
+            <input type="text"
+                   id="research-percentage-{{ key }}"
+                   class="research-slider"
+                   data-provide="slider"
+                   data-slider-min="0"
+                   data-slider-max="100"
+                   data-slider-step="10"
+                   data-slider-value="{{ percentage }}"
+            />(<span id="research-project-{{ key }}-percentage">{{ percentage}}</span>%)
+          {{ /completed }}
+          <div class="research-project-popover"
+               data-toggle="popover"
+               data-trigger="hover"
+               data-boundary="window"
+               data-placement="right"
+               title="{{ title }}"
+               data-html="true"
+               data-content="<p>{{ description }}</p><p><b>{{ #t }}"effect"{{ /t }}:</b> {{ effect }}</p><p>{{ additionalText }}</p>"
+          >
+            <svg class="research-project-icon" viewBox="0 0 2 2">
+              <use xlink:href="#svg-holy-upgrade-{{ key }}"></use>
+            </svg>
+          </div>
+          {{ #repeatable }}
+            <abbr title="{{ #t }}"research.stage"{{ /t }}: {{ stage }}">
+              <div class="research-project-stage stage-{{ stage }}">
+                {{ #stages }}
+                  <div class="stage-bar stage-bar__stage-{{ stage }}"></div>
+                {{ /stages }}
+              </div>
+            </abbr>
+          {{ /repeatable }}
+        </div>
+      {{ /projects }}
+
+      {{ #showHideControl }}
+        <div class="d-flex flex-row mt-2 ml-2">
+          <p>{{ #t }}"research.hideCompleted"{{ /t }}</p>
+          <div class="material-switch ml-4">
+            <input id="research-project__hide-completed"
+                   type="checkbox"
+                   {{ #hideCompleted }}checked{{ /hideCompleted }}
+            />
+            <label for="research-project__hide-completed" class="label-warning"></label>
+          </div>
+        </div>
+      {{ /showHideControl }}
+
+      {{ #showAutoRestart }}
+        <div class="d-flex flex-row mt-2 ml-2">
+          <p>{{ #t }}"research.autoRestart"{{ /t }}</p>
+          <div class="material-switch ml-4">
+            <input id="research-project__auto-restart"
+                   type="checkbox"
+                   {{ #autoRestart }}checked{{ /autoRestart }}
+            />
+            <label for="research-project__auto-restart" class="label-warning"></label>
+          </div>
+        </div>
+      {{ /showAutoRestart }}
+    </div>
+  </script>
+{% endverbatim %}

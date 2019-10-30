@@ -1,0 +1,15 @@
+<div class="d-none overlay-container" data-overlay="beerwarts">
+  <div class="close-overlay">
+    <h2 class="overlay-title">{{ translator.translate('beerwarts.title') }}</h2>
+    <button type="button" class="close" aria-label="Close">
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div id="beerwarts-overlay" class="full overlay-body">
+    <div id="beerwarts-overlay-container__empty-state">
+      {{ translator.translate('beerwarts.emptyState') }}
+    </div>
+    <div id="beerwarts-overlay-container" class="d-none"></div>
+  </div>
+</div>

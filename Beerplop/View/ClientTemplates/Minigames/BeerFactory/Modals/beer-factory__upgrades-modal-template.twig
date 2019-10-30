@@ -1,0 +1,22 @@
+{% verbatim %}
+  <script id="beer-factory__upgrades-modal-template" type="text/template">
+    <p>{{ #t }}"beerFactory.modal.upgrades.description", {"__FACTORY__": "{{ #t}}"beerFactory.factory.{{ factory }}"{{ /t }}"}{{ /t }}</p>
+    <hr />
+    <div class="d-flex flex-row w-100">
+      {{ #upgradePaths }}
+        <div class="w-50">
+          <h6>{{ title }}</h6>
+          <div class="d-flex flex-column">
+            {{ #paths }}
+              <div class="card m-1 p-1">
+                <h5>{{ title }}</h5>
+                <p>{{ description }}</p>
+                <p>{{ effect }}</p>
+              </div>
+            {{ /paths }}
+          </div>
+        </div>
+      {{ /upgradePaths }}
+    </div>
+  </script>
+{% endverbatim %}

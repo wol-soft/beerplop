@@ -1,0 +1,84 @@
+{% verbatim %}
+  <script id="stock-market-overlay-template" type="text/template">
+    <ul id="stock-market-navigation" class="nav nav-tabs">
+      <li id="stock-market-tab__trade" class="nav-item">
+        <a class="nav-link active" href="#">{{ #t }}"stockMarket.tab.trade"{{ /t }}</a>
+      </li>
+      <li id="stock-market-tab__holds" class="nav-item">
+        <a class="nav-link" href="#">{{ #t }}"stockMarket.tab.holds"{{ /t }}</a>
+      </li>
+      <li id="stock-market-tab__history" class="nav-item">
+        <a class="nav-link" href="#">{{ #t }}"stockMarket.tab.history"{{ /t }}</a>
+      </li>
+    </ul>
+
+    <div id="stock-market-list-container" class="stock-market-tab-container">
+      <div>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>{{ #t }}"stockMarket.table.stock"{{ /t }}</th>
+              <th>{{ #t }}"stockMarket.table.current"{{ /t }}</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="available-stocks-table">
+            {{ #stocks }}
+              <tr data-toggle="collapse"
+                  href="#stock-graph-{{ key }}"
+                  data-parent="#available-stocks-table"
+                  class="clickable"
+              >
+                <td>{{ name }}</td>
+                <td class="{{ key }}-value"></td>
+                <td>
+                  <button type="button" class="btn btn-raised btn-secondary stock-long" data-stock="{{ key }}">
+                    {{ #t }}"stockMarket.long"{{ /t }}
+                  </button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-raised btn-secondary stock-short" data-stock="{{ key }}">
+                    {{ #t }}"stockMarket.short"{{ /t }}
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div id="stock-graph-{{ key }}" class="collapse stock-graph-collapse" data-stock="{{ key }}">
+                    <div class="stock-graph" id="stock-graph-{{ key }}-container"></div>
+                  </div>
+                </td>
+              </tr>
+            {{ /stocks }}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stock-market-purchase-container d-none d-lg-block overlay-container"
+           data-overlay="stock-market-purchase-overlay"
+      >
+        <div class="purchase-overlay-close close-overlay d-block d-lg-none">
+          <h2 class="overlay-title">{{ #t }}"stockMarket.purchase.head"{{ /t }}</h2>
+          <button type="button" class="close" aria-label="Close" data-target="stock-market-purchase-overlay">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <div class="purchase-container"></div>
+        <div class="purchase-container__empty-state">
+          <blockquote class="blockquote">
+            <p class="mb-0">{{ #t }}"stockMarket.bartender.quote"{{ /t }}</p>
+            <footer class="blockquote-footer">{{ #t }}"stockMarket.bartender"{{ /t }}</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <div id="stock-market-holds-container" class="stock-market-tab-container d-none">
+    </div>
+
+    <div id="stock-market-history-container" class="stock-market-tab-container d-none">
+    </div>
+  </script>
+{% endverbatim %}

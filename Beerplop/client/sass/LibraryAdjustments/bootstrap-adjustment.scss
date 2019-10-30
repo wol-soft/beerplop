@@ -1,0 +1,76 @@
+@import "../colors";
+
+a {
+  color: #848484;
+}
+
+#game-options {
+  label {
+    color: #848484;
+
+    &:hover {
+      color: #646464;
+      cursor: pointer;
+    }
+  }
+}
+
+#login-dp, #login-dp .bottom {
+  background-color: #FFF !important;
+}
+
+.modal-login {
+  padding-top: 1.75rem;
+
+  .bmd-form-group {
+    padding-top: 0;
+  }
+}
+
+.modal-xxl {
+  max-width: 90%;
+};
+
+.radio label {
+  color: $color-text;
+}
+
+.table-responsive {
+  display: table;
+
+  &__no-break {
+    white-space: nowrap;
+  }
+}
+
+.panel-title {
+  overflow: hidden;
+  font-size: 1.25rem;
+}
+
+.btn {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.checkbox label:not(:hover) {
+  color: $color-text;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.flex-fill {
+  flex-grow: 1;
+}
+
+.form-inline {
+  .form-group {
+    width: 100%;
+
+    > * {
+      flex-grow: 1;
+      justify-content: left;}
+  }
+}

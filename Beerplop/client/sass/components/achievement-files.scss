@@ -1,0 +1,264 @@
+$achievement-color-border-even: #303030;
+$achievement-color-border-odd: #EEB600;
+
+$achievement-color-1: #808080;
+$achievement-color-2: #00801B;
+$achievement-color-3: #9E000E;
+$achievement-color-4: #002191;
+$achievement-color-5: #915E00;
+$achievement-color-6: #00ffff;
+$achievement-color-7: #ffff56;
+$achievement-color-8: #ff7400;
+$achievement-color-9: #ffffff;
+
+.amount-1 {
+  .main-color {
+    fill: $achievement-color-1;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-10 {
+  .main-color {
+    fill: $achievement-color-1;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}
+
+.amount-25 {
+  .main-color {
+    fill: $achievement-color-2;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-50 {
+  .main-color {
+    fill: $achievement-color-2;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}
+
+.amount-100 {
+  .main-color {
+    fill: $achievement-color-3;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-150 {
+  .main-color {
+    fill: $achievement-color-3;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}
+
+.amount-200 {
+  .main-color {
+    fill: $achievement-color-4;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-250 {
+  .main-color {
+    fill: $achievement-color-4;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}
+
+.amount-300 {
+  .main-color {
+    fill: $achievement-color-5;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-350 {
+  .main-color {
+    fill: $achievement-color-5;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}
+
+.amount-400 {
+  .main-color {
+    fill: $achievement-color-6;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-450 {
+  .main-color {
+    fill: $achievement-color-6;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}
+
+.amount-500 {
+  .main-color {
+    fill: $achievement-color-7;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-550 {
+  .main-color {
+    fill: $achievement-color-7;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}
+
+.amount-600 {
+  .main-color {
+    fill: $achievement-color-8;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-650 {
+  .main-color {
+    fill: $achievement-color-8;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}
+
+.amount-700 {
+  .main-color {
+    fill: $achievement-color-9;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-even;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-even;
+  }
+}
+
+.amount-750 {
+  .main-color {
+    fill: $achievement-color-9;
+  }
+
+  .border-color {
+    stroke: $achievement-color-border-odd;
+  }
+
+  .border-area {
+    fill: $achievement-color-border-odd;
+  }
+}

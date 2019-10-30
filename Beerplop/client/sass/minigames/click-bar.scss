@@ -1,0 +1,25 @@
+@import "../colors";
+
+#click-bar-container {
+  text-align: center;
+
+  .click-bar-glass {
+    height: 50px;
+    border: 2px solid black;
+    border-top: none;
+    margin: 10px;
+    width: calc(15% - 20px);
+    min-width: 30px;
+    display: inline-block;
+    background-color: #F3AC11;
+    transform: perspective(50px) rotateX(-20deg);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .click-bar-glass-content {
+    background-color: $color-secondary-bg;
+  }
+}

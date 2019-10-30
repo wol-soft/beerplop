@@ -1,0 +1,41 @@
+{% verbatim %}
+  <script id="beer-factory__trading-route__deal" type="text/template">
+    <div class="d-flex flex-column text-center">
+      <p class="beer-factory__trading-route__deal-container">
+        <span>{{ sell }}</span>
+        <span>
+          <span class="beer-factory__trading-route__sell-amount">{{ sellAmount }}</span>
+          <i class="fas fa-exchange"></i>
+          <span class="beer-factory__trading-route__purchase-amount">{{ purchaseAmount }}</span>
+        </span>
+        <span>{{ purchase }}</span>
+      </p>
+      <div class="form-group">
+        <label for="beer-factory__trading-route__deal-amount" class="bmd-label-floating">
+          {{ #t }}"beerFactory.tradingRoute.deal.amount"{{ /t }}:
+        </label>
+        <span class="input-group-btn">
+          <input type="number"
+                 class="form-control beer-factory__trading-route__deal-amount"
+                 value="{{ max }}"
+                 min="1"
+                 max="{{ max }}"
+          />
+          <button id="beer-factory__trading-route__deal-amount-max"
+                  class="btn btn-default btn-raised ml-2"
+                  type="button"
+          >
+            {{ #t }}"beerFactory.tradingRoute.deal.max"{{ /t }}
+          </button>
+        </span>
+      </div>
+      <div class="checkbox float-left">
+        <label>
+          <input type="checkbox" class="beer-factory__trading-route__auto-max-switch" {{ #autoMax }}checked{{ /autoMax }}>
+          {{ #t }}"beerFactory.tradingRoute.autoMaxDescription"{{ /t }}
+        </label>
+      </div>
+      <hr />
+    </div>
+  </script>
+{% endverbatim %}

@@ -1,0 +1,127 @@
+{% verbatim %}
+  <script id="beerwarts-overlay-template" type="text/template">
+    <div class="float-right">
+      {{ #skillLevelMax }}
+        {{ #t }}"beerwarts.skillLevelMax"{{ /t }}
+      {{ /skillLevelMax }}
+      {{ ^skillLevelMax }}
+        <div class="beerwarts__level-up-tooltip float-right"
+             data-toggle="tooltip"
+             data-boundary="window"
+             data-placement="left"
+             data-html="true"
+        >
+          <fieldset disabled>
+            <button id="beerwarts__level-up-tooltip"
+                    type="button"
+                    class="btn btn-raised btn-secondary level-up"
+            >
+              {{ #t }}"beerwarts.skillLevelUp"{{ /t }} ({{ skillLevel }})
+            </button>
+          </fieldset>
+        </div>
+      {{ /skillLevelMax }}
+    </div>
+
+    <div class="float-left">
+      {{ #t }}"beerwarts.description", {"__AMOUNT__":"<b>{{ amount }}</b>"}{{ /t }}<br /><br />
+    </div>
+
+    <table class="table table-responsive table-hover">
+      <tr>
+        <th class="position-relative">
+          <small>
+            {{ #t }}"beerwarts.table.description"{{ /t }}
+
+            {{ #filter }}
+              <div class="beerwarts__magician-table__filter position-absolute">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="beerwarts__magician-table__filter-producing" checked> {{ #t }}"beerwarts.table.showProducing"{{ /t }}
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="beerwarts__magician-table__filter-training" checked> {{ #t }}"beerwarts.table.showInTraining"{{ /t }}
+                  </label>
+                </div>
+              </div>
+            {{ /filter }}
+          </small>
+        </th>
+        {{ #enabledSkills }}
+          <th>
+            {{ #t }}"beerwarts.skill.{{ key }}"{{ /t }}<br />
+            <small>
+              {{ #t }}"beerwarts.table.sessions"{{ /t }}: <b id="beerwarts__magician-table__sessions-{{ key }}">{{ sessions }}</b>
+              <hr />
+              {{ #t }}"beerwarts.skill.{{ key }}.description"{{ /t }}<br />
+              {{ #t }}"beerwarts.table.multiplier"{{ /t }}: <b>{{ multiplier }}</b><br />
+            </small>
+          </th>
+        {{ /enabledSkills }}
+      </tr>
+      {{ #magicians }}
+        <tr id="beerwarts__magician-row__id-{{ id }}"
+            class="beerwarts__magician-row
+                   {{ #inTraining }}beerwarts__magician-row__training-active beerwarts__magician-row__training-{{ trainedSkill }}{{ /inTraining }}
+                   {{ #cooldown }}beerwarts__magician-row__cooldown{{ /cooldown }}"
+        >
+          <td class="beerwarts__magician-row__base-data naming-container" data-naming-id="{{ id }}">
+            <i><div class="beerwarts__magician-name">{{ name }}</div></i>
+            {{ #t }}"age"{{ /t }}: <span class="beerwarts__magician-row__age">{{ age }}</span><br />
+            {{ #t }}"beerwarts.table.pps"{{ /t }}: <b class="beerwarts__magician-row__per-second">{{ perSecond }}</b> {{ #t }}"beerwarts.mana"{{ /t }}<br />
+            {{ #t }}"beerwarts.table.production"{{ /t }}: <b class="beerwarts__magician-row__total">{{ production }}</b> {{ #t }}"beerwarts.mana"{{ /t }}<br />
+            <span class="beerwarts__magician-row__training {{ ^inTraining }}d-none{{ /inTraining }}">
+              {{ #t }}"beerwarts.table.trainingTime"{{ /t }}:<br />
+              <b class="beerwarts__magician-row__remaining-training-time">
+                {{ trainingTime }}
+              </b>
+            </span>
+            <span class="beerwarts__magician-row__cooldown-info {{ ^cooldown }}d-none{{ /cooldown }}">
+              {{ #t }}"beerwarts.table.cooldownTime"{{ /t }}:<br />
+              <b class="beerwarts__magician-row__remaining-cooldown-time">
+                {{ cooldownTime }}
+              </b>
+            </span>
+          </td>
+          {{ #skills }}
+            <td>
+              {{ #t }}"beerwarts.table.currentLevel"{{ /t }}: <span class="beerwarts__magician-row__current-level__{{ name }}">{{ levelLabel }}</span>
+              <span class="beerwarts__magician-row__training-sign beerwarts__magician-row__training-sign__{{ name }} float-right">
+                <span class="arrow-animation arrow-animation--primary bounce-alpha"></span>
+                <span class="arrow-animation arrow-animation--secondary bounce-alpha"></span>
+              </span><br />
+              {{ #t }}"beerwarts.table.costNextLevel"{{ /t }}: <span class="beerwarts__magician-row__cost-next__{{ name }}">{{ cost }}</span><br />
+              <fieldset class="float-left" disabled>
+                <button type="button"
+                        class="btn btn-raised btn-secondary beerwarts__skill-level-up beerwarts__magician-row__training-train__{{ name }}"
+                        data-magician-id="{{ id }}"
+                        data-skill="{{ name }}"
+                        data-skill-level="{{ level }}"
+                        data-toggle="tooltip"
+                        data-boundary="window"
+                        data-placement="left"
+                        data-html="true"
+                >
+                  {{ #t }}"beerwarts.table.levelUp"{{ /t }}
+                </button>
+              </fieldset>
+
+              <button type="button"
+                      class="btn btn-raised btn-secondary float-left beerwarts__skill-cancel beerwarts__magician-row__training-cancel-train__{{ name }} d-none"
+                      data-magician-id="{{ id }}"
+                      data-toggle="tooltip"
+                      data-boundary="window"
+                      data-placement="left"
+                      title="{{ #t }}"beerwarts.tooltip.cancel"{{ /t }}"
+              >
+                {{ #t }}"beerwarts.table.cancel"{{ /t }}
+              </button>
+            </td>
+          {{ /skills }}
+        </tr>
+      {{ /magicians }}
+    </table>
+  </script>
+{% endverbatim %}

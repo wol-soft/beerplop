@@ -1,0 +1,28 @@
+<div id="sacrifice-overlay" class="d-none dragscroll">
+  <canvas id="holy-upgrades__sky"></canvas>
+  <div class="sacrifice-head">
+    <h1 class="text-center"><span class="background-hover">{{ translator.translate('sacrifice.head') }}</span></h1>
+    <h4 class="text-center"><span class="background-hover">
+      {{ translator.translate('sacrifice.beermats') }}: <span id="sacrifice-beermats"></span></span>
+    </h4>
+
+    <fieldset class="text-center" disabled>
+      <button id="reincarnate-button" class="btn btn-primary btn-raised">
+        {{ translator.translate('sacrifice.reincarnate') }}
+      </button>
+    </fieldset>
+  </div>
+
+  <svg id="holy-upgrades-map-svg"
+       width="2700"
+       height="2300"
+       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+       viewBox="0 0 3000 2500"
+  >
+  </svg>
+
+  <div class="fixed-bottom btn-group" role="group">
+    <button id="holy-upgrades-map__zoom-in" type="button" class="btn btn-secondary btn-raised disabled">+</button>
+    <button id="holy-upgrades-map__zoom-out" type="button" class="btn btn-secondary btn-raised">-</button>
+  </div>
+</div>
