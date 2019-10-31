@@ -12,7 +12,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url":  "https://gitlab.wol-soft.de/wol-soft/wol-soft-core.git"
+      "url":  "https://gitlab.wol-soft.de/wol-soft-public/wol-soft-core.git"
     }
   ],
   "require": {
@@ -20,7 +20,7 @@
 
     "ext-json": "*",
 
-    "wol-soft/wol-soft-core": "dev-master",
+    "wol-soft/wol-soft-core": "^3.0.0",
     "twig/twig": "^2.9.0",
     "hellogerard/jobby": "^3.4",
     "erusev/parsedown": "^1.7",

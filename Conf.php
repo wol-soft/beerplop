@@ -46,6 +46,10 @@ class Conf extends Singleton
 
     public $applicationHomeRoute = '';
 
+    public $iftttAccessToken  = '';
+    public $oAuthClientId     = '';
+    public $oAuthClientSecret = '';
+
     // define the roles a new registered user should have
     public $defaultRoles = [];
 
