@@ -1,0 +1,22 @@
+FROM httpd:2.4-alpine
+RUN apk update; \
+    apk upgrade;
+RUN apk add \
+  apache2 \
+  php7-apache2 \
+  ca-certificates \
+  openssl \
+  git \
+  php7 \
+  php7-json \
+  php7-mbstring \
+  php7-redis \
+  php7-pdo \
+  php7-pdo_mysql;
+
+RUN sed -i "s/#LoadModule\ rewrite_module/LoadModule\ rewrite_module/" /usr/local/apache2/conf/httpd.conf;
+
+COPY docker/beerplop.apache.conf /usr/local/apache2/conf/beerplop.apache.conf
+
+RUN echo "Include /usr/local/apache2/conf/beerplop.apache.conf" \
+    >> /usr/local/apache2/conf/httpd.conf

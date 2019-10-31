@@ -25,9 +25,6 @@ function WOLSoftServer(app, storage, appContainerCallback) {
      * @returns {boolean}
      */
     this.request = function(route, method, callbackFunction, data, async, json) {
-        if (route.charAt(0) !== '/') {
-            route = location.pathname.split('/').slice(0, 3).join('/') + '/' + route;
-        }
         if (callbackFunction == null) {
             callbackFunction = function () {};
         }
@@ -57,9 +54,12 @@ function WOLSoftServer(app, storage, appContainerCallback) {
      * @param {Object}   response         The parsed JSON response body
      */
     this.fetchResponse = function (callbackFunction, response) {
-        response.invalidateCaches.forEach(function(cache){
-            storage.clearCache(cache);
-        });
+        if (response.invalidateCaches) {
+            response.invalidateCaches.forEach(function (cache) {
+                storage.clearCache(cache);
+            });
+        }
+
         app.getMessages().showMessages(response.userMessages);
 
         if (response.data && response.data.authToken) {
