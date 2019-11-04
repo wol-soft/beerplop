@@ -47,6 +47,7 @@ class Conf extends Singleton
     public $applicationHomeRoute = '';
 
     public $iftttAccessToken  = '';
+    public $iftttServiceKey   = '';
     public $oAuthClientId     = '';
     public $oAuthClientSecret = '';
 
