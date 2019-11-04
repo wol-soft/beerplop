@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://wol-soft.de/apps/beerplop/plop" target="_blank">
+    <img alt="Beerplop" width="100" src="https://raw.githubusercontent.com/wol-soft/beerplop/master/src/View/Img/main-beer.svg?sanitize=true">
+  </a>
+</p>
+
 # Beerplop
 
 Repository for the incremental game Beerplop.

@@ -272,6 +272,13 @@
   cursor: move;
 }
 
+#beer-factory__back-room-modal__body {
+  .naming-container,
+  .naming-container > * {
+    flex: 1 1 0;
+  }
+}
+
 .table .beer-factory__stock__container:hover {
   cursor: pointer;
 }
