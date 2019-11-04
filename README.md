@@ -21,7 +21,7 @@ To have a running Beerplop instance ready to develop execute the following steps
 
 * clone the repository
 * switch to the root directory of the project
-* run `composer update` (installation: https://getcomposer.org/download/)
+* run `composer update --ignore-platform-reqs` (installation: https://getcomposer.org/download/, platform requirements must not be fulfilled as they are fulfilled in the docker environment)
 * run `npn install` (installation: https://www.npmjs.com/get-npm)
 * run `grunt build`
 * run `docker-compose up --build` (installation: https://docs.docker.com/compose/install/)
