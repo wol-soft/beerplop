@@ -46,6 +46,8 @@ jobs:
         release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
+    - name: Create Release Asset
+      run: zip -r build.zip .
     - name: Upload Release Asset
       id: upload-release-asset
       if: startsWith(github.ref, 'refs/tags/')
