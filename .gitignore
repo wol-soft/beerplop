@@ -1,2 +1,7 @@
+/.sass-cache/
 /vendor/
 /node_modules/
+/htdocs/client/
+/htdocs/dist/
+/src/View/Img/*.twig
+/src/View/Img/**/*.twig

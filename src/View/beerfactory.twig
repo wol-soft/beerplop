@@ -33,7 +33,7 @@
     </style>
     {% if app.conf.environment == 'PROD' %}
       <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MW75T2D"
+        <iframe src="https://www.googletagmanager.com/ns.html?id={{ app.conf.gtm_id }}"
                 height="0"
                 width="0"
                 style="display:none;visibility:hidden"

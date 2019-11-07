@@ -1,6 +1,8 @@
 FROM httpd:2.4-alpine
+
 RUN apk update; \
     apk upgrade;
+
 RUN apk add \
   apache2 \
   php7-apache2 \
@@ -19,4 +21,8 @@ RUN sed -i "s/#LoadModule\ rewrite_module/LoadModule\ rewrite_module/" /usr/loca
 COPY docker/beerplop.apache.conf /usr/local/apache2/conf/beerplop.apache.conf
 
 RUN echo "Include /usr/local/apache2/conf/beerplop.apache.conf" \
+    >> /usr/local/apache2/conf/httpd.conf
+
+# MMAP may cause corrupted js files being delivered
+RUN echo "EnableMMAP off" \
     >> /usr/local/apache2/conf/httpd.conf

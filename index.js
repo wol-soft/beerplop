@@ -1,4 +1,4 @@
-var config       = require('../config.js'),
+var config       = require('./config/conf.js'),
     uuid         = require('node-uuid'),
     jsdom        = require('jsdom').jsdom,
     $            = require('jquery')(jsdom('<html></html>', {}).defaultView),

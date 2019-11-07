@@ -8,7 +8,7 @@
     <div>
       <div class="close-overlay">
         <h2 class="overlay-title">{{ translator.translate('mobile.button.special') }}</h2>
-        <button type="button" class="close" aria-label="Close" data-target="special-buildings">
+        <button type="button" class="close" aria-label="{{ translator.translate('aria.close') }}" data-target="special-buildings">
           <span>&times;</span>
         </button>
       </div>
@@ -19,7 +19,7 @@
              data-parent="#side-accordion"
              data-target="#special-building-bottle-cap-factory"
              href="#special-building-bottle-cap-factory"
-             class="collapsed"
+             aria-expanded="true"
           >
             <div class="panel-heading">
               <h4 class="panel-title">
@@ -31,7 +31,7 @@
             </div>
           </a>
 
-          <div id="special-building-bottle-cap-factory" class="panel-collapse collapse in">
+          <div id="special-building-bottle-cap-factory" class="panel-collapse collapse in show">
             <div class="panel-body clearfix">
               <div class="float-right beerwarts__enchant-building-container d-none">
                 <i class="fas fa-magic beerwarts__enchant-building" data-building-key="bottleCapFactory"></i>
@@ -476,7 +476,7 @@
 
         <div id="beer" class="main-beer-container" style="margin: 0 auto;">
           <a class="svg-container">
-            <svg viewBox="0 0 100 100">
+            <svg viewBox="0 0 100 100" aria-label="{{ translator.translate('aria.mainBeer') }}">
               <use xlink:href="#svg-main-beer"></use>
             </svg>
           </a>
@@ -538,7 +538,7 @@
     <div class="flex-container">
       <div class="close-overlay">
         <h2 class="overlay-title">{{ translator.translate('mobile.button.buildings') }}</h2>
-        <button type="button" class="close" aria-label="Close" data-target="buildings">
+        <button type="button" class="close" aria-label="{{ translator.translate('aria.close') }}" data-target="buildings">
           <span>&times;</span>
         </button>
       </div>

@@ -362,7 +362,7 @@ describe('GameState', function () {
             $('#buy-amount-configure-modal').on('shown.bs.modal', () => {
                 done();
             });
-        }).timeout(1000);
+        }).timeout(2000);
 
         it('should be prefilled with the currently configured custom buy charge', function () {
             expect($('#buy-amount-configure').val()).to.equal('50');
@@ -383,7 +383,7 @@ describe('GameState', function () {
             modal.on('hidden.bs.modal', () => {
                 done();
             });
-        }).timeout(1000);
+        }).timeout(2000);
 
         it('should update the price for openers', function () {
             expect(getPlopsFromLabel($('#cost-next-opener'))).to.equal(21);
