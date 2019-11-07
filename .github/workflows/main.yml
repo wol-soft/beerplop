@@ -17,6 +17,8 @@ jobs:
         node-version: 12
     - name: install npm dependencies
       run: npm ci
+    - name: Setup sass
+      run: npm install -g sass
     - name: build dist files
       run: grunt build
     - name: Setup PHP
