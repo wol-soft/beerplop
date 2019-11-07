@@ -11,8 +11,6 @@ jobs:
     - uses: actions/checkout@master
     - name: Setup ruby
       uses: actions/setup-ruby@master
-      with:
-        ruby-version: '3.0'
     - name: Setup node
       uses: actions/setup-node@master
       with:
