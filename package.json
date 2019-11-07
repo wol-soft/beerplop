@@ -1,7 +1,7 @@
 {
   "name": "beerplop",
   "license": "MIT",
-  "beerplopversion": "1.61.4",
+  "beerplopversion": "1.61.5",
   "author": "Enno Woortmann",
   "dependencies": {
     "ajax-request": "^1.2.3",

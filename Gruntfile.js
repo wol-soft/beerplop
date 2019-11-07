@@ -8,6 +8,8 @@ module.exports = function(grunt) {
             beerplopInit: {
                 src: [
                     'node_modules/jquery/dist/jquery.min.js',
+                    'src/client/js/Utils/*.js',
+                    'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js',
                     'src/client/js/Init/__init.js',
                 ],
                 dest: 'htdocs/dist/js/beerplop-init-<%= pkg.beerplopversion %>.min.js'
@@ -26,8 +28,6 @@ module.exports = function(grunt) {
                     'src/client/js/Game/__init.js',
                     'src/client/js/Game/**/**/*.js',
                     'src/client/js/Game/**/*.js',
-                    'src/client/js/Utils/*.js',
-                    'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js'
                 ],
                 dest: 'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>.min.js'
             },
