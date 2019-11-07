@@ -1,0 +1,23 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup node
+      uses: actions/setup-node@master
+      with:
+        node-version: 12
+    - name: install npm dependencies
+      run: npm ci
+    - name: Setup PHP
+      uses: shivammathur/setup-php@master
+      with:
+        php-version: '7.3'
+    - name: install composer dependencies
+      run: composer install
