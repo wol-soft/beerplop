@@ -1,7 +1,7 @@
 {
   "name": "beerplop",
   "license": "MIT",
-  "beerplopversion": "1.61.3",
+  "beerplopversion": "1.61.4",
   "author": "Enno Woortmann",
   "dependencies": {
     "ajax-request": "^1.2.3",
@@ -33,6 +33,7 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-svgstore": "^2.0.0",
     "highcharts": "^7.1.2",
+    "jquery-ui-dist": "^1.12.1",
     "mocha": "5.2.0",
     "mustache": "^3.0.3",
     "popper.js": "^1.15.0",
