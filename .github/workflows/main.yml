@@ -1,0 +1,59 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup ruby
+      uses: actions/setup-ruby@master
+    - name: Setup node
+      uses: actions/setup-node@master
+      with:
+        node-version: 12
+    - name: install npm dependencies
+      run: npm ci
+    - name: Setup sass
+      run: npm install -g sass
+    - name: build dist files
+      run: grunt build
+    - name: Setup PHP
+      uses: shivammathur/setup-php@master
+      with:
+        php-version: '7.3'
+    - name: install composer dependencies
+      run: composer install
+
+    - name: remove dev npm dependencies
+      if: startsWith(github.ref, 'refs/tags/')
+      run: npm ci --only=productio
+    - name: remove dev composer dependencies
+      if: startsWith(github.ref, 'refs/tags/')
+      run: composer install --no-dev -o
+
+    - name: Create Release
+      id: create_release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/create-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/upload-release-asset@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./beerplop-${{ github.ref }}.zip
+        asset_name: beerplop-${{ github.ref }}.zip
+        asset_content_type: application/zip

@@ -36,6 +36,7 @@
     "mocha": "5.2.0",
     "mustache": "^3.0.3",
     "popper.js": "^1.15.0",
+    "sass": "^1.23.3",
     "sinon": "^7.4.1",
     "snackbarjs": "^1.1.0"
   },
