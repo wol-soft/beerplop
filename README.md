@@ -59,4 +59,6 @@ If something breaks completely, shutdown your containers, clear everything with 
 Contributions are welcome! Help to discuss or fix open [issues](https://github.com/wol-soft/beerplop/issues) or develop your own ideas to bring more content into Beerplop or to improve the current gameplay.
 Increase the code quality by refactoring code or adding more tests.
 
+Please provide a short description of your changes in the changelog file at `src/Changelog.txt`.
+
 If you plan to develop a large new feature or to change fundamental elements/mechanics please open an issue before to discuss the change.

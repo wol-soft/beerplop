@@ -60,7 +60,11 @@
       >
         <div class="purchase-overlay-close close-overlay d-block d-lg-none">
           <h2 class="overlay-title">{{ #t }}"stockMarket.purchase.head"{{ /t }}</h2>
-          <button type="button" class="close" aria-label="Close" data-target="stock-market-purchase-overlay">
+          <button type="button"
+                  class="close"
+                  aria-label="{{ #t }}"aria.close"{{ /t }}"
+                  data-target="stock-market-purchase-overlay"
+          >
             <span>&times;</span>
           </button>
         </div>
