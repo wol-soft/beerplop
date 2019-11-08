@@ -8,6 +8,8 @@ module.exports = function(grunt) {
             beerplopInit: {
                 src: [
                     'node_modules/jquery/dist/jquery.min.js',
+                    'src/client/js/Utils/*.js',
+                    'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js',
                     'src/client/js/Init/__init.js',
                 ],
                 dest: 'htdocs/dist/js/beerplop-init-<%= pkg.beerplopversion %>.min.js'
@@ -26,8 +28,6 @@ module.exports = function(grunt) {
                     'src/client/js/Game/__init.js',
                     'src/client/js/Game/**/**/*.js',
                     'src/client/js/Game/**/*.js',
-                    'src/client/js/Utils/*.js',
-                    'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js'
                 ],
                 dest: 'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>.min.js'
             },
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
             },
             beerplopTestCases: {
                 src: [
-                    'test/Beerplop/client/**/*.js'
+                    'tests/client/**/*.js'
                 ],
                 dest: 'htdocs/dist/js/beerplop<%= pkg.beerplopversion %>-testcases.min.js'
             },
@@ -80,13 +80,9 @@ module.exports = function(grunt) {
             beerplop: {
                 name: 'Beerplop',
                 files: {
-                    'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>.min.js': ['<%= concat.beerplop.dest %>']
-                }
-            },
-            beerplopDeferred: {
-                name: 'Beerplop',
-                files: {
-                    'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>-deferred.min.js': ['<%= concat.beerplopDeferred.dest %>']
+                    'htdocs/dist/js/beerplop-init-<%= pkg.beerplopversion %>.min.js': ['<%= concat.beerplopInit.dest %>'],
+                    'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>.min.js': ['<%= concat.beerplop.dest %>'],
+                    'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>-deferred.min.js': ['<%= concat.beerplopDeferred.dest %>'],
                 }
             },
         },
@@ -186,6 +182,34 @@ module.exports = function(grunt) {
                 'htdocs/client/style'
             ],
         },
+        watch: {
+            sass: {
+                files : [
+                    'src/client/sass/*.scss',
+                    'src/client/sass/**/*.scss'
+                ],
+                tasks : ['build-style'],
+            },
+            img: {
+                files : [
+                    'src/View/Img/*.svg',
+                    'src/View/Img/**/*.svg'
+                ],
+                tasks : ['svgstore:beerplop'],
+            },
+            js: {
+                files : [
+                    'src/client/js/**/*.js',
+                ],
+                tasks : ['build-script'],
+            },
+            test: {
+                files : [
+                    'tests/client/**/*.js',
+                ],
+                tasks : ['build-test-script'],
+            },
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
@@ -195,24 +219,55 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-concat-css');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-svgstore');
+
+    grunt.registerTask(
+        'build-style',
+        [
+            'sass:beerplop',
+            'concat_css:beerplop',
+            'concat_css:beerplopTest',
+            'cssmin:beerplop',
+        ]
+    );
+
+    grunt.registerTask(
+        'build-script',
+        [
+            'concat:beerplop',
+            'concat:beerplopInit',
+            'concat:beerplopDeferred',
+            'concat:beerplopLobby',
+        ]
+    );
+
+    grunt.registerTask(
+        'build-test-script',
+        [
+            'concat:beerplopTest',
+            'concat:beerplopTestCases',
+        ]
+    );
 
     grunt.registerTask(
         'build',
         [
             'clean:beerplop',
-            'concat:beerplop',
-            'concat:beerplopInit',
-            'concat:beerplopDeferred',
-            'concat:beerplopLobby',
-            'concat:beerplopTest',
-            'concat:beerplopTestCases',
-            'sass:beerplop',
-            'concat_css:beerplop',
-            'concat_css:beerplopTest',
-            'cssmin:beerplop',
+            'build-script',
+            'build-test-script',
+            'build-style',
             'svgstore:beerplop',
+            'uglify:beerplop',
             'copy:beerplop',
+        ]
+    );
+
+    grunt.registerTask(
+        'start',
+        [
+            'build',
+            'watch',
         ]
     );
 };

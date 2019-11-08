@@ -12,8 +12,8 @@
   <meta name="msapplication-starturl" content="/plop">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="dist/css/beerplop{{ app.conf.beerplopversion }}.min.css" />
 
   {% if js %}
@@ -26,7 +26,7 @@
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-MW75T2D');
+        })(window,document,'script','dataLayer','{{ app.conf.gtm_id }}');
     </script>
   {% endif %}
 </head>

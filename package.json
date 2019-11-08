@@ -1,6 +1,7 @@
 {
   "name": "beerplop",
-  "beerplopversion": "1.61.2",
+  "license": "MIT",
+  "beerplopversion": "1.61.5",
   "author": "Enno Woortmann",
   "dependencies": {
     "ajax-request": "^1.2.3",
@@ -14,17 +15,13 @@
     "bootstrap-additional-columns": "^1.1.0",
     "bootstrap-material-design": "4.1.1",
     "bootstrap-slider": "^10.6.2",
+    "chai": "^4.2.0",
     "chance": "^1.0.18",
     "compare-versions": "^3.5.0",
     "content-type-parser": "^1.0.2",
     "decimal.js": "^10.2.0",
     "dragscroll": "0.0.8",
     "grunt": "^1.0.4",
-    "highcharts": "^7.1.2",
-    "mustache": "^3.0.3",
-    "popper.js": "^1.15.0",
-    "snackbarjs": "^1.1.0",
-    "chai": "^4.2.0",
     "grunt-concat-css": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-concat": "*",
@@ -33,9 +30,16 @@
     "grunt-contrib-less": "^2.0.0",
     "grunt-contrib-sass": "*",
     "grunt-contrib-uglify-es": "^3.3.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-svgstore": "^2.0.0",
-    "mocha": "^5.2.0",
-    "sinon": "^7.4.1"
+    "highcharts": "^7.1.2",
+    "jquery-ui-dist": "^1.12.1",
+    "mocha": "5.2.0",
+    "mustache": "^3.0.3",
+    "popper.js": "^1.15.0",
+    "sass": "^1.23.3",
+    "sinon": "^7.4.1",
+    "snackbarjs": "^1.1.0"
   },
   "repository": {}
 }

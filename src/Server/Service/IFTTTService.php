@@ -5,13 +5,14 @@ namespace Beerplop\Service;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
+use WOLSoftCore\Server\Model\WOLSoftApplication;
 
 /**
  * Class IFTTTService
  *
  * @package Beerplop\Server\Service
  */
-class IFTTTService
+class IFTTTService extends WOLSoftApplication
 {
     /**
      * Notify IFTTT about new user messages

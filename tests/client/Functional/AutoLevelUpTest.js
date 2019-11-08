@@ -243,7 +243,7 @@ describe('Auto Level Up', function () {
 
                         done();
                     });
-                }).timeout(3000);
+                }).timeout(4000);
 
                 it('should purchase buildings if the local switch is enabled' + testedObject, function () {
                     gameEventBusAutoBuyerSwitch = sinon.spy();
@@ -295,7 +295,7 @@ describe('Auto Level Up', function () {
                         modal.off('hidden.bs.modal');
                         done();
                     });
-                }).timeout(3000);
+                }).timeout(4000);
             });
         });*/
 });
