@@ -50,7 +50,11 @@
                    data-html="true"
                    data-building-key="bottleCapFactory"
               >
-                <svg>
+                <svg aria-label="{{ translator.translate(
+                    'aria.buildingDetails',
+                    {'__BUILDING__': translator.translate('building.bottleCapFactory.plural')}
+                  ) }}"
+                >
                   <use xlink:href="#svg-bottleCapFactory"></use>
                 </svg>
               </div>
@@ -618,7 +622,11 @@
                        data-html="true"
                        data-building-key="{{ building }}"
                   >
-                    <svg>
+                    <svg aria-label="{{ translator.translate(
+                        'aria.buildingDetails',
+                        {'__BUILDING__': translator.translate('building.' ~ building ~ '.plural')}
+                      ) }}"
+                    >
                       <use xlink:href="#svg-{{ building }}"></use>
                     </svg>
                   </div>

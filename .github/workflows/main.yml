@@ -30,7 +30,7 @@ jobs:
 
     - name: remove dev npm dependencies
       if: startsWith(github.ref, 'refs/tags/')
-      run: npm ci --only=productio
+      run: npm prune --production
     - name: remove dev composer dependencies
       if: startsWith(github.ref, 'refs/tags/')
       run: composer install --no-dev -o
@@ -47,6 +47,7 @@ jobs:
         draft: false
         prerelease: false
     - name: Create Release Asset
+      if: startsWith(github.ref, 'refs/tags/')
       run: zip -r build.zip .
     - name: Upload Release Asset
       id: upload-release-asset

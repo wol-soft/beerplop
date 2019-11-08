@@ -3547,5 +3547,6 @@
     "meta.title": "Beerplop - drinking beer forever",
     "meta.description": "Beerplop is a clicking game made with a lot of beer. It may contain some glorification of beer. If you get drunk by playing this game we pay some respect to you. Have fun, train your finger and cheers!",
     "aria.mainBeer": "Main beer. Click for plops",
+    "aria.buildingDetails": "Building details for __BUILDING__",
     "aria.close": "Close"
 }
