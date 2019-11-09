@@ -25,7 +25,7 @@ To have a running Beerplop instance ready to develop execute the following steps
 * switch to the root directory of the project
 * run `docker-compose up --build` (installation: https://docs.docker.com/compose/install/)
 
-During the first start up some containers may throw errors because not all required dependencies are yet available. They will continue to restart until the containers which install the dependencies are finished (beerplop-composer and beerplop-npm).
+During the first start up some containers may throw errors because not all required dependencies are yet available. They will continue to restart until the containers which install the dependencies are finished (beerplop-composer).
 To check if everything is finished switch to a second terminal and execute `docker ps`. You should see six running containers (Status **Up**):
 
 Container name | Exposed port | Purpose
@@ -37,7 +37,6 @@ beerplop-php | | PHP-FPM to execute PHP scripts
 beerplop-mysql | 8082 | Database for users, save states etc.
 beerplop-redis | 8083 | Backend caching
 **Containers used on start up:** | | 
-beerplop-npm | | install dependencies
 beerplop-composer | | install dependencies
 
 Beerplop is now available at http://localhost:8080

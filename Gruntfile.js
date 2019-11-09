@@ -209,6 +209,13 @@ module.exports = function(grunt) {
                 ],
                 tasks : ['build-test-script'],
             },
+            all: {
+                files : [
+                    'package.json',
+                    'Gruntfile.js',
+                ],
+                tasks : ['build'],
+            },
         }
     });
 

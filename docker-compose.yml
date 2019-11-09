@@ -67,22 +67,11 @@ services:
       context: '.'
       dockerfile: './docker/Dockerfile_grunt'
     container_name: beerplop-grunt
-    depends_on:
-      - npm
     volumes:
       - .:/var/www/beerplop/
     working_dir: /var/www/beerplop/
     restart: on-failure
-    command: grunt start
-
-  # install js dependencies via npm
-  npm:
-    image: node:12
-    container_name: beerplop-npm
-    volumes:
-      - .:/var/www/beerplop/
-    working_dir: /var/www/beerplop/
-    command: npm ci
+    command: bash -c "npm ci -verbose && grunt start"
 
   # install php dependencies via composer
   composer:
