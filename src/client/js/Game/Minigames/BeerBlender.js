@@ -73,6 +73,14 @@
                 beerBank: 0.2,
             },
         },
+         egg: {
+            effect: {
+                bottleCaps: -0.1,
+                plop: -0.1,
+                mana: -0.1,
+                factory: 0.2,
+            },
+        },
     };
 
     BeerBlender.prototype._instance = null;
