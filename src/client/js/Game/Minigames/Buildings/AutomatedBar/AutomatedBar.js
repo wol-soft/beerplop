@@ -283,7 +283,7 @@ const TYPE_COOLING_ENGINE = 3;
                 TemplateStorage.get('automated-bar__boosts-template'),
                 {
                     boosts: [SACRIFICE_BOOST__AUTO_PLOPS, SACRIFICE_BOOST__BOTTLE_CAPS, SACRIFICE_BOOST__DISPENSER].map(
-                        (boostKey) => {
+                        boostKey => {
                             return {
                                 key :  boostKey,
                                 boost: this.numberFormatter.formatInt((this._getBoostByKey(boostKey) - 1) * 100),
@@ -447,7 +447,7 @@ const TYPE_COOLING_ENGINE = 3;
                     TemplateStorage.get('automated-bar__sacrifice-template'),
                     {
                         boost: [SACRIFICE_BOOST__AUTO_PLOPS, SACRIFICE_BOOST__BOTTLE_CAPS, SACRIFICE_BOOST__DISPENSER]
-                            .map((boost) => {
+                            .map(boost => {
                                 return {
                                     boost: boost,
                                     level: this.numberFormatter.romanize(this._getSacrificeBoost(boost)),
@@ -1218,7 +1218,7 @@ const TYPE_COOLING_ENGINE = 3;
      * Adds a new column to the grid
      */
     AutomatedBar.prototype.pushColumn = function () {
-        $.each(this.state.grid, (index) => this.state.grid[index].push(null));
+        $.each(this.state.grid, index => this.state.grid[index].push(null));
     };
 
     AutomatedBar.prototype._getBarCapacity = function (cell, base = false) {
@@ -1371,7 +1371,7 @@ const TYPE_COOLING_ENGINE = 3;
                         this._addBoostToSurroundingCells(
                             rowIndex,
                             columnIndex,
-                            (boost) => {
+                            boost => {
                                 if (!boost.capacity) {
                                     boost.capacity = 1;
                                 }

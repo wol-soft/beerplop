@@ -37,7 +37,9 @@
         window.onGameJsLoaded = () => {};
         window.onCoreInitialized = () => {
             (new Beerplop.GamePersistor()).disableSave();
-            mocha.setup('bdd');
+            mocha.setup({
+                ui: 'bdd',
+            });
 
             $.getScript(
                 'dist/js/beerplop{{ app.conf.beerplopversion }}-testcases.min.js',
@@ -49,6 +51,15 @@
                     gameState.setCoreIterationLock();
 
                     mocha.run();
+
+                    // code to detect if executed wia puppeteer. In this case trigger an event after finishing all test
+                    // cases to enable puppeteer to fetch the test results
+                    if (window.onNotifyPuppeteer) {
+                        mocha.suite.afterAll(
+                            'notifyPuppeteer',
+                            () => document.dispatchEvent(new Event('testSuiteFinished'))
+                        );
+                    }
                 }
             );
         };

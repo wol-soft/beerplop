@@ -503,7 +503,7 @@
     };
 
     Beerwarts.prototype._getAvailableAutoTrainingLevel = function (skill) {
-        let highestLevel   = Math.max(...this.state.magicians.map((magician) => magician.skills[skill])),
+        let highestLevel   = Math.max(...this.state.magicians.map(magician => magician.skills[skill])),
             availableLevel = [];
 
         for (let level = 1; level <= highestLevel; level++) {
@@ -583,7 +583,7 @@
 
     Beerwarts.prototype._checkBatchedGroupTrainingShortener = function (startedSkills) {
         $.each(
-            Object.entries(startedSkills).filter((skill) => skill[1] > 0),
+            Object.entries(startedSkills).filter(skill => skill[1] > 0),
             (index, [skill, startedTrainings]) =>
                 this.magicianTrainingStartedShortened += this._checkGroupTrainingShortener(skill, startedTrainings)
         );

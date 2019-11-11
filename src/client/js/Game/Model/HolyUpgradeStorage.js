@@ -1479,7 +1479,7 @@
         $.each(this.upgrades, (key, data) => {
             csv += `${key};"${translator.translate(`holyUpgrade.${key}.title`)}";"${translator.translate(`holyUpgrade.${key}.description`)}";`
                 + `"${translator.translate(`holyUpgrade.${key}.effect`)}";"${new Beerplop.NumberFormatter().formatInt(data.costs)}";`
-                + `"${data.depends.map((dependsKey) => translator.translate(`holyUpgrade.${dependsKey}.title`)).join(', ')}"` + "\n";
+                + `"${data.depends.map(dependsKey => translator.translate(`holyUpgrade.${dependsKey}.title`)).join(', ')}"` + "\n";
         });
 
         console.log(csv);

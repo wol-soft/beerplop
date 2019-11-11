@@ -1,14 +1,14 @@
 
 let assetPromises   = {},
     TemplateStorage = {
-        get: (template) => TemplateStorage[template],
+        get: template => TemplateStorage[template],
     };
 
 $(function() {
     let version = $('#version').data('version');
 
-    assetPromises['client-templates'] = new Promise((resolve) =>
-        $.get('deferred/client-templates/' + version).then((response) => {
+    assetPromises['client-templates'] = new Promise(resolve =>
+        $.get('deferred/client-templates/' + version).then(response => {
             $.each(
                 $(`<div>${response}</div>`).find('script'),
                 (index, element) => TemplateStorage[element.id] = element.innerText
@@ -19,8 +19,8 @@ $(function() {
         })
     );
 
-    assetPromises['modals'] = new Promise((resolve) =>
-        $.get('deferred/modals/' + version).then((response) => {
+    assetPromises['modals'] = new Promise(resolve =>
+        $.get('deferred/modals/' + version).then(response => {
             const modalContainer = $('#modal-container');
             modalContainer.html(response);
             modalContainer.bootstrapMaterialDesign();
@@ -35,15 +35,15 @@ $(function() {
         })
     );
 
-    assetPromises['svg'] = new Promise((resolve) =>
-        $.get('deferred/images/' + version).then((response) => {
+    assetPromises['svg'] = new Promise(resolve =>
+        $.get('deferred/images/' + version).then(response => {
             $('#svg-collection').html(response);
             $('#load-asset__images').html('&#127866;');
             resolve();
         })
     );
 
-    assetPromises['game-js'] = new Promise((resolve) => {
+    assetPromises['game-js'] = new Promise(resolve => {
         window.onGameJsLoaded = () => {
             $('#load-asset__scripts').html('&#127866;');
 

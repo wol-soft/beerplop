@@ -47,7 +47,7 @@ Some technical stuff is documented in the [wiki](https://wol-soft.de/apps/beerpl
 
 ### Tests
 
-To execute the tests in your browser visit http://localhost:8080/test after all containers are started.
+To execute the tests in your browser visit http://localhost:8080/test after all containers are started. Alternatively you can execute `node tests\bootstrap.js` (either in a container or from your host system, then requires installed NodeJS). Currently the tests load a Beerplop page in the background and afterwards operate on the DOM.
 
 ### Recover
 

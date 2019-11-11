@@ -56,7 +56,7 @@
 
         this.gameEventBus.on(EVENTS.CORE.INITIALIZED.GAME, this._setCheckboxState.bind(this));
 
-        (new Beerplop.Notification()).updateAuthorized((authorized) => {
+        (new Beerplop.Notification()).updateAuthorized(authorized => {
             if (authorized) {
                 $('.ifttt-toggle').toggleClass('d-none');
             }
@@ -79,7 +79,7 @@
 
             window.open('https://ifttt.com/applets/BSHJAWiz-beerplop-telegram', '_blank');
             this.pollIFTTTAuthorization = window.setInterval(
-                () => (new Beerplop.Notification()).updateAuthorized((authorized) => {
+                () => (new Beerplop.Notification()).updateAuthorized(authorized => {
                     if (authorized) {
                         $('.ifttt-toggle').toggleClass('d-none');
                         window.clearInterval(this.pollIFTTTAuthorization);

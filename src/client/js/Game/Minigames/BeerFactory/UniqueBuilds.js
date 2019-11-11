@@ -166,7 +166,7 @@
                     builds: Object.entries(this.state.builds)
                         .filter(build => build[1].unlocked)
                         .map(
-                            (build) => {
+                            build => {
                                 const state = build[1].progress === BUILDS[build[0]].parts.length
                                     // finished build
                                     ? translator.translate(
@@ -245,7 +245,7 @@
                         stageKey:  BUILDS[build].parts[uniqueBuilds.state.builds[build].progress].key,
                         materials: Object
                             .entries(BUILDS[build].parts[uniqueBuilds.state.builds[build].progress].materials)
-                            .map((material) => {
+                            .map(material => {
                                 return {
                                     name:   translator.translate(`beerFactory.material.${material[0]}`),
                                     amount: uniqueBuilds.numberFormatter.formatInt(material[1]),

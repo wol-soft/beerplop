@@ -166,7 +166,7 @@
               prioritySelect   = $('#beer-cloner__auto-cloning__priority'),
               fastSwitchSelect = $('#building-details__fast-switch-select');
 
-        container.find('.building-details__fast-switch').on('click', (event) => this._switchBuilding(
+        container.find('.building-details__fast-switch').on('click', event => this._switchBuilding(
             $(event.target).closest('.building-details__fast-switch').data('targetBuilding')
         ));
 
@@ -348,6 +348,6 @@
 $(function() {
     $('.details-modal-button').on(
         'click',
-        (event) => new Beerplop.BuildingDetails($(event.target).closest('.details-modal-button').data('buildingKey'))
+        event => new Beerplop.BuildingDetails($(event.target).closest('.details-modal-button').data('buildingKey'))
     );
 });
