@@ -2703,7 +2703,7 @@
                             },
                         },
                         callback: (function () {
-                            $.each(this.state.getState().equippedBuildings, (building) => {
+                            $.each(this.state.getState().equippedBuildings, building => {
                                 if (this.slot.isBuildingEquippedWith(building, EQUIPMENT_ITEM__DIASTATIC)) {
                                     this.buildQueue.addToQueue(BUILD_QUEUE__CONSTRUCT_SLOT, building, [], true);
                                 }
@@ -2721,7 +2721,7 @@
                             },
                         },
                         callback: (function () {
-                            $.each(this.state.getState().equippedBuildings, (building) => {
+                            $.each(this.state.getState().equippedBuildings, building => {
                                 if (this.slot.isBuildingEquippedWith(building, EQUIPMENT_ITEM__AMYLASE)) {
                                     this.buildQueue.addToQueue(BUILD_QUEUE__CONSTRUCT_SLOT, building, [], true);
                                 }

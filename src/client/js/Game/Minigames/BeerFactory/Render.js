@@ -119,7 +119,7 @@
             TemplateStorage.get('beer-factory__build-queue-template'),
             {
                 buildQueue: this.state.getBuildQueue()
-                    .filter((item) => !item.hiddenJob)
+                    .filter(item => !item.hiddenJob)
                     .map((function createQueueItemList(item, id) {
                         const progress = item.deliveredItems / item.requiredItems * 100;
                         return $.extend(
@@ -742,18 +742,18 @@
             Mustache.render(
                 TemplateStorage.get('beer-factory__back-room-modal-template'),
                 {
-                    lobbyists: this.state.getFactory('backRoom').lobbyists.map((lobbyist) => {
+                    lobbyists: this.state.getFactory('backRoom').lobbyists.map(lobbyist => {
                         return {
                             id:   index++,
                             name: lobbyist.name,
                         }
                     }),
                     factories: Object.entries(this.state.getFactories())
-                        .filter((factory) => {
+                        .filter(factory => {
                             const data = factory[1];
                             return data.production !== false && data.enabled && data.amount > 0;
                         })
-                        .map((factory) => factory[0]),
+                        .map(factory => factory[0]),
                 }
             )
         );
@@ -764,7 +764,7 @@
 
         modal.modal('show');
 
-        modal.find('.beer-factory__back-room__lobbyist__factory').on('change', (event) => {
+        modal.find('.beer-factory__back-room__lobbyist__factory').on('change', event => {
             const select  = $(event.target),
                   factory = select.val();
 

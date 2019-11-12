@@ -729,7 +729,7 @@
                 TemplateStorage.get('beer-factory__build-queue__manage-item__body-template'),
                 {
                     job:       queueItem.label,
-                    materials: queueItem.materials.filter((material) => material.delivered < material.required),
+                    materials: queueItem.materials.filter(material => material.delivered < material.required),
                 }
             )
         );
@@ -741,7 +741,7 @@
             start: function(event, ui) {
                 // find the current index of the selected material
                 startIndex = queueItem.materials
-                    .findIndex((material) => material.key === $(ui.item).data('materialKey'));
+                    .findIndex(material => material.key === $(ui.item).data('materialKey'));
             },
             update: (function (event, ui) {
                 let newPosition = ui.item.index();
@@ -755,7 +755,7 @@
                     ).data('materialKey');
 
                     newPosition = queueItem.materials
-                        .findIndex((material) => material.key === previousMaterial) + 1;
+                        .findIndex(material => material.key === previousMaterial) + 1;
                 }
 
                 queueItem.materials.splice(newPosition, 0, queueItem.materials.splice(startIndex, 1)[0]);

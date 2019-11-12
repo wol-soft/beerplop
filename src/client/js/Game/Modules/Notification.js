@@ -76,7 +76,7 @@
             contentType: 'application/json',
             data:        JSON.stringify({
                 'timezone': Intl.DateTimeFormat().resolvedOptions().timeZone,
-                'messages': this.pendingMessages.map((message) => {
+                'messages': this.pendingMessages.map(message => {
                     return {
                         channel: translator.translate(`options.ifttt_${message.channel}`),
                         message: message.content,

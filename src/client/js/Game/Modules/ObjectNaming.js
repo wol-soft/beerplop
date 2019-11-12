@@ -39,7 +39,7 @@
                         const achievementController = new Beerplop.AchievementController();
 
                         let achievement = achievementController.getAchievementStorage().achievements;
-                        achievementPath.split('.').forEach((segment) => achievement = achievement[segment]);
+                        achievementPath.split('.').forEach(segment => achievement = achievement[segment]);
 
                         achievementController.checkAchievement(achievement);
                     }

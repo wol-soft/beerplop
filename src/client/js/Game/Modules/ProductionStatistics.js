@@ -72,7 +72,7 @@
      * @return {Promise<any>}
      */
     ProductionStatistics.prototype.getBuildingStats = function (building) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             if (!this.indexedDB.getState()) {
                 resolve(this.buildingProductionStats[building] || null);
             }

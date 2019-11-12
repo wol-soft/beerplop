@@ -9,7 +9,7 @@ let TESTMODE            = false,
 (function($, Beerplop){})(jQuery, Beerplop);
 
 $(async function() {
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
     while (!window.onGameJsLoaded) {
         await sleep(10);
     }
@@ -86,7 +86,7 @@ $(async function() {
         'beerplop'
     );
 
-    $('.modal__dynamic-content').on('hidden.bs.modal', (event) => {
+    $('.modal__dynamic-content').on('hidden.bs.modal', event => {
         const element = $(event.target);
 
         if (element.hasClass('modal__dynamic-content__lock')) {

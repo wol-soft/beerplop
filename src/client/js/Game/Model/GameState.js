@@ -388,7 +388,7 @@
 
             // _updateMaxAvailableBuildings triggers the auto buyer check
             (context.building === 'global' ? this.getBuildings() : [context.building]).forEach(
-                (building) => this._updateMaxAvailableBuildings(building)
+                building => this._updateMaxAvailableBuildings(building)
             );
         }).bind(this));
 
@@ -1310,8 +1310,8 @@
             // always keep track of the max available cache for auto buyer. First process the buildings with activated
             // auto buyer to update the purchase buttons of all other buildings with the correct remaining plop amount
             Object.keys(this.state.buildings)
-                .sort((building) => this.slotController.isAutoBuyerEnabled(building) ? -1 : 1)
-                .forEach((building) => this._updateMaxAvailableBuildings(building));
+                .sort(building => this.slotController.isAutoBuyerEnabled(building) ? -1 : 1)
+                .forEach(building => this._updateMaxAvailableBuildings(building));
 
             if (!this.isOnMaxBuyAmount) {
                 this._updateBuyButtons();

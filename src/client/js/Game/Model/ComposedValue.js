@@ -32,7 +32,7 @@ class ComposedValue {
         this._cache.composedValue = Object.values(this._cache.modifierValue)
             .reduce((prev, cur) => prev * cur, 1);
 
-        this._changedEventListener.forEach((callback) => callback());
+        this._changedEventListener.forEach(callback => callback());
 
         return ComposedValue._finiteCheck(this._cache.composedValue * this._getUncachedModifierValue());
     };
@@ -161,7 +161,7 @@ class ComposedValue {
         const availableModifier = Object.keys(this._modifier),
               cachedModifier    = Object.keys(this._cache.modifierValue);
 
-        availableModifier.filter(modifier => !cachedModifier.includes(modifier)).forEach((modifierKey) => {
+        availableModifier.filter(modifier => !cachedModifier.includes(modifier)).forEach(modifierKey => {
             this._cache.modifierValue[modifierKey] = this._modifier[modifierKey]();
         });
     }

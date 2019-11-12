@@ -18,19 +18,19 @@
 
     LanguageMiddleware.prototype._resolveMacros = function (language) {
         const numberFormatter = new Beerplop.NumberFormatter(),
-              getNumber       = (value) => Number(eval(value.replace(/[^-()\d/*+.e]/g, ''))),
+              getNumber       = value => Number(eval(value.replace(/[^-()\d/*+.e]/g, ''))),
               macros          = {
-                  NF:  (value) => numberFormatter.format(getNumber(value)),
-                  NFR: (value) => numberFormatter.romanize(getNumber(value)),
-                  NFI: (value) => numberFormatter.formatInt(getNumber(value)),
-                  NFW: (value) => {
+                  NF:  value => numberFormatter.format(getNumber(value)),
+                  NFR: value => numberFormatter.romanize(getNumber(value)),
+                  NFI: value => numberFormatter.formatInt(getNumber(value)),
+                  NFW: value => {
                       value = getNumber(value);
 
                       return value <= 12
                           ? translator.translate('numbers.' + value)
                           : numberFormatter.formatInt(value);
                   },
-                  PluralLabel: (value) => {
+                  PluralLabel: value => {
                       const [languageKey, amount] = value.split(',');
                       return translator.translate(languageKey, null, '', getNumber(amount));
                   }
