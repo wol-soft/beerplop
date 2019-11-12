@@ -2,6 +2,8 @@
   <a href="https://wol-soft.de/apps/beerplop/plop" target="_blank">
     <img alt="Beerplop" width="100" src="https://raw.githubusercontent.com/wol-soft/beerplop/master/src/View/Img/main-beer.svg?sanitize=true">
   </a>
+
+  [![ddd](https://github.com/wol-soft/beerplop/workflows/CI/badge.svg)](https://github.com/wol-soft/beerplop/actions)
 </p>
 
 # Beerplop
