@@ -1,6 +1,19 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
+    const delay = ((process.argv[2] || '').match(/^--delay=(\d+)$/) || [])[1] || 0;
+    if (delay) {
+        await new Promise(resolve => {
+            console.log('Wait for database to be up');
+            setTimeout(resolve, delay);
+        });
+    }
+
+    setTimeout(() => {
+        console.log('Test timeout');
+        process.exit(1);
+    }, 60000);
+
     console.log('Init Puppeteer');
     const browser = await puppeteer.launch({
         headless: true,
@@ -8,6 +21,10 @@ const puppeteer = require('puppeteer');
         args: ['--lang=de-DE']
     });
     const page = await browser.newPage();
+
+    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+    page.on('error', msg => console.log('PAGE ERROR:', msg.message));
+    page.on('pageerror', msg => console.log('PAGE ERROR:', msg.message));
 
     await page.setViewport({
         width: 1920,
@@ -83,9 +100,23 @@ const puppeteer = require('puppeteer');
     }
 
     await listenFor('testSuiteFinished');
-    await page.goto('http://localhost:8080/test');
+    const response = await page.goto('http://localhost:8080/test').catch(reason => {
+        console.log('Loading tests failed.');
+        console.log(reason.message);
 
-    console.log('Init tests');
+        process.exit(1);
+    });
+
+    if (!response.ok()) {
+        console.log('Loading tests failed. Got ' + response.status());
+        console.log(response.statusText());
+        console.log(response.text());
+
+        process.exit(1);
+    }
+
+    console.log('Init tests. Server responded with: ' + response.status() + ' ' + response.statusText());
+
     const hasFailedTests = await notifyPuppeteer;
 
     await page.screenshot({path: 'test-result.png'});
