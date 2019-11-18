@@ -1,3 +1,6 @@
+**1.62.0** - 18.11.2019
+* Added auto upgrade buyer (#39)
+
 **1.61.3** - 07.11.2019
 Open Source
 * Beerplop is open source now. Feel free to contribute.

@@ -2728,6 +2728,18 @@
                             });
                         }).bind(this),
                     },
+                    9: {
+                        fixCosts: true,
+                        costs: {
+                            knowledge: 6764000000,
+                        },
+                        requires: {
+                            academy: {
+                                amount: 13,
+                            },
+                        },
+                        callback: () => this.state.checkAdvancedBuyControlEnable(),
+                    },
                 },
             },
             engineer: {

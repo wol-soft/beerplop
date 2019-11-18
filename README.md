@@ -3,7 +3,7 @@
     <img alt="Beerplop" width="100" src="https://raw.githubusercontent.com/wol-soft/beerplop/master/src/View/Img/main-beer.svg?sanitize=true">
   </a>
 
-  [![ddd](https://github.com/wol-soft/beerplop/workflows/CI/badge.svg)](https://github.com/wol-soft/beerplop/actions)
+  [![](https://github.com/wol-soft/beerplop/workflows/CI/badge.svg)](https://github.com/wol-soft/beerplop/actions)
 </p>
 
 # Beerplop

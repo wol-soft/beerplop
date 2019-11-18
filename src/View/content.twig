@@ -572,7 +572,10 @@
           </div>
 
           <div id="buy-amount-custom" data-amount="50" class="buy-amount ml-5">50</div>
-          <div id="buy-amount-custom__configure" class="buy-amount buy-amount__configure">
+          <div id="buy-amount-custom__configure"
+               class="buy-amount buy-amount__configure"
+               aria-label="{{ translator.translate('buildings.buyCharge.configure') }}"
+          >
             <i class="fas fa-cog"></i>
           </div>
 
@@ -581,29 +584,27 @@
                   class="btn btn-raised btn-secondary float-right d-none buy-control__advanced"
                   data-toggle="collapse"
                   data-target="#buy-control__advanced-control-collapsable-body"
+                  aria-label="{{ translator.translate('buildings.advancedBuy') }}"
           >
             <i class="fas fa-angle-double-down collapsed"></i>
           </button>
         </div>
         <div id="buy-control__advanced-control-collapsable-body" class="collapse secondary-border__bottom">
-          <div class="d-none buy-control__advanced--auto-buyer">
-            <div class="d-flex flex-row mt-2">
-              <div class="material-switch ml-4 mr-4">
-                <input id="buy-advanced__toggle-auto-buyer" type="checkbox"/>
-                <label for="buy-advanced__toggle-auto-buyer" class="label-warning"></label>
+          {% for automation in ['auto-buyer', 'auto-level-up', 'auto-upgrade'] %}
+            <div class="d-none buy-control__advanced--{{ automation }}">
+              <div class="d-flex flex-row mt-2">
+                <div class="material-switch ml-4 mr-4">
+                  <input id="buy-advanced__toggle-{{ automation }}" type="checkbox"/>
+                  <label for="buy-advanced__toggle-{{ automation }}" class="label-warning"></label>
+                </div>
+                <p>
+                  {{ translator.translate(
+                    'buildings.advancedBuy.disable' ~ (automation | split('-') | map(p => p | capitalize) | join)
+                  ) }}
+                </p>
               </div>
-              <p>{{ translator.translate('buildings.advancedBuy.disableAutoBuyer') }}</p>
             </div>
-          </div>
-          <div class="d-none buy-control__advanced--auto-level-up">
-            <div class="d-flex flex-row mt-2">
-              <div class="material-switch ml-4 mr-4">
-                <input id="buy-advanced__toggle-auto-level-up" type="checkbox"/>
-                <label for="buy-advanced__toggle-auto-level-up" class="label-warning"></label>
-              </div>
-              <p>{{ translator.translate('buildings.advancedBuy.disableAutoLevelUp') }}</p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
 
         <div class="buildings-flex-container">

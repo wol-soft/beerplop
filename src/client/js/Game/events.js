@@ -62,6 +62,7 @@ const EVENTS = {
         },
         AUTO_BUYER: 'beerplop.beer-factory.auto-buyer',
         AUTO_LEVEL_UP: 'beerplop.beer-factory.auto-level-up',
+        AUTO_UPGRADE: 'beerplop.beer-factory.auto-upgrade',
     },
     AUTOMATED_BAR: {
         SACRIFICE: 'beerplop.automated-bar.sacrifice',
