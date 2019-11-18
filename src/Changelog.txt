@@ -1,5 +1,7 @@
 **1.62.0** - 18.11.2019
 * Added auto upgrade buyer (#39)
+* Bugfixes:
+    - Building overlay doesn't update if a slot construction is finished (#69)
 
 **1.61.3** - 07.11.2019
 Open Source

@@ -235,9 +235,11 @@
             );
         }).bind(this));
 
-        this.gameEventBus.on('beer-factory__queue-item__finished.checkSlotUpgrade', this._checkSlotUpdate.bind(this));
+        // use an event with a suffix to avoid unbinding other event listeners on modal close
+        const event = EVENTS.BEER_FACTORY.QUEUE.FINISHED + '.checkSlotUpgrade';
+        this.gameEventBus.on(event, this._checkSlotUpdate.bind(this));
         $('#building-details-modal').on('hidden.bs.modal', (function () {
-            this.gameEventBus.off('beer-factory__queue-item__finished.checkSlotUpgrade');
+            this.gameEventBus.off(event);
         }).bind(this));
 
         const slotElements = $('#building-details__beer-factory-slots').find('.beer-factory__slot');

@@ -349,7 +349,11 @@
                 break;
         }
 
-        this.gameEventBus.emit(EVENTS.BEER_FACTORY.QUEUE.FINISHED, [queueItemId, queueItem.action, item]);
+        // emit the event on the next tick to make sure the item isn't present in the build queue any longer
+        window.setTimeout(
+            () => this.gameEventBus.emit(EVENTS.BEER_FACTORY.QUEUE.FINISHED, [queueItemId, queueItem.action, item]),
+            0
+        );
 
         // don't show a notification for hidden jobs
         if (queueItem.hiddenJob) {
