@@ -210,6 +210,7 @@
                   'achievements.beerFactory.slots.constructed': achievements.beerFactory.slots.constructed,
                   'achievements.beerFactory.slots.automation.autoBuyer.amount': achievements.beerFactory.slots.automation.autoBuyer.amount,
                   'achievements.beerFactory.slots.automation.autoLevelUp.amount': achievements.beerFactory.slots.automation.autoLevelUp.amount,
+                  'achievements.beerFactory.slots.automation.autoUpgrade': achievements.beerFactory.slots.automation.autoUpgrade,
                   'achievements.beerFactory.tradingRoutes': achievements.beerFactory.tradingRoutes,
                   'achievements.beerFactory.traded': achievements.beerFactory.traded,
                   'achievements.stockMarket.investment': achievements.stockMarket.investment,

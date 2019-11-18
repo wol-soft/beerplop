@@ -44,6 +44,7 @@
         autoBuyerBuildings: 0,
         manualClicks: 0,
         manualPlops: 0,
+        manualPurchase: false,
         autoPlopsPerSecond: 0,
         buffAutoPlopsMultiplier: 0,
         upgradeAutoPlopsMultiplier: 1,
@@ -258,6 +259,12 @@
                 return this._minifyState();
             }.bind(this)),
             (function setGameStateData(loadedData) {
+                // TODO: remove code, prevent easy achievement reaching by sacrificing after updating to latest version
+                // (1.62.0)
+                if (typeof loadedData.manualPurchase === 'undefined') {
+                    loadedData.manualPurchase = true;
+                }
+
                 this.state = $.extend(true, {}, this.initialState, loadedData);
 
                 this._initUpgradeBoosts();
@@ -412,6 +419,12 @@
                 this.achievementController.checkAchievement(
                     this.achievementController.getAchievementStorage().achievements.special.noClick
                 );
+
+                if (!this.state.manualPurchase) {
+                    this.achievementController.checkAchievement(
+                        this.achievementController.getAchievementStorage().achievements.special.automation
+                    );
+                }
             }
 
             // reset the state except the all time plops
@@ -918,7 +931,7 @@
 
             if (this.removePlops(this.cache.maxBuildingsCost[building][availableAmount], false)) {
                 this.addBuildings(building, availableAmount, false);
-                this.state.autoBuyerBuildings += availableAmount;
+                this.addAutoBuyerBuildings(availableAmount);
 
                 $('#building-container-' + building).find('.fieldset-buy').prop('disabled', true);
                 $('#available-buildings-' + building).text(
@@ -927,11 +940,6 @@
 
                 this.cache.maxBuildingsAvailable[building] = 0;
                 this.autoBuySemaphore = null;
-
-                this.achievementController.checkAmountAchievement(
-                    this.achievementController.getAchievementStorage().achievements.beerFactory.slots.automation.autoBuyer.amount,
-                    this.state.autoBuyerBuildings
-                );
 
                 return;
             }
@@ -964,7 +972,21 @@
 
         return availableAmount;
     };
-    
+
+    /**
+     * Adds the given amount to the automatically purchased buildings counter
+     *
+     * @param amount
+     */
+    GameState.prototype.addAutoBuyerBuildings = function (amount) {
+        this.state.autoBuyerBuildings += amount;
+
+        this.achievementController.checkAmountAchievement(
+            this.achievementController.getAchievementStorage().achievements.beerFactory.slots.automation.autoBuyer.amount,
+            this.state.autoBuyerBuildings
+        );
+    };
+
     GameState.prototype._getMaxAvailableBuildingsFromCache = function (building, start, step) {
         for (start; start < this.cache.maxBuildingsCost[building].length; start += step) {
             if (!this.cache.maxBuildingsCost[building][start + step] ||
@@ -1641,9 +1663,13 @@
      * @param {int}     amount
      * @param {boolean} byUserClick
      *
-     * @returns {int}
+     * @returns {int|boolean}
      */
     GameState.prototype.addBuildings = function (building, amount, byUserClick = false) {
+        if (amount <= 0) {
+            return false;
+        }
+
         this.state.buildings[building].amount += amount;
 
         this._updateBuildingAmount(building);
@@ -1656,6 +1682,8 @@
         );
 
         if (byUserClick) {
+            this.state.manualPurchase = true;
+
             this.achievementController.checkAmountAchievement(
                 this.achievementController.getAchievementStorage().achievements.buyAmount.buildings,
                 amount

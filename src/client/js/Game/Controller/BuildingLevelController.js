@@ -192,6 +192,7 @@
         ) {
             do {
                 this._addLevel();
+                this._incAutoLevelUps();
             } while (this._checkBottleCapFactoryLevelUpButton());
         }
     };
@@ -243,6 +244,7 @@
 
             this._addLevelToBuilding(building);
             this._checkLevelUpButton(building);
+            this.gameState.manualPurchase = true;
 
             $(event.target).closest('.level-up-tooltip').tooltip('hide');
         }).bind(this));
@@ -274,6 +276,8 @@
             ) {
                 this._addLevel();
                 $('#level-up-bottle-cap-factory').closest('.level-up-bottle-cap-factory-tooltip').tooltip('hide');
+
+                this.gameState.manualPurchase = true;
             }
         }).bind(this));
     };
@@ -400,13 +404,7 @@
                 this.autoLevelUpSemaphore = true;
                 this._removeBottleCaps(bottleCaps);
                 this._addLevelToBuilding(building);
-
-                this.state.autoLevelUp++;
-                const achievementController = new Beerplop.AchievementController();
-                achievementController.checkAmountAchievement(
-                    achievementController.getAchievementStorage().achievements.beerFactory.slots.automation.autoLevelUp.amount,
-                    this.state.autoLevelUp
-                );
+                this._incAutoLevelUps();
 
                 this.autoLevelUpSemaphore = false;
             } else {
@@ -421,6 +419,21 @@
         if (!element.prop('disabled')) {
             element.prop('disabled', true);
         }
+    };
+
+    /**
+     * Increase the counter for automatic level ups
+     *
+     * @private
+     */
+    BuildingLevelController.prototype._incAutoLevelUps = function () {
+        this.state.autoLevelUp++;
+
+        const achievementController = new Beerplop.AchievementController();
+        achievementController.checkAmountAchievement(
+            achievementController.getAchievementStorage().achievements.beerFactory.slots.automation.autoLevelUp.amount,
+            this.state.autoLevelUp
+        );
     };
 
     /**
@@ -444,7 +457,7 @@
             }
 
             if (this.gameState.removePlops(plops)) {
-                this.addFactories(amount);
+                this.addFactories(amount, true);
             }
         }).bind(this));
     };
@@ -452,11 +465,16 @@
     /**
      * Add the given amount of bottle cap factories. Returns the new amount of factories
      *
-     * @param {number} amount
+     * @param {number}  amount
+     * @param {boolean} byUserClick
      *
-     * @returns {number}
+     * @returns {number|boolean}
      */
-    BuildingLevelController.prototype.addFactories = function (amount) {
+    BuildingLevelController.prototype.addFactories = function (amount, byUserClick) {
+        if (amount <= 0) {
+            return false;
+        }
+
         this.state.factories += amount;
 
         this.updateCostNext(true);
@@ -476,6 +494,10 @@
                 .triggerModifierChange('BuildingLevelController__Base-Production')
                 .getValueExcludingModifier(['BuildingLevelController__Factory-Buff'])
         );
+
+        if (byUserClick) {
+            this.gameState.manualPurchase = true;
+        }
 
         return this.state.factories;
     };
@@ -557,7 +579,8 @@
             this.autoBuildSemaphore = true;
 
             if (this.gameState.removePlops(this.cache.maxFactoriesCost[availableAmount])) {
-                this.addFactories(availableAmount);
+                this.addFactories(availableAmount, false);
+                this.gameState.addAutoBuyerBuildings(availableAmount);
 
                 $('#special-building-bottle-cap-factory').find('.fieldset-buy').prop('disabled', true);
                 $('#available-bottle-cap-factories').text(

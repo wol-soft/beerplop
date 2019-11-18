@@ -124,7 +124,7 @@
             });
 
             if (hasAvailableUpgrades && beerFactoryState.isAutoUpgradingEnabled()) {
-                upgradeStorage.purchaseAllPossibleUpgrades();
+                this._checkAutoPurchaseUpgrades();
             }
 
             let addedUpgrades = false;
@@ -149,7 +149,7 @@
 
         this.gameEventBus.on(EVENTS.BEER_FACTORY.AUTO_UPGRADE, (event, context) => {
             if (context.enabled) {
-                this.upgradeStorage.purchaseAllPossibleUpgrades();
+                this._checkAutoPurchaseUpgrades();
             }
         });
 
@@ -313,6 +313,16 @@
 
         UpgradeController.prototype._instance = this;
     }
+
+    UpgradeController.prototype._checkAutoPurchaseUpgrades = function () {
+        this.upgradeStorage.autoPurchasedUpgrades += this.upgradeStorage.purchaseAllPossibleUpgrades();
+
+        const achievementController = new Beerplop.AchievementController();
+        achievementController.checkAmountAchievement(
+            achievementController.getAchievementStorage().achievements.beerFactory.slots.automation.autoUpgrade,
+            this.upgradeStorage.autoPurchasedUpgrades
+        );
+    };
 
     UpgradeController.prototype._checkUnlockingBuffBottleUpgrades = function () {
         if (!this.buffBottleUpgradesAfterReincarnation) {

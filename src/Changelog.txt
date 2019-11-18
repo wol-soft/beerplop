@@ -1,5 +1,6 @@
 **1.62.0** - 18.11.2019
 * Added auto upgrade buyer (#39)
+* Added additional achievements
 * Bugfixes:
     - Building overlay doesn't update if a slot construction is finished (#69)
 
