@@ -1,67 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40mm"
    height="40mm"
    viewBox="0 0 40 40"
    version="1.1"
-   id="svg3150"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="holy-upgrade-bb_cherry.svg">
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="-19.578767"
-     inkscape:cy="95.714281"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:window-width="1641"
-     inkscape:window-height="854"
-     inkscape:window-x="110"
-     inkscape:window-y="75"
-     inkscape:window-maximized="0"
-     showguides="false">
-    <inkscape:grid
-       type="xygrid"
-       id="grid4510" />
-  </sodipodi:namedview>
-  <metadata
-     id="metadata3147">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
+   id="svg3150">
+  <defs
+     id="defs19" />
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-257)">
     <g
        id="bb_cherry"
-       class="holy-upgrade-item"
-       inkscape:label="#g892">
+       class="holy-upgrade-item">
       <g
-         inkscape:label="#g4595-1-1-9"
          id="g4595-1-1-9-1-3"
          transform="matrix(0.3783058,0,0,0.3783058,-89.797344,125.08657)">
         <circle
@@ -79,15 +36,12 @@
            r="52.867283" />
       </g>
       <g
-         inkscape:label="#g878"
          id="beer-blender-cherry"
          transform="matrix(0.69905253,0,0,0.72805643,4.9060725,75.730616)">
         <path
            style="fill:#803300;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
            d="m 10.583333,278.47917 c 3.96875,-10.58334 10.583334,-13.22917 17.197917,-15.875 6.614583,-1.32292 4.289405,-2.84629 5.612322,-1.52337 1.322917,1.32292 2.625856,2.39854 2.625856,2.39854 -2.679242,0.84865 -11.365164,9.57453 -10.042247,18.83495 1.322916,9.26041 -2.208922,5.75107 -1.877434,-0.8552 C 24.654264,270.40803 31.75,263.92708 31.75,263.92708 c 0,0 -14.552084,0 -19.84375,14.55209"
-           id="path869"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="ccsssscc" />
+           id="path869" />
         <ellipse
            style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.22894467"
            id="path828"

@@ -5,288 +5,124 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.0"
-   width="100pt"
-   height="100pt"
-   viewBox="0 0 100 100"
-   preserveAspectRatio="xMidYMid meet"
+   enable-background="new"
    id="svg48"
-   sodipodi:docname="buildingAmount-beerPipeline1.svg"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   enable-background="new">
+   preserveAspectRatio="xMidYMid meet"
+   viewBox="0 0 100 100"
+   height="100pt"
+   width="100pt"
+   version="1.0">
   <defs
      id="defs52">
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect4013"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect4009"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect4005"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect4001"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3993"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3908"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3904"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3900"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3896"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3892"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3886"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect3882"
-       is_visible="true"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
     <linearGradient
-       id="linearGradient-1"
-       y2="166.87286"
-       x2="184.5"
-       y1="35.965008"
-       x1="184.5"
+       gradientUnits="userSpaceOnUse"
        gradientTransform="scale(0.77777778,1.2857143)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         id="stop994"
-         offset="0%"
-         stop-color="#F7E2A8" />
-      <stop
-         id="stop996"
-         offset="100%"
-         stop-color="#F1DDAF" />
-    </linearGradient>
-    <linearGradient
-       id="linearGradient-2"
-       y2="178.8911"
-       x2="90.915649"
-       y1="40.125107"
-       x1="90.915649"
-       gradientTransform="scale(0.8359397,1.1962585)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         id="stop999"
-         offset="0%"
-         stop-color="#F7E2A8" />
-      <stop
-         id="stop1001"
-         offset="100%"
-         stop-color="#F1DDAF" />
-    </linearGradient>
-    <linearGradient
-       id="linearGradient-3"
-       y2="170.14777"
-       x2="91.120796"
-       y1="55.047806"
-       x1="91.120796"
-       gradientTransform="scale(0.83405766,1.1989579)"
-       gradientUnits="userSpaceOnUse">
-      <stop
-         id="stop1004"
-         offset="0%"
-         stop-color="#F3B011" />
-      <stop
-         id="stop1006"
-         offset="100%"
-         stop-color="#F5A711" />
-    </linearGradient>
-    <linearGradient
-       id="linearGradient-1-8"
-       y2="166.87286"
-       x2="184.5"
-       y1="35.965008"
        x1="184.5"
-       gradientTransform="scale(0.77777778,1.2857143)"
-       gradientUnits="userSpaceOnUse">
+       y1="35.965008"
+       x2="184.5"
+       y2="166.87286"
+       id="linearGradient-1">
       <stop
-         id="stop3920"
+         stop-color="#F7E2A8"
          offset="0%"
-         stop-color="#F7E2A8" />
+         id="stop994" />
       <stop
-         id="stop3922"
+         stop-color="#F1DDAF"
          offset="100%"
-         stop-color="#F1DDAF" />
+         id="stop996" />
     </linearGradient>
     <linearGradient
-       id="linearGradient-2-1"
-       y2="178.8911"
-       x2="90.915649"
-       y1="40.125107"
-       x1="90.915649"
+       gradientUnits="userSpaceOnUse"
        gradientTransform="scale(0.8359397,1.1962585)"
-       gradientUnits="userSpaceOnUse">
+       x1="90.915649"
+       y1="40.125107"
+       x2="90.915649"
+       y2="178.8911"
+       id="linearGradient-2">
       <stop
-         id="stop3925"
+         stop-color="#F7E2A8"
          offset="0%"
-         stop-color="#F7E2A8" />
+         id="stop999" />
       <stop
-         id="stop3927"
+         stop-color="#F1DDAF"
          offset="100%"
-         stop-color="#F1DDAF" />
+         id="stop1001" />
     </linearGradient>
     <linearGradient
-       id="linearGradient-3-1"
-       y2="170.14777"
-       x2="91.120796"
-       y1="55.047806"
-       x1="91.120796"
+       gradientUnits="userSpaceOnUse"
        gradientTransform="scale(0.83405766,1.1989579)"
-       gradientUnits="userSpaceOnUse">
+       x1="91.120796"
+       y1="55.047806"
+       x2="91.120796"
+       y2="170.14777"
+       id="linearGradient-3">
       <stop
-         id="stop3930"
+         stop-color="#F3B011"
          offset="0%"
-         stop-color="#F3B011" />
+         id="stop1004" />
       <stop
-         id="stop3932"
+         stop-color="#F5A711"
          offset="100%"
-         stop-color="#F5A711" />
+         id="stop1006" />
+    </linearGradient>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="scale(0.77777778,1.2857143)"
+       x1="184.5"
+       y1="35.965008"
+       x2="184.5"
+       y2="166.87286"
+       id="linearGradient-1-8">
+      <stop
+         stop-color="#F7E2A8"
+         offset="0%"
+         id="stop3920" />
+      <stop
+         stop-color="#F1DDAF"
+         offset="100%"
+         id="stop3922" />
+    </linearGradient>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="scale(0.8359397,1.1962585)"
+       x1="90.915649"
+       y1="40.125107"
+       x2="90.915649"
+       y2="178.8911"
+       id="linearGradient-2-1">
+      <stop
+         stop-color="#F7E2A8"
+         offset="0%"
+         id="stop3925" />
+      <stop
+         stop-color="#F1DDAF"
+         offset="100%"
+         id="stop3927" />
+    </linearGradient>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="scale(0.83405766,1.1989579)"
+       x1="91.120796"
+       y1="55.047806"
+       x2="91.120796"
+       y2="170.14777"
+       id="linearGradient-3-1">
+      <stop
+         stop-color="#F3B011"
+         offset="0%"
+         id="stop3930" />
+      <stop
+         stop-color="#F5A711"
+         offset="100%"
+         id="stop3932" />
     </linearGradient>
   </defs>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1680"
-     inkscape:window-height="987"
-     id="namedview50"
-     showgrid="false"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="46.643463"
-     inkscape:cy="85.675237"
-     inkscape:window-x="1672"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer4"
-     inkscape:pagecheckerboard="true"
-     showguides="true"
-     inkscape:guide-bbox="true" />
-  <metadata
-     id="metadata32">
-Created by potrace 1.15, written by Peter Selinger 2001-2017
-<rdf:RDF>
-  <cc:Work
-     rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type
-       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:title></dc:title>
-  </cc:Work>
-</rdf:RDF>
-</metadata>
   <g
-     inkscape:groupmode="layer"
-     id="layer4"
-     inkscape:label="NeuePipline">
+     id="layer4">
     <path
-       class="border-color main-color"
-       style="fill-opacity:1;stroke-width:1.21275187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 1.9143275,88.875446 H 17.506057 V 52.754609 c 0,-2.67709 2.390224,-5.067314 5.197242,-5.067314 h 7.03283 v 5.067314 h 4.31831 V 47.687295 H 66.38348 v 5.067314 h 4.318311 v -5.067314 h 7.222213 c 2.677271,0 5.326,2.648729 5.327171,5.067314 V 88.875446 H 98.583037 V 52.754609 c 0,-10.552656 -10.150495,-20.703151 -20.659033,-20.659043 h -7.222213 l 3e-6,-3.953505 H 66.38348 v 3.953505 H 55.18607 v -6.868807 h 5.652443 l 0.0024,-4.318312 H 55.18609 v -5.573989 h -2.208831 v -3.298851 h 7.861274 V 8.9678365 H 39.421725 v 3.0677705 h 7.505998 v 3.298851 h -1.616346 v 5.573989 l -5.8873,-0.01574 -0.0024,4.334047 h 5.889651 v 6.868807 H 34.054439 v -3.953505 h -4.31831 v 3.953505 h -7.03283 C 12.06501,32.051458 2.0550292,42.061439 1.9143275,52.754609 Z"
        id="path1339"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccc" />
+       d="M 1.9143275,88.875446 H 17.506057 V 52.754609 c 0,-2.67709 2.390224,-5.067314 5.197242,-5.067314 h 7.03283 v 5.067314 h 4.31831 V 47.687295 H 66.38348 v 5.067314 h 4.318311 v -5.067314 h 7.222213 c 2.677271,0 5.326,2.648729 5.327171,5.067314 V 88.875446 H 98.583037 V 52.754609 c 0,-10.552656 -10.150495,-20.703151 -20.659033,-20.659043 h -7.222213 l 3e-6,-3.953505 H 66.38348 v 3.953505 H 55.18607 v -6.868807 h 5.652443 l 0.0024,-4.318312 H 55.18609 v -5.573989 h -2.208831 v -3.298851 h 7.861274 V 8.9678365 H 39.421725 v 3.0677705 h 7.505998 v 3.298851 h -1.616346 v 5.573989 l -5.8873,-0.01574 -0.0024,4.334047 h 5.889651 v 6.868807 H 34.054439 v -3.953505 h -4.31831 v 3.953505 h -7.03283 C 12.06501,32.051458 2.0550292,42.061439 1.9143275,52.754609 Z"
+       style="fill-opacity:1;stroke-width:1.21275187;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       class="border-color main-color" />
   </g>
 </svg>

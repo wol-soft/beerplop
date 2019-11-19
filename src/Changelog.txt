@@ -1,3 +1,6 @@
+**1.63.0**
+* Removed metadata from svg images to reduce loading overhead (#75)
+
 **1.62.0** - 18.11.2019
 * Added auto upgrade buyer (#39)
 * Added additional achievements

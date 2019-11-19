@@ -6,72 +6,60 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
-   width="40mm"
-   height="40mm"
-   viewBox="0 0 40 40"
+   id="svg3150"
    version="1.1"
-   id="svg3150">
+   viewBox="0 0 40 40"
+   height="40mm"
+   width="40mm">
   <defs
      id="defs3144">
     <linearGradient
        id="linearGradient9306">
       <stop
-         id="stop9302"
+         style="stop-color:#803300;stop-opacity:1"
          offset="0"
-         style="stop-color:#803300;stop-opacity:1" />
+         id="stop9302" />
       <stop
-         id="stop9304"
+         style="stop-color:#2b1100;stop-opacity:1"
          offset="1"
-         style="stop-color:#2b1100;stop-opacity:1" />
+         id="stop9304" />
     </linearGradient>
     <linearGradient
-       gradientTransform="matrix(1.107742,0,0,1.1351303,3.9405335,-12.293004)"
-       gradientUnits="userSpaceOnUse"
-       y2="17.832948"
-       x2="19.843749"
-       y1="17.832948"
-       x1="17.197916"
+       xlink:href="#linearGradient9306"
        id="linearGradient9308"
-       xlink:href="#linearGradient9306" />
+       x1="17.197916"
+       y1="17.832948"
+       x2="19.843749"
+       y2="17.832948"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.107742,0,0,1.1351303,3.9405335,-12.293004)" />
   </defs>
-  <metadata
-     id="metadata3147">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
   <rect
-     transform="matrix(0.85511835,0.51843284,-0.48179078,0.87628628,0,0)"
-     y="-2.9281795"
-     x="22.991386"
-     height="21.755789"
-     width="2.9309006"
+     style="fill:url(#linearGradient9308);fill-opacity:1;stroke:none;stroke-width:1.18676472;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
      id="rect9300"
-     style="fill:url(#linearGradient9308);fill-opacity:1;stroke:none;stroke-width:1.18676472;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+     width="2.9309006"
+     height="21.755789"
+     x="22.991386"
+     y="-2.9281795"
+     transform="matrix(0.85511835,0.51843284,-0.48179078,0.87628628,0,0)" />
   <path
-     id="path9298"
+     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.29655832px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="m 4.624559,36.227815 c 0.1938596,-3.391547 0.9173568,-4.707451 0.9173568,-4.707451 0,0 1.3022946,-2.368626 3.4236247,-3.187975 2.1213305,-0.819347 4.9841485,1.267205 5.2247575,2.748958 0.379924,2.339728 0.02801,2.891997 -0.406084,3.681539 -0.2894,0.526362 -0.868197,1.579084 -4.6767567,2.428236 1.0128937,-1.842265 2.7001277,-1.872069 3.4236237,-3.187974 1.302291,-2.368627 -0.808647,-3.999337 -1.811153,-4.607126 -1.0025074,-0.60779 -2.7974453,0.823756 -3.9248785,2.88408 -1.1274691,2.0603 -2.1704905,3.947713 -2.1704905,3.947713 z"
-     style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.29655832px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+     id="path9298" />
   <path
-     id="path9310"
+     style="fill:none;stroke:#f9ff1c;stroke-width:1.18623328;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.37246668, 2.37246668;stroke-dashoffset:0;stroke-opacity:1"
      d="M 21.166666,12.21875 12.484703,28.009599"
-     style="fill:none;stroke:#f9ff1c;stroke-width:1.18623328;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.37246668, 2.37246668;stroke-dashoffset:0;stroke-opacity:1" />
+     id="path9310" />
   <path
-     id="path9312"
+     style="fill:#c5c5c5;fill-opacity:1;stroke:none;stroke-width:0.29655832px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="M 21.071127,9.3535665 C 21.794623,8.0376618 22.518121,6.7217582 19.288357,6.5181874 16.058594,6.3146166 15.200786,5.4436457 15.094859,5.0285167 14.988926,4.6133892 20.011853,5.202283 21.988485,4.6461168 c 1.976628,-0.5561669 2.092945,-2.5910943 4.42613,-2.5801846 2.333184,0.010911 8.291459,0.1141561 8.397387,0.5292843 0.105934,0.4151284 -1.870703,0.9712952 -3.201381,1.5681758 -1.330679,0.5968808 -5.283938,1.7092141 -6.586233,4.0778415 -1.302295,2.3686272 -1.446995,2.6318102 -1.446995,2.6318102 z"
-     style="fill:#c5c5c5;fill-opacity:1;stroke:none;stroke-width:0.29655832px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+     id="path9312" />
   <ellipse
-     ry="0.60067314"
-     rx="0.58618009"
-     transform="matrix(0.85511835,0.51843284,-0.48179078,0.87628628,0,0)"
-     cy="-9.8359213"
-     cx="24.163748"
+     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.18676472;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.37352954, 2.37352954;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
      id="path9314"
-     style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.18676472;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.37352954, 2.37352954;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+     cx="24.163748"
+     cy="-9.8359213"
+     transform="matrix(0.85511835,0.51843284,-0.48179078,0.87628628,0,0)"
+     rx="0.58618009"
+     ry="0.60067314" />
 </svg>

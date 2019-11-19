@@ -1,84 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40mm"
    height="40mm"
    viewBox="0 0 40 40"
    version="1.1"
-   id="svg3150"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="beer-blender-apple.svg">
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="11.2"
-     inkscape:cx="106.07548"
-     inkscape:cy="95.400485"
-     inkscape:document-units="mm"
-     inkscape:current-layer="beer-blender-apple"
-     showgrid="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1">
-    <inkscape:grid
-       type="xygrid"
-       id="grid834" />
-  </sodipodi:namedview>
-  <metadata
-     id="metadata3147">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
+   id="svg3150">
+  <defs
+     id="defs14" />
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-257)">
     <g
-       id="beer-blender-apple"
-       inkscape:label="#g4587">
+       id="beer-blender-apple">
       <path
-         sodipodi:nodetypes="csccc"
-         inkscape:connector-curvature="0"
          id="path4550"
          d="m 21.166666,269.48339 c 1.322917,-2.64584 4.065107,-5.09899 6.667633,-6.52091 2.592784,-1.41659 7.884451,-1.41659 7.884451,-1.41659 0,0 -1.322917,2.64583 -5.291667,5.29166 -2.645833,1.32292 -2.645833,1.32292 -9.260417,2.64584 z"
          style="fill:#5e7500;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
       <path
-         sodipodi:nodetypes="csccc"
-         inkscape:connector-curvature="0"
          id="path4550-5"
          d="m 21.166666,269.48339 c 1.322917,-2.64584 5.368046,-2.49311 7.970572,-3.91503 2.592784,-1.41659 6.581512,-4.02247 6.581512,-4.02247 0,0 -1.322917,2.64583 -5.291667,5.29166 -2.645833,1.32292 -2.645833,1.32292 -9.260417,2.64584 z"
          style="fill:#2c3700;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
       <path
-         sodipodi:nodetypes="cccc"
-         inkscape:connector-curvature="0"
          id="path4544"
          d="m 19.84375,269.48339 c 0,-2.64584 -1.322917,-6.61459 -2.645834,-7.9375 1.587501,0.52916 1.587501,0.52916 2.645834,0 1.322916,2.64583 1.322916,7.9375 1.322916,7.9375"
          style="fill:#803300;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       <path
-         sodipodi:nodetypes="sscssssscs"
-         inkscape:connector-curvature="0"
          id="path836"
          d="m 3.9687497,273.45214 c 10e-8,9.26041 2.7330153,16.56935 7.7485123,17.50975 6.803571,1.27567 9.449405,-0.0473 9.449405,-0.0473 0,0 3.96875,1.32296 7.937499,0.189 3.81604,-1.09033 6.614584,-5.74524 6.614584,-13.68274 0,-6.61459 -2.693081,-9.26042 -6.661831,-9.26042 -3.96875,0 -3.96875,1.22842 -7.9375,1.22842 -3.96875,0 -5.433439,-2.62986 -9.402157,-2.64583 -3.9555042,-0.0159 -7.7485123,2.74033 -7.7485123,6.70908 z"
          style="fill:#ff0000;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
