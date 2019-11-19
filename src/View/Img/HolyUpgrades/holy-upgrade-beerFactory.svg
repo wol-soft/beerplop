@@ -10,6 +10,8 @@
    viewBox="0 0 40 40"
    height="40mm"
    width="40mm">
+  <defs
+     id="defs13" />
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -18,7 +20,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

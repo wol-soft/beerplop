@@ -1,38 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40mm"
    height="40mm"
    viewBox="0 0 40 40"
    version="1.1"
-   id="svg3150"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="holy-upgrade-beerwarts.svg">
+   id="svg3150">
   <defs
      id="defs3144">
-    <inkscape:perspective
-       sodipodi:type="inkscape:persp3d"
-       inkscape:vp_x="0 : 20 : 1"
-       inkscape:vp_y="0 : 1000 : 0"
-       inkscape:vp_z="40 : 20 : 1"
-       inkscape:persp3d-origin="20 : 13.333333 : 1"
-       id="perspective4639" />
     <marker
-       inkscape:stockid="Tail"
        orient="auto"
        refY="0.0"
        refX="0.0"
        id="Tail"
-       style="overflow:visible"
-       inkscape:isstock="true">
+       style="overflow:visible">
       <g
          id="g916"
          transform="scale(-1.2)"
@@ -115,29 +100,6 @@
          id="stop1006" />
     </linearGradient>
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="239.06315"
-     inkscape:cy="91.276143"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:window-width="1536"
-     inkscape:window-height="801"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:snap-text-baseline="true">
-    <inkscape:grid
-       type="xygrid"
-       id="grid840" />
-  </sodipodi:namedview>
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -151,16 +113,12 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-257)">
     <g
        id="beerwarts"
-       class="holy-upgrade-item"
-       inkscape:label="#g903">
+       class="holy-upgrade-item">
       <g
-         inkscape:label="#g4595-1-1-9"
          id="g4595-1-1-9-1-3"
          transform="matrix(0.37827167,0.00508149,-0.00508149,0.37827167,-87.746903,123.62545)">
         <circle
@@ -178,8 +136,6 @@
            r="52.867283" />
       </g>
       <path
-         sodipodi:nodetypes="cscssssscc"
-         inkscape:connector-curvature="0"
          id="path4612"
          d="M 17.85555,268.0924 C 24.278221,264.74673 31.222293,266.26118 32.688861,283.06827 32.841782,284.82076 30.700892,275.89897 27.489556,274.78375 24.278221,273.66853 25.348666,280.58291 25.339108,280.34992 25.339108,280.34992 17.85555,270.32285 14.644215,278.12942 11.432879,285.93599 14.644215,278.12942 12.503324,274.78375 10.362433,271.43807 11.432883,276.94477 11.432879,285.93599 11.432878,287.05122 6.0806532,274.78375 11.432879,270.32285 16.785105,265.86195 8.2215432,268.0924 8.2215432,268.0924 8.2215432,268.0924 14.644215,263.63151 17.85555,268.0924 Z"
          style="fill:#000000;stroke:#000000;stroke-width:0.21852106px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
@@ -198,8 +154,6 @@
          id="path4614-8"
          style="fill:#000000;fill-opacity:0.00930236;stroke:#000000;stroke-width:0.77965564;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
       <path
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
          id="path4665"
          d="M 18.925996,283.70554 C 20.419865,282.3532 22.660668,282.3532 24.154537,283.70554"
          style="fill:none;stroke:#000000;stroke-width:0.57211441;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
@@ -211,27 +165,22 @@
            id="Bier">
           <path
              style="fill:#ffffff"
-             inkscape:connector-curvature="0"
              id="Schaum"
              d="M 90.802375,51 C 95.647498,54.760268 101.73906,57 108.35548,57 112.19668,57 115.86098,56.24511 119.20719,54.876057 121.78505,60.822885 127.86002,65 134.94352,65 144.36355,65 152,57.612698 152,48.5 152,39.969485 145.30813,32.950949 136.72561,32.088979 136.87381,30.913431 136.95017,29.715603 136.95017,28.5 136.95017,12.759885 124.14789,0 108.35548,0 99.83824,0 92.190743,3.711487 86.952263,9.6002847 84.65374,8.5783055 82.036298,8 79.259136,8 75.078031,8 71.258949,9.3108024 68.345159,11.472979 64.288066,4.5909983 56.988447,0 48.657807,0 38.310547,0 29.553888,7.0827388 26.625519,16.840923 24.209942,15.664564 21.466627,15 18.558139,15 8.8610468,15 1,22.387302 1,31.5 1,40.612698 8.8610468,48 18.558139,48 V 51 Z" />
           <path
              style="fill:url(#linearGradient-1)"
-             inkscape:connector-curvature="0"
              id="Henkel"
              d="M 127,82 H 160 C 164.41828,82 168,85.581722 168,90 V 155 C 168,159.41828 164.41828,163 160,163 H 127 V 163 C 122.58172,163 119,159.41828 119,155 V 90 90 C 119,85.581722 122.58172,82 127,82 Z M 119,95 V 151 H 151 C 154.31371,151 157,148.31371 157,145 V 101 C 157,97.686291 154.31371,95 151,95 Z" />
           <path
              style="fill:url(#linearGradient-2)"
-             inkscape:connector-curvature="0"
              id="Glass"
              d="M 18,48 H 134 V 198 198 C 134,206.83656 126.83656,214 118,214 H 34 V 214 C 25.163444,214 18,206.83656 18,198 Z" />
           <path
              style="fill:url(#linearGradient-3)"
-             inkscape:connector-curvature="0"
              id="path24"
              d="M 28,66 H 124 V 196 196 C 124,200.41828 120.41828,204 116,204 H 36 V 204 C 31.581722,204 28,200.41828 28,196 Z" />
           <path
              style="fill:#ffffff"
-             inkscape:connector-curvature="0"
              id="Schaum-2"
              d="M 51.5,37 V 37 C 56.19442,37 60,40.80558 60,45.5 V 106.5 106.5 C 60,111.19442 56.19442,115 51.5,115 V 115 C 46.80558,115 43,111.19442 43,106.5 V 45.5 45.5 C 43,40.80558 46.80558,37 51.5,37 Z M 51.5,136 C 46.80558,136 43,132.19442 43,127.5 43,122.80558 46.80558,119 51.5,119 56.19442,119 60,122.80558 60,127.5 60,132.19442 56.19442,136 51.5,136 Z M 81.5,40 C 86.19442,40 90,43.80558 90,48.5 V 82.5 C 90,87.19442 86.19442,91 81.5,91 V 91 91 C 76.80558,91 73,87.19442 73,82.5 V 48.5 48.5 C 73,43.80558 76.80558,40 81.5,40 Z" />
         </g>

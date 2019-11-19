@@ -42,11 +42,12 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g class="holy-upgrade-item"
+  <g
+     class="holy-upgrade-item"
      id="bw_sacrifice">
     <g
        transform="matrix(0.3783058,0,0,0.3783058,-89.797344,-131.91343)"

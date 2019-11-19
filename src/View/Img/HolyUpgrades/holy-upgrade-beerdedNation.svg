@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40mm"
    height="40mm"
    viewBox="0 0 40 40"
    version="1.1"
-   id="svg3150"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="holy-upgrade-beerdedNation.svg">
+   id="svg3150">
   <defs
      id="defs3144">
     <linearGradient
@@ -70,25 +64,6 @@
          id="stop1006" />
     </linearGradient>
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="7.4357659"
-     inkscape:cy="57.967961"
-     inkscape:document-units="mm"
-     inkscape:current-layer="beerPark"
-     showgrid="false"
-     inkscape:window-width="1172"
-     inkscape:window-height="660"
-     inkscape:window-x="2351"
-     inkscape:window-y="192"
-     inkscape:window-maximized="0"
-     inkscape:snap-text-baseline="true" />
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -97,21 +72,17 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-257)">
     <g
        id="beerdedNation"
-       class="holy-upgrade-item"
-       inkscape:label="#g903">
+       class="holy-upgrade-item">
       <g
-         inkscape:label="#g4595-1-1-9"
          id="g4595-1-1-9-1-3"
          transform="matrix(0.37827167,0.00508149,-0.00508149,0.37827167,-87.746903,123.62545)">
         <circle
@@ -129,7 +100,6 @@
            r="52.867283" />
       </g>
       <path
-         inkscape:connector-curvature="0"
          id="path4546"
          d="M 7.9998408,284.62856 C 7.9962078,284.61556 7.9332404,281.71341 7.8599133,278.17934 L 7.7265913,271.75374 7.9846365,271.53712 C 8.4002318,271.18824 10.066548,270.40038 10.923415,270.14762 13.574313,269.36564 16.843624,269.50122 18.768618,270.47295 20.02881,271.10909 21.778919,271.0575 24.762723,270.29624 26.11592,269.951 28.81531,269.07745 29.998614,268.60186 L 30.493383,268.403 30.536309,268.61372 C 30.559917,268.72961 30.603407,270.63163 30.63295,272.84042 30.662496,275.04922 30.713881,277.9027 30.747144,279.18148 L 30.80762,281.50653 30.391965,281.65506 C 26.696035,282.97569 25.327524,283.39251 23.472023,283.76275 22.591631,283.93842 21.910037,284.01323 21.141119,284.01856 20.058957,284.02606 20.050768,284.02443 19.171766,283.62662 17.695216,282.95836 16.946486,282.81718 14.857265,282.81307 13.311793,282.81004 12.924623,282.84027 12.075834,283.03027 10.78591,283.31902 9.7228327,283.70952 8.8090041,284.23029 8.0881301,284.6411 8.0136044,284.67778 7.9998408,284.62856 Z"
          style="fill:#d6ffff;fill-opacity:1;stroke:#ff6b00;stroke-width:0.71399999;stroke-miterlimit:4;stroke-dasharray:0, 7.85399992;stroke-dashoffset:0;stroke-opacity:0.04568529" />
@@ -142,33 +112,26 @@
           <path
              id="Schaum"
              d="M 90.802375,51 C 95.647498,54.760268 101.73906,57 108.35548,57 112.19668,57 115.86098,56.24511 119.20719,54.876057 121.78505,60.822885 127.86002,65 134.94352,65 144.36355,65 152,57.612698 152,48.5 152,39.969485 145.30813,32.950949 136.72561,32.088979 136.87381,30.913431 136.95017,29.715603 136.95017,28.5 136.95017,12.759885 124.14789,0 108.35548,0 99.83824,0 92.190743,3.711487 86.952263,9.6002847 84.65374,8.5783055 82.036298,8 79.259136,8 75.078031,8 71.258949,9.3108024 68.345159,11.472979 64.288066,4.5909983 56.988447,0 48.657807,0 38.310547,0 29.553888,7.0827388 26.625519,16.840923 24.209942,15.664564 21.466627,15 18.558139,15 8.8610468,15 1,22.387302 1,31.5 1,40.612698 8.8610468,48 18.558139,48 V 51 Z"
-             inkscape:connector-curvature="0"
              style="fill:#ffffff" />
           <path
              id="Henkel"
              d="M 127,82 H 160 C 164.41828,82 168,85.581722 168,90 V 155 C 168,159.41828 164.41828,163 160,163 H 127 V 163 C 122.58172,163 119,159.41828 119,155 V 90 90 C 119,85.581722 122.58172,82 127,82 Z M 119,95 V 151 H 151 C 154.31371,151 157,148.31371 157,145 V 101 C 157,97.686291 154.31371,95 151,95 Z"
-             inkscape:connector-curvature="0"
              style="fill:url(#linearGradient-1)" />
           <path
              id="Glass"
              d="M 18,48 H 134 V 198 198 C 134,206.83656 126.83656,214 118,214 H 34 V 214 C 25.163444,214 18,206.83656 18,198 Z"
-             inkscape:connector-curvature="0"
              style="fill:url(#linearGradient-2)" />
           <path
              id="path4603"
              d="M 28,66 H 124 V 196 196 C 124,200.41828 120.41828,204 116,204 H 36 V 204 C 31.581722,204 28,200.41828 28,196 Z"
-             inkscape:connector-curvature="0"
              style="fill:url(#linearGradient-3)" />
           <path
              id="Schaum-2"
              d="M 51.5,37 V 37 C 56.19442,37 60,40.80558 60,45.5 V 106.5 106.5 C 60,111.19442 56.19442,115 51.5,115 V 115 C 46.80558,115 43,111.19442 43,106.5 V 45.5 45.5 C 43,40.80558 46.80558,37 51.5,37 Z M 51.5,136 C 46.80558,136 43,132.19442 43,127.5 43,122.80558 46.80558,119 51.5,119 56.19442,119 60,122.80558 60,127.5 60,132.19442 56.19442,136 51.5,136 Z M 81.5,40 C 86.19442,40 90,43.80558 90,48.5 V 82.5 C 90,87.19442 86.19442,91 81.5,91 V 91 91 C 76.80558,91 73,87.19442 73,82.5 V 48.5 48.5 C 73,43.80558 76.80558,40 81.5,40 Z"
-             inkscape:connector-curvature="0"
              style="fill:#ffffff" />
         </g>
       </g>
       <path
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
          id="path5208"
          d="M 7.7265913,271.75374 8.1125797,290.14687"
          style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />

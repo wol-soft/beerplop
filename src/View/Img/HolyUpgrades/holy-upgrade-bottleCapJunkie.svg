@@ -1,41 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40mm"
    height="40mm"
    viewBox="0 0 40 40"
    version="1.1"
-   id="svg3150"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="holy-upgrade-bottleCapJunkie.svg">
+   id="svg3150">
   <defs
      id="defs3144" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="-22.64908"
-     inkscape:cy="84.603811"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="1272"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -49,16 +25,12 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-257)">
     <g
        id="bottleCapJunkie"
-       class="holy-upgrade-item"
-       inkscape:label="#g827">
+       class="holy-upgrade-item">
       <g
-         inkscape:label="#g4595-1-1-4-6"
          id="g4595-1-1-4-6"
          transform="matrix(0.3783058,0,0,0.3783058,-89.797348,125.08657)">
         <circle
@@ -76,13 +48,11 @@
            r="52.867283" />
       </g>
       <path
-         inkscape:connector-curvature="0"
          id="path6112-2"
          d="m 8.85439,285.66266 v -13.2407 l 5.674587,5.67458 v -5.67458 l 5.674587,5.67458 v -5.67458 l 5.674587,5.67458 0.756612,-11.34917 h 1.891529 l 1.134917,18.91529 z"
          style="fill:#ff0000;stroke:#000000;stroke-width:0.37830579px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       <path
          transform="matrix(0.26458333,0,0,0.26458333,0,257)"
-         inkscape:connector-curvature="0"
          id="path817"
          d="M 71.154491,140.14853 C 66.322412,139.66718 63.610539,139.24057 60.403368,138.45725 48.652671,135.58726 38.139296,129.67523 29.634552,121.1549 8.5139769,99.995602 4.5341283,67.325845 19.953415,41.684434 22.779253,36.985224 25.734066,33.232082 29.800241,29.1772 40.429146,18.577817 54.045943,12.09833 68.989895,10.528993 73.761027,10.027953 80.380879,10.178072 85.35092,10.900013 105.50657,13.827795 123.69619,26.769982 133.20803,44.951066 137.93843,53.992831 140.35474,63.249584 140.65242,73.470149 141.09869,88.792391 136.0984,103.68381 126.40096,115.9125 124.20705,118.67907 119.20556,123.70882 116.51163,125.8577 106.94321,133.49021 96.027841,138.11552 83.565205,139.81851 81.609518,140.08574 72.859884,140.31841 71.154491,140.14853 Z M 112.85092,108.30625 C 112.85092,107.4324 108.85677,40.25255 108.6378,37.443363 L 108.52296,35.970149 H 104.26177 100.00058 L 99.919184,36.371934 C 99.874416,36.592916 99.266957,45.532649 98.569273,56.238006 97.871591,66.943363 97.252491,76.172843 97.193495,76.747963 L 97.08623,77.793634 86.441236,67.149749 C 80.586489,61.295611 75.736223,56.505863 75.662866,56.505863 75.589511,56.505863 75.529491,61.30695 75.529491,67.174947 V 77.844032 L 64.815205,67.130863 54.10092,56.417693 V 67.130863 77.844032 L 43.386634,67.130863 32.672348,56.417693 V 82.801065 109.18443 H 72.761634 112.85092 Z"
          style="fill:#e6e6e6;fill-opacity:1;stroke-width:0.17857143" />

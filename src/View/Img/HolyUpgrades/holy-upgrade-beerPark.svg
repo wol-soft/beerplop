@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40mm"
    height="40mm"
    viewBox="0 0 40 40"
    version="1.1"
-   id="svg3150"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="holy-upgrade-beerPark.svg">
+   id="svg3150">
   <defs
      id="defs3144">
     <linearGradient
@@ -70,25 +64,6 @@
          id="stop1006" />
     </linearGradient>
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="-42.965238"
-     inkscape:cy="80.12052"
-     inkscape:document-units="mm"
-     inkscape:current-layer="beerOceans"
-     showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:snap-text-baseline="true" />
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -97,23 +72,19 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-257)">
     <g
        id="beerPark"
-       class="holy-upgrade-item"
-       inkscape:label="#g903">
+       class="holy-upgrade-item">
       <g
          transform="matrix(0.37827167,0.00508149,-0.00508149,0.37827167,-87.746903,123.62545)"
-         id="g4595-1-1-9-1-3"
-         inkscape:label="#g4595-1-1-9">
+         id="g4595-1-1-9-1-3">
         <circle
            cx="290.28085"
            cy="401.30939"
@@ -129,28 +100,22 @@
            id="path3771-4-2-4-03-1-2" />
       </g>
       <path
-         sodipodi:nodetypes="csc"
-         inkscape:connector-curvature="0"
          id="path4522"
          d="M 5.7528328,283.71705 C 8.3010238,276.19153 12.441835,267.12855 19.704182,267.12855 26.966527,267.12855 31.425863,274.65406 34.483692,283.55521"
          style="fill:none;stroke:#000000;stroke-width:1.13972342;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
-         inkscape:connector-curvature="0"
          id="path4524"
          d="M 12.824065,283.87889 12.887769,273.27844"
          style="fill:none;stroke:#000000;stroke-width:1.51963127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
-         inkscape:connector-curvature="0"
          id="path4524-0"
          d="M 26.99838,283.83843 27.062084,273.23797"
          style="fill:none;stroke:#000000;stroke-width:1.51963127;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
-         inkscape:connector-curvature="0"
          id="path4524-8"
          d="M 17.634235,283.77032 17.697021,269.34101"
          style="fill:none;stroke:#000000;stroke-width:1.76014268;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
-         inkscape:connector-curvature="0"
          id="path4524-8-5"
          d="M 22.284684,283.72986 22.34747,269.30055"
          style="fill:none;stroke:#000000;stroke-width:1.76014268;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />

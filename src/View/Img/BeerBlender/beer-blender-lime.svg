@@ -1,43 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40mm"
    height="40mm"
    viewBox="0 0 40 40"
    version="1.1"
-   id="svg3150"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="beer-blender-lime.svg">
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="51.090849"
-     inkscape:cy="59.805437"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1">
-    <inkscape:grid
-       type="xygrid"
-       id="grid834" />
-  </sodipodi:namedview>
+   id="svg3150">
+  <defs
+     id="defs13" />
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -46,27 +20,20 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-257)">
     <g
-       id="lime"
-       inkscape:label="#g5285">
+       id="lime">
       <path
-         sodipodi:nodetypes="cscscccsc"
-         inkscape:connector-curvature="0"
          id="path5251"
          d="m 6.7216405,287.00141 c -2.4688574,-10.41229 1.2344338,-14.3169 4.9377245,-18.22151 3.703291,-3.90462 7.406581,-7.80923 18.516454,-3.90462 1.23443,-1.30154 2.46886,-2.60307 4.318702,-0.75127 1.949422,1.95149 0.61902,3.35434 -0.615411,4.65589 2.468857,10.41229 -1.234434,14.3169 -4.937725,18.22151 -3.703291,3.90461 -7.406581,7.80922 -18.516454,3.90461 -1.2344297,1.30155 -2.4688607,2.60308 -4.3735378,0.66059 -1.8602442,-1.89716 0.6702473,-4.5652 0.6702473,-4.5652 z"
          style="fill:#5aa02c;stroke:none;stroke-width:0.35851437px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       <path
-         sodipodi:nodetypes="cscsc"
-         inkscape:connector-curvature="0"
          id="path5253"
          d="m 11.90625,290.38542 c 9.87544,2.60306 13.208406,-0.13009 16.911696,-4.03476 3.703291,-3.90461 6.048707,-7.67908 4.814284,-16.78984 0,0 -3.844374,9.81731 -7.547665,13.72192 -3.703291,3.90461 -14.178315,7.10268 -14.178315,7.10268 z"
          style="fill:#447821;stroke:none;stroke-width:0.35851437px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
