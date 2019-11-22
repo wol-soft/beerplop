@@ -379,7 +379,7 @@
             }
 
             window.setTimeout(
-                () => window.location.href = '/plop',
+                () => window.location.href = window.location.pathname.match(/((.*?)(\/plop)?)(\/\d+)?$/)[1],
                 delayReload
             );
         }).bind(this))

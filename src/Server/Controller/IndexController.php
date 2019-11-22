@@ -32,8 +32,8 @@ class IndexController extends Controller
     /**
      * @Route GET /plop/{?int|$saveStateId}
      *
-     * @param Request $request
-     * @param int|null $saveStateId
+     * @param Request     $request
+     * @param int|null    $saveStateId
      * @param string|null $template
      *
      * @return HTMLResponse
