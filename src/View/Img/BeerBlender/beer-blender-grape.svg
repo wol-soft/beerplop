@@ -1,81 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="40mm"
    height="40mm"
    viewBox="0 0 40 40"
    version="1.1"
-   id="svg3150"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="beer-blender-grape.svg">
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="51.090849"
-     inkscape:cy="59.805437"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1">
-    <inkscape:grid
-       type="xygrid"
-       id="grid834" />
-  </sodipodi:namedview>
-  <metadata
-     id="metadata3147">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
+   id="svg3150">
+  <defs
+     id="defs32" />
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-257)">
     <g
-       id="grape"
-       inkscape:label="#g6072">
+       id="grape">
       <path
          style="fill:#5e7500;fill-opacity:1;stroke:none;stroke-width:0.25589934px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="m 24.501679,267.38742 c 1.505419,-1.83153 4.255984,-2.68616 6.755866,-2.61771 2.490529,0.0682 7.220667,3.01322 7.220667,3.01322 0,0 -1.505431,1.8315 -5.375907,2.19052 -2.526514,-0.18866 -2.526514,-0.18866 -8.600634,-2.5861 z"
-         id="path4550"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="csccc" />
+         id="path4550" />
       <path
          style="fill:#2c3700;fill-opacity:1;stroke:none;stroke-width:0.25589934px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="m 24.501679,267.38742 c 1.505419,-1.83153 5.102642,0.56797 7.602534,0.63645 2.490524,0.0682 6.373984,-0.24092 6.373984,-0.24092 0,0 -1.505409,1.83154 -5.375889,2.19055 -2.526518,-0.18866 -2.526518,-0.18866 -8.600629,-2.58608 z"
-         id="path4550-5"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="csccc" />
+         id="path4550-5" />
       <path
          style="fill:#803300;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          d="m 23.8125,267.89583 c 1.700725,-2.02683 3.238373,-5.91743 3.075313,-7.78118 0.875952,1.42578 0.875952,1.42578 2.026824,1.70069 -0.687304,2.87719 -4.088712,6.93084 -4.088712,6.93084"
-         id="path4544"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="cccc" />
+         id="path4544" />
       <ellipse
          transform="rotate(-20)"
          ry="3.2913969"
