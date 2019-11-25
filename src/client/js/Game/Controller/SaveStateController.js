@@ -62,7 +62,7 @@
         });
 
         $('#start-lobby').on('click', function () {
-            window.location.href = '/lobby';
+            window.location.href = 'lobby';
         })
     }
 
