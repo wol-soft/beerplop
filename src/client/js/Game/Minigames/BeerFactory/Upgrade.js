@@ -1049,6 +1049,29 @@
                         },
                         callback: () => this.render.updateStockTable(),
                     },
+                    8: {
+                        costs: {
+                            wood: 29160000000,
+                            strongWood: 16767000000,
+                            woodenBeam: 16767000000,
+                            stone: 24057000000,
+                            granite: 10206000000,
+                            iron: 12757500000,
+                            gold: 2041200000,
+                            copper: 2041200000,
+                            charcoal: 28431000,
+                            tools: 3005700,
+                            marble: 3016000,
+                            diamond: 1275750000,
+                            medallion: 1132000,
+                        },
+                        requires: {
+                            storage: {
+                                amount: 40,
+                            },
+                        },
+                        callback: () => this.render.updateStockTable(),
+                    },
                 },
                 diversify: {
                     1: {
@@ -1395,6 +1418,52 @@
                         requires: {
                             transport: {
                                 amount: 34,
+                            }
+                        },
+                        callback: this.cache.resetDeliverCapacityCache.bind(this.cache),
+                    },
+                    9: {
+                        costs: {
+                            wood: 25600000000,
+                            strongWood: 13824000000,
+                            woodenBeam: 13824000000,
+                            stone: 19968000000,
+                            granite: 8704000000,
+                            iron: 10496000000,
+                            gold: 1689600000,
+                            copper: 1689600000,
+                            charcoal: 25088000,
+                            tools: 8968000,
+                            marble: 8040000,
+                            diamond: 1049600000,
+                            medallion: 920000,
+                        },
+                        requires: {
+                            transport: {
+                                amount: 38,
+                            }
+                        },
+                        callback: this.cache.resetDeliverCapacityCache.bind(this.cache),
+                    },
+                    10: {
+                        costs: {
+                            wood: 204800000000,
+                            strongWood: 110592000000,
+                            woodenBeam: 110592000000,
+                            stone: 159744000000,
+                            granite: 69632000000,
+                            iron: 83968000000,
+                            gold: 13516800000,
+                            copper: 13516800000,
+                            charcoal: 200704000,
+                            tools: 11744000,
+                            marble: 11320000,
+                            diamond: 8396800000,
+                            medallion: 736000,
+                        },
+                        requires: {
+                            transport: {
+                                amount: 42,
                             }
                         },
                         callback: this.cache.resetDeliverCapacityCache.bind(this.cache),
@@ -2504,6 +2573,29 @@
                         requires: {
                             tradingPost: {
                                 amount: 16,
+                            },
+                        },
+                        callback: this.trader.recalculateAutoMaxDeals.bind(this.trader),
+                    },
+                    5: {
+                        costs: {
+                            wood: 9800000000,
+                            strongWood: 2430400000,
+                            woodenBeam: 2587200000,
+                            stone: 5880000000,
+                            granite: 2469600000,
+                            iron: 3576020000,
+                            charcoal: 56644000,
+                            tools: 23568000,
+                            marble: 22886000,
+                            gold: 1015280000,
+                            copper: 1015280000,
+                            diamond: 451780000,
+                            medallion: 1940000,
+                        },
+                        requires: {
+                            tradingPost: {
+                                amount: 20,
                             },
                         },
                         callback: this.trader.recalculateAutoMaxDeals.bind(this.trader),

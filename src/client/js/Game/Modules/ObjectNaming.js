@@ -43,8 +43,12 @@
 
                         achievementController.checkAchievement(achievement);
                     }
+
+                    div.text(newName);
+                } else {
+                    div.text(oldName);
                 }
-                div.text(newName);
+
                 div.removeClass('naming-active');
             });
         });

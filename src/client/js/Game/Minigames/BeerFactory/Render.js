@@ -303,6 +303,15 @@
         )
     };
 
+    /**
+     * Adds a description to the expanded view of a factory
+     *
+     * @param {string} factory The key of the requested factory
+     *
+     * @return {string}
+     *
+     * @private
+     */
     Render.prototype._descriptionDecorator = function (factory) {
         let description = translator.translate(`beerFactory.factory.${factory}.description`);
 

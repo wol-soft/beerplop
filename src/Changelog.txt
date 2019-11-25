@@ -1,5 +1,11 @@
-**1.63.0**
+**1.63.0** - 25.11.2019
 * Removed metadata from svg images to reduce loading overhead (#75)
+* Added additional upgrade paths to Beer Factories
+* Bugfixes:
+    * Layout of lobbyists (Beer Factory)
+    * Transport capacity doesn't update after constructing a Workers' Lodge (Beer Factory)
+    * Names disappear if input element is empty (Beer Factory, Beerwarts, Beer Bank Banker)
+    * Wrong redirect after loading a save state
 
 **1.62.0** - 18.11.2019
 * Added auto upgrade buyer (#39)

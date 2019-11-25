@@ -94,6 +94,11 @@
             }
 
             this._checkUnlockFactory();
+
+            if (this.render.isOverlayVisible()) {
+                this.stock.updateStock();
+                this.render.updateFactoriesMap();
+            }
         }).bind(this));
     }
 
@@ -260,6 +265,12 @@
                 // reset all production amount caches to recalculate them to cover dependencies between buildings
                 // (eg. lodges boost other building productions)
                 this.cache.resetProductionAmountCache();
+                this.cache.resetDeliverCapacityCache();
+
+                if (this.render.isOverlayVisible()) {
+                    this.stock.updateStock();
+                    this.render.updateFactoriesMap();
+                }
 
                 if (this.achievementController.getAchievementStorage().achievements.beerFactory.factories[item]) {
                     this.achievementController.checkAmountAchievement(
@@ -374,9 +385,6 @@
      * @private
      */
     BuildQueue.prototype._checkUnlockFactory = function () {
-        let hasUnlockedNewFactory   = false,
-            hasUnlockedNewMaterials = false;
-
         $.each(this.state.getFactories(), (function checkUnlockNewFactory(factory, factoryData) {
             if (factoryData.enabled) {
                 return;
@@ -392,12 +400,10 @@
 
             if (requirementsReached) {
                 this.state.getFactory(factory).enabled = true;
-                hasUnlockedNewFactory = true;
 
                 if (FACTORY_DATA_FIX[factory].enableMaterial) {
                     $.each(FACTORY_DATA_FIX[factory].enableMaterial, (function enableMaterials(index, material) {
                         this.state.getMaterial(material).enabled = true;
-                        hasUnlockedNewMaterials = true;
                     }).bind(this));
                 }
 
@@ -408,15 +414,7 @@
                 }
             }
         }).bind(this));
-
-        if (hasUnlockedNewFactory && this.render.isOverlayVisible()) {
-            this.render.updateFactoriesMap();
-        }
-        if (hasUnlockedNewMaterials && this.render.isOverlayVisible()) {
-            this.render.updateStockTable();
-        }
     };
-
 
     /**
      * Perform specific game state changing actions if a non producing factory was finished
@@ -425,8 +423,6 @@
      * @private
      */
     BuildQueue.prototype._nonProducingFactoryConstructed = function (factory) {
-        const state = this.state.getState();
-
         switch (factory) {
             case 'storage':
                 if (this.state.getFactory('storage').upgrades.diversify > 0) {

@@ -430,10 +430,10 @@
             const baseElement = $('#svg-buildingAmount-' + building + '-base');
 
             $.each(achievementAmounts, function (index, amount) {
-                let opener = baseElement.clone();
-                opener.addClass('amount-' + amount);
-                opener.attr('id', 'svg-buildingAmount-' + building + '-' + amount);
-                opener.insertAfter(baseElement);
+                let achievementSVG = baseElement.clone();
+                achievementSVG.addClass('amount-' + amount);
+                achievementSVG.attr('id', 'svg-buildingAmount-' + building + '-' + amount);
+                achievementSVG.insertAfter(baseElement);
             });
         });
     };
