@@ -18,6 +18,9 @@
 
     ResearchProject.prototype.sliderList = {};
 
+    // track if the collapsible research project container is opened
+    ResearchProject.prototype.containerOpen = false;
+
     ResearchProject.prototype.projects = {
         beerOceans: {
             costs: 25e18,
@@ -257,6 +260,10 @@
                 0
             );
         }).bind(this));
+
+        const container = $('#research-project');
+        container.on('show.bs.collapse', () => this.containerOpen = true);
+        container.on('hidden.bs.collapse', () => this.containerOpen = false);
     }
 
     /**
@@ -401,21 +408,27 @@
                       true
                   );
 
+            // no investment so the UI must not be updated
+            if (projectInvestmentPerSecond <= 0) {
+                return;
+            }
+
             this.state.projects[project].invested += projectInvestmentPerSecond;
 
             // update the research project view
-            // TODO: only if opened
-            $('#research-project-' + project + '-invested').text(
-                this.numberFormatter.format(this.state.projects[project].invested)
-            );
-            $('#research-project-' + project + '-completed').text(
-                this.numberFormatter.format(
-                    this.state.projects[project].invested / this._getProjectCosts(project) * 100
-                )
-            );
-            $('#research-project-' + project + '-started-at').text(duration);
+            if (this.containerOpen) {
+                $('#research-project-' + project + '-invested').text(
+                    this.numberFormatter.format(this.state.projects[project].invested)
+                );
+                $('#research-project-' + project + '-completed').text(
+                    this.numberFormatter.format(
+                        this.state.projects[project].invested / this._getProjectCosts(project) * 100
+                    )
+                );
+                $('#research-project-' + project + '-running').text(duration);
 
-            this._updateRemainingTime(project, projectInvestmentPerSecond);
+                this._updateRemainingTime(project, projectInvestmentPerSecond);
+            }
 
             if (this.state.projects[project].invested >= this._getProjectCosts(project)) {
                 this.state.totalPercentage -= this.state.projects[project].percentage;
@@ -674,7 +687,7 @@
                         costs:               this.numberFormatter.format(projectCosts),
                         invested:            this.numberFormatter.format(projectData.invested),
                         percentage:          projectData.percentage,
-                        startedAt:           this.numberFormatter.formatTimeSpan(
+                        running  :           this.numberFormatter.formatTimeSpan(
                                                 (new Date()) - projectData.startedAt,
                                                 true
                                              ),
@@ -825,8 +838,6 @@
     };
 
     /**
-     * TODO: store if research project view is opened, only update if open to save some performance
-     *
      * Update the remaining time of a research project
      *
      * @param {string} project
