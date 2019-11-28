@@ -1,4 +1,4 @@
-**1.64.0**
+**1.64.0** - 28.11.2019
 * Remove translated labels from the save state (#47)
 * Password reset
 
