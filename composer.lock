@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82bdf9758dda8d8522026fa09edd18f6",
+    "content-hash": "d48022b27284682430ac48f6e4ce13d0",
     "packages": [
         {
             "name": "doctrine/lexer",
@@ -1314,11 +1314,11 @@
         },
         {
             "name": "wol-soft/wol-soft-core",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.wol-soft.de/wol-soft-public/wol-soft-core.git",
-                "reference": "d4030d5d207ce8f220d53b2c3e41a79c373e5d97"
+                "reference": "0ef1b53f51c6162b4621ee9b101405c889176d25"
             },
             "require": {
                 "ext-json": "*",
@@ -1349,7 +1349,7 @@
                 }
             ],
             "description": "WOL-Soft main repository",
-            "time": "2019-11-28T18:53:09+00:00"
+            "time": "2019-11-28T19:10:12+00:00"
         }
     ],
     "packages-dev": [],
