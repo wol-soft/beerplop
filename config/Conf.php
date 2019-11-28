@@ -8,6 +8,7 @@ class Conf extends Singleton
     {
         $packageConfig         = json_decode(file_get_contents(__DIR__ . '/../package.json'));
         $this->beerplopversion = $packageConfig->beerplopversion;
+        $this->userversion     = $packageConfig->userversion;
     }
 
     // Login server/database
@@ -32,9 +33,11 @@ class Conf extends Singleton
     public $environment        = 'DEV';
 
     // don't fill this version fields, they are filled dynamically
-    public $beerplopversion    = '';
+    public $beerplopversion = '';
+    public $userversion     = '';
 
     public $registrationEnabled = true;
+    public $passwordResetSender = 'Beerplop';
 
     // profiling, logging etc.
     public $queryLog          = false;
@@ -60,4 +63,7 @@ class Conf extends Singleton
 
     public $applicationPath   = '/var/www/beerplop/src';
     public $templateCachePath = false;
+    public $routingCache      = false;
+
+    public $baseURL = 'http://localhost:8080';
 }

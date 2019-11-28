@@ -1,7 +1,8 @@
 {
   "name": "beerplop",
   "license": "MIT",
-  "beerplopversion": "1.63.1",
+  "beerplopversion": "1.64.0",
+  "userversion": "3.1.0",
   "author": "Enno Woortmann",
   "dependencies": {
     "ajax-request": "^1.2.3",
@@ -27,7 +28,6 @@
     "grunt-contrib-concat": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-cssmin": "*",
-    "grunt-contrib-less": "^2.0.0",
     "grunt-contrib-sass": "*",
     "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-contrib-watch": "^1.1.0",

@@ -65,7 +65,7 @@
                  */
                 this.options.socket.on('beerplop.createdLobby', (function(generatedLobbyId) {
                     this.options.lobbyId = generatedLobbyId;
-                    $('#join-link').val(window.location.href + this.options.lobbyId);
+                    $('#join-link').val(window.location.href + '/' + this.options.lobbyId);
                 }).bind(this));
 
                 /**
