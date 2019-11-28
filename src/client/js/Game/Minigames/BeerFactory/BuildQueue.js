@@ -154,6 +154,7 @@
         }
 
         const queueItemId = this.state.getBuildQueue().push({
+            label:          this._getQueueJobLabel(action, item),
             materials:      this.stock.orderMaterialListByProductionBalance(materials),
             requiredItems:  materials.reduce((total, material) => total + material.required, 0),
             deliveredItems: 0,
@@ -241,7 +242,7 @@
               now       = new Date();
 
         this.state.getState().buildQueueHistory.unshift({
-            label: this.getQueueJobLabel(queueItem.action, item),
+            label: queueItem.label,
             ts:    now,
         });
 
@@ -371,12 +372,7 @@
         }
 
         (new Beerplop.Notification()).notify({
-            content: translator.translate(
-                'beerFactory.queue.finished',
-                {
-                    __JOB__: this.getQueueJobLabel(queueItem.action, queueItem.item)
-                }
-            ),
+            content: translator.translate('beerFactory.queue.finished', {__JOB__: queueItem.label}),
             style:   'snackbar-success',
             timeout: 4000,
             channel: 'beerFactory',
@@ -520,8 +516,10 @@
      * @param item
      *
      * @returns {string}
+     *
+     * @private
      */
-    BuildQueue.prototype.getQueueJobLabel = function (action, item) {
+    BuildQueue.prototype._getQueueJobLabel = function (action, item) {
         let translationData = {};
 
         switch (action) {
@@ -730,7 +728,7 @@
             Mustache.render(
                 TemplateStorage.get('beer-factory__build-queue__manage-item__body-template'),
                 {
-                    job:       this.getQueueJobLabel(queueItem.action, queueItem.item),
+                    job:       queueItem.label,
                     materials: queueItem.materials.filter(material => material.delivered < material.required),
                 }
             )

@@ -57,7 +57,7 @@
                               material.required - material.delivered,
                               this.cache.getDeliverCapacity() - materialsCarriedToQueue
                           ),
-                          this.buildQueue.getQueueJobLabel(item.action, item.item),
+                          item.label,
                           false
                       );
 
