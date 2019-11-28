@@ -8,9 +8,9 @@ module.exports = function(grunt) {
             beerplopInit: {
                 src: [
                     'node_modules/jquery/dist/jquery.min.js',
-                    'src/client/js/Utils/*.js',
-                    'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js',
                     'src/client/js/Init/__init.js',
+                    'vendor/wol-soft/wol-soft-core/src/js/*.js',
+                    'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js',
                 ],
                 dest: 'htdocs/dist/js/beerplop-init-<%= pkg.beerplopversion %>.min.js'
             },
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                     'node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js',
                     'src/client/js/Lobby/__init.js',
                     'src/client/js/Lobby/*.js',
-                    'src/client/js/Utils/*.js',
+                    'vendor/wol-soft/wol-soft-core/src/js/*.js',
                     'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js'
                 ],
                 dest: 'htdocs/dist/js/beerplop-lobby-<%= pkg.beerplopversion %>.min.js'
@@ -171,6 +171,14 @@ module.exports = function(grunt) {
                         src: ['src/client/fonts/*'],
                         dest: 'htdocs/dist/fonts/',
                         flatten: true,
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'vendor/wol-soft/wol-soft-core/htdocs/user/dist',
+                        src: ['**/*'],
+                        dest: 'htdocs/user/dist/',
+                        flatten: false,
                         filter: 'isFile'
                     },
                 ]

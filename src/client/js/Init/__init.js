@@ -1,6 +1,11 @@
-
-let assetPromises   = {},
-    TemplateStorage = {
+let TESTMODE            = false,
+    applicationLanguage = 'en',
+    Beerplop            = {
+        version: null
+    },
+    translator          = null,
+    assetPromises       = {},
+    TemplateStorage     = {
         get: template => TemplateStorage[template],
     };
 

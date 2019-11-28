@@ -1,11 +1,4 @@
 
-let TESTMODE            = false,
-    applicationLanguage = 'en',
-    Beerplop            = {
-        version: null
-    },
-    translator          = null;
-
 (function($, Beerplop){})(jQuery, Beerplop);
 
 $(async function() {

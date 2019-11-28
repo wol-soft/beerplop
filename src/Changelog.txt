@@ -1,5 +1,6 @@
 **1.64.0**
 * Remove translated labels from the save state (#47)
+* Password reset
 
 **1.63.0** - 25.11.2019
 * Removed metadata from svg images to reduce loading overhead (#75)
