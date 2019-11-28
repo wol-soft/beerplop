@@ -138,6 +138,31 @@
             (function (loadedData) {
                 this.state.extendState(loadedData);
 
+                window.setTimeout(
+                    () => {
+                        const state = (new Minigames.BeerFactory()).state.getState(),
+                              achievementController = new Beerplop.AchievementController();
+
+                        $.each(state.materials, function (material) {
+                            if (!isFinite(state.materials[material].amount)) {
+                                state.materials[material].amount = 0;
+                            }
+                            if (!isFinite(state.materials[material].amount) || state.materials[material].amount <= 0) {
+                                let lastAmount = 0;
+
+                                $.each(achievementController.achievementStorage.achievements.beerFactory.materials[material], function (amount, data) {
+                                    if (!data.reached) {
+                                        state.materials[material].total = lastAmount;
+                                        return false;
+                                    }
+                                    lastAmount = amount;
+                                });
+                            }
+                        });
+                    },
+                    0
+                );
+
                 this.buildQueue.reIndexBuildQueue();
                 this.buildQueue.updateQueuedJobsAmount();
             }.bind(this))
