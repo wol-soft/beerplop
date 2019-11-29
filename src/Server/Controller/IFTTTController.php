@@ -34,7 +34,7 @@ class IFTTTController extends Controller
      */
     public function statusAction(Request $request): HTTPResponse
     {
-        if ($request->getHeader('Ifttt-Channel-Key') !== IFTTTService::SERVICE_KEY) {
+        if ($request->getHeader('Ifttt-Channel-Key') !== $this->app->getConf()->iftttServiceKey) {
             return (new HTTPResponse())->setStatusCode(401);
         }
 
@@ -50,7 +50,7 @@ class IFTTTController extends Controller
      */
     public function setupAction(Request $request): JSONResponse
     {
-        if ($request->getHeader('Ifttt-Channel-Key') !== IFTTTService::SERVICE_KEY) {
+        if ($request->getHeader('Ifttt-Channel-Key') !== $this->app->getConf()->iftttServiceKey) {
             return (new JSONResponse())->setStatusCode(401);
         }
 
