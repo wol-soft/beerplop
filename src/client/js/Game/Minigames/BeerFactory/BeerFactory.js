@@ -143,20 +143,32 @@
                         const state = (new Minigames.BeerFactory()).state.getState(),
                               achievementController = new Beerplop.AchievementController();
 
+                        // code to fix broken save states after 1.64.0
                         $.each(state.materials, function (material) {
-                            if (!isFinite(state.materials[material].amount)) {
+                            if (!isFinite(state.materials[material].amount) || state.materials[material].amount < 0) {
                                 state.materials[material].amount = 0;
                             }
-                            if (!isFinite(state.materials[material].amount) || state.materials[material].amount <= 0) {
-                                let lastAmount = 0;
+
+                            if (!isFinite(state.materials[material].amount) ||
+                                state.materials[material].amount < 0 ||
+                                typeof state.materials[material].total === 'string'
+                            ) {
+                                let lastAmount = 0,
+                                    fixed      = false;
 
                                 $.each(achievementController.achievementStorage.achievements.beerFactory.materials[material], function (amount, data) {
                                     if (!data.reached) {
                                         state.materials[material].total = lastAmount;
+                                        fixed = true;
                                         return false;
                                     }
-                                    lastAmount = amount;
+
+                                    lastAmount = parseInt(amount);
                                 });
+
+                                if (!fixed) {
+                                    state.materials[material].total = lastAmount;
+                                }
                             }
                         });
                     },

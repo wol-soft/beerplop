@@ -219,7 +219,19 @@
      */
     GamePersistor.prototype.setLocalSaveState = function (givenSaveState = null, saveTime = null) {
         const saveState = givenSaveState || this.getSaveState(saveTime);
-        localStorage.setItem(this.localStorageKey, saveState);
+
+        try {
+            localStorage.setItem(this.localStorageKey, saveState);
+        } catch (e) {
+            console.log(e);
+
+            (new Beerplop.Notification()).notify({
+                content: translator.translate('error.localSave'),
+                style:   'snackbar-error',
+                timeout: 3000,
+                channel: 'system',
+            })
+        }
 
         return saveState;
     };
