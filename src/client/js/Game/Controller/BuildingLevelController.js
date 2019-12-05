@@ -191,7 +191,7 @@
             this.slotController.isAutoLevelUpEnabled('bottleCapFactory')
         ) {
             do {
-                if (this.gameState.removePlops(this.getCostsForNextBottleCapFactoryLevel())) {
+                if (this.gameState.removePlops(this.getCostsForNextBottleCapFactoryLevel(), false)) {
                     this._addLevel();
                     this._incAutoLevelUps();
                 }

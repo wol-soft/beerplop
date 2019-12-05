@@ -6,6 +6,7 @@ use WOLSoftCore\Server\App;
 use WOLSoftCore\Server\Utils\ActivityStreamLogger;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__ . '/../../../config/Conf.php';
 
 $jobby = new Jobby();
 
