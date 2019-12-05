@@ -3,6 +3,7 @@ const EVENTS = {
     CORE: {
         ITERATION: 'beerplop.core.iteration',
         ITERATION_LONG: 'beerplop.core.iteration-long',
+        STATISTIC_SNAPSHOT: 'beerplop.core.statistic-snapshot',
         ACHIEVEMENT_REACHED: 'beerplop.core.achievement-reached',
         LEVEL_UP: 'beerplop.core.level-up',
         SACRIFICE: 'beerplop.core.sacrifice',

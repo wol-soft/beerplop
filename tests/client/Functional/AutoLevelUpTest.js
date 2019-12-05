@@ -19,7 +19,7 @@ describe('Auto Level Up', function () {
             expect($('.buy-control__advanced--auto-level-up').hasClass('d-none')).to.equal(true);
         });
 
-        it('should be visible if any building is equipped with an auto buyer', function () {
+        it('should be visible if any building is equipped with an auto level up', function () {
             beerFactoryState.equippedBuildings['automatedBar'] = {
                 slots: [{
                     equip: EQUIPMENT_ITEM__AMYLASE,
@@ -67,19 +67,20 @@ describe('Auto Level Up', function () {
             gameState.getBuildingData('dispenser').amount = 15;
             gameState.getBuildingData('serviceAssistant').amount = 15;
             gameState.buildingLevelController.state.factories = 7;
+            beerFactoryState.autoLevelUpDisabled = true;
 
             expect(slotController.isAutoLevelUpEnabled('opener'), 'Auto level up for openers active').to.equal(false);
             expect(slotController.isAutoLevelUpEnabled('bottleCapFactory', 'Auto level up for Bottle Cap Factories active')).to.equal(false);
         });
 
         it('should be disabled when the global switch is enabled', function () {
-            beerFactoryState.autoBuyerDisabled = false;
+            beerFactoryState.autoLevelUpDisabled = false;
 
             expect(slotController.isAutoLevelUpEnabled('opener'), 'Auto level up for openers active').to.equal(false);
             expect(slotController.isAutoLevelUpEnabled('bottleCapFactory', 'Auto level up for Bottle Cap Factories active')).to.equal(false);
         });
 
-        it('should not purchase buildings if all requirements are fulfilled', function () {
+        it('should not level up if all requirements are fulfilled', function () {
             gameState.buildingLevelController.addBottleCaps(50);
             gameState.addPlops(1000);
 
@@ -90,212 +91,260 @@ describe('Auto Level Up', function () {
             gameEventBus.off(EVENTS.CORE.BUILDING.LEVEL_UP, gameEventBusLevelUpBuildingSpy);
         });
     });
-/*
-        describe('A building with an equipped auto buyer', function () {
-            let gameEventBusBuyBuildingSpy  = sinon.spy(),
-                gameEventBusAutoBuyerSwitch = sinon.spy();
 
-            it('should be disabled when auto buyer is under construction', function () {
+    describe('A building with an equipped auto level up', function () {
+        let gameEventBusBuyBuildingSpy  = sinon.spy(),
+            gameEventBusAutoLevelUpSwitch = sinon.spy();
+
+        it('should be disabled when auto level up is under construction', function () {
+            gameState.resetInitialState();
+
+            beerFactoryState.autoLevelUpDisabled = false;
+            beerFactoryState.equippedBuildings = {};
+            beerFactoryState.equippedBuildings['opener'] = {
+                autoLevelUp: true,
+                slots: [{
+                    equip: EQUIPMENT_ITEM__AMYLASE,
+                    state: EQUIPMENT_STATE__UNDER_CONSTRUCTION,
+                }],
+            };
+            beerFactoryState.equippedBuildings['bottleCapFactory'] = {
+                autoLevelUp: true,
+                slots: [{
+                    equip: EQUIPMENT_ITEM__AMYLASE,
+                    state: EQUIPMENT_STATE__UNDER_CONSTRUCTION,
+                }],
+            };
+
+            expect(slotController.isAutoLevelUpEnabled('opener')).to.equal(false);
+            expect(slotController.isAutoLevelUpEnabled('bottleCapFactory')).to.equal(false);
+        });
+
+        it('should be disabled when the global switch is disabled', function () {
+            beerFactoryState.autoLevelUpDisabled = true;
+
+            beerFactoryState.equippedBuildings['opener'].slots[0].state           = EQUIPMENT_STATE__FINISHED;
+            beerFactoryState.equippedBuildings['bottleCapFactory'].slots[0].state = EQUIPMENT_STATE__FINISHED;
+
+            expect(slotController.isAutoLevelUpEnabled('opener')).to.equal(false);
+            expect(slotController.isAutoLevelUpEnabled('bottleCapFactory')).to.equal(false);
+
+        });
+
+        it('should be enabled when the global and the local switch is enabled', function () {
+            beerFactoryState.autoLevelUpDisabled = false;
+            expect(slotController.isAutoLevelUpEnabled('opener')).to.equal(true);
+            expect(slotController.isAutoLevelUpEnabled('bottleCapFactory')).to.equal(true);
+        });
+
+        it('should be disabled when the local switch is disabled', function () {
+            beerFactoryState.equippedBuildings['opener'].autoLevelUp = false;
+            beerFactoryState.equippedBuildings['bottleCapFactory'].autoLevelUp = false;
+
+            expect(slotController.isAutoLevelUpEnabled('opener')).to.equal(false);
+            expect(slotController.isAutoLevelUpEnabled('bottleCapFactory')).to.equal(false);
+        });
+
+        const autoLevelUpTestDataProvider = [
+            {
+                building: 'opener',
+                initialPlops: 135,
+                initialBottleCaps: 125,
+                expectedPlops: 135,
+                // cost of the first level up: 50 bottle caps
+                expectedBottleCaps: 75,
+                getLevelCallback: () => gameState.getBuildingData('opener').level,
+                event: EVENTS.CORE.BUILDING.LEVEL_UP,
+            },
+            {
+                building: 'bottleCapFactory',
+                initialPlops: 1035,
+                initialBottleCaps: 25,
+                // cost of the first level up: 1000 plops
+                expectedPlops: 35,
+                expectedBottleCaps: 25,
+                getLevelCallback: () => gameState.buildingLevelController.state.level,
+                event: EVENTS.CORE.BUILDING.LEVEL_UP,
+            }
+        ];
+
+        autoLevelUpTestDataProvider.forEach(({
+              building,
+              initialPlops,
+              initialBottleCaps,
+              expectedPlops,
+              expectedBottleCaps,
+              getLevelCallback,
+              event
+        }) => {
+            const testedObject = ` [${building}]`;
+            const resetLevelUpInitialState = function () {
                 gameState.resetInitialState();
 
-                beerFactoryState.autoBuyerDisabled = false;
-                beerFactoryState.equippedBuildings = {};
-                beerFactoryState.equippedBuildings['opener'] = {
-                    autoBuyer: true,
-                    slots: [{
-                        equip: EQUIPMENT_ITEM__DIASTATIC,
-                        state: EQUIPMENT_STATE__UNDER_CONSTRUCTION,
-                    }],
-                };
-                beerFactoryState.equippedBuildings['bottleCapFactory'] = {
-                    autoBuyer: true,
-                    slots: [{
-                        equip: EQUIPMENT_ITEM__DIASTATIC,
-                        state: EQUIPMENT_STATE__UNDER_CONSTRUCTION,
-                    }],
-                };
+                gameState.getBuildingData('opener').amount = 15;
+                gameState.getBuildingData('dispenser').amount = 15;
+                gameState.getBuildingData('serviceAssistant').amount = 15;
+                gameState.buildingLevelController.state.factories = 7;
+            };
 
-                expect(slotController.isAutoBuyerEnabled('opener')).to.equal(false);
-                expect(slotController.isAutoBuyerEnabled('bottleCapFactory')).to.equal(false);
+            it('should level up if all requirements are fulfilled ' + testedObject, function () {
+                gameEventBusBuyBuildingSpy = sinon.spy();
+                gameEventBus.on(event, gameEventBusBuyBuildingSpy);
+                resetLevelUpInitialState();
+
+                beerFactoryState.autoLevelUpDisabled = false;
+                beerFactoryState.equippedBuildings[building].autoLevelUp = true;
+
+                gameState.addPlops(initialPlops);
+                gameState.buildingLevelController.addBottleCaps(initialBottleCaps);
+
+                expect(getLevelCallback(), 'Auto level up didn\'t level up').to.equal(2);
+
+                expect(gameState.getPlops(), 'wrong plops').to.be.closeTo(expectedPlops, 0.1);
+                expect(getPlopsFromLabel($('#current-plops')), 'wrong plops displayed').to.be.closeTo(expectedPlops, 0.1);
+
+                expect(gameState.buildingLevelController.getBottleCaps(), 'wrong bottle caps').to.be.closeTo(expectedBottleCaps, 0.1);
+                expect(getPlopsFromLabel($('#panel-bottle-cap-factory').find('.bottle-caps-amount')), 'wrong bottle caps displayed').to.be.closeTo(expectedBottleCaps, 0.1);
             });
 
-            it('should be disabled when the global switch is disabled', function () {
-                beerFactoryState.autoBuyerDisabled = true;
+            it('should trigger the ' + event + ' event after level up buildings' + testedObject, function () {
+                expect(gameEventBusBuyBuildingSpy.callCount).to.equal(1);
 
-                beerFactoryState.equippedBuildings['opener'].slots[0].state           = EQUIPMENT_STATE__FINISHED;
-                beerFactoryState.equippedBuildings['bottleCapFactory'].slots[0].state = EQUIPMENT_STATE__FINISHED;
+                const levelUp = gameEventBusBuyBuildingSpy.getCall(0).args[1];
 
-                expect(slotController.isAutoBuyerEnabled('opener')).to.equal(false);
-                expect(slotController.isAutoBuyerEnabled('bottleCapFactory')).to.equal(false);
-
+                expect(levelUp.building, 'leveled up the wrong building').to.equal(building);
+                expect(levelUp.level, 'leveled up the wrong amount').to.equal(2);
             });
 
-            it('should be enabled when the global and the local switch is enabled', function () {
-                beerFactoryState.autoBuyerDisabled = false;
-                expect(slotController.isAutoBuyerEnabled('opener')).to.equal(true);
-                expect(slotController.isAutoBuyerEnabled('bottleCapFactory')).to.equal(true);
+            it('should not level up buildings if the global switch is disabled' + testedObject, function () {
+                resetLevelUpInitialState();
+                beerFactoryState.autoLevelUpDisabled = true;
+
+                gameState.addPlops(initialPlops);
+                gameState.buildingLevelController.addBottleCaps(initialBottleCaps);
+
+                expect(getLevelCallback()).to.equal(1);
+                expect(gameState.getPlops()).to.equal(initialPlops);
+                expect(gameState.buildingLevelController.getBottleCaps()).to.equal(initialBottleCaps);
+                expect(gameEventBusBuyBuildingSpy.callCount).to.equal(1);
             });
 
-            it('should be disabled when the local switch is disabled', function () {
-                beerFactoryState.equippedBuildings['opener'].autoBuyer = false;
-                beerFactoryState.equippedBuildings['bottleCapFactory'].autoBuyer = false;
+            it('should level up buildings if the global switch is enabled' + testedObject, function () {
+                beerFactory.state.checkAdvancedBuyControlEnable();
 
-                expect(slotController.isAutoBuyerEnabled('opener')).to.equal(false);
-                expect(slotController.isAutoBuyerEnabled('bottleCapFactory')).to.equal(false);
+                $('#buy-advanced__toggle-auto-level-up').trigger('change');
+
+                expect(getLevelCallback(), 'Auto level up didn\'t level up').to.equal(2);
+
+                expect(gameState.getPlops(), 'wrong plops').to.be.closeTo(expectedPlops, 0.1);
+                expect(getPlopsFromLabel($('#current-plops')), 'wrong plops displayed').to.be.closeTo(expectedPlops, 0.1);
+
+                expect(gameState.buildingLevelController.getBottleCaps(), 'wrong bottle caps').to.be.closeTo(expectedBottleCaps, 0.1);
+                expect(getPlopsFromLabel($('#panel-bottle-cap-factory').find('.bottle-caps-amount')), 'wrong bottle caps displayed').to.be.closeTo(expectedBottleCaps, 0.1);
+
+                expect(gameEventBusBuyBuildingSpy.callCount).to.equal(2);
+
+                const levelUp = gameEventBusBuyBuildingSpy.getCall(1).args[1];
+
+                expect(levelUp.building, 'leveled up the wrong building').to.equal(building);
+                expect(levelUp.level, 'leveled up the wrong amount').to.equal(2);
             });
 
-            const purchaseTestDataProvider = [
-                {
-                    building: 'opener',
-                    initialPlops: 25,
-                    getAmountCallback: () => gameState.getBuildingData('opener').amount,
-                    event: EVENTS.CORE.BUILDING.PURCHASED,
-                },
-                {
-                    building: 'bottleCapFactory',
-                    initialPlops: 254,
-                    getAmountCallback: () => gameState.buildingLevelController.getBottleCapFactoriesAmount(),
-                    event: EVENTS.CORE.BOTTLE_CAP.PURCHASED,
-                }
-            ];
+            it('should not level up buildings if the local switch is disabled' + testedObject, function () {
+                resetLevelUpInitialState();
+                beerFactoryState.autoLevelUpDisabled = false;
+                beerFactoryState.equippedBuildings[building].autoLevelUp = false;
 
-            purchaseTestDataProvider.forEach(({building, initialPlops, getAmountCallback, event}) => {
-                const testedObject = ` [${building}]`;
+                gameState.addPlops(initialPlops);
+                gameState.buildingLevelController.addBottleCaps(initialBottleCaps);
 
-                it('should purchase buildings if enough plops are added' + testedObject, function () {
-                    gameEventBusBuyBuildingSpy = sinon.spy();
-                    gameEventBus.on(event, gameEventBusBuyBuildingSpy);
-                    gameState.resetInitialState();
+                expect(getLevelCallback()).to.equal(1);
+                expect(gameState.getPlops()).to.equal(initialPlops);
+                expect(gameState.buildingLevelController.getBottleCaps()).to.equal(initialBottleCaps);
+                expect(gameEventBusBuyBuildingSpy.callCount).to.equal(2);
+            });
 
-                    beerFactoryState.equippedBuildings[building].autoBuyer = true;
+            it('should have a local configuration' + testedObject, function (done) {
+                // base plates must be enabled for the slot control inside the building details modal
+                beerFactoryState.materials.basePlate.enabled = true;
 
-                    gameState.addPlops(initialPlops);
+                const modal = $('#building-details-modal');
 
-                    expect(getAmountCallback()).to.equal(2);
-
-                    expect(gameState.getPlops()).to.equal(4);
-                    expect(getPlopsFromLabel($('#current-plops'))).to.equal(4);
-                });
-
-                it('should trigger the ' + event + ' event after purchasing buildings' + testedObject, function () {
-                    expect(gameEventBusBuyBuildingSpy.callCount).to.equal(1);
-
-                    const purchase = gameEventBusBuyBuildingSpy.getCall(0).args[1];
-
-                    expect(purchase.building, 'purchased the wrong building').to.equal(building);
-                    expect(purchase.amount, 'purchased the wrong amount').to.equal(2);
-                });
-
-                it('should not purchase buildings if the global switch is disabled' + testedObject, function () {
-                    gameState.resetInitialState();
-                    beerFactoryState.autoBuyerDisabled = true;
-
-                    gameState.addPlops(initialPlops);
-
-                    expect(getAmountCallback()).to.equal(0);
-                    expect(gameState.getPlops()).to.equal(initialPlops);
-                    expect(gameEventBusBuyBuildingSpy.callCount).to.equal(1);
-                });
-
-                it('should purchase buildings if the global switch is enabled' + testedObject, function () {
-                    $('#buy-advanced__toggle-auto-buyer').trigger('change');
-
-                    expect(getAmountCallback()).to.equal(2);
-
-                    expect(gameState.getPlops()).to.equal(4);
-                    expect(getPlopsFromLabel($('#current-plops'))).to.equal(4);
-                    expect(gameEventBusBuyBuildingSpy.callCount).to.equal(2);
-
-                    const purchase = gameEventBusBuyBuildingSpy.getCall(1).args[1];
-
-                    expect(purchase.building, 'purchased the wrong building').to.equal(building);
-                    expect(purchase.amount, 'purchased the wrong amount').to.equal(2);
-                });
-
-                it('should not purchase buildings if the local switch is disabled' + testedObject, function () {
-                    gameState.resetInitialState();
-                    beerFactoryState.autoBuyerDisabled = false;
-                    beerFactoryState.equippedBuildings[building].autoBuyer = false;
-
-                    gameState.addPlops(initialPlops);
-
-                    expect(getAmountCallback()).to.equal(0);
-                    expect(gameState.getPlops()).to.equal(initialPlops);
-                    expect(gameEventBusBuyBuildingSpy.callCount).to.equal(2);
-                });
-
-                it('should have a local configuration' + testedObject, function (done) {
-                    // base plates must be enabled for the slot control inside the building details modal
-                    beerFactoryState.materials.basePlate.enabled = true;
-
-                    $('#building-container-popover-' + building).trigger('click');
-
-                    const modal = $('#building-details-modal');
-
-                    modal.on('shown.bs.modal', () => {
-                        expect($('#beer-factory__toggle-auto-buyer').length, 'local toggle not present').to.equal(1);
-                        expect(
-                            modal.find('.beer-factory__slot').hasClass('beer-factory__slot--active'),
-                            'local toggle is active'
-                        ).to.equal(false);
-
-                        modal.off('shown.bs.modal');
-
-                        done();
-                    });
-                }).timeout(4000);
-
-                it('should purchase buildings if the local switch is enabled' + testedObject, function () {
-                    gameEventBusAutoBuyerSwitch = sinon.spy();
-                    gameEventBus.on(EVENTS.BEER_FACTORY.AUTO_BUYER, gameEventBusAutoBuyerSwitch);
-
-                    $('#beer-factory__toggle-auto-buyer').trigger('change');
-
-                    expect(getAmountCallback()).to.equal(2);
-
-                    expect(gameState.getPlops()).to.equal(4);
-                    expect(getPlopsFromLabel($('#current-plops'))).to.equal(4);
-                    expect(gameEventBusBuyBuildingSpy.callCount).to.equal(3);
-
-                    const purchase = gameEventBusBuyBuildingSpy.getCall(2).args[1];
-
-                    expect(purchase.building, 'purchased the wrong building').to.equal(building);
-                    expect(purchase.amount, 'purchased the wrong amount').to.equal(2);
-
+                modal.on('shown.bs.modal', () => {
+                    expect($('#beer-factory__toggle-auto-level-up').length, 'local toggle not present').to.equal(1);
                     expect(
-                        $('#building-details-modal').find('.beer-factory__slot').hasClass('beer-factory__slot--active'),
-                        'local toggle is not active'
-                    ).to.equal(true);
+                        modal.find('.beer-factory__slot').hasClass('beer-factory__slot--active'),
+                        'local toggle is active'
+                    ).to.equal(false);
+
+                    modal.off('shown.bs.modal');
+
+                    done();
                 });
 
-                it('should trigger the EVENTS.BEER_FACTORY.AUTO_BUYER event when the local switch is enabled' + testedObject, function () {
-                    expect(beerFactoryState.equippedBuildings[building].autoBuyer).to.equal(true);
-                    expect(gameEventBusAutoBuyerSwitch.callCount).to.equal(1);
-                    expect(gameEventBusAutoBuyerSwitch.getCall(0).args[1].enabled).to.equal(true);
-                    expect(gameEventBusAutoBuyerSwitch.getCall(0).args[1].building).to.equal(building);
-                });
+                $('#building-container-popover-' + building).trigger('click');
+            }).timeout(40000);
 
-                it('should trigger the EVENTS.BEER_FACTORY.AUTO_BUYER event when the local switch is disabled' + testedObject, function (done) {
-                    $('#beer-factory__toggle-auto-buyer').trigger('change');
+            it('should level up buildings if the local switch is enabled' + testedObject, function () {
+                gameEventBusAutoLevelUpSwitch = sinon.spy();
+                gameEventBus.on(EVENTS.BEER_FACTORY.AUTO_LEVEL_UP, gameEventBusAutoLevelUpSwitch);
 
-                    expect(beerFactoryState.equippedBuildings[building].autoBuyer).to.equal(false);
-                    expect(gameEventBusAutoBuyerSwitch.callCount).to.equal(2);
-                    expect(gameEventBusAutoBuyerSwitch.getCall(1).args[1].enabled).to.equal(false);
-                    expect(gameEventBusAutoBuyerSwitch.getCall(1).args[1].building).to.equal(building);
+                $('#beer-factory__toggle-auto-level-up').trigger('change');
 
-                    gameEventBus.off(event, gameEventBusBuyBuildingSpy);
-                    gameEventBus.off(EVENTS.BEER_FACTORY.AUTO_BUYER, gameEventBusAutoBuyerSwitch);
+                expect(getLevelCallback()).to.equal(2);
 
-                    beerFactoryState.equippedBuildings[building].autoBuyer = false;
+                expect(gameState.getPlops(), 'wrong plops').to.be.closeTo(expectedPlops, 0.1);
+                expect(getPlopsFromLabel($('#current-plops')), 'wrong plops displayed').to.be.closeTo(expectedPlops, 0.1);
 
-                    const modal = $('#building-details-modal');
+                expect(gameState.buildingLevelController.getBottleCaps(), 'wrong bottle caps').to.be.closeTo(expectedBottleCaps, 0.1);
+                expect(getPlopsFromLabel($('#panel-bottle-cap-factory').find('.bottle-caps-amount')), 'wrong bottle caps displayed').to.be.closeTo(expectedBottleCaps, 0.1);
 
-                    modal.modal('hide');
-                    modal.on('hidden.bs.modal', () => {
-                        modal.off('hidden.bs.modal');
-                        done();
-                    });
-                }).timeout(4000);
+                expect(gameEventBusBuyBuildingSpy.callCount).to.equal(3);
+
+                const levelUp = gameEventBusBuyBuildingSpy.getCall(2).args[1];
+
+                expect(levelUp.building, 'leveled up the wrong building').to.equal(building);
+                expect(levelUp.level, 'leveled up the wrong amount').to.equal(2);
+
+                expect(
+                    $('#building-details-modal').find('.beer-factory__slot').hasClass('beer-factory__slot--active'),
+                    'local toggle is not active'
+                ).to.equal(true);
             });
-        });*/
+
+            it('should trigger the EVENTS.BEER_FACTORY.AUTO_LEVEL_UP event when the local switch is enabled' + testedObject, function () {
+                expect(beerFactoryState.equippedBuildings[building].autoLevelUp).to.equal(true);
+                expect(gameEventBusAutoLevelUpSwitch.callCount).to.equal(1);
+                expect(gameEventBusAutoLevelUpSwitch.getCall(0).args[1].enabled).to.equal(true);
+                expect(gameEventBusAutoLevelUpSwitch.getCall(0).args[1].building).to.equal(building);
+            });
+
+            it('should trigger the EVENTS.BEER_FACTORY.AUTO_LEVEL_UP event when the local switch is disabled' + testedObject, function (done) {
+                $('#beer-factory__toggle-auto-level-up').trigger('change');
+
+                expect(beerFactoryState.equippedBuildings[building].autoLevelUp).to.equal(false);
+                expect(gameEventBusAutoLevelUpSwitch.callCount).to.equal(2);
+                expect(gameEventBusAutoLevelUpSwitch.getCall(1).args[1].enabled).to.equal(false);
+                expect(gameEventBusAutoLevelUpSwitch.getCall(1).args[1].building).to.equal(building);
+
+                gameEventBus.off(event, gameEventBusBuyBuildingSpy);
+                gameEventBus.off(EVENTS.BEER_FACTORY.AUTO_LEVEL_UP, gameEventBusAutoLevelUpSwitch);
+
+                beerFactoryState.equippedBuildings[building].autoLevelUp = false;
+
+                const modal = $('#building-details-modal');
+
+                modal.on('hidden.bs.modal', () => {
+                    modal.off('hidden.bs.modal');
+                    done();
+                });
+
+                modal.modal('hide');
+            }).timeout(4000);
+        });
+    });
+
+    after(function () {
+        beerFactoryState.equippedBuildings = {};
+    })
 });

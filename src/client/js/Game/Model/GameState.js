@@ -238,6 +238,8 @@
     GameState.prototype.popoverCallbacks = {};
     // track the currently opened building popover
     GameState.prototype.activeBuildingPopover = null;
+    // track the currently opened building details modal
+    GameState.prototype.activeBuildingDetailsModal = null;
 
     /**
      * Initialize the game state
@@ -279,12 +281,13 @@
         this.numberFormatter         = new Beerplop.NumberFormatter();
         this.flyoutText              = new Beerplop.FlyoutText();
         this.productionStatistics    = new Beerplop.ProductionStatistics(
-            new Beerplop.IndexedDB(this, this.gameEventBus)
+            new Beerplop.IndexedDB(this, this.gameEventBus),
+            this.gameEventBus,
         );
         this.buildingLevelController = new Beerplop.BuildingLevelController(
             this,
             this.gameEventBus,
-            this.productionStatistics
+            this.productionStatistics,
         );
 
         this._initBuyBuildings();
@@ -534,7 +537,7 @@
 
             this.state.buildings[building].production += production;
 
-            if (this.activeBuildingPopover === building) {
+            if (this.activeBuildingPopover === building || this.activeBuildingDetailsModal === building) {
                 $('#total-production-' + building).text(
                     this.numberFormatter.format(this.state.buildings[building].production)
                 );
@@ -574,6 +577,10 @@
 
     GameState.prototype.setActiveBuildingPopover = function (buildingKey) {
         this.activeBuildingPopover = buildingKey;
+    };
+
+    GameState.prototype.setActiveBuildingDetailsModal = function (buildingKey) {
+        this.activeBuildingDetailsModal = buildingKey;
     };
 
     GameState.prototype._initUpgradeBoosts = function () {
@@ -1476,7 +1483,15 @@
      */
     GameState.prototype.incBuildingLevel = function (building) {
         this.state.buildings[building].level++;
-        this.gameEventBus.emit(EVENTS.CORE.BUILDING.LEVEL_UP, [building, this.state.buildings[building].level]);
+
+        this.gameEventBus.emit(
+            EVENTS.CORE.BUILDING.LEVEL_UP,
+            {
+                building: building,
+                level:    this.state.buildings[building].level,
+            }
+        );
+
         this.recalculateAutoPlopsPerSecond();
 
         return this.state.buildings[building].level;

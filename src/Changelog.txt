@@ -1,3 +1,17 @@
+**1.65.0** - 05.12.2019
+* Added additional options to control production statistics
+    - Option to disable production statistics (#82)
+    - Option to display production graphs on a linear scale instead of logarithmic
+* Optimize loading of the save state list (#83)
+* Added basic building statistics to building details modal (#71)
+* Automatically extend production statistic graphs if a building details modal stays open
+* Bugfixes:
+    - Save state size increases (#79)
+    - NaN values in Beer Factories (#78)
+    - Building overlays don't open in Edge
+    - Modals with dynamic content don't clear their content after being closed
+    - Automatic Bottle Cap Factory level ups don't consume plops
+
 **1.64.0** - 28.11.2019
 * Remove translated labels from the save state (#47)
 * Password reset
@@ -6,10 +20,10 @@
 * Removed metadata from svg images to reduce loading overhead (#75)
 * Added additional upgrade paths to Beer Factories
 * Bugfixes:
-    * Layout of lobbyists (Beer Factory)
-    * Transport capacity doesn't update after constructing a Workers' Lodge (Beer Factory)
-    * Names disappear if input element is empty (Beer Factory, Beerwarts, Beer Bank Banker)
-    * Wrong redirect after loading a save state
+    - Layout of lobbyists (Beer Factory)
+    - Transport capacity doesn't update after constructing a Workers' Lodge (Beer Factory)
+    - Names disappear if input element is empty (Beer Factory, Beerwarts, Beer Bank Banker)
+    - Wrong redirect after loading a save state
 
 **1.62.0** - 18.11.2019
 * Added auto upgrade buyer (#39)

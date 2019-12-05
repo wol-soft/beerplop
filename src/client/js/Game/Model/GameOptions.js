@@ -7,6 +7,8 @@
 
     GameOptions.prototype.state = {
         disableFlyoutLabels:    false,
+        disableProductionStats: false,
+        productionStatsLinear:  false,
         sliderOverfading:       false,
         scientificNotation:     false,
         iftttNotifications:     false,
@@ -139,6 +141,17 @@
 
     GameOptions.prototype.hasDisabledFlyoutLabels = function () {
         return this.state.disableFlyoutLabels;
+    };
+
+    GameOptions.prototype.hasDisabledProductionStatistics = function () {
+        return this.state.disableProductionStats;
+    };
+
+    /**
+     * Get the Y-axis txpe for production statistics graphs
+     */
+    GameOptions.prototype.getProductionStatisticsType = function () {
+        return this.state.productionStatsLinear ? 'linear' : 'logarithmic';
     };
 
     GameOptions.prototype.allowSliderOverfading = function () {

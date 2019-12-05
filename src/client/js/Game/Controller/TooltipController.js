@@ -1,6 +1,8 @@
 (function(beerplop) {
     'use strict';
 
+    TooltipController.prototype._instance = null;
+
     TooltipController.prototype.gameState       = null;
     TooltipController.prototype.beerFactory     = null;
     TooltipController.prototype.numberFormatter = null;
@@ -11,13 +13,24 @@
      * @constructor
      */
     function TooltipController(gameState, beerFactory) {
+        if (TooltipController.prototype._instance) {
+            return TooltipController.prototype._instance;
+        }
+
         this.gameState       = gameState;
         this.beerFactory     = beerFactory;
         this.numberFormatter = new Beerplop.NumberFormatter();
 
+        TooltipController.prototype._instance = this;
+    }
+
+    /**
+     * Initialize the main building popovers
+     */
+    TooltipController.prototype.initPopover = function () {
         this._initBuildingPopover();
         this._initLevelUpTooltip();
-    }
+    };
 
     /**
      * Initialize the building information popover
@@ -25,70 +38,82 @@
      * @private
      */
     TooltipController.prototype._initBuildingPopover = function () {
-        const gameState       = this.gameState,
-              slotController  = this.beerFactory.getSlotController(),
-              numberFormatter = this.numberFormatter,
-              popoverElements = $('.building-container-popover');
+        const tooltipController = this,
+              popoverElements   = $('.building-container-popover');
 
         popoverElements.popover({
             content: function() {
-                const buildingKey        = $(this).data('buildingKey'),
-                      autoBuyerEnabled   = slotController.isAutoBuyerEnabled(buildingKey, false),
-                      autoLevelUpEnabled = slotController.isAutoLevelUpEnabled(buildingKey, false);
+                const buildingKey = $(this).data('buildingKey');
 
-                gameState.setActiveBuildingPopover(buildingKey);
+                tooltipController.gameState.setActiveBuildingPopover(buildingKey);
 
-                let data = {};
-                if (buildingKey !== 'bottleCapFactory') {
-                    const buildingData   = gameState.getBuildingData(buildingKey),
-                          buildingAmount = gameState.getBuildingProduction(buildingKey, buildingData),
-                          specialInfo    = gameState.resolvePopoverCallback(buildingKey);
-
-                    data = {
-                        showBuildingStats: true,
-                        specialInfo:       specialInfo,
-                        owned:             numberFormatter.formatInt(buildingData.amount),
-                        level:             buildingData.level,
-                        production:        numberFormatter.format(buildingAmount),
-                        productionEach:    numberFormatter.format(
-                            buildingData.amount > 0
-                                ? gameState.getBuildingProductionPerBuilding(buildingKey, buildingData) * gameState.getExternalAutoPlopsMultiplier()
-                                : 0
-                        ),
-                        totalProduction: numberFormatter.format(buildingData.production),
-                        percentage:      numberFormatter.format(
-                            buildingAmount > 0 ? buildingAmount / gameState.getAutoPlopsPerSecond() * 100 : 0
-                        ),
-                    };
-                }
-
-                return Mustache.render(
-                    TemplateStorage.get('building-popover-template'),
-                    $.extend(
-                        data,
-                        {
-                            buildingKey:     buildingKey,
-                            description:     translator.translate(`building.${buildingKey}.description`),
-                            slotsEnabled:    slotController.buildingSlotsEnabled(),
-                            slots:           slotController.getSlotsForBuilding(buildingKey).map(function (slot) {
-                                return {
-                                    key:               slot !== null ? slot.equip : 'empty',
-                                    underConstruction: slot !== null && slot.state === EQUIPMENT_STATE__UNDER_CONSTRUCTION,
-                                    active:            slot !== null && slot.state === EQUIPMENT_STATE__FINISHED && (
-                                            (slot.equip === EQUIPMENT_ITEM__DIASTATIC && autoBuyerEnabled) ||
-                                            (slot.equip === EQUIPMENT_ITEM__AMYLASE && autoLevelUpEnabled)
-                                        )
-                                };
-                            }),
-                        }
-                    )
-                );
+                return tooltipController.renderBuildingTooltip(buildingKey);
             }
         });
 
-        popoverElements.on('hide.bs.popover', function () {
-            gameState.setActiveBuildingPopover(null);
-        })
+        popoverElements.on('hide.bs.popover', () => this.gameState.setActiveBuildingPopover(null));
+    };
+
+    /**
+     * Render the tooltip content for the given building key
+     *
+     * @param {string}  buildingKey
+     * @param {boolean} displaySlots
+     *
+     * @return {string}
+     */
+    TooltipController.prototype.renderBuildingTooltip = function (buildingKey, displaySlots = true) {
+        const autoBuyerEnabled   = this.beerFactory.getSlotController().isAutoBuyerEnabled(buildingKey, false),
+              autoLevelUpEnabled = this.beerFactory.getSlotController().isAutoLevelUpEnabled(buildingKey, false);
+
+        let data = {};
+
+        if (buildingKey !== 'bottleCapFactory') {
+            const buildingData   = this.gameState.getBuildingData(buildingKey),
+                  buildingAmount = this.gameState.getBuildingProduction(buildingKey, buildingData),
+                  specialInfo    = this.gameState.resolvePopoverCallback(buildingKey);
+
+            data = {
+                showBuildingStats: true,
+                specialInfo:       specialInfo,
+                owned:             this.numberFormatter.formatInt(buildingData.amount),
+                level:             buildingData.level,
+                production:        this.numberFormatter.format(buildingAmount),
+                productionEach:    this.numberFormatter.format(
+                    buildingData.amount > 0
+                        ? this.gameState.getBuildingProductionPerBuilding(buildingKey, buildingData)
+                            * this.gameState.getExternalAutoPlopsMultiplier()
+                        : 0
+                ),
+                totalProduction: this.numberFormatter.format(buildingData.production),
+                percentage:      this.numberFormatter.format(
+                    buildingAmount > 0 ? buildingAmount / this.gameState.getAutoPlopsPerSecond() * 100 : 0
+                ),
+            };
+        }
+
+        return Mustache.render(
+            TemplateStorage.get('building-popover-template'),
+            $.extend(
+                data,
+                {
+                    buildingKey:     buildingKey,
+                    description:     translator.translate(`building.${buildingKey}.description`),
+                    slotsEnabled:    this.beerFactory.getSlotController().buildingSlotsEnabled() && displaySlots,
+                    slots:           this.beerFactory.getSlotController().getSlotsForBuilding(buildingKey)
+                        .map(function (slot) {
+                            return {
+                                key:               slot !== null ? slot.equip : 'empty',
+                                underConstruction: slot !== null && slot.state === EQUIPMENT_STATE__UNDER_CONSTRUCTION,
+                                active:            slot !== null && slot.state === EQUIPMENT_STATE__FINISHED && (
+                                    (slot.equip === EQUIPMENT_ITEM__DIASTATIC && autoBuyerEnabled) ||
+                                    (slot.equip === EQUIPMENT_ITEM__AMYLASE && autoLevelUpEnabled)
+                                )
+                            };
+                        }),
+                }
+            )
+        );
     };
 
     /**

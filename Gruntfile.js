@@ -38,6 +38,8 @@ module.exports = function(grunt) {
                     'node_modules/highcharts/highcharts-more.js',
                     'node_modules/highcharts/modules/sankey.js',
                     'node_modules/chance/dist/chance.min.js',
+                    // TODO: Edge doesn't support the indexedDB getAll method yet...
+                    'node_modules/indexeddb-getall-shim/IndexedDB-getAll-shim.js'
                 ],
                 dest: 'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>-deferred.min.js'
             },

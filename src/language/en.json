@@ -95,6 +95,8 @@
     "issues": "Report an issue",
     "options": "Options",
     "options.disableFlyoutLabels": "Disable flyout labels",
+    "options.disableProductionStats": "Disable production statistic graphs",
+    "options.productionStatsLinear": "Show production statistic graphs linear (by default the graphs are logarithmic)",
     "options.sliderOverfading": "Automatically lower other investment slider if raising total investment over 100% (affects Beer Bank and Research project investments)",
     "options.scientificNotation": "Use scientific notation (changing this option will trigger a page reload)",
     "options.iftttNotifications": "Receive notifications in Telegram via IFTTT (requires a Telegram and an IFTTT account)",

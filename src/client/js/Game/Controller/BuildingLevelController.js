@@ -191,8 +191,10 @@
             this.slotController.isAutoLevelUpEnabled('bottleCapFactory')
         ) {
             do {
-                this._addLevel();
-                this._incAutoLevelUps();
+                if (this.gameState.removePlops(this.getCostsForNextBottleCapFactoryLevel())) {
+                    this._addLevel();
+                    this._incAutoLevelUps();
+                }
             } while (this._checkBottleCapFactoryLevelUpButton());
         }
     };
@@ -299,7 +301,14 @@
 
         this._checkBottleCapFactoryLevelUpButton();
 
-        this.gameEventBus.emit(EVENTS.CORE.BUILDING.LEVEL_UP, ['bottleCapFactory', this.state.level]);
+        this.gameEventBus.emit(
+            EVENTS.CORE.BUILDING.LEVEL_UP,
+            {
+                building: 'bottleCapFactory',
+                level:    this.state.level,
+            }
+        );
+
         this.gameEventBus.emit(
             EVENTS.CORE.BOTTLE_CAP.PRODUCTION_UPDATED,
             ComposedValueRegistry

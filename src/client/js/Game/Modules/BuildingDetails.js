@@ -4,8 +4,11 @@
     BuildingDetails.prototype.building        = null;
     BuildingDetails.prototype.numberFormatter = null;
     BuildingDetails.prototype.gameEventBus    = null;
+    BuildingDetails.prototype.gameState       = null;
+    BuildingDetails.prototype.gameOptions     = null;
 
     BuildingDetails.prototype.deleteGraphSemaphore = false;
+    BuildingDetails.prototype.charts               = [];
 
     /**
      * Initialize the overlay controller
@@ -16,15 +19,20 @@
         this.building        = building;
         this.numberFormatter = new Beerplop.NumberFormatter();
         this.gameEventBus    = new Beerplop.GameEventBus();
+        this.gameState       = new Beerplop.GameState();
+        this.gameOptions     = new Beerplop.GameOptions();
 
         this._renderBuildingDetailsModal();
+        this.gameState.setActiveBuildingDetailsModal(building);
     }
 
     BuildingDetails.prototype._renderBuildingDetailsModal = function () {
-        const slotController     = new Minigames.BeerFactory().getSlotController(),
+        const modal              = $('#building-details-modal'),
+              slotController     = new Minigames.BeerFactory().getSlotController(),
               beerCloner         = new BuildingMinigames.BeerCloner(),
               autoBuyerEnabled   = slotController.isAutoBuyerEnabled(this.building, false),
               autoLevelUpEnabled = slotController.isAutoLevelUpEnabled(this.building, false),
+              productionStats    = !this.gameOptions.hasDisabledProductionStatistics(),
               buildings          = ['total', 'bottleCapFactory', ...(new Beerplop.GameState()).getBuildings()];
 
         let index = 0;
@@ -35,8 +43,13 @@
                 TemplateStorage.get('building-details-modal__body-template'),
                 {
                     // base data
-                    key:          this.building,
-                    building:     translator.translate('building.' + this.building + '.plural'),
+                    key:                  this.building,
+                    building:             translator.translate('building.' + this.building + '.plural'),
+                    productionStatistics: productionStats,
+                    baseStats:            this.building !== 'total'
+                        ? new Beerplop.TooltipController().renderBuildingTooltip(this.building, false)
+                        : '',
+
                     // fast switch data
                     buildings:    buildings,
                     lastBuilding: buildings[buildings.indexOf(this.building) - 1],
@@ -79,17 +92,39 @@
 
         $('#beer-cloner__auto-cloning__priority').val(beerCloner.getAutoCloningPriority(this.building));
 
-        (new Beerplop.ProductionStatistics()).getBuildingStats(this.building).then((function (buildingStatistics) {
-            let charts = [];
+        if (productionStats) {
+            this._initProductionStatisticGraphs();
+        } else {
+            modal.modal('show');
+        }
 
+        this._initEventListener(slotController);
+
+        modal.off('hidden.bs.modal.resetActiveModal');
+        modal.on('hidden.bs.modal.resetActiveModal', () => {
+            this.gameState.setActiveBuildingDetailsModal(null);
+        });
+    };
+
+    /**
+     * Initialize the production statistic graphs
+     *
+     * @private
+     */
+    BuildingDetails.prototype._initProductionStatisticGraphs = function () {
+        (new Beerplop.ProductionStatistics()).getBuildingStats(this.building).then((function (buildingStatistics) {
             if (buildingStatistics === null) {
                 $('#building-details-modal__graph__total-production').text(translator.translate('stats.noData'));
                 $('#building-details-modal__graph__production-per-second').text(translator.translate('stats.noData'));
                 $('#building-details-modal__graph__owned').text(translator.translate('stats.noData'));
             } else {
-                const numberFormatter = this.numberFormatter;
+                const numberFormatter     = this.numberFormatter,
+                      productionGraphType = this.gameOptions.getProductionStatisticsType();
 
-                charts.push(
+                // reset the internal charts array for correct indices when adding new data points
+                this.charts = [];
+
+                this.charts.push(
                     this._renderProductionGraph(
                         'building-details-modal__graph__total-production',
                         buildingStatistics.total,
@@ -103,11 +138,12 @@
                                     __PLOPS__: numberFormatter.format(this.y),
                                 }
                             );
-                        }
+                        },
+                        productionGraphType
                     )
                 );
 
-                charts.push(
+                this.charts.push(
                     this._renderProductionGraph(
                         'building-details-modal__graph__production-per-second',
                         buildingStatistics.perSecond,
@@ -121,11 +157,12 @@
                                     __PLOPS__: numberFormatter.format(this.y),
                                 }
                             );
-                        }
+                        },
+                        productionGraphType
                     )
                 );
 
-                charts.push(
+                this.charts.push(
                     this._renderProductionGraph(
                         'building-details-modal__graph__owned',
                         buildingStatistics.owned,
@@ -140,7 +177,16 @@
                 );
             }
 
-            const modal = $('#building-details-modal');
+            const modal           = $('#building-details-modal'),
+                  statisticsEvent = EVENTS.CORE.STATISTIC_SNAPSHOT + '.buildingDetailsChart';
+
+            this.gameEventBus.on(statisticsEvent, (function (event, building, snapshot) {
+                if (building === this.building) {
+                    this._addDataPoint(0, [snapshot.timestamp, snapshot.total]);
+                    this._addDataPoint(1, [snapshot.timestamp, snapshot.perSecond]);
+                    this._addDataPoint(2, [snapshot.timestamp, snapshot.owned]);
+                }
+            }).bind(this));
 
             modal.modal('show');
             modal.off('hidden.bs.modal.clearChart');
@@ -150,15 +196,18 @@
                     return;
                 }
 
-                $.each(charts, (function (index, chart) {
+                this.gameEventBus.off(statisticsEvent);
+                $.each(this.charts, (function (index, chart) {
                     if (chart) {
-                        charts[index] = chart.destroy();
+                        this.charts[index] = chart.destroy();
                     }
                 }).bind(this));
             }).bind(this));
         }).bind(this));
+    };
 
-        this._initEventListener(slotController);
+    BuildingDetails.prototype._addDataPoint = function (chart, value) {
+        this.charts[chart].series[0].addPoint(value);
     };
 
     BuildingDetails.prototype._initEventListener = function (slotController) {

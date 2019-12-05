@@ -62,6 +62,7 @@ describe('Auto Buyer', function () {
         it('should be disabled when the global switch is disabled', function () {
             gameState.resetInitialState();
             gameEventBus.on(EVENTS.CORE.BUILDING.PURCHASED, gameEventBusBuyBuildingSpy);
+            beerFactoryState.autoBuyerDisabled = true;
 
             expect(slotController.isAutoBuyerEnabled('opener')).to.equal(false);
         });
@@ -188,6 +189,8 @@ describe('Auto Buyer', function () {
             });
 
             it('should purchase buildings if the global switch is enabled' + testedObject, function () {
+                beerFactory.state.checkAdvancedBuyControlEnable();
+
                 $('#buy-advanced__toggle-auto-buyer').trigger('change');
 
                 expect(getAmountCallback()).to.equal(2);
@@ -218,8 +221,6 @@ describe('Auto Buyer', function () {
                 // base plates must be enabled for the slot control inside the building details modal
                 beerFactoryState.materials.basePlate.enabled = true;
 
-                $('#building-container-popover-' + building).trigger('click');
-
                 const modal = $('#building-details-modal');
 
                 modal.on('shown.bs.modal', () => {
@@ -233,6 +234,8 @@ describe('Auto Buyer', function () {
 
                     done();
                 });
+
+                $('#building-container-popover-' + building).trigger('click');
             }).timeout(4000);
 
             it('should purchase buildings if the local switch is enabled' + testedObject, function () {
@@ -280,11 +283,12 @@ describe('Auto Buyer', function () {
 
                 const modal = $('#building-details-modal');
 
-                modal.modal('hide');
                 modal.on('hidden.bs.modal', () => {
                     modal.off('hidden.bs.modal');
                     done();
                 });
+
+                modal.modal('hide');
             }).timeout(4000);
         });
     });

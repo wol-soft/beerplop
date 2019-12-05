@@ -1,5 +1,5 @@
 <div id="game-options-modal" class="modal fade" role="dialog" tabindex="-1">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">{{ translator.translate('options') }}</h4>
@@ -10,7 +10,14 @@
 
       <div class="modal-body">
         {% include '/View/Modules/option-list.twig' with {
-            'options' : ['disableFlyoutLabels', 'sliderOverfading', 'scientificNotation', 'iftttNotifications']
+            'options' : [
+              'disableFlyoutLabels',
+              'disableProductionStats',
+              'productionStatsLinear',
+              'sliderOverfading',
+              'scientificNotation',
+              'iftttNotifications'
+            ]
           }
         %}
 

@@ -16,11 +16,17 @@ const EXTENSION_TYPE__PROXY = 2;
 const EXTENSION_PRODUCTION__DIRECT = 1;
 const EXTENSION_PRODUCTION__PROJECT = 2;
 
+// +15% production
 const EQUIPMENT_ITEM__HYDROLYSIS   = 'hydrolysis';
+// +30% production
 const EQUIPMENT_ITEM__FERMENTATION = 'fermentation';
+// building boosts last longer
 const EQUIPMENT_ITEM__DEGRADATION  = 'degradation';
+// boost each other building
 const EQUIPMENT_ITEM__CARBONATION  = 'carbonation';
+// auto buyer
 const EQUIPMENT_ITEM__DIASTATIC    = 'diastatic';
+// auto level up
 const EQUIPMENT_ITEM__AMYLASE      = 'amylase';
 
 const MATERIAL_STORAGE_DIVIDENT = {
