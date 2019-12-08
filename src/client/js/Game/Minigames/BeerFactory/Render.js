@@ -123,18 +123,19 @@
                     .map((function createQueueItemList(item, id) {
                         const progress = item.deliveredItems / item.requiredItems * 100;
                         return $.extend(
-                            {
-                                details: item.action === BUILD_QUEUE__UPGRADE
-                                    ? '<i>' + translator.translate(`beerFactory.upgrade.${item.item.factory}.${item.item.upgrade}.${item.item.level}.effect`) + '</i>'
-                                    : false
-                            },
+                            // start with an empty object to avoid modifications of the item object! (compare issue #78)
+                            {},
                             item,
                             {
                                 id:                id,
+                                label:             this.buildQueue.getQueueJobLabel(item.action, item.item),
                                 progress:          progress,
                                 collapsed:         !!item.collapsed,
                                 formattedProgress: this.numberFormatter.format(Math.min(progress, 99.9)),
                                 running:           this.numberFormatter.formatTimeSpan(now - item.startedAt, true),
+                                details:           item.action === BUILD_QUEUE__UPGRADE
+                                    ? '<i>' + translator.translate(`beerFactory.upgrade.${item.item.factory}.${item.item.upgrade}.${item.item.level}.effect`) + '</i>'
+                                    : false,
                                 materials:         item.materials.map((function createQueueItemRequiredMaterialsList(material) {
                                     const completed = material.delivered >= material.required;
 

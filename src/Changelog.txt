@@ -1,3 +1,9 @@
+**1.66.0**
+* Remove translated labels from the save state (#47)
+* Update to Twig 3.0
+* Bugfixes:
+    - Recursion without break condition for build automation
+
 **1.65.0** - 05.12.2019
 * Added additional options to control production statistics
     - Option to disable production statistics (#82)

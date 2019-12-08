@@ -173,6 +173,13 @@
 
                 return saveState;
             },
+            '1.66.0': saveState => {
+                $.each(saveState.BeerFactory.buildQueue, function (index, item) {
+                    delete item.label;
+                });
+
+                return saveState;
+            }
         };
     };
 
