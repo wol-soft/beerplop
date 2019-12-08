@@ -55,6 +55,7 @@ const EVENTS = {
     },
     BEER_FACTORY: {
         QUEUE: {
+            ADDED: 'beerplop.beer-factory.queue.added',
             FINISHED: 'beerplop.beer-factory.queue.finished',
             MATERIAL_FINISHED: 'beerplop.beer-factory.queue.material-finished',
         },

@@ -164,6 +164,7 @@
         }) - 1;
 
         this._addedJobToQueue(action, item);
+        this.gameEventBus.emit(EVENTS.BEER_FACTORY.QUEUE.ADDED, queueItemId);
 
         // don't update the UI for a hidden job
         if (hiddenJob) {
