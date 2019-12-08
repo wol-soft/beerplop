@@ -174,9 +174,13 @@
                 return saveState;
             },
             '1.66.0': saveState => {
-                $.each(saveState.BeerFactory.buildQueue, function (index, item) {
-                    delete item.label;
-                });
+                try {
+                    $.each(saveState.BeerFactory.buildQueue, function (index, item) {
+                        delete item.label;
+                    });
+                } catch (e) {
+                    console.log(e);
+                }
 
                 return saveState;
             }
