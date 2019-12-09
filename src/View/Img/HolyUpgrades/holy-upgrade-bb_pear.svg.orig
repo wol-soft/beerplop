@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="40mm"
+   height="40mm"
+   viewBox="0 0 40 40"
+   version="1.1"
+   id="svg3150">
+  <defs
+     id="defs18" />
+<<<<<<< HEAD
+  <metadata
+     id="metadata3147">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
+  <g
+     id="layer1"
+     transform="translate(0,-257)">
+    <g
+       id="bb_pear"
+       class="holy-upgrade-item">
+      <g
+         id="g4595-1-1-9-1-3"
+         transform="matrix(0.3783058,0,0,0.3783058,-89.797344,125.08657)">
+        <circle
+           id="path3771-7-6-7-8-5"
+           style="fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           r="48.061165"
+           cy="401.30939"
+           cx="290.28085" />
+        <circle
+           id="path3771-4-2-4-03-1-2"
+           class="holy-upgrade-identifier"
+           style="fill:none;stroke-width:5.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           cy="401.5625"
+           cx="290.23438"
+           r="52.867283" />
+      </g>
+      <g
+         id="beer-blender-pear"
+         transform="matrix(0.79578579,0,0,0.77032204,4.0523757,63.33407)">
+        <path
+           id="path4550"
+           d="m 21.652762,267.53471 c 0.617713,-3.00323 1.898129,-5.78775 3.113331,-7.40173 1.210654,-1.60793 3.681501,-1.60793 3.681501,-1.60793 0,0 -0.617711,3.00322 -2.470847,6.00643 -1.235424,1.50161 -1.235424,1.50161 -4.323985,3.00323 z"
+           style="fill:#5e7500;fill-opacity:1;stroke:none;stroke-width:0.19262013px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        <path
+           id="path4550-5"
+           d="m 21.652762,267.53471 c 0.617713,-3.00323 2.506512,-2.82987 3.721715,-4.44385 1.210653,-1.60796 3.073117,-4.56581 3.073117,-4.56581 0,0 -0.617711,3.00322 -2.470847,6.00643 -1.235424,1.50161 -1.235424,1.50161 -4.323985,3.00323 z"
+           style="fill:#2c3700;fill-opacity:1;stroke:none;stroke-width:0.19262013px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        <path
+           id="path4544"
+           d="m 20.540881,267.53471 c 0,-2.4884 -1.111881,-6.22097 -2.223763,-7.46515 1.334259,0.49766 1.334259,0.49766 2.223763,0 1.111881,2.48838 1.111881,7.46515 1.111881,7.46515"
+           style="fill:#803300;stroke:none;stroke-width:0.23523565px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        <path
+           id="path836"
+           d="m 8.5219696,287.72667 c 0.087307,5.12072 3.6180274,6.4078 7.1919334,6.41705 3.838638,0.0101 4.129847,-1.11247 4.129847,-1.11247 0,0 1.394263,1.14919 5.100535,1.11243 3.706105,-0.0367 7.209583,-1.2963 7.3243,-6.27915 0.121359,-5.27137 -4.68802,-7.88653 -4.721084,-10.34266 -0.08824,-6.55496 0.900097,-11.70331 -6.51245,-10.41622 -6.177121,-1.28709 -7.65963,3.86126 -7.65963,9.00961 0,3.86126 -4.9416956,6.43543 -4.8534514,11.61141 z"
+           style="fill:#ffcc00;stroke:none;stroke-width:0.25219813px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        <ellipse
+           transform="matrix(-0.54012002,-0.841588,0.8874407,-0.46092191,0,0)"
+           ry="2.7899499"
+           rx="4.7638426"
+           cy="-145.77386"
+           cx="-263.46793"
+           id="path838"
+           style="fill:#ffdd55;fill-opacity:1;stroke-width:0.2173855" />
+        <ellipse
+           cx="-263.92532"
+           cy="-146.85799"
+           rx="2.3516507"
+           ry="1.0486803"
+           transform="matrix(-0.54012002,-0.841588,0.8874407,-0.46092191,0,0)"
+           id="path838-9"
+           style="fill:#fff6d5;fill-opacity:1;stroke-width:0.2173855" />
+      </g>
+    </g>
+  </g>
+</svg>
