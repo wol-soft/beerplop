@@ -14,7 +14,8 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@master
       with:
-        php-version: '7.3'
+        php-version: '7.4'
+        extension-csv: mbstring
     - name: install composer dependencies
       run: composer install
     - name: Setup node
@@ -27,6 +28,17 @@ jobs:
       run: npm install -g sass
     - name: build dist files
       run: grunt build
+
+    - name: Start the stack
+      run: |
+        docker-compose up --build -d apache
+        docker-compose logs
+        docker ps
+
+    - name: Execute tests
+      run: |
+        node tests/bootstrap.js --delay=30000
+        docker-compose logs
 
     - name: remove dev npm dependencies
       if: startsWith(github.ref, 'refs/tags/')

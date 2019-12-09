@@ -112,7 +112,12 @@ class SaveStateController extends Controller
         }
 
         return (new JSONResponse())
-            ->setData((new SaveStateCollection($this->app->getUser()->getId()))->toArray());
+            ->setData(
+                array_map(
+                    fn ($state) => ['id' => $state['id'], 'title' => $state['title'], 'modified' => $state['modified']],
+                    (new SaveStateCollection($this->app->getUser()->getId()))->toArray()
+                )
+            );
     }
 
     /**

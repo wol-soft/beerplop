@@ -2,7 +2,6 @@ FROM node:12
 
 WORKDIR /var/www/beerplop/
 
-RUN npm install -g grunt \
-    && npm install -g sass \
+RUN npm install -g grunt-cli grunt sass \
     && apt-get update \
     && apt-get install ruby -y \

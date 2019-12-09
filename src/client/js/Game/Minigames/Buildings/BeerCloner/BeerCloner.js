@@ -236,7 +236,7 @@
 
         $('#beer-cloner__building-cloning__toggle-auto-cloning').on(
             'change',
-            (event) => {
+            event => {
                 this.state.autoCloning = $(event.target).is(':checked');
                 this._checkAutoCloning();
             }
@@ -285,18 +285,18 @@
         this.autoCloneSemaphore = true;
 
         const defaultPriority = {};
-        this.gameState.getBuildings().forEach((building) => defaultPriority[building] = 1);
+        this.gameState.getBuildings().forEach(building => defaultPriority[building] = 1);
 
         let cloned = false;
 
         // combine the default priorities with the configured priorities.
         Object.entries(Object.assign(defaultPriority, this.state.priority))
             // filter out disabled auto cloning buildings
-            .filter((priority) => priority[1] > 0)
+            .filter(priority => priority[1] > 0)
             // the highest priority shall be checked first
             .sort((a, b) => a[1] < b[1] ? 1 : -1)
             // try to find a building to auto clone
-            .some((priority) => {
+            .some(priority => {
                 let [building] = priority;
 
                 if (!cloned
@@ -474,7 +474,7 @@
 
         return (this.isBuildingCloned(building) && this.state.cloning[building].length > 1)
             ? `${percentage} (${this.state.cloning[building].map(
-                    (since) => this.numberFormatter.formatFraction(this._getMultiplier(now, i++, since) * 100, 3) + '%'
+                    since => this.numberFormatter.formatFraction(this._getMultiplier(now, i++, since) * 100, 3) + '%'
                 ).join(', ')})`
             : percentage;
     };

@@ -1,15 +1,8 @@
 
-let TESTMODE            = false,
-    applicationLanguage = 'en',
-    Beerplop            = {
-        version: null
-    },
-    translator          = null;
-
 (function($, Beerplop){})(jQuery, Beerplop);
 
 $(async function() {
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
     while (!window.onGameJsLoaded) {
         await sleep(10);
     }
@@ -86,13 +79,15 @@ $(async function() {
         'beerplop'
     );
 
-    $('.modal__dynamic-content').on('hidden.bs.modal', (event) => {
-        const element = $(event.target);
+    assetPromises['modals'].then(
+        () => $('.modal__dynamic-content').on('hidden.bs.modal', event => {
+            const element = $(event.target);
 
-        if (element.hasClass('modal__dynamic-content__lock')) {
-            return;
-        }
+            if (element.hasClass('modal__dynamic-content__lock')) {
+                return;
+            }
 
-        element.find('.modal-body').html('');
-    });
+            element.find('.modal-body').html('');
+        })
+    );
 });

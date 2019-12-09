@@ -7,6 +7,8 @@
 
     GameOptions.prototype.state = {
         disableFlyoutLabels:    false,
+        disableProductionStats: false,
+        productionStatsLinear:  false,
         sliderOverfading:       false,
         scientificNotation:     false,
         iftttNotifications:     false,
@@ -56,7 +58,7 @@
 
         this.gameEventBus.on(EVENTS.CORE.INITIALIZED.GAME, this._setCheckboxState.bind(this));
 
-        (new Beerplop.Notification()).updateAuthorized((authorized) => {
+        (new Beerplop.Notification()).updateAuthorized(authorized => {
             if (authorized) {
                 $('.ifttt-toggle').toggleClass('d-none');
             }
@@ -79,7 +81,7 @@
 
             window.open('https://ifttt.com/applets/BSHJAWiz-beerplop-telegram', '_blank');
             this.pollIFTTTAuthorization = window.setInterval(
-                () => (new Beerplop.Notification()).updateAuthorized((authorized) => {
+                () => (new Beerplop.Notification()).updateAuthorized(authorized => {
                     if (authorized) {
                         $('.ifttt-toggle').toggleClass('d-none');
                         window.clearInterval(this.pollIFTTTAuthorization);
@@ -139,6 +141,17 @@
 
     GameOptions.prototype.hasDisabledFlyoutLabels = function () {
         return this.state.disableFlyoutLabels;
+    };
+
+    GameOptions.prototype.hasDisabledProductionStatistics = function () {
+        return this.state.disableProductionStats;
+    };
+
+    /**
+     * Get the Y-axis txpe for production statistics graphs
+     */
+    GameOptions.prototype.getProductionStatisticsType = function () {
+        return this.state.productionStatsLinear ? 'linear' : 'logarithmic';
     };
 
     GameOptions.prototype.allowSliderOverfading = function () {

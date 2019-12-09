@@ -244,6 +244,7 @@
         // the global settings to en/disable buy automation
         autoBuyerDisabled: false,
         autoLevelUpDisabled: false,
+        autoUpgradeDisabled: false,
     };
 
     State.prototype.gameState        = null;
@@ -306,21 +307,20 @@
         this.state = $.extend(true, {}, this.initialState, loadedState);
 
         $.each(this.state.buildQueue, function (id, item) {
-            // TODO: remove || null, release 1.14
-            item.startedAt = new Date(item.startedAt || null);
+            item.startedAt = new Date(item.startedAt);
         });
 
         this.checkAdvancedBuyControlEnable();
     };
 
     /**
-     * Check if slots are equipped which enable the advanced buy control
-     *
-     * @private
+     * Update the advanced buy control UI. UI must be visible if either slots are equipped with auto buyer or
+     * auto level up or the user has unlocked auto upgrades.
      */
     State.prototype.checkAdvancedBuyControlEnable = function () {
         let hasAutoBuyer   = false,
-            hasAutoLevelUp = false;
+            hasAutoLevelUp = false,
+            hasAutoUpgrade = this.getFactory('academy').upgrades.explore >= 9;
 
         $.each(this.state.equippedBuildings, function (index, building) {
             $.each(building.slots, function (index, slot) {
@@ -341,42 +341,62 @@
 
         $('.buy-control__advanced--auto-buyer').toggleClass('d-none', !hasAutoBuyer);
         $('.buy-control__advanced--auto-level-up').toggleClass('d-none', !hasAutoLevelUp);
-        $('.buy-control__advanced').toggleClass('d-none', !hasAutoBuyer && !hasAutoLevelUp);
+        $('.buy-control__advanced--auto-upgrade').toggleClass('d-none', !hasAutoUpgrade);
+        $('#buy-control__advanced-control-toggle').toggleClass(
+            'd-none',
+            !hasAutoBuyer && !hasAutoLevelUp && !hasAutoUpgrade
+        );
 
-        const advancedBuyAutoBuyer   = $('#buy-advanced__toggle-auto-buyer'),
-              advancedBuyAutoLevelUp = $('#buy-advanced__toggle-auto-level-up');
+        this._enableAdvancedBuyControlEventListener(
+            '#buy-advanced__toggle-auto-buyer',
+            'autoBuyerDisabled',
+            EVENTS.BEER_FACTORY.AUTO_BUYER,
+        );
 
-        advancedBuyAutoBuyer.off('change');
-        advancedBuyAutoBuyer.on('change', (function () {
-            this.state.autoBuyerDisabled = !this.state.autoBuyerDisabled;
+        this._enableAdvancedBuyControlEventListener(
+            '#buy-advanced__toggle-auto-level-up',
+            'autoLevelUpDisabled',
+            EVENTS.BEER_FACTORY.AUTO_LEVEL_UP,
+        );
+
+        this._enableAdvancedBuyControlEventListener(
+            '#buy-advanced__toggle-auto-upgrade',
+            'autoUpgradeDisabled',
+            EVENTS.BEER_FACTORY.AUTO_UPGRADE,
+        );
+    };
+
+    /**
+     * Add event listener to an advanced buy control input element
+     *
+     * @param {string} id    The ID of the input element
+     * @param {string} field The field inside the state holding the current state of the input element
+     * @param {string} event Event to trigger on a value change
+     *
+     * @private
+     */
+    State.prototype._enableAdvancedBuyControlEventListener = function (id, field, event) {
+        const advancedBuyElement = $(id);
+
+        advancedBuyElement.off('change');
+        advancedBuyElement.on('change', (function () {
+            this.state[field] = !this.state[field];
             this.gameEventBus.emit(
-                EVENTS.BEER_FACTORY.AUTO_BUYER,
+                event,
                 {
                     building: 'global',
-                    enabled:  !this.state.autoBuyerDisabled
+                    enabled:  !this.state[field]
                 }
             );
         }).bind(this));
 
-        if (this.state.autoBuyerDisabled) {
-            advancedBuyAutoBuyer.prop('checked', true);
+        if (this.state[field]) {
+            advancedBuyElement.prop('checked', true);
         }
+    };
 
-        advancedBuyAutoLevelUp.off('change');
-        advancedBuyAutoLevelUp.on('change', (function () {
-            this.state.autoLevelUpDisabled = !this.state.autoLevelUpDisabled;
-            this.gameEventBus.emit(
-                EVENTS.BEER_FACTORY.AUTO_LEVEL_UP,
-                {
-                    building: 'global',
-                    enabled:  !this.state.autoLevelUpDisabled
-                }
-            );
-        }).bind(this));
-
-        if (this.state.autoLevelUpDisabled) {
-            advancedBuyAutoLevelUp.prop('checked', true);
-        }
+    State.prototype.isAutoUpgradingEnabled = function () {
+        return this.getFactory('academy').upgrades.explore >= 9 && !this.state.autoUpgradeDisabled;
     };
 
     State.prototype.getBuildQueue = function () {

@@ -44,6 +44,7 @@
         autoBuyerBuildings: 0,
         manualClicks: 0,
         manualPlops: 0,
+        manualPurchase: false,
         autoPlopsPerSecond: 0,
         buffAutoPlopsMultiplier: 0,
         upgradeAutoPlopsMultiplier: 1,
@@ -237,6 +238,8 @@
     GameState.prototype.popoverCallbacks = {};
     // track the currently opened building popover
     GameState.prototype.activeBuildingPopover = null;
+    // track the currently opened building details modal
+    GameState.prototype.activeBuildingDetailsModal = null;
 
     /**
      * Initialize the game state
@@ -258,6 +261,12 @@
                 return this._minifyState();
             }.bind(this)),
             (function setGameStateData(loadedData) {
+                // TODO: remove code, prevent easy achievement reaching by sacrificing after updating to latest version
+                // (1.62.0)
+                if (typeof loadedData.manualPurchase === 'undefined') {
+                    loadedData.manualPurchase = true;
+                }
+
                 this.state = $.extend(true, {}, this.initialState, loadedData);
 
                 this._initUpgradeBoosts();
@@ -272,12 +281,13 @@
         this.numberFormatter         = new Beerplop.NumberFormatter();
         this.flyoutText              = new Beerplop.FlyoutText();
         this.productionStatistics    = new Beerplop.ProductionStatistics(
-            new Beerplop.IndexedDB(this, this.gameEventBus)
+            new Beerplop.IndexedDB(this, this.gameEventBus),
+            this.gameEventBus,
         );
         this.buildingLevelController = new Beerplop.BuildingLevelController(
             this,
             this.gameEventBus,
-            this.productionStatistics
+            this.productionStatistics,
         );
 
         this._initBuyBuildings();
@@ -388,7 +398,7 @@
 
             // _updateMaxAvailableBuildings triggers the auto buyer check
             (context.building === 'global' ? this.getBuildings() : [context.building]).forEach(
-                (building) => this._updateMaxAvailableBuildings(building)
+                building => this._updateMaxAvailableBuildings(building)
             );
         }).bind(this));
 
@@ -412,6 +422,12 @@
                 this.achievementController.checkAchievement(
                     this.achievementController.getAchievementStorage().achievements.special.noClick
                 );
+
+                if (!this.state.manualPurchase) {
+                    this.achievementController.checkAchievement(
+                        this.achievementController.getAchievementStorage().achievements.special.automation
+                    );
+                }
             }
 
             // reset the state except the all time plops
@@ -521,7 +537,7 @@
 
             this.state.buildings[building].production += production;
 
-            if (this.activeBuildingPopover === building) {
+            if (this.activeBuildingPopover === building || this.activeBuildingDetailsModal === building) {
                 $('#total-production-' + building).text(
                     this.numberFormatter.format(this.state.buildings[building].production)
                 );
@@ -561,6 +577,10 @@
 
     GameState.prototype.setActiveBuildingPopover = function (buildingKey) {
         this.activeBuildingPopover = buildingKey;
+    };
+
+    GameState.prototype.setActiveBuildingDetailsModal = function (buildingKey) {
+        this.activeBuildingDetailsModal = buildingKey;
     };
 
     GameState.prototype._initUpgradeBoosts = function () {
@@ -918,7 +938,7 @@
 
             if (this.removePlops(this.cache.maxBuildingsCost[building][availableAmount], false)) {
                 this.addBuildings(building, availableAmount, false);
-                this.state.autoBuyerBuildings += availableAmount;
+                this.addAutoBuyerBuildings(availableAmount);
 
                 $('#building-container-' + building).find('.fieldset-buy').prop('disabled', true);
                 $('#available-buildings-' + building).text(
@@ -927,11 +947,6 @@
 
                 this.cache.maxBuildingsAvailable[building] = 0;
                 this.autoBuySemaphore = null;
-
-                this.achievementController.checkAmountAchievement(
-                    this.achievementController.getAchievementStorage().achievements.beerFactory.slots.automation.autoBuyer.amount,
-                    this.state.autoBuyerBuildings
-                );
 
                 return;
             }
@@ -964,7 +979,21 @@
 
         return availableAmount;
     };
-    
+
+    /**
+     * Adds the given amount to the automatically purchased buildings counter
+     *
+     * @param amount
+     */
+    GameState.prototype.addAutoBuyerBuildings = function (amount) {
+        this.state.autoBuyerBuildings += amount;
+
+        this.achievementController.checkAmountAchievement(
+            this.achievementController.getAchievementStorage().achievements.beerFactory.slots.automation.autoBuyer.amount,
+            this.state.autoBuyerBuildings
+        );
+    };
+
     GameState.prototype._getMaxAvailableBuildingsFromCache = function (building, start, step) {
         for (start; start < this.cache.maxBuildingsCost[building].length; start += step) {
             if (!this.cache.maxBuildingsCost[building][start + step] ||
@@ -1310,8 +1339,8 @@
             // always keep track of the max available cache for auto buyer. First process the buildings with activated
             // auto buyer to update the purchase buttons of all other buildings with the correct remaining plop amount
             Object.keys(this.state.buildings)
-                .sort((building) => this.slotController.isAutoBuyerEnabled(building) ? -1 : 1)
-                .forEach((building) => this._updateMaxAvailableBuildings(building));
+                .sort(building => this.slotController.isAutoBuyerEnabled(building) ? -1 : 1)
+                .forEach(building => this._updateMaxAvailableBuildings(building));
 
             if (!this.isOnMaxBuyAmount) {
                 this._updateBuyButtons();
@@ -1454,7 +1483,15 @@
      */
     GameState.prototype.incBuildingLevel = function (building) {
         this.state.buildings[building].level++;
-        this.gameEventBus.emit(EVENTS.CORE.BUILDING.LEVEL_UP, [building, this.state.buildings[building].level]);
+
+        this.gameEventBus.emit(
+            EVENTS.CORE.BUILDING.LEVEL_UP,
+            {
+                building: building,
+                level:    this.state.buildings[building].level,
+            }
+        );
+
         this.recalculateAutoPlopsPerSecond();
 
         return this.state.buildings[building].level;
@@ -1641,9 +1678,13 @@
      * @param {int}     amount
      * @param {boolean} byUserClick
      *
-     * @returns {int}
+     * @returns {int|boolean}
      */
     GameState.prototype.addBuildings = function (building, amount, byUserClick = false) {
+        if (amount <= 0) {
+            return false;
+        }
+
         this.state.buildings[building].amount += amount;
 
         this._updateBuildingAmount(building);
@@ -1656,6 +1697,8 @@
         );
 
         if (byUserClick) {
+            this.state.manualPurchase = true;
+
             this.achievementController.checkAmountAchievement(
                 this.achievementController.getAchievementStorage().achievements.buyAmount.buildings,
                 amount

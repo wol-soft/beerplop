@@ -4,8 +4,9 @@
     // The reduction for all buff bottle triggered upgrades
     UpgradeStorage.prototype.buffBottleUpgradeReduction = 1;
 
-    UpgradeStorage.prototype.reachedUpgrades   = [];
-    UpgradeStorage.prototype.availableUpgrades = [];
+    UpgradeStorage.prototype.reachedUpgrades       = [];
+    UpgradeStorage.prototype.availableUpgrades     = [];
+    UpgradeStorage.prototype.autoPurchasedUpgrades = 0;
 
     UpgradeStorage.prototype.upgrades = {};
 
@@ -31,13 +32,15 @@
             'UpgradeStorage',
             (function () {
                 return {
-                    reached:   Object.values(this.reachedUpgrades),
-                    available: Object.values(this.availableUpgrades)
+                    reached:       Object.values(this.reachedUpgrades),
+                    available:     Object.values(this.availableUpgrades),
+                    autoPurchased: this.autoPurchasedUpgrades,
                 };
             }.bind(this)),
             (function (loadedData) {
-                this.reachedUpgrades   = loadedData.reached || [];
-                this.availableUpgrades = loadedData.available || [];
+                this.reachedUpgrades       = loadedData.reached || [];
+                this.availableUpgrades     = loadedData.available || [];
+                this.autoPurchasedUpgrades = loadedData.autoPurchased || 0;
 
                 $.each(this.reachedUpgrades, (function (index, upgrade) {
                     var upgradeKey  = upgrade.split('.');
@@ -198,11 +201,15 @@
             if (upgrade[0] === 'buffBottleUpgrades') {
                 upgradeStorage._checkBuffBottleUpgradeAchievements();
             }
+
+            upgradeStorage.gameState.manualPurchase = true;
         });
     };
 
     /**
-     * Purchase as many upgrades as possible
+     * Purchase as many upgrades as possible. Returns the amount of purchased upgrades.
+     *
+     * @returns {int}
      */
     UpgradeStorage.prototype.purchaseAllPossibleUpgrades = function () {
         // store the sorted upgrades in an additional variable to avoid side effects
@@ -249,6 +256,8 @@
             },
             0
         );
+
+        return purchasedUpgrades.length;
     };
 
     /**

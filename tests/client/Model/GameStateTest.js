@@ -6,6 +6,8 @@ describe('GameState', function () {
     describe('The initial game state', function () {
         it('should be set to 0', function () {
             gameState.resetInitialState();
+            (new Beerplop.AchievementController()).reset();
+
             gameState.updatePlopsPerSecond();
 
             expect(gameState.getAutoPlopsPerSecond()).to.equal(0);

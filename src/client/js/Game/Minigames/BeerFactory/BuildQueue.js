@@ -94,6 +94,11 @@
             }
 
             this._checkUnlockFactory();
+
+            if (this.render.isOverlayVisible()) {
+                this.stock.updateStock();
+                this.render.updateFactoriesMap();
+            }
         }).bind(this));
     }
 
@@ -149,7 +154,6 @@
         }
 
         const queueItemId = this.state.getBuildQueue().push({
-            label:          this._getQueueJobLabel(action, item),
             materials:      this.stock.orderMaterialListByProductionBalance(materials),
             requiredItems:  materials.reduce((total, material) => total + material.required, 0),
             deliveredItems: 0,
@@ -160,6 +164,7 @@
         }) - 1;
 
         this._addedJobToQueue(action, item);
+        this.gameEventBus.emit(EVENTS.BEER_FACTORY.QUEUE.ADDED, queueItemId);
 
         // don't update the UI for a hidden job
         if (hiddenJob) {
@@ -237,7 +242,7 @@
               now       = new Date();
 
         this.state.getState().buildQueueHistory.unshift({
-            label: queueItem.label,
+            label: this.getQueueJobLabel(queueItem.action, item),
             ts:    now,
         });
 
@@ -260,6 +265,12 @@
                 // reset all production amount caches to recalculate them to cover dependencies between buildings
                 // (eg. lodges boost other building productions)
                 this.cache.resetProductionAmountCache();
+                this.cache.resetDeliverCapacityCache();
+
+                if (this.render.isOverlayVisible()) {
+                    this.stock.updateStock();
+                    this.render.updateFactoriesMap();
+                }
 
                 if (this.achievementController.getAchievementStorage().achievements.beerFactory.factories[item]) {
                     this.achievementController.checkAmountAchievement(
@@ -349,7 +360,11 @@
                 break;
         }
 
-        this.gameEventBus.emit(EVENTS.BEER_FACTORY.QUEUE.FINISHED, [queueItemId, queueItem.action, item]);
+        // emit the event on the next tick to make sure the item isn't present in the build queue any longer
+        window.setTimeout(
+            () => this.gameEventBus.emit(EVENTS.BEER_FACTORY.QUEUE.FINISHED, [queueItemId, queueItem.action, item]),
+            0
+        );
 
         // don't show a notification for hidden jobs
         if (queueItem.hiddenJob) {
@@ -357,7 +372,12 @@
         }
 
         (new Beerplop.Notification()).notify({
-            content: translator.translate('beerFactory.queue.finished', {__JOB__: queueItem.label}),
+            content: translator.translate(
+                'beerFactory.queue.finished',
+                {
+                    __JOB__: this.getQueueJobLabel(queueItem.action, queueItem.item)
+                }
+            ),
             style:   'snackbar-success',
             timeout: 4000,
             channel: 'beerFactory',
@@ -370,9 +390,6 @@
      * @private
      */
     BuildQueue.prototype._checkUnlockFactory = function () {
-        let hasUnlockedNewFactory   = false,
-            hasUnlockedNewMaterials = false;
-
         $.each(this.state.getFactories(), (function checkUnlockNewFactory(factory, factoryData) {
             if (factoryData.enabled) {
                 return;
@@ -388,12 +405,10 @@
 
             if (requirementsReached) {
                 this.state.getFactory(factory).enabled = true;
-                hasUnlockedNewFactory = true;
 
                 if (FACTORY_DATA_FIX[factory].enableMaterial) {
                     $.each(FACTORY_DATA_FIX[factory].enableMaterial, (function enableMaterials(index, material) {
                         this.state.getMaterial(material).enabled = true;
-                        hasUnlockedNewMaterials = true;
                     }).bind(this));
                 }
 
@@ -404,15 +419,7 @@
                 }
             }
         }).bind(this));
-
-        if (hasUnlockedNewFactory && this.render.isOverlayVisible()) {
-            this.render.updateFactoriesMap();
-        }
-        if (hasUnlockedNewMaterials && this.render.isOverlayVisible()) {
-            this.render.updateStockTable();
-        }
     };
-
 
     /**
      * Perform specific game state changing actions if a non producing factory was finished
@@ -421,8 +428,6 @@
      * @private
      */
     BuildQueue.prototype._nonProducingFactoryConstructed = function (factory) {
-        const state = this.state.getState();
-
         switch (factory) {
             case 'storage':
                 if (this.state.getFactory('storage').upgrades.diversify > 0) {
@@ -516,10 +521,8 @@
      * @param item
      *
      * @returns {string}
-     *
-     * @private
      */
-    BuildQueue.prototype._getQueueJobLabel = function (action, item) {
+    BuildQueue.prototype.getQueueJobLabel = function (action, item) {
         let translationData = {};
 
         switch (action) {
@@ -728,8 +731,8 @@
             Mustache.render(
                 TemplateStorage.get('beer-factory__build-queue__manage-item__body-template'),
                 {
-                    job:       queueItem.label,
-                    materials: queueItem.materials.filter((material) => material.delivered < material.required),
+                    job:       this.getQueueJobLabel(queueItem.action, queueItem.item),
+                    materials: queueItem.materials.filter(material => material.delivered < material.required),
                 }
             )
         );
@@ -741,7 +744,7 @@
             start: function(event, ui) {
                 // find the current index of the selected material
                 startIndex = queueItem.materials
-                    .findIndex((material) => material.key === $(ui.item).data('materialKey'));
+                    .findIndex(material => material.key === $(ui.item).data('materialKey'));
             },
             update: (function (event, ui) {
                 let newPosition = ui.item.index();
@@ -755,7 +758,7 @@
                     ).data('materialKey');
 
                     newPosition = queueItem.materials
-                        .findIndex((material) => material.key === previousMaterial) + 1;
+                        .findIndex(material => material.key === previousMaterial) + 1;
                 }
 
                 queueItem.materials.splice(newPosition, 0, queueItem.materials.splice(startIndex, 1)[0]);

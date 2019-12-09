@@ -8,6 +8,7 @@
 
     UpgradeController.prototype.gameEventBus   = null;
     UpgradeController.prototype.buffController = null;
+    UpgradeController.prototype.beerFactory    = null;
 
     UpgradeController.prototype.buffBottleUpgradePossibility = 0.25;
     UpgradeController.prototype.buffBottleUpgradesAfterReincarnation = false;
@@ -17,7 +18,14 @@
      *
      * @constructor
      */
-    function UpgradeController(gameState, gameEventBus, buffController, levelController, clickBarController) {
+    function UpgradeController(
+        gameState,
+        gameEventBus,
+        buffController,
+        levelController,
+        clickBarController,
+        beerFactory,
+    ) {
         if (UpgradeController.prototype._instance) {
             return UpgradeController.prototype._instance;
         }
@@ -40,6 +48,7 @@
         this.gameEventBus   = gameEventBus;
         this.gameState      = gameState;
         this.buffController = buffController;
+        this.beerFactory    = beerFactory;
 
         this._initUpgradeSemaphore();
 
@@ -88,9 +97,12 @@
 
         // Check for all available upgrades if there are enough plops for buying them.
         this.gameEventBus.on(EVENTS.CORE.ITERATION, (function () {
-            const upgradeStorage = this.upgradeStorage,
-                  availablePlops = this.gameState.getPlops(),
-                  totalPlops     = this.gameState.getTotalPlops();
+            const upgradeStorage   = this.upgradeStorage,
+                  beerFactoryState = this.beerFactory.state,
+                  availablePlops   = this.gameState.getPlops(),
+                  totalPlops       = this.gameState.getTotalPlops();
+
+            let hasAvailableUpgrades = false;
 
             $.each($('#upgrade-item-container').find('.upgrade-item'), function () {
                 const element    = $(this),
@@ -98,12 +110,22 @@
                       upgrade    = upgradeStorage.upgrades[upgradeKey[0]][upgradeKey[1]],
                       costs      = upgradeStorage.getCosts(upgrade);
 
-                if (availablePlops >= costs && !element.hasClass('available-upgrade')) {
-                    element.addClass('available-upgrade');
-                } else if (availablePlops < costs && element.hasClass('available-upgrade')) {
+                if (availablePlops >= costs) {
+                    hasAvailableUpgrades = true;
+
+                    if (!element.hasClass('available-upgrade')) {
+                        element.addClass('available-upgrade');
+                    }
+                }
+
+                if (availablePlops < costs && element.hasClass('available-upgrade')) {
                     element.removeClass('available-upgrade');
                 }
             });
+
+            if (hasAvailableUpgrades && beerFactoryState.isAutoUpgradingEnabled()) {
+                this._checkAutoPurchaseUpgrades();
+            }
 
             let addedUpgrades = false;
             $.each(upgradeStorage.upgrades.totalPlopUpgrades, (function (requiredAmount, data) {
@@ -124,6 +146,12 @@
                 upgradeStorage.updateAvailableUpgradesView();
             }
         }).bind(this));
+
+        this.gameEventBus.on(EVENTS.BEER_FACTORY.AUTO_UPGRADE, (event, context) => {
+            if (context.enabled) {
+                this._checkAutoPurchaseUpgrades();
+            }
+        });
 
         this.gameEventBus.on(EVENTS.CORE.PLOPS.AUTO_PLOPS_UPDATED, (function () {
             const autoPlops = this.gameState.getAutoPlopsPerSecondWithoutBuffMultiplier();
@@ -285,6 +313,16 @@
 
         UpgradeController.prototype._instance = this;
     }
+
+    UpgradeController.prototype._checkAutoPurchaseUpgrades = function () {
+        this.upgradeStorage.autoPurchasedUpgrades += this.upgradeStorage.purchaseAllPossibleUpgrades();
+
+        const achievementController = new Beerplop.AchievementController();
+        achievementController.checkAmountAchievement(
+            achievementController.getAchievementStorage().achievements.beerFactory.slots.automation.autoUpgrade,
+            this.upgradeStorage.autoPurchasedUpgrades
+        );
+    };
 
     UpgradeController.prototype._checkUnlockingBuffBottleUpgrades = function () {
         if (!this.buffBottleUpgradesAfterReincarnation) {

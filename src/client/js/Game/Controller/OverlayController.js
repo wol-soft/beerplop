@@ -29,7 +29,7 @@
     OverlayController.prototype.initContainer = function (element) {
         element.find('.toggle-overlay').on(
             'click',
-            (event) => {
+            event => {
                 const element = $(event.target).closest('.toggle-overlay');
                 this.openOverlay(element.data('target'), element.data('callback'));
             },
