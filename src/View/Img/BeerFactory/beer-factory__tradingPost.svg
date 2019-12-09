@@ -25,6 +25,7 @@
          transform="scale(0.8) translate(12.5,0)" />
     </marker>
   </defs>
+<<<<<<< HEAD
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -37,6 +38,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <rect
      style="fill:#8a4e13;fill-opacity:1;stroke:none;stroke-width:0.68410528;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
      id="rect846"

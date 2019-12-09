@@ -142,6 +142,7 @@
        x2="770.15265"
        y2="779.23846" />
   </defs>
+<<<<<<< HEAD
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -154,6 +155,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <g
      id="layer1"
      transform="translate(0,-257)">

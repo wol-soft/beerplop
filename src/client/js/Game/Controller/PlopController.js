@@ -19,7 +19,7 @@
               beerwarts             = new Minigames.Beerwarts(gameState, gameEventBus),
               levelController       = new Beerplop.LevelController(gameState, gameEventBus),
               clickBarController    = new Beerplop.ClickBarController(gameEventBus),
-              upgradeController     = new Beerplop.UpgradeController(gameState, gameEventBus, buffController, levelController, clickBarController),
+              upgradeController     = new Beerplop.UpgradeController(gameState, gameEventBus, buffController, levelController, clickBarController, beerFactory),
               saveStateController   = new Beerplop.SaveStateController(gameState, gameEventBus),
               researchProject       = new Minigames.ResearchProject(gameState, gameEventBus, upgradeController, beerBankBanker, beerwarts),
               beerCloner            = new BuildingMinigames.BeerCloner(gameState, gameEventBus, achievementController, researchProject),
@@ -39,7 +39,7 @@
             .setBeerFactory(beerFactory)
             .setAutomatedBar(automatedBar);
 
-        new Beerplop.TooltipController(gameState, beerFactory);
+        new Beerplop.TooltipController(gameState, beerFactory).initPopover();
         new Beerplop.OverlayController();
 
         beerBlender.setAchievementController(achievementController);

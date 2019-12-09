@@ -62,7 +62,7 @@
         });
 
         $('#start-lobby').on('click', function () {
-            window.location.href = '/lobby';
+            window.location.href = 'lobby';
         })
     }
 
@@ -357,6 +357,9 @@
             const gamePersistor = new Beerplop.GamePersistor();
             let   saveTime      = new Date();
 
+            // avoid overwriting the local save after populating the localStorage with the save state to load
+            gamePersistor.setSaveSemaphore(true);
+
             // set the loaded save state. There may be no save state present if a lobby match was just started.
             if (response.data.saveState) {
                 gamePersistor.setLocalSaveState(response.data.saveState);
@@ -379,7 +382,7 @@
             }
 
             window.setTimeout(
-                () => window.location.href = '/plop',
+                () => window.location.href = window.location.pathname.match(/((.*?)(\/plop)?)(\/\d+)?$/)[1],
                 delayReload
             );
         }).bind(this))

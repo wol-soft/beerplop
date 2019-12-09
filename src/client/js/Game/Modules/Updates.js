@@ -149,7 +149,7 @@
             '1.27.0': (function (saveState) {
                 return this._drinkerUpgradeShift(saveState, 40, 50);
             }).bind(this),
-            '1.30.0': (saveState) => {
+            '1.30.0': saveState => {
                 if (saveState.BeerFactory) {
                     // values are calculated on the fly, so no need to store them any longer
                     try {
@@ -163,7 +163,7 @@
 
                 return saveState;
             },
-            '1.50.0': (saveState) => {
+            '1.50.0': saveState => {
                 // values are calculated on the fly, so no need to store them any longer
                 try {
                     delete saveState.BeerFactory.stock;
@@ -173,6 +173,17 @@
 
                 return saveState;
             },
+            '1.66.0': saveState => {
+                try {
+                    $.each(saveState.BeerFactory.buildQueue, function (index, item) {
+                        delete item.label;
+                    });
+                } catch (e) {
+                    console.log(e);
+                }
+
+                return saveState;
+            }
         };
     };
 
@@ -279,7 +290,7 @@
     };
 
     Updates.prototype._drinkerUpgradeShift = function (saveState, from, to) {
-        const mapUpgrades = (upgradeList) => {
+        const mapUpgrades = upgradeList => {
             $.each(upgradeList, function (index, upgrade) {
                 const upgradeKey  = upgrade.split('.');
 

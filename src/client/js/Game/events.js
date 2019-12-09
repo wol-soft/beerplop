@@ -3,6 +3,7 @@ const EVENTS = {
     CORE: {
         ITERATION: 'beerplop.core.iteration',
         ITERATION_LONG: 'beerplop.core.iteration-long',
+        STATISTIC_SNAPSHOT: 'beerplop.core.statistic-snapshot',
         ACHIEVEMENT_REACHED: 'beerplop.core.achievement-reached',
         LEVEL_UP: 'beerplop.core.level-up',
         SACRIFICE: 'beerplop.core.sacrifice',
@@ -54,6 +55,7 @@ const EVENTS = {
     },
     BEER_FACTORY: {
         QUEUE: {
+            ADDED: 'beerplop.beer-factory.queue.added',
             FINISHED: 'beerplop.beer-factory.queue.finished',
             MATERIAL_FINISHED: 'beerplop.beer-factory.queue.material-finished',
         },
@@ -62,6 +64,7 @@ const EVENTS = {
         },
         AUTO_BUYER: 'beerplop.beer-factory.auto-buyer',
         AUTO_LEVEL_UP: 'beerplop.beer-factory.auto-level-up',
+        AUTO_UPGRADE: 'beerplop.beer-factory.auto-upgrade',
     },
     AUTOMATED_BAR: {
         SACRIFICE: 'beerplop.automated-bar.sacrifice',

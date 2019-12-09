@@ -119,22 +119,23 @@
             TemplateStorage.get('beer-factory__build-queue-template'),
             {
                 buildQueue: this.state.getBuildQueue()
-                    .filter((item) => !item.hiddenJob)
+                    .filter(item => !item.hiddenJob)
                     .map((function createQueueItemList(item, id) {
                         const progress = item.deliveredItems / item.requiredItems * 100;
                         return $.extend(
-                            {
-                                details: item.action === BUILD_QUEUE__UPGRADE
-                                    ? '<i>' + translator.translate(`beerFactory.upgrade.${item.item.factory}.${item.item.upgrade}.${item.item.level}.effect`) + '</i>'
-                                    : false
-                            },
+                            // start with an empty object to avoid modifications of the item object! (compare issue #78)
+                            {},
                             item,
                             {
                                 id:                id,
+                                label:             this.buildQueue.getQueueJobLabel(item.action, item.item),
                                 progress:          progress,
                                 collapsed:         !!item.collapsed,
                                 formattedProgress: this.numberFormatter.format(Math.min(progress, 99.9)),
                                 running:           this.numberFormatter.formatTimeSpan(now - item.startedAt, true),
+                                details:           item.action === BUILD_QUEUE__UPGRADE
+                                    ? '<i>' + translator.translate(`beerFactory.upgrade.${item.item.factory}.${item.item.upgrade}.${item.item.level}.effect`) + '</i>'
+                                    : false,
                                 materials:         item.materials.map((function createQueueItemRequiredMaterialsList(material) {
                                     const completed = material.delivered >= material.required;
 
@@ -303,6 +304,15 @@
         )
     };
 
+    /**
+     * Adds a description to the expanded view of a factory
+     *
+     * @param {string} factory The key of the requested factory
+     *
+     * @return {string}
+     *
+     * @private
+     */
     Render.prototype._descriptionDecorator = function (factory) {
         let description = translator.translate(`beerFactory.factory.${factory}.description`);
 
@@ -742,18 +752,18 @@
             Mustache.render(
                 TemplateStorage.get('beer-factory__back-room-modal-template'),
                 {
-                    lobbyists: this.state.getFactory('backRoom').lobbyists.map((lobbyist) => {
+                    lobbyists: this.state.getFactory('backRoom').lobbyists.map(lobbyist => {
                         return {
                             id:   index++,
                             name: lobbyist.name,
                         }
                     }),
                     factories: Object.entries(this.state.getFactories())
-                        .filter((factory) => {
+                        .filter(factory => {
                             const data = factory[1];
                             return data.production !== false && data.enabled && data.amount > 0;
                         })
-                        .map((factory) => factory[0]),
+                        .map(factory => factory[0]),
                 }
             )
         );
@@ -764,7 +774,7 @@
 
         modal.modal('show');
 
-        modal.find('.beer-factory__back-room__lobbyist__factory').on('change', (event) => {
+        modal.find('.beer-factory__back-room__lobbyist__factory').on('change', event => {
             const select  = $(event.target),
                   factory = select.val();
 

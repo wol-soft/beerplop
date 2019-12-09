@@ -11,6 +11,7 @@
     AchievementController.prototype.numberFormatter = null;
 
     AchievementController.prototype.achievementSemaphore = false;
+    AchievementController.prototype.initialState         = null;
 
     AchievementController.prototype.state = {
         missedBuffs: 0,
@@ -32,7 +33,7 @@
         this.gameState          = gameState;
         this.numberFormatter    = new Beerplop.NumberFormatter();
 
-        const initialState = $.extend(true, {}, this.state);
+        this.initialState = $.extend(true, {}, this.state);
 
         (new Beerplop.GamePersistor()).registerModule(
             'AchievementController',
@@ -40,7 +41,7 @@
                 return this.state;
             }.bind(this)),
             (function (loadedData) {
-                this.state = $.extend(true, {}, initialState, loadedData);
+                this.state = $.extend(true, {}, this.initialState, loadedData);
             }.bind(this))
         );
 
@@ -191,11 +192,11 @@
             }
         }).bind(this));
 
-        this.gameEventBus.on(EVENTS.CORE.BUILDING.LEVEL_UP, (function (event, building, level) {
-            if (building === 'bottleCapFactory') {
+        this.gameEventBus.on(EVENTS.CORE.BUILDING.LEVEL_UP, (function (event, levelUp) {
+            if (levelUp.building === 'bottleCapFactory') {
                 this.checkAmountAchievement(
                     this.achievementStorage.achievements.bottleCap.level,
-                    level
+                    levelUp.level
                 );
 
                 return;
@@ -203,7 +204,7 @@
 
             this.checkAmountAchievement(
                 this.achievementStorage.achievements.buildingLevel,
-                level
+                levelUp.level
             );
         }).bind(this));
 
@@ -226,6 +227,23 @@
 
         AchievementController.prototype._instance = this;
     }
+
+    AchievementController.prototype.reset = function () {
+        this.state = $.extend(true, {}, this.initialState);
+        this.achievementStorage.reachedAchievements = 0;
+
+        const resetAchievements = list => {
+            $.each(list, (key, achievement) => {
+                if (typeof achievement.reached !== 'undefined') {
+                    achievement.reached = false;
+                } else {
+                    resetAchievements(achievement);
+                }
+            });
+        };
+
+        resetAchievements(this.achievementStorage.achievements);
+    };
 
     /**
      * Check an amount achievement
@@ -430,10 +448,10 @@
             const baseElement = $('#svg-buildingAmount-' + building + '-base');
 
             $.each(achievementAmounts, function (index, amount) {
-                let opener = baseElement.clone();
-                opener.addClass('amount-' + amount);
-                opener.attr('id', 'svg-buildingAmount-' + building + '-' + amount);
-                opener.insertAfter(baseElement);
+                let achievementSVG = baseElement.clone();
+                achievementSVG.addClass('amount-' + amount);
+                achievementSVG.attr('id', 'svg-buildingAmount-' + building + '-' + amount);
+                achievementSVG.insertAfter(baseElement);
             });
         });
     };

@@ -15,10 +15,10 @@ if (config.https) {
         cert: fs.readFileSync(config.cert)
     };
 
-    server = https.createServer(options).listen(81);
+    server = https.createServer(options).listen(config.port);
 } else {
     var http   = require('http');
-    server = http.createServer().listen(81);
+    server = http.createServer().listen(config.port);
 }
 
 var io = require('socket.io').listen(server);

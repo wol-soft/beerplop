@@ -34,6 +34,7 @@
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1.4918032,0,0,1.7634606,-3.7952508,-3.965637)" />
   </defs>
+<<<<<<< HEAD
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -46,6 +47,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <path
      style="fill:#474747;fill-opacity:1;stroke:none;stroke-width:0.3796874px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="M 10.414174,6.8695651 8.4406422,4.3128853 c 0,0 1.9735318,-1.8261993 11.8411878,-1.8261993 9.867656,0 11.841188,1.8261993 11.841188,1.8261993 l -1.973532,2.5566798"

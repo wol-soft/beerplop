@@ -26,7 +26,6 @@ services:
     image: node:12
     container_name: beerplop-node
     depends_on:
-      - grunt
       - redis
     volumes:
       - .:/var/www/beerplop/
@@ -42,7 +41,6 @@ services:
       dockerfile: './docker/Dockerfile_php'
     depends_on:
       - mysql
-      - composer
       - redis
     volumes:
       - .:/var/www/beerplop/
@@ -54,7 +52,6 @@ services:
       dockerfile: './docker/Dockerfile_apache'
     depends_on:
       - php
-      - mysql
     ports:
       - "8080:80"
     volumes:
@@ -67,22 +64,11 @@ services:
       context: '.'
       dockerfile: './docker/Dockerfile_grunt'
     container_name: beerplop-grunt
-    depends_on:
-      - npm
     volumes:
       - .:/var/www/beerplop/
     working_dir: /var/www/beerplop/
     restart: on-failure
-    command: grunt start
-
-  # install js dependencies via npm
-  npm:
-    image: node:12
-    container_name: beerplop-npm
-    volumes:
-      - .:/var/www/beerplop/
-    working_dir: /var/www/beerplop/
-    command: npm ci
+    command: bash -c "npm ci -verbose && grunt start"
 
   # install php dependencies via composer
   composer:

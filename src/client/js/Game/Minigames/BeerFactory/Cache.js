@@ -38,6 +38,8 @@
         if (!this.cache.deliverCapacity) {
             const state = this.state.getState();
 
+            console.log(Math.pow(1 + state.factories.lodge.upgrades.comfort * 0.05, state.factories.lodge.amount));
+
             this.cache.deliverCapacity = (
                     3
                     + (state.factories.storage.upgrades.diversify > 0 ? state.factories.storage.amount : 0)

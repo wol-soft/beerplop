@@ -92,6 +92,7 @@
          id="stop1006" />
     </linearGradient>
   </defs>
+<<<<<<< HEAD
   <metadata
      id="metadata9955">
     <rdf:RDF>
@@ -104,6 +105,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <g
      transform="translate(0,-270.54167)"
      id="layer1">

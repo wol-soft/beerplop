@@ -159,6 +159,7 @@
        xlink:href="#linearGradient1869"
        gradientTransform="translate(0.79375013,12.7)" />
   </defs>
+<<<<<<< HEAD
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -171,6 +172,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <g
      id="scan"
      class="holy-upgrade-item">

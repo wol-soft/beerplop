@@ -12,6 +12,7 @@
    width="40mm">
   <defs
      id="defs19" />
+<<<<<<< HEAD
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -24,6 +25,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <path
      style="fill:#666666;fill-opacity:1;stroke:none;stroke-width:0.09220119;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
      d="m 1.109618,30.285519 c 0.6161759,-0.511027 1.2408162,-1.00814 1.8616661,-1.511465 6.8119563,0.006 13.6239119,0.01185 20.4358689,0.01765 0.417104,0.932004 -0.04911,1.499222 -1.013957,1.500737 -7.077638,0.04426 -14.1558488,0.03205 -21.2335384,-0.0035 l -0.05004,-0.0034 z"

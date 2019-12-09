@@ -2,6 +2,8 @@
   <a href="https://wol-soft.de/apps/beerplop/plop" target="_blank">
     <img alt="Beerplop" width="100" src="https://raw.githubusercontent.com/wol-soft/beerplop/master/src/View/Img/main-beer.svg?sanitize=true">
   </a>
+
+  [![](https://github.com/wol-soft/beerplop/workflows/CI/badge.svg)](https://github.com/wol-soft/beerplop/actions)
 </p>
 
 # Beerplop
@@ -25,7 +27,7 @@ To have a running Beerplop instance ready to develop execute the following steps
 * switch to the root directory of the project
 * run `docker-compose up --build` (installation: https://docs.docker.com/compose/install/)
 
-During the first start up some containers may throw errors because not all required dependencies are yet available. They will continue to restart until the containers which install the dependencies are finished (beerplop-composer and beerplop-npm).
+During the first start up some containers may throw errors because not all required dependencies are yet available. They will continue to restart until the containers which install the dependencies are finished (beerplop-composer).
 To check if everything is finished switch to a second terminal and execute `docker ps`. You should see six running containers (Status **Up**):
 
 Container name | Exposed port | Purpose
@@ -37,7 +39,6 @@ beerplop-php | | PHP-FPM to execute PHP scripts
 beerplop-mysql | 8082 | Database for users, save states etc.
 beerplop-redis | 8083 | Backend caching
 **Containers used on start up:** | | 
-beerplop-npm | | install dependencies
 beerplop-composer | | install dependencies
 
 Beerplop is now available at http://localhost:8080
@@ -48,7 +49,7 @@ Some technical stuff is documented in the [wiki](https://wol-soft.de/apps/beerpl
 
 ### Tests
 
-To execute the tests in your browser visit http://localhost:8080/test after all containers are started.
+To execute the tests in your browser visit http://localhost:8080/test after all containers are started. Alternatively you can execute `node tests\bootstrap.js` (either in a container or from your host system, then requires installed NodeJS). Currently the tests load a Beerplop page in the background and afterwards operate on the DOM.
 
 ### Recover
 

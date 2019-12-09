@@ -1,7 +1,9 @@
 (function(beerplop) {
     'use strict';
 
-    ProductionStatistics.prototype.indexedDB = null;
+    ProductionStatistics.prototype.indexedDB    = null;
+    ProductionStatistics.prototype.gameOptions  = null;
+    ProductionStatistics.prototype.gameEventBus = null;
 
     ProductionStatistics.prototype.buildingProductionStats = {};
 
@@ -10,12 +12,14 @@
     /**
      * @constructor
      */
-    function ProductionStatistics(indexedDB) {
+    function ProductionStatistics(indexedDB, gameEventBus) {
         if (ProductionStatistics.prototype._instance) {
             return ProductionStatistics.prototype._instance;
         }
 
-        this.indexedDB = indexedDB;
+        this.indexedDB    = indexedDB;
+        this.gameOptions  = new Beerplop.GameOptions();
+        this.gameEventBus = gameEventBus;
 
         ProductionStatistics.prototype._instance = this;
     }
@@ -36,6 +40,20 @@
         totalProduction,
         amount
     ) {
+        if (this.gameOptions.hasDisabledProductionStatistics()) {
+            return;
+        }
+
+        const timestamp = +new Date(),
+              snapshot  = {
+                  timestamp: timestamp,
+                  perSecond: productionPerSecond,
+                  total:     totalProduction,
+                  owned:     amount,
+              };
+
+        this.gameEventBus.emit(EVENTS.CORE.STATISTIC_SNAPSHOT, [building, snapshot]);
+
         if (!this.indexedDB.getState()) {
             if (!this.buildingProductionStats[building]) {
                 this.buildingProductionStats[building] = {
@@ -45,7 +63,6 @@
                 };
             }
 
-            const timestamp = +new Date();
             this.buildingProductionStats[building].perSecond.push([timestamp, productionPerSecond]);
             this.buildingProductionStats[building].total.push([timestamp, totalProduction]);
             this.buildingProductionStats[building].owned.push([timestamp, amount]);
@@ -53,15 +70,7 @@
             return;
         }
 
-        this.indexedDB.addToStorage(
-            `buildingProduction-${building}`,
-            {
-                timestamp: +new Date(),
-                perSecond: productionPerSecond,
-                total:     totalProduction,
-                owned:     amount,
-            }
-        );
+        this.indexedDB.addToStorage(`buildingProduction-${building}`, snapshot);
     };
 
     /**
@@ -72,7 +81,7 @@
      * @return {Promise<any>}
      */
     ProductionStatistics.prototype.getBuildingStats = function (building) {
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             if (!this.indexedDB.getState()) {
                 resolve(this.buildingProductionStats[building] || null);
             }

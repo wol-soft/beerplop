@@ -28,6 +28,11 @@
         </fieldset>
       </div>
     </div>
+
+    {{ #baseStats }}
+      {{{ baseStats }}}
+    {{ /baseStats }}
+
     <br /><br />
 
     {{ #slotsEnabled }}
@@ -117,11 +122,13 @@
       <hr />
     {{ /autoCloning }}
 
-    <h3>{{ #t }}"building.details.total"{{ /t }}:</h3>
-    <div id="building-details-modal__graph__total-production" class="pb-4"></div>
-    <h3>{{ #t }}"building.details.stats.pps"{{ /t }}:</h3>
-    <div id="building-details-modal__graph__production-per-second" class="pb-4"></div>
-    <h3>{{ #t }}"building.details.stats.owned", {"__BUILDING__": "{{ building }}"}{{ /t }}:</h3>
-    <div id="building-details-modal__graph__owned" class="pb-4"></div>
+    {{ #productionStatistics }}
+      <h3>{{ #t }}"building.details.total"{{ /t }}:</h3>
+      <div id="building-details-modal__graph__total-production" class="pb-4"></div>
+      <h3>{{ #t }}"building.details.stats.pps"{{ /t }}:</h3>
+      <div id="building-details-modal__graph__production-per-second" class="pb-4"></div>
+      <h3>{{ #t }}"building.details.stats.owned", {"__BUILDING__": "{{ building }}"}{{ /t }}:</h3>
+      <div id="building-details-modal__graph__owned" class="pb-4"></div>
+    {{ /productionStatistics }}
   </script>
 {% endverbatim %}

@@ -15,7 +15,7 @@
         this.options = $.extend(this.options, options);
 
         $('#leave-lobby, #close-lobby').on('click', function () {
-            window.location.href = '/plop';
+            window.location.href = 'plop';
         });
 
         this._initSocketConnection();
@@ -65,14 +65,14 @@
                  */
                 this.options.socket.on('beerplop.createdLobby', (function(generatedLobbyId) {
                     this.options.lobbyId = generatedLobbyId;
-                    $('#join-link').val(window.location.origin + '/lobby/' + this.options.lobbyId);
+                    $('#join-link').val(window.location.href + '/' + this.options.lobbyId);
                 }).bind(this));
 
                 /**
                  * Redirect if the match was started
                  */
                 this.options.socket.on('beerplop.startMatch', (function(saveStateId) {
-                    window.location.href = '/plop/' + saveStateId;
+                    window.location.href = 'plop/' + saveStateId;
                 }).bind(this));
 
                 /**

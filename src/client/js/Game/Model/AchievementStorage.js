@@ -2782,6 +2782,20 @@
                                 },
                             },
                         },
+                        autoUpgrade: {
+                            50: {
+                                reached: false,
+                            },
+                            150: {
+                                reached: false,
+                            },
+                            500: {
+                                reached: false,
+                            },
+                            1000: {
+                                reached: false,
+                            },
+                        },
                     },
                     equipProxy: {
                         reached: false,
@@ -3627,6 +3641,9 @@
                     reached: false,
                 },
                 noClick: {
+                    reached: false,
+                },
+                automation: {
                     reached: false,
                 },
                 config: {

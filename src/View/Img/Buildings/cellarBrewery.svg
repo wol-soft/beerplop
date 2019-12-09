@@ -361,6 +361,7 @@
          id="stop1006" />
     </linearGradient>
   </defs>
+<<<<<<< HEAD
   <metadata
      id="metadata1815">
     <rdf:RDF>
@@ -373,6 +374,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <g
      id="layer4">
     <path

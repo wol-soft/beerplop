@@ -171,6 +171,7 @@
          id="stop3932" />
     </linearGradient>
   </defs>
+<<<<<<< HEAD
   <metadata
      id="metadata32">
 Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -184,6 +185,8 @@ Created by potrace 1.15, written by Peter Selinger 2001-2017
   </cc:Work>
 </rdf:RDF>
 </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <g
      fill="#000000"
      stroke="none"

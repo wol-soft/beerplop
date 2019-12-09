@@ -3,13 +3,12 @@ describe('BuildingLevelController', function () {
     let gameState    = new Beerplop.GameState(),
         gameEventBus = new Beerplop.GameEventBus();
 
-    describe('A click on the Bottle Cap Factory panel', function () {
-        it('should toggle the panel body', function () {
-            const panel = $('#panel-bottle-cap-factory').find('a');
-            expect(panel.hasClass('collapsed'), 'Panel should be collapsed initial').to.equal(true);
-
-            panel.trigger('click');
-            expect(panel.hasClass('collapsed'), 'Panel should be expanded after clicking the panel').to.equal(false);
+    describe('The Bottle Cap Factory panel', function () {
+        it('should be expanded initial', function () {
+            expect(
+                $('#panel-bottle-cap-factory').find('a').hasClass('collapsed'),
+                'Panel should be expanded initial'
+            ).to.equal(false);
         });
 
         it('should display the correct price for the first Bottle Cap Factory', function () {

@@ -248,6 +248,7 @@
          in="SourceGraphic" />
     </filter>
   </defs>
+<<<<<<< HEAD
   <metadata
      id="metadata3147">
     <rdf:RDF>
@@ -260,6 +261,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <g
      transform="translate(0,-257)"
      id="layer1">

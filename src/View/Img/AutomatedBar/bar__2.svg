@@ -11,6 +11,7 @@
    viewBox="0 0 40 40"
    height="40mm"
    width="40mm">
+<<<<<<< HEAD
   <metadata
      id="metadata19">
     <rdf:RDF>
@@ -22,6 +23,8 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
+=======
+>>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <defs
      id="defs1039">
     <linearGradient
