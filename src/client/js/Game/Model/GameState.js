@@ -243,6 +243,7 @@
 
     /**
      * Initialize the game state
+     *
      * @constructor
      */
     function GameState (gameEventBus, beerBlender) {
@@ -451,6 +452,8 @@
 
             this._initPopoverCallbacks();
             this._updateUI();
+
+            $('#current-plops').text(this.numberFormatter.format(this.state.plops));
         }).bind(this));
     };
 
@@ -1367,6 +1370,12 @@
         });
     };
 
+    /**
+     * Store the auto plops per second in a variable which is updated every iteration to avoid unnecessary
+     * recalculations due to many reads. The value changes each iteration (eg. BeerBank, cloning)
+     *
+     * @param plopsPerSecond
+     */
     GameState.prototype.updatePlopsPerSecond = function (plopsPerSecond) {
         if (this.updateSemaphore) {
             return;

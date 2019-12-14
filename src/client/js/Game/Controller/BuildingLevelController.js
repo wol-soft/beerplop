@@ -54,7 +54,7 @@
 
         ComposedValueRegistry
             .getComposedValue(CV_BOTTLE_CAP)
-            .onValueChange(this.updateBottleCapFactoryView.bind(this))
+            .onValueChange((newValue) => $('.bottle-caps-per-second').text(this.numberFormatter.format(newValue)))
             .addModifier('BuildingLevelController__Base-Production',       () => this.state.factories * 0.1)
             .addModifier('BuildingLevelController__Factory-Level',         () => Math.pow(2, this.state.level - 1))
             .addModifier('BuildingLevelController__Production-Multiplier', () => this.bottleCapProductionMultiplier)
@@ -191,7 +191,9 @@
             this.slotController.isAutoLevelUpEnabled('bottleCapFactory')
         ) {
             do {
-                if (this.gameState.removePlops(this.getCostsForNextBottleCapFactoryLevel(), false)) {
+                if (this._getPossibleBottleCapFactoryLevel() > this.state.level &&
+                    this.gameState.removePlops(this.getCostsForNextBottleCapFactoryLevel(), false)
+                ) {
                     this._addLevel();
                     this._incAutoLevelUps();
                 }

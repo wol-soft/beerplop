@@ -11,8 +11,7 @@
 
     BeerBank.prototype.isBeerBankEnabled = false;
 
-    BeerBank.prototype.beerBankInvestmentMultiplier = 0;
-    BeerBank.prototype.permanentInvestmentBoost = 1;
+    BeerBank.prototype.holyUpgradeBoost = 1;
 
     BeerBank.prototype.state = {
         invested: 0,
@@ -57,6 +56,11 @@
             return;
         }
 
+        ComposedValueRegistry.getComposedValue(CV_BEER_BANK)
+            .addModifier('BeerBank_BasePlops',   () => this.gameState.getAutoPlopsPerSecond(), false)
+            .addModifier('BeerBank_HolyUpgrade', () => this.holyUpgradeBoost)
+            .addModifier('BeerBank_Slider',      () => this.state.percentage / 100);
+
         this.isBeerBankEnabled = true;
 
         const achievementController = new Beerplop.AchievementController();
@@ -71,14 +75,14 @@
                 return;
             }
 
-            this.addPlops(
-                this.gameState.getAutoPlopsPerSecond()
-                    * (this.beerBankInvestmentMultiplier > 0 ? this.beerBankInvestmentMultiplier : 1)
-                    * this.permanentInvestmentBoost
-                    * this.state.percentage / 100
-                    * this.beerBlender.getEffect('beerBank')
-            );
+            this.addPlops(ComposedValueRegistry.getComposedValue(CV_BEER_BANK).getValue());
         }).bind(this));
+
+        this.gameEventBus.on(EVENTS.CORE.SACRIFICE, () => {
+            // as all holy upgrades are applied again after a sacrifice reset the internal stored value
+            this.holyUpgradeBoost = 1;
+            ComposedValueRegistry.getComposedValue(CV_BEER_BANK).triggerModifierChange('BeerBank_HolyUpgrade');
+        });
 
         const slider = $('#beer-bank-investment').bootstrapSlider();
         slider.on('change', (function (event) {
@@ -97,6 +101,7 @@
 
             slider.bootstrapSlider('setValue', newValue);
             this.state.percentage = newValue;
+            ComposedValueRegistry.getComposedValue(CV_BEER_BANK).triggerModifierChange('BeerBank_Slider');
 
             $('.beer-bank-investment-percentage').text(newValue);
         }).bind(this));
@@ -114,14 +119,6 @@
         $('.beer-bank-investment-percentage').text(this.state.percentage);
 
         return removedPercentage;
-    };
-
-    BeerBank.prototype.addBeerBankInvestmentMultiplier = function (multiplier) {
-        this.beerBankInvestmentMultiplier += multiplier;
-    };
-
-    BeerBank.prototype.removeBeerBankInvestmentMultiplier = function (multiplier) {
-        this.beerBankInvestmentMultiplier -= multiplier;
     };
 
     BeerBank.prototype.getInvestmentPercentage = function () {
@@ -147,8 +144,9 @@
         ) / 100;
     };
 
-    BeerBank.prototype.addPermanentBeerBankInvestmentBoost = function (boost) {
-        this.permanentInvestmentBoost = this.permanentInvestmentBoost * (1 + boost);
+    BeerBank.prototype.addHolyUpgradeBeerBankBoost = function (boost) {
+        this.holyUpgradeBoost = this.holyUpgradeBoost * (1 + boost);
+        ComposedValueRegistry.getComposedValue(CV_BEER_BANK).triggerModifierChange('BeerBank_HolyUpgrade');
     };
 
     BeerBank.prototype.removePlops = function (plops) {

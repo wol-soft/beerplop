@@ -30,6 +30,8 @@
     BuffController.prototype.doubleBottlePossibility = 0;
     BuffController.prototype.autoClickPossibility    = 0;
 
+    BuffController.prototype.beerBankBoost = 1;
+
     BuffController.prototype.additionalBuffs = {
         stockMarketLobby: false,
         beerBankBoost:    false,
@@ -94,6 +96,8 @@
                 stockMarketLobby: false
             };
         }).bind(this));
+
+        ComposedValueRegistry.getComposedValue(CV_BEER_BANK).addModifier('Buff', () => this.beerBankBoost);
     }
 
     /**
@@ -420,7 +424,8 @@
                 // line is active
                 const beerBankBoostMultiplier = this.assemblyLinePower * 1.5;
 
-                this.beerBank.addBeerBankInvestmentMultiplier(beerBankBoostMultiplier);
+                this.beerBankBoost += beerBankBoostMultiplier;
+                ComposedValueRegistry.getComposedValue(CV_BEER_BANK).triggerModifierChange('Buff');
 
                 buffText = translator.translate(
                     'buff.beerBank',
@@ -431,7 +436,8 @@
 
                 this.buffIntervals[buffProgressId] = window.setTimeout(
                     (function () {
-                        this.beerBank.removeBeerBankInvestmentMultiplier(beerBankBoostMultiplier);
+                        this.beerBankBoost -= beerBankBoostMultiplier;
+                        ComposedValueRegistry.getComposedValue(CV_BEER_BANK).triggerModifierChange('Buff');
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),

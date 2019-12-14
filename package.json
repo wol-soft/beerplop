@@ -19,6 +19,7 @@
     "chai": "^4.2.0",
     "chance": "^1.0.18",
     "compare-versions": "^3.5.0",
+    "composed-value-registry": "^1.0.0",
     "content-type-parser": "^1.0.2",
     "decimal.js": "^10.2.0",
     "dragscroll": "0.0.8",
