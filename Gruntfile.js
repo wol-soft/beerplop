@@ -25,6 +25,7 @@ module.exports = function(grunt) {
                     'node_modules/decimal.js/decimal.min.js',
                     'node_modules/compare-versions/index.js',
                     'node_modules/snackbarjs/dist/snackbar.min.js',
+                    'node_modules/composed-value-registry/src/ComposedValueRegistry.js',
                     'src/client/js/Game/__init.js',
                     'src/client/js/Game/**/**/*.js',
                     'src/client/js/Game/**/*.js',

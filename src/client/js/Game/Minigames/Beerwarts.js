@@ -491,11 +491,15 @@
     };
 
     Beerwarts.prototype._getCostsForNextMagician = function () {
-        return Math.ceil(MAGICIAN_BASE_PRICE * Math.pow(2.5, this.state.magicians.length || 0));
+        return Math.ceil(MAGICIAN_BASE_PRICE * Math.pow(3, this.state.magicians.length || 0));
     };
 
     Beerwarts.prototype._getNextSkillLevelCost = function (skill, currentLevel) {
-        return this.skills[skill].baseCost * Math.pow(this.skills[skill].multiplier, currentLevel);
+        return this.skills[skill].baseCost
+            * Math.pow(
+                Math.pow(this.skills[skill].multiplier, currentLevel / 10) + 1,
+                currentLevel
+            );
     };
 
     Beerwarts.prototype._getNextBeerwartsLevelCost = function () {
@@ -623,7 +627,7 @@
         return manaProduction;
     };
 
-    Beerwarts.prototype._updateBeerwartsView = function () {
+    Beerwarts.prototype._updateBeerwartsView = function (newValue = null) {
         const magiciansInTraining = this._getMagiciansInTraining();
 
         if (magiciansInTraining > 0) {
@@ -632,10 +636,14 @@
             $('#beerwarts__magician-in-training__container').addClass('d-none');
         }
 
+        if (newValue === null) {
+            newValue = ComposedValueRegistry.getComposedValue(CV_MANA).getValue();
+        }
+
         $('#beerwarts__magician').text(this.numberFormatter.formatInt(this.state.magicians.length));
         $('#beerwarts__magician-in-training').text(this.numberFormatter.formatInt(magiciansInTraining));
         $('#beerwarts__cost-next-magician').text(this.numberFormatter.format(this._getCostsForNextMagician()));
-        $('#beerwarts__mana-per-second').text(this.numberFormatter.format(ComposedValueRegistry.getComposedValue(CV_MANA).getValue()));
+        $('#beerwarts__mana-per-second').text(this.numberFormatter.format(newValue));
         $('#beerwarts__mana-total').text(this.numberFormatter.format(this.state.manaTotal));
         $('.beerwarts__mana').text(this.numberFormatter.format(this.state.mana));
 
@@ -712,6 +720,7 @@
             this.state.school.enabled = $(event.target).is(':checked');
 
             this._checkAutoTrainingForAllMagicians();
+            this._updateBeerwartsView();
         }).bind(this));
 
         container.find('.beerwarts__auto-training-control').on('change', (function (event) {
@@ -722,6 +731,7 @@
             );
 
             this._checkAutoTrainingForAllMagicians();
+            this._updateBeerwartsView();
         }).bind(this));
     };
 
@@ -1181,11 +1191,18 @@
      * @private
      */
     Beerwarts.prototype._getTrainingDuration = function (magicianId, skill, autoTraining = false) {
-        return this.skills[skill].baseTrainingTime
-            * Math.pow(this.skills[skill].trainingTimeMultiplier, this.state.magicians[magicianId].skills[skill] * 0.8)
-            * this.trainingShortener
-            * (autoTraining ? this.autoTrainingReductionMultiplier : 1)
-            * Math.pow(this.cribReductionMultiplier, this._getCurrentSessions(skill));
+        return Math.max(
+            this.skills[skill].baseTrainingTime
+                * Math.pow(
+                    this.skills[skill].trainingTimeMultiplier,
+                    this.state.magicians[magicianId].skills[skill] * 0.8
+                )
+                * this.trainingShortener
+                * (autoTraining ? this.autoTrainingReductionMultiplier : 1)
+                * Math.pow(this.cribReductionMultiplier, this._getCurrentSessions(skill)),
+            // limit the training duration to a max of 1000 days
+            86400000
+        );
     };
 
     Beerwarts.prototype._initBuildingEnchantment = function () {

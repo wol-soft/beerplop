@@ -714,7 +714,7 @@
             accountAgreement: {
                 reached: false,
                 upgrade: (function () {
-                    (new Minigames.BeerBank()).addPermanentBeerBankInvestmentBoost(0.05);
+                    (new Minigames.BeerBank()).addHolyUpgradeBeerBankBoost(0.05);
                 }).bind(this),
                 costs: 25e7,
                 coordinates: [1700, 1375],
@@ -725,7 +725,7 @@
             cod: {
                 reached: false,
                 upgrade: (function () {
-                    (new Minigames.BeerBank()).addPermanentBeerBankInvestmentBoost(0.1);
+                    (new Minigames.BeerBank()).addHolyUpgradeBeerBankBoost(0.1);
                 }).bind(this),
                 costs: 1e9,
                 coordinates: [1650, 1500],
@@ -736,7 +736,7 @@
             mmda: {
                 reached: false,
                 upgrade: (function () {
-                    (new Minigames.BeerBank()).addPermanentBeerBankInvestmentBoost(0.15);
+                    (new Minigames.BeerBank()).addHolyUpgradeBeerBankBoost(0.15);
                 }).bind(this),
                 costs: 5e9,
                 coordinates: [1600, 1625],

@@ -1,6 +1,15 @@
 (function(minigames) {
     'use strict';
 
+    const COMPOSED_VALUE_MODIFIER_KEY = 'BeerBlender';
+    // A list of all composed values which may be affected by the Beer Blender Bar. If the Beer Blender Bar equipment
+    // is changed an update for all these values is triggered
+    const AFFECTED_COMPOSED_VALUES_MAP = {
+        bottleCaps: CV_BOTTLE_CAP,
+        mana:       CV_MANA,
+        beerBank:   CV_BEER_BANK,
+    };
+
     const MAX_SLOTS = 4;
 
     const INGREDIENTS = {
@@ -123,14 +132,11 @@
             }.bind(this))
         );
 
-        ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).addModifier(
-            'BeerBlender',
-            () => this.getEffect('bottleCaps'),
-        );
-
-        ComposedValueRegistry.getComposedValue(CV_MANA).addModifier(
-            'BeerBlender',
-            () => this.getEffect('mana'),
+        $.each(AFFECTED_COMPOSED_VALUES_MAP, (effectKey, composedValueKey) =>
+            ComposedValueRegistry.getComposedValue(composedValueKey).addModifier(
+                COMPOSED_VALUE_MODIFIER_KEY,
+                () => this.getEffect(effectKey),
+            )
         );
     }
 
@@ -398,8 +404,9 @@
 
         this.gameEventBus.emit(EVENTS.BEER_BLENDER.UPDATE);
 
-        ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).triggerModifierChange('BeerBlender');
-        ComposedValueRegistry.getComposedValue(CV_MANA).triggerModifierChange('BeerBlender');
+        $.each(AFFECTED_COMPOSED_VALUES_MAP, (effectKey, composedValueKey) =>
+            ComposedValueRegistry.getComposedValue(composedValueKey).triggerModifierChange(COMPOSED_VALUE_MODIFIER_KEY)
+        );
     };
 
     BeerBlender.prototype._getModifications = function (slots) {
@@ -440,9 +447,7 @@
     };
 
     BeerBlender.prototype.getEffect = function (effect) {
-        return this.modificationCache[effect]
-            ? (1 + this.modificationCache[effect])
-            : 1;
+        return this.modificationCache[effect] ? (1 + this.modificationCache[effect]) : 1;
     };
 
     BeerBlender.prototype.addAvailablePresets = function (amount) {

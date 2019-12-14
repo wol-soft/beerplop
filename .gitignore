@@ -5,3 +5,4 @@
 /htdocs/dist/
 /src/View/Img/*.twig
 /src/View/Img/**/*.twig
+/test-result.png

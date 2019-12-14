@@ -191,7 +191,9 @@
             this.slotController.isAutoLevelUpEnabled('bottleCapFactory')
         ) {
             do {
-                if (this.gameState.removePlops(this.getCostsForNextBottleCapFactoryLevel(), false)) {
+                if (this._getPossibleBottleCapFactoryLevel() > this.state.level &&
+                    this.gameState.removePlops(this.getCostsForNextBottleCapFactoryLevel(), false)
+                ) {
                     this._addLevel();
                     this._incAutoLevelUps();
                 }
@@ -660,18 +662,22 @@
     /**
      * Update the view for the bottle cap factory with the values from the internal data store
      *
+     * @param {number|null} newValue The new value for Bottle Caps per second
+     *
      * @private
      */
-    BuildingLevelController.prototype.updateBottleCapFactoryView = function () {
+    BuildingLevelController.prototype.updateBottleCapFactoryView = function (newValue = null) {
         if (this.updateSemaphore) {
             return;
         }
 
+        if (newValue === null) {
+            newValue = ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).getValue();
+        }
+
         $('.cost-next-bottle-cap-factory').text(this.numberFormatter.format(this.state.costNext));
         $('.bottle-cap-factories').text(this.numberFormatter.formatInt(this.state.factories));
-        $('.bottle-caps-per-second').text(
-            this.numberFormatter.format(ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).getValue())
-        );
+        $('.bottle-caps-per-second').text(this.numberFormatter.format(newValue));
     };
 
     /**

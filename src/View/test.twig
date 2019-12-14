@@ -26,7 +26,15 @@
             localStorage.removeItem('beerplop.test');
         }
 
-        const expect            = chai.expect
+        const expect            = chai.expect,
+              awaitEventEmitted = (spy, callCount) => new Promise(function (resolve, reject) {
+                  (function waitForEmittedEvent(){
+                      if (spy.callCount === callCount) {
+                          return resolve();
+                      }
+                      setTimeout(waitForEmittedEvent, 30);
+                  })();
+              }),
               getPlopsFromLabel = (selector) => parseFloat(
                   selector.text()
                       .match(/([\d,.]+)/g)[0]
@@ -52,7 +60,7 @@
 
                     mocha.run();
 
-                    // code to detect if executed wia puppeteer. In this case trigger an event after finishing all test
+                    // code to detect if executed via puppeteer. In this case trigger an event after finishing all test
                     // cases to enable puppeteer to fetch the test results
                     if (window.onNotifyPuppeteer) {
                         mocha.suite.afterAll(
