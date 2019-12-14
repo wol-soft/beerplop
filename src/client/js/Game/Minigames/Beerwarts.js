@@ -240,7 +240,7 @@
         );
 
         ComposedValueRegistry.getComposedValue(CV_MANA)
-            .onValueChange((newValue) => $('#beerwarts__mana-per-second').text(this.numberFormatter.format(newValue)))
+            .onValueChange(this._updateBeerwartsView.bind(this))
             .addModifier('Beerwarts_BaseProduction',                  this._getBaseManaProduction.bind(this))
             .addModifier('Beerwarts_GameSpeed',                       () => this.gameState.getGameSpeed())
             .addModifier('Beerwarts_manaProductionMultiplier',        () => (this.manaProductionMultiplier || 1))
@@ -627,7 +627,7 @@
         return manaProduction;
     };
 
-    Beerwarts.prototype._updateBeerwartsView = function () {
+    Beerwarts.prototype._updateBeerwartsView = function (newValue = null) {
         const magiciansInTraining = this._getMagiciansInTraining();
 
         if (magiciansInTraining > 0) {
@@ -636,10 +636,14 @@
             $('#beerwarts__magician-in-training__container').addClass('d-none');
         }
 
+        if (newValue === null) {
+            newValue = ComposedValueRegistry.getComposedValue(CV_MANA).getValue();
+        }
+
         $('#beerwarts__magician').text(this.numberFormatter.formatInt(this.state.magicians.length));
         $('#beerwarts__magician-in-training').text(this.numberFormatter.formatInt(magiciansInTraining));
         $('#beerwarts__cost-next-magician').text(this.numberFormatter.format(this._getCostsForNextMagician()));
-        $('#beerwarts__mana-per-second').text(this.numberFormatter.format(ComposedValueRegistry.getComposedValue(CV_MANA).getValue()));
+        $('#beerwarts__mana-per-second').text(this.numberFormatter.format(newValue));
         $('#beerwarts__mana-total').text(this.numberFormatter.format(this.state.manaTotal));
         $('.beerwarts__mana').text(this.numberFormatter.format(this.state.mana));
 

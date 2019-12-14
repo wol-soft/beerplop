@@ -54,7 +54,7 @@
 
         ComposedValueRegistry
             .getComposedValue(CV_BOTTLE_CAP)
-            .onValueChange((newValue) => $('.bottle-caps-per-second').text(this.numberFormatter.format(newValue)))
+            .onValueChange(this.updateBottleCapFactoryView.bind(this))
             .addModifier('BuildingLevelController__Base-Production',       () => this.state.factories * 0.1)
             .addModifier('BuildingLevelController__Factory-Level',         () => Math.pow(2, this.state.level - 1))
             .addModifier('BuildingLevelController__Production-Multiplier', () => this.bottleCapProductionMultiplier)
@@ -662,18 +662,22 @@
     /**
      * Update the view for the bottle cap factory with the values from the internal data store
      *
+     * @param {number|null} newValue The new value for Bottle Caps per second
+     *
      * @private
      */
-    BuildingLevelController.prototype.updateBottleCapFactoryView = function () {
+    BuildingLevelController.prototype.updateBottleCapFactoryView = function (newValue = null) {
         if (this.updateSemaphore) {
             return;
         }
 
+        if (newValue === null) {
+            newValue = ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).getValue();
+        }
+
         $('.cost-next-bottle-cap-factory').text(this.numberFormatter.format(this.state.costNext));
         $('.bottle-cap-factories').text(this.numberFormatter.formatInt(this.state.factories));
-        $('.bottle-caps-per-second').text(
-            this.numberFormatter.format(ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).getValue())
-        );
+        $('.bottle-caps-per-second').text(this.numberFormatter.format(newValue));
     };
 
     /**
