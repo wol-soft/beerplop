@@ -149,7 +149,7 @@
             }.bind(this))
         );
 
-        this.gameEventBus.on(EVENTS.CORE.SACRIFICE, (function () {
+        this.gameEventBus.on([EVENTS.CORE.SACRIFICE, EVENTS.CORE.INFINITY_SACRIFICE].join(' '), (function () {
             this._updateUI();
             $('.level-up').text(
                 translator.translate(

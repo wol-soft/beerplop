@@ -72,6 +72,7 @@
 
     StockMarket.prototype.holdHistory = [];
 
+    StockMarket.prototype.initialStats = {};
     /**
      * Initialize the stock market mini game
      *
@@ -87,6 +88,8 @@
         this.gameState       = gameState;
         this.gameEventBus    = gameEventBus;
         this.numberFormatter = new Beerplop.NumberFormatter();
+
+        this.initialStats = $.extend(true, {}, this.stats);
 
         this._initAchievementChecks();
 
@@ -131,7 +134,7 @@
     };
 
     StockMarket.prototype._initSacrifice = function () {
-        this.gameEventBus.on(EVENTS.CORE.SACRIFICE, (function () {
+        this.gameEventBus.on([EVENTS.CORE.SACRIFICE, EVENTS.CORE.INFINITY_SACRIFICE].join(' '), (function () {
             $('#stock-market-control').addClass('d-none');
 
             this.enabled                = false;
@@ -159,6 +162,8 @@
 
             this.holdHistory = [];
         }).bind(this));
+
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, () => this.stats = $.extend(true, {}, this.initialStats));
     };
 
     /**

@@ -7,6 +7,7 @@ const EVENTS = {
         ACHIEVEMENT_REACHED: 'beerplop.core.achievement-reached',
         LEVEL_UP: 'beerplop.core.level-up',
         SACRIFICE: 'beerplop.core.sacrifice',
+        INFINITY_SACRIFICE: 'beerplop.core.infinity-sacrifice',
         REINCARNATE: 'beerplop.core.reincarnate',
         CLICK: 'beerplop.core.click',
         OPTION_CHANGED: 'beerplop.core.option-changed',

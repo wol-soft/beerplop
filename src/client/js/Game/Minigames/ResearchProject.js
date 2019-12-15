@@ -174,6 +174,8 @@
         projectCosts: {}
     };
 
+    ResearchProject.prototype.initialState = {};
+
     /**
      * Initialize the research project mini game
      *
@@ -197,7 +199,7 @@
         this._initCompletedCallbacks();
         this._initAdditionalInfoTextCallbacks();
 
-        const initialState = $.extend(true, {}, this.state);
+        this.initialState = $.extend(true, {}, this.state);
 
         (new Beerplop.GamePersistor()).registerModule(
             'ResearchProject',
@@ -205,7 +207,7 @@
                 return this.state;
             }.bind(this)),
             (function (loadedData) {
-                this.state = $.extend(true, {}, initialState, loadedData);
+                this.state = $.extend(true, {}, this.initialState, loadedData);
 
                 $.each(this.state.projects, (function (project, projectData) {
                     if (projectData.startedAt !== null) {
@@ -259,6 +261,13 @@
                 }).bind(this),
                 0
             );
+        }).bind(this));
+
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, (function () {
+            this.state = $.extend(true, {}, this.initialState);
+
+            this.autoRestartEnabled = false;
+            $('#research-project-control').addClass('d-none');
         }).bind(this));
 
         const container = $('#research-project');

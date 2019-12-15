@@ -225,6 +225,7 @@
 
     GameState.prototype._instance    = null;
     GameState.prototype.initialState = null;
+    GameState.prototype.initialCache = null;
 
     // a semaphore to track which building is currently bought by an auto buyer
     GameState.prototype.autoBuySemaphore = null;
@@ -255,6 +256,7 @@
         this.beerBlender  = beerBlender;
 
         this.initialState = $.extend(true, {}, this.state);
+        this.initialCache = $.extend(true, {}, this.cache);
 
         (new Beerplop.GamePersistor()).registerModule(
             'GameState',
@@ -447,13 +449,36 @@
             this.state.gameSpeed             = gameSpeed;
             this.state.autoBuyerBuildings    = autoBuyerBuildings;
 
-            this.cache.maxBuildingsAvailable = {};
-            this.cache.maxBuildingsCost      = {};
+            this.cache = $.extend(true, {}, this.initialCache);
+            this.upgradeMultiplierChannel = {};
 
-            this._initPopoverCallbacks();
-            this._updateUI();
+            window.setTimeout(
+                () => {
+                    this._initPopoverCallbacks();
+                    this._updateUI();
+                    $('#current-plops').text(0);
+                },
+                10
+            );
+        }).bind(this));
 
-            $('#current-plops').text(this.numberFormatter.format(this.state.plops));
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, (function () {
+            const startTime = this.state.startTime;
+
+            this.resetInitialState();
+
+            this.state.startTime = startTime;
+            this.cache = $.extend(true, {}, this.initialCache);
+            this.upgradeMultiplierChannel = {};
+
+            window.setTimeout(
+                () => {
+                    this._initPopoverCallbacks();
+                    this._updateUI();
+                    $('#current-plops').text(0);
+                },
+                10
+            );
         }).bind(this));
     };
 

@@ -78,6 +78,14 @@
             );
         }).bind(this));
 
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, (function () {
+            $.each(this.upgrades, function () {
+                if (this.reached) {
+                    this.reached = false;
+                }
+            });
+        }).bind(this));
+
         this._initUpgrades();
 
         assetPromises['modals'].then(() => $('#reincarnate-button').on('click', (function () {

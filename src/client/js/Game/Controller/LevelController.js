@@ -20,12 +20,15 @@
         autoPlopsLastPeriod: null,
     };
 
+    LevelController.prototype.initialState = {};
+
     function LevelController(gameState, gameEventBus) {
         if (LevelController.prototype._instance) {
             return LevelController.prototype._instance;
         }
 
         LevelController.prototype._instance = this;
+        this.initialState = $.extend(true, {}, this.state);
 
         this.gameState       = gameState;
         this.gameEventBus    = gameEventBus;
@@ -111,9 +114,35 @@
             }
 
             const modal = $('#sacrifice-hint-modal');
-            modal.find('.modal-body').text(translator.translate('sacrifice.warning'));
+            modal.find('.modal-body').html(
+                Mustache.render(
+                    TemplateStorage.get('sacrifice-warning-template'),
+                    {
+                        infinitySacrifice: this.gameState.getAllTimePlops() === Number.MAX_VALUE,
+                    }
+                )
+            );
+
             $('#sacrifice').data('role', 'main');
             modal.modal('show');
+
+            $('#infinity-sacrifice').on(
+                'click',
+                () => {
+                    new Beerplop.InfinitySacrificeController(this.gameEventBus, this.gameState);
+                    modal.modal('hide');
+
+                    this.state = $.extend(true, {}, this.initialState);
+                    $('#sacrifice__level-value').text(0);
+
+                    this.gameEventBus.emit(EVENTS.CORE.INFINITY_SACRIFICE);
+
+                    window.setTimeout(
+                        () => (new beerplop.GamePersistor()).setLocalSaveState(),
+                        10
+                    );
+                }
+            );
         }).bind(this));
 
         assetPromises['modals'].then(() => {
@@ -138,11 +167,12 @@
                 return Mustache.render(
                     TemplateStorage.get('level-status-template'),
                     {
-                        level:            this.numberFormatter.formatInt(this.currentLevel),
-                        beermats:         this.numberFormatter.formatInt(this.state.beermats),
-                        minimumLevel:     this.numberFormatter.formatInt(1000),
-                        sacrificeEnabled: this.currentLevel >= 1000,
-                        levelBonus:       this.numberFormatter.format(
+                        level:             this.numberFormatter.formatInt(this.currentLevel),
+                        beermats:          this.numberFormatter.formatInt(this.state.beermats),
+                        minimumLevel:      this.numberFormatter.formatInt(1000),
+                        sacrificeEnabled:  this.currentLevel >= 1000,
+                        infinitySacrifice: this.gameState.getAllTimePlops() === Number.MAX_VALUE,
+                        levelBonus:        this.numberFormatter.format(
                             (this.state.levelBonus > 0 ? this.getLevelBonus() : 0) * 100
                         )
                     }

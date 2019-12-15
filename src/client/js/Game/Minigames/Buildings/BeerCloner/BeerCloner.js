@@ -109,24 +109,28 @@
         }).bind(this));
 
         // reset cloning when sacrificing
-        this.gameEventBus.on(EVENTS.CORE.SACRIFICE, (function sacrificeBeerCloner() {
-            this.cloningEnabled      = false;
-            this.cloningCooldown     = 4;
+        this.gameEventBus.on(
+            [EVENTS.CORE.SACRIFICE, EVENTS.CORE.INFINITY_SACRIFICE].join(' '),
+            (function sacrificeBeerCloner() {
+                this.cloningEnabled      = false;
+                this.cloningCooldown     = 4;
 
-            this.state.enabled       = false;
-            this.state.cloning       = {};
-            this.state.lastCloning   = null;
+                this.state.enabled       = false;
+                this.state.cloning       = {};
+                this.state.lastCloning   = null;
 
-            this.cache.buildingBoost = {};
+                this.cache.buildingBoost = {};
 
-            const cancelCloning = $('#beer-cloner__building-cloning__cancel-clone');
-            if (!cancelCloning.hasClass('d-none')) {
-                cancelCloning.trigger('click');
-            }
-            $('#beer-cloner__building-cloning__clone').closest('fieldset').prop('disabled', true);
-            $('#beer-cloner__building-cloning__cooldown-container').addClass('d-none');
-            $('#buildings-container').find('.beer-cloner__building-cloning__container').remove();
-        }).bind(this));
+                const cancelCloning = $('#beer-cloner__building-cloning__cancel-clone');
+                if (!cancelCloning.hasClass('d-none')) {
+                    cancelCloning.trigger('click');
+                }
+
+                $('#beer-cloner__building-cloning__clone').closest('fieldset').prop('disabled', true);
+                $('#beer-cloner__building-cloning__cooldown-container').addClass('d-none');
+                $('#buildings-container').find('.beer-cloner__building-cloning__container').remove();
+            }).bind(this)
+        );
 
         this.gameEventBus.on(EVENTS.CORE.ITERATION_LONG, (function coreIterationLongBeerClonerEventListener() {
             this.achievementController.checkAmountAchievement(

@@ -98,6 +98,8 @@
     BeerBlender.prototype.modificationCache = {};
     BeerBlender.prototype.availablePresets  = 0;
 
+    BeerBlender.prototype.initialState = {};
+
     /**
      * Initialize the beer bank mini game
      *
@@ -112,7 +114,7 @@
 
         this.gameEventBus = gameEventBus;
 
-        const initialState = $.extend(true, {}, this.state);
+        this.initialState = $.extend(true, {}, this.state);
 
         (new Beerplop.GamePersistor()).registerModule(
             'BeerBlender',
@@ -120,7 +122,7 @@
                 return this.state;
             }.bind(this)),
             (function (loadedData) {
-                this.state = $.extend(true, {}, initialState, loadedData);
+                this.state = $.extend(true, {}, this.initialState, loadedData);
             }.bind(this))
         );
 
@@ -141,6 +143,12 @@
         $('#beer-blender-control').removeClass('d-none');
 
         this.gameEventBus.on(EVENTS.CORE.SACRIFICE, () => this.availablePresets = 0);
+
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, () => {
+            this.availablePresets = 0;
+            this.state = $.extend(true, {}, this.initialState);
+            $('#beer-blender-control').addClass('d-none');
+        });
     };
 
     BeerBlender.prototype._renderBeerBlender = function () {

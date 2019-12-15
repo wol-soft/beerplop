@@ -54,7 +54,7 @@
 
         this._initUpgrades();
 
-        gameEventBus.on(EVENTS.CORE.SACRIFICE, (function () {
+        gameEventBus.on([EVENTS.CORE.SACRIFICE, EVENTS.CORE.INFINITY_SACRIFICE].join(' '), (function () {
             this.buffBottleUpgradeReduction       = 1;
             this.upgradeReductionFromHolyUpgrades = 1;
 

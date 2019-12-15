@@ -52,7 +52,7 @@
 
         this._initUpgradeSemaphore();
 
-        this.gameEventBus.on(EVENTS.CORE.SACRIFICE, (function () {
+        this.gameEventBus.on([EVENTS.CORE.SACRIFICE, EVENTS.CORE.INFINITY_SACRIFICE].join(' '), (function () {
             this.buffBottleUpgradePossibility = 0.25;
 
             window.setTimeout(

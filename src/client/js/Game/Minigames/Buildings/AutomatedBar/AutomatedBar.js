@@ -127,6 +127,13 @@ const TYPE_COOLING_ENGINE = 3;
 
         this.gameEventBus.on(EVENTS.SAVE.LOAD.FINISHED, () => this._updateCurrentEffects());
 
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, () => {
+            this.state = $.extend(true, {}, this.initialState);
+            $('#minigame-collapse__automatedBar').remove();
+
+            this.enabled = false;
+        });
+
         ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).addModifier(
             'AutomatedBar',
             this.getBottleCapBoost.bind(this)

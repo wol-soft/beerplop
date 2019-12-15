@@ -24,7 +24,7 @@
     };
 
     function ClickBarController(gameEventBus) {
-        gameEventBus.on(EVENTS.CORE.SACRIFICE, (function () {
+        gameEventBus.on([EVENTS.CORE.SACRIFICE, EVENTS.CORE.INFINITY_SACRIFICE].join(' '), (function () {
             $('#click-bar-container, .click-bar-glass').addClass('d-none');
 
             this.enabled = false;

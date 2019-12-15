@@ -87,6 +87,8 @@
 
     Beerwarts.prototype.hasAutoLevelAchievement = false;
 
+    Beerwarts.prototype.initialState = {};
+
     /**
      * Initialize the Beerwarts mini game
      *
@@ -103,7 +105,7 @@
         this.gameEventBus    = gameEventBus;
         this.numberFormatter = new Beerplop.NumberFormatter();
 
-        const initialState = $.extend(true, {}, this.state);
+        this.initialState = $.extend(true, {}, this.state);
 
         (new Beerplop.GamePersistor()).registerModule(
             'Beerwarts',
@@ -111,7 +113,7 @@
                 return this.state;
             }.bind(this)),
             (function (loadedData) {
-                this.state = $.extend(true, {}, initialState, loadedData);
+                this.state = $.extend(true, {}, this.initialState, loadedData);
 
                 $.each(this.state.magicians, (function (magicianId, magician) {
                     if (magician.trainingFinished) {
@@ -217,14 +219,31 @@
         this._initBuildingEnchantment();
         this._updateBeerwartsView();
 
-        this.gameEventBus.on(EVENTS.CORE.SACRIFICE, (function handleSacrificeForBeerwarts() {
+        const resetUpgradeValues = () => {
             this.manaProductionUpgradeMultiplier = 1;
             this.autoTrainingReductionMultiplier = 1;
             this.cribReductionMultiplier         = 1;
+        };
+
+        this.gameEventBus.on(EVENTS.CORE.SACRIFICE, (function handleSacrificeForBeerwarts() {
+            resetUpgradeValues();
 
             ComposedValueRegistry
                 .getComposedValue(CV_MANA)
                 .triggerModifierChange('Beerwarts_manaProductionUpgradeMultiplier');
+        }).bind(this));
+
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, (function () {
+            this.state = $.extend(true, {}, this.initialState);
+            resetUpgradeValues();
+            ComposedValueRegistry.getComposedValue(CV_MANA).recalculate();
+
+            $('#beerwarts-control, .beerwarts__enchant-building-container').addClass('d-none');
+            $('#beerwarts__magician-school-container').addClass('d-none');
+
+            this.enabled = false;
+            this.autoTrainingUnlocked = false;
+            this.groupTrainingShortenerEnabled = false;
         }).bind(this));
 
         this.gameEventBus.on(EVENTS.BEER_BLENDER.UPDATE, this._updateBeerwartsView.bind(this));

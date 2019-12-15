@@ -18,6 +18,8 @@
         percentage: 0,
     };
 
+    BeerBank.prototype.initialState = {};
+
     /**
      * Initialize the beer bank mini game
      *
@@ -36,7 +38,7 @@
         this.gameOptions     = new Beerplop.GameOptions();
         this.numberFormatter = new Beerplop.NumberFormatter();
 
-        const initialState = $.extend(true, {}, this.state);
+        this.initialState = $.extend(true, {}, this.state);
 
         (new Beerplop.GamePersistor()).registerModule(
             'BeerBank',
@@ -44,7 +46,7 @@
                 return this.state;
             }.bind(this)),
             (function (loadedData) {
-                this.state = $.extend(true, {}, initialState, loadedData);
+                this.state = $.extend(true, {}, this.initialState, loadedData);
 
                 this._updateBeerBankInvestment();
             }.bind(this))
@@ -82,6 +84,18 @@
             // as all holy upgrades are applied again after a sacrifice reset the internal stored value
             this.holyUpgradeBoost = 1;
             ComposedValueRegistry.getComposedValue(CV_BEER_BANK).triggerModifierChange('BeerBank_HolyUpgrade');
+        });
+
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, () => {
+            this.holyUpgradeBoost  = 1;
+            this.isBeerBankEnabled = false;
+
+            this.state = $.extend(true, {}, this.initialState);
+
+            ComposedValueRegistry.getComposedValue(CV_BEER_BANK).recalculate();
+
+            this._updateBeerBankInvestment();
+            $('#beer-bank-control').addClass('d-none');
         });
 
         const slider = $('#beer-bank-investment').bootstrapSlider();

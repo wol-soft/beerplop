@@ -74,7 +74,7 @@
             }.bind(this))
         );
 
-        this.gameEventBus.on(EVENTS.CORE.SACRIFICE, (function () {
+        this.gameEventBus.on([EVENTS.CORE.SACRIFICE, EVENTS.CORE.INFINITY_SACRIFICE].join(' '), (function () {
             this.buffPossibility   = 0.3;
             this.buffLifetime      = 9;
             this.assemblyLinePower = 5;

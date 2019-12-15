@@ -270,6 +270,16 @@
                 );
             }).bind(this));
         }).bind(this));
+
+        this.gameEventBus.on(EVENTS.CORE.INFINITY_SACRIFICE, (function () {
+            this.isBeerFactoryEnabled = false;
+
+            this.state.extendState({});
+            this.cache.resetCache();
+
+            this.buildQueue.updateQueuedJobsAmount();
+            $('#enter-beer-factory').addClass('d-none');
+        }).bind(this));
     };
 
     /**
