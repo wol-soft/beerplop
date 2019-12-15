@@ -1,4 +1,4 @@
-**1.67.0**
+**1.67.0** - 15.12.2019
 * Added cloning to Bottle Cap Factories (#87)
 * Balanced Beerwarts
     - Increased magician price growing
@@ -10,7 +10,7 @@
     - The owned plops label isn't reset after a sacrifice
     - Automated Bottle Cap Factory level up doesn't check if there are enough Bottle Cap Factories to level up
 
-**1.66.0**
+**1.66.0** - 08.12.2019
 * Remove translated labels from the save state (#47)
 * Update to Twig 3.0
 * Bugfixes:

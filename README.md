@@ -53,7 +53,7 @@ To execute the tests in your browser visit http://localhost:8080/test after all 
 
 ### Recover
 
-If something breaks completely, shutdown your containers, clear everything with `docker system prune -af && docker volume prune -f` and rebuild the application with `docker-compose up --build`.
+If something breaks completely, shutdown your containers, clear everything with `docker system prune -af && docker volume prune -f`, clear your locally fetched dependencies (directories `vendor` and `node_modules`) and rebuild the application with `docker-compose up --build`.
 
 ## Contribute
 
