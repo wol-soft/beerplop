@@ -83,8 +83,7 @@
                     autoLevelUpEnabled: autoLevelUpEnabled,
 
                     // required data for auto cloning configuration section
-                    autoCloning: beerCloner.isAutoCloningUnlocked()
-                        && $.inArray(this.building, ['total', 'bottleCapFactory']) === -1,
+                    autoCloning: beerCloner.isAutoCloningUnlocked() && $.inArray(this.building, ['total']) === -1,
                     priority:    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                 }
             )

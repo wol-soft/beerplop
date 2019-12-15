@@ -77,30 +77,38 @@
               {{ translator.translate('bottleCap.plural') }}: <span class="bottle-caps-amount">0</span><br />
               {{ translator.translate('bottleCapsPerSecond') }}: <span class="bottle-caps-per-second">0</span><br />
               {{ translator.translate('bottleCapsTotal') }}: <span id="bottle-caps-amount-total">0</span><br />
-              <fieldset class="float-left fieldset-buy" disabled>
-                <button id="buy-bottle-cap-factory"
-                        type="button"
-                        class="btn btn-raised btn-primary"
-                >
-                  {{ translator.translate('building.bottleCapFactory') }}
-                </button>
-              </fieldset>
 
-              <div class="level-up-bottle-cap-factory-tooltip float-right"
-                   data-toggle="tooltip"
-                   data-boundary="window"
-                   data-placement="left"
-                   data-html="true"
-              >
-                <fieldset disabled>
-                  <button id="level-up-bottle-cap-factory"
+              <div class="building-container__cloning-container">
+                <fieldset class="float-left fieldset-buy" disabled>
+                  <button id="buy-bottle-cap-factory"
                           type="button"
-                          class="btn btn-raised btn-secondary level-up"
+                          class="btn btn-raised btn-primary"
                   >
-                    {{ translator.translate('building.levelUp', {'__LEVEL__': 'I'}) }}
+                    {{ translator.translate('building.bottleCapFactory') }}
                   </button>
                 </fieldset>
+
+                <div class="level-up-bottle-cap-factory-tooltip float-right"
+                     data-toggle="tooltip"
+                     data-boundary="window"
+                     data-placement="left"
+                     data-html="true"
+                >
+                  <fieldset disabled>
+                    <button id="level-up-bottle-cap-factory"
+                            type="button"
+                            class="btn btn-raised btn-secondary level-up"
+                    >
+                      {{ translator.translate('building.levelUp', {'__LEVEL__': 'I'}) }}
+                    </button>
+                  </fieldset>
+                </div>
               </div>
+
+              {% include "/View/Modules/cloning-container.twig" with {
+                building: 'bottleCapFactory',
+                placement: 'right',
+              } %}
             </div>
           </div>
         </div>
@@ -681,24 +689,8 @@
                         </fieldset>
                       </div>
                     </div>
-                    <div class="building-container__cloning-container d-none">
-                      <div class="building-container__clone-tooltip"
-                           data-toggle="tooltip"
-                           data-boundary="window"
-                           data-placement="left"
-                           data-html="true"
-                      >
-                        <fieldset disabled>
-                          <button type="button"
-                                  class="btn btn-raised btn-primary building-container__clone-building"
-                                  style="width:100%"
-                                  data-building-key="{{ building }}"
-                          >
-                            {{ translator.translate('beerCloner.cloning.clone') }} <span class="clone-level"></span>
-                          </button>
-                        </fieldset>
-                      </div>
-                    </div>
+
+                    {% include "/View/Modules/cloning-container.twig" %}
                   </div>
 
                   <div class="toggle-minigame d-none"

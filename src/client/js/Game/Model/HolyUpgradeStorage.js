@@ -628,7 +628,10 @@
                         return;
                     }
 
-                    $.each(this.gameState.getBuildings(), (index, building) => cloner.addCloning(building, true));
+                    $.each(
+                        ['bottleCapFactory', ...this.gameState.getBuildings()],
+                        (index, building) => cloner.addCloning(building, true)
+                    );
                 },
                 costs: 46875e13,
                 coordinates: [2750, 1050],

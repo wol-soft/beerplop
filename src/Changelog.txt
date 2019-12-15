@@ -1,4 +1,5 @@
 **1.67.0**
+* Added cloning to Bottle Cap Factories (#87)
 * Balanced Beerwarts
     - Increased magician price growing
     - Increased training price growing

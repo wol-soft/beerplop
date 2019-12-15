@@ -73,18 +73,24 @@
             }.bind(this))
         );
 
-        $('#buildings-container').find('.building-container__clone-building').on('click', (function (event) {
-            const building = $(event.target).closest('.building-container__clone-building').data('buildingKey');
+        $('#special-building-bottle-cap-factory, #buildings-container')
+            .find('.building-container__clone-building')
+            .on('click', (function (event) {
+                const building = $(event.target).closest('.building-container__clone-building').data('buildingKey');
 
-            if (!building) {
-                return;
-            }
+                if (!building) {
+                    return;
+                }
 
-            this._toggleBuildingCloningButtons();
-            $('#beer-cloner__building-cloning__cancel-clone').addClass('d-none');
+                this._toggleBuildingCloningButtons();
+                $('#beer-cloner__building-cloning__cancel-clone').addClass('d-none');
 
-            this.addCloning(building);
-        }).bind(this));
+                this.addCloning(building);
+            }).bind(this));
+
+        ComposedValueRegistry
+            .getComposedValue(CV_BOTTLE_CAP)
+            .addModifier('Cloning', () => this.getBuildingBoostByCloning('bottleCapFactory'), false);
 
         BeerCloner.prototype._instance = this;
     }
@@ -181,7 +187,7 @@
 
     BeerCloner.prototype._enableCloning = function () {
         if (this.cloningEnabled ||
-            (this.gameState.getBuildingData('beerCloner').amount < MIN_BEERCLONER_CLONING) && !this.state.enabled
+            (this._getBuildingAmount('beerCloner') < MIN_BEERCLONER_CLONING) && !this.state.enabled
         ) {
             return;
         }
@@ -253,9 +259,9 @@
                     TemplateStorage.get('building-clone-tooltip-template'),
                     {
                         buildings:        beerCloner.numberFormatter.formatInt(requiredBuildings),
-                        buildingsReached: requiredBuildings <= beerCloner.gameState.getBuildingData(building).amount,
+                        buildingsReached: requiredBuildings <= beerCloner._getBuildingAmount(building),
                         cloners:          beerCloner.numberFormatter.formatInt(requiredCloners),
-                        clonersReached:   requiredCloners <= beerCloner.gameState.getBuildingData('beerCloner').amount,
+                        clonersReached:   requiredCloners <= beerCloner._getBuildingAmount('beerCloner'),
                     }
                 );
             }
@@ -350,17 +356,20 @@
      * @private
      */
     BeerCloner.prototype._updateCloningAvailability = function () {
-        $.each($('#buildings-container').find('.building-container__clone-building'), (function (index, button) {
-            button = $(button);
+        $.each(
+            $('#special-building-bottle-cap-factory, #buildings-container').find('.building-container__clone-building'),
+            (function (index, button) {
+                button = $(button);
 
-            const building = button.data('buildingKey');
+                const building = button.data('buildingKey');
 
-            button.closest('fieldset').prop('disabled', !this._checkBuildingAmountRequirementsForCloning(building));
-            button.find('.clone-level').text(this.isBuildingCloned(building)
-                ? `(${this.numberFormatter.romanize(this.state.cloning[building].length)})`
-                : ''
-            );
-        }).bind(this));
+                button.closest('fieldset').prop('disabled', !this._checkBuildingAmountRequirementsForCloning(building));
+                button.find('.clone-level').text(this.isBuildingCloned(building)
+                    ? `(${this.numberFormatter.romanize(this.state.cloning[building].length)})`
+                    : ''
+                );
+            }).bind(this)
+        );
     };
 
     /**
@@ -373,8 +382,14 @@
      * @private
      */
     BeerCloner.prototype._checkBuildingAmountRequirementsForCloning = function (building) {
-        return this.getRequiredBuildingsForCloning(building) <= this.gameState.getBuildingData(building).amount &&
-            this.getRequiredClonersForCloning(building) <= this.gameState.getBuildingData('beerCloner').amount
+        return this.getRequiredBuildingsForCloning(building) <= this._getBuildingAmount(building) &&
+            this.getRequiredClonersForCloning(building) <= this._getBuildingAmount('beerCloner')
+    };
+
+    BeerCloner.prototype._getBuildingAmount = function (building) {
+        return building === 'bottleCapFactory'
+            ? this.gameState.buildingLevelController.getBottleCapFactoriesAmount()
+            : this.gameState.getBuildingData(building).amount;
     };
 
     /**
@@ -383,7 +398,7 @@
      * @private
      */
     BeerCloner.prototype._toggleBuildingCloningButtons = function () {
-        $('.building-container' + (this.state.clonerCloning ? '' : '[data-building-key!="beerCloner"]'))
+        $('#special-building-bottle-cap-factory, .building-container' + (this.state.clonerCloning ? '' : '[data-building-key!="beerCloner"]'))
             .find('.building-container__cloning-container').toggleClass('d-none');
     };
 
@@ -430,7 +445,8 @@
         // force recalculation so the negative auto plop effect of the cloning is adopted
         this.gameState.recalculateAutoPlopsPerSecond();
 
-        if (Object.keys(this.state.cloning).length >= this.gameState.getBuildings().length - 1) {
+        // must be the same size as the available buildings due to Bottle Cap Factory cloning
+        if (Object.keys(this.state.cloning).length >= this.gameState.getBuildings().length) {
             this.state.clonerCloning = true;
 
             this.achievementController.checkAchievement(
@@ -460,7 +476,8 @@
     };
 
     BeerCloner.prototype.getRequiredBuildingsForCloning = function (building) {
-        return ((this.state.cloning[building] ? this.state.cloning[building].length : 0) + 1) * 250;
+        return ((this.state.cloning[building] ? this.state.cloning[building].length : 0) + 1)
+            * (building === 'bottleCapFactory' ? 100 : 250);
     };
 
     BeerCloner.prototype.getRequiredClonersForCloning = function (building) {

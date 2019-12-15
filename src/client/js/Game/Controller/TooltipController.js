@@ -64,18 +64,17 @@
      */
     TooltipController.prototype.renderBuildingTooltip = function (buildingKey, displaySlots = true) {
         const autoBuyerEnabled   = this.beerFactory.getSlotController().isAutoBuyerEnabled(buildingKey, false),
-              autoLevelUpEnabled = this.beerFactory.getSlotController().isAutoLevelUpEnabled(buildingKey, false);
+              autoLevelUpEnabled = this.beerFactory.getSlotController().isAutoLevelUpEnabled(buildingKey, false),
+              specialInfo        = this.gameState.resolvePopoverCallback(buildingKey);
 
         let data = {};
 
         if (buildingKey !== 'bottleCapFactory') {
             const buildingData   = this.gameState.getBuildingData(buildingKey),
-                  buildingAmount = this.gameState.getBuildingProduction(buildingKey, buildingData),
-                  specialInfo    = this.gameState.resolvePopoverCallback(buildingKey);
+                  buildingAmount = this.gameState.getBuildingProduction(buildingKey, buildingData);
 
             data = {
                 showBuildingStats: true,
-                specialInfo:       specialInfo,
                 owned:             this.numberFormatter.formatInt(buildingData.amount),
                 level:             buildingData.level,
                 production:        this.numberFormatter.format(buildingAmount),
@@ -99,6 +98,7 @@
                 {
                     buildingKey:     buildingKey,
                     description:     translator.translate(`building.${buildingKey}.description`),
+                    specialInfo:     specialInfo,
                     slotsEnabled:    this.beerFactory.getSlotController().buildingSlotsEnabled() && displaySlots,
                     slots:           this.beerFactory.getSlotController().getSlotsForBuilding(buildingKey)
                         .map(function (slot) {

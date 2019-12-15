@@ -534,6 +534,12 @@
             this.gameEventBus.emit(EVENTS.CORE.ITERATION_LONG);
         }
 
+        $.each(['bottleCapFactory', ...this.getBuildings()], (function (index, building) {
+            if (this.activeBuildingPopover === building || this.activeBuildingDetailsModal === building) {
+                $('#beer-cloner-boost__' + building).text(this.beerCloner.getPercentageDetails(building));
+            }
+        }).bind(this));
+
         // add the overall production for each building
         $.each(this.state.buildings, (function updateTotalProductionPerBuilding(building, data) {
             const production = this.getBuildingProduction(building, data, false);
@@ -551,7 +557,6 @@
 
                 $('#production-each-' + building).text(this.numberFormatter.format(production / data.amount || 0));
                 $('#production-iteration-' + building).text(this.numberFormatter.format(production));
-                $('#beer-cloner-boost__' + building).text(this.beerCloner.getPercentageDetails(building));
             }
 
             // take a statistics snapshot for the building
@@ -732,18 +737,20 @@
      * @private
      */
     GameState.prototype._initPopoverCallbacks = function () {
-        $.each(this.state.buildings, (function (building) {
+        $.each(['bottleCapFactory', ...this.getBuildings()], (function (index, building) {
             this.popoverCallbacks[building] = [];
 
-            this.popoverCallbacks[building].push(
-                (function () {
-                    if (this.state.buildings[building].tier + (new Minigames.ResearchProject()).getStage('stargazer') > this.getBuildings().length) {
-                        return translator.translate('building.popover.stargazer');
-                    }
+            if (building !== 'bottleCapFactory') {
+                this.popoverCallbacks[building].push(
+                    (function () {
+                        if (this.state.buildings[building].tier + (new Minigames.ResearchProject()).getStage('stargazer') > this.getBuildings().length) {
+                            return translator.translate('building.popover.stargazer');
+                        }
 
-                    return false;
-                }).bind(this)
-            );
+                        return false;
+                    }).bind(this)
+                );
+            }
 
             this.popoverCallbacks[building].push(
                 (function () {
