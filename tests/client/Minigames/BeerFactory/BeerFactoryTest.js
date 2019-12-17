@@ -40,6 +40,18 @@ describe('Beer Factories', function () {
             expect($('#beer-factory__stock__total').text()).to.equal('0');
         });
 
+        it('Should have the base storage capacity', function () {
+            ['wood', 'strongWood'].forEach(
+                (material) =>
+                    expect(
+                        $(`.beer-factory__stock__container[data-material="${material}"]`)
+                            .find('td:nth-of-type(2)')
+                            .text()
+                            .match(/\d+ \/ (\d+)/)[1]
+                    ).to.equal('100')
+            );
+        });
+
         it('Should have unlocked the manual wood production', function () {
             expect($('.beer-factory__building-container').length).to.equal(1);
             expect($('#beer-factory__wood').hasClass('beer-factory__factory-enabled')).to.equal(false);
@@ -79,6 +91,7 @@ describe('Beer Factories', function () {
             } while (parseInt($('#beer-factory__stock__amount-wood').text()) < 11);
 
             expect(container.hasClass('beer-factory__factory-enabled')).to.equal(true);
+            expect(container.find('.beer-factory__building__production').text()).to.equal('0');
         });
 
         it('Should add an entry to the build queue after clicking the queue build button', function () {
@@ -213,6 +226,8 @@ describe('Beer Factories', function () {
 
             expect($('#snackbar-container').find('.snackbar').slice(-1)[0].innerText)
                 .to.equal("Build Queue job finished: Build a Lumberjack");
+
+            expect(beerFactory.state.getFactory('wood').amount).to.equal(1);
         });
 
         it("Should shift jobs up after a job has been finished", function () {
@@ -232,6 +247,10 @@ describe('Beer Factories', function () {
 
             expect(buildQueue[0].deliveredItems).to.equal(1);
             expect(buildQueue[0].materials[0].delivered).to.equal(1);
+        });
+
+        it("Should update the production of a factory after a factory construction has been finished", function () {
+            expect($('#beer-factory__wood').find('.beer-factory__building__production').text()).to.equal('1');
         });
 
         it("Should produce 1 wood", function () {
@@ -309,6 +328,26 @@ describe('Beer Factories', function () {
             expect(parseInt($('#beer-factory__stock__amount-wood').text()) + parseInt($('#beer-factory__stock__amount-strongWood').text())).to.equal(2);
         });
 
+        it("Should deliver materials after a job is activated again", function () {
+            // pause the first job. Consequently materials must be delivered to the second job
+            $('.build-queue__item-container[data-item-id=0]').find('.build-queue__toggle-pause').trigger('click');
+
+            const buildQueue = beerFactory.state.getBuildQueue();
+
+            beerFactory.state.getMaterial('wood').amount = 4;
+            beerFactory.state.getMaterial('wood').total = 0;
+            beerFactory.state.getMaterial('strongWood').amount = 0;
+            beerFactory.state.getMaterial('strongWood').total = 0;
+
+            gameEventBus.emit(EVENTS.CORE.ITERATION);
+
+            expect(buildQueue[0].deliveredItems).to.equal(4);
+            expect(buildQueue[0].materials[0].delivered).to.equal(4);
+
+            expect(buildQueue[1].deliveredItems).to.equal(3);
+            expect(buildQueue[1].materials[0].delivered).to.equal(3);
+        });
+
         it("Should not move a job up if it's the first job of the queue", function () {
             $('.build-queue__item-container[data-item-id=0]')
                 .find('.build-queue__move-item[data-direction="up"]')
@@ -351,6 +390,244 @@ describe('Beer Factories', function () {
 
             expect(buildQueue[0].requiredItems).to.equal(54);
             expect(buildQueue[1].requiredItems).to.equal(98);
+        });
+
+        it("Should open a modal for item management", function (done) {
+            const modal = $('#beer-factory__build-queue__manage-item-modal');
+
+            modal.on('shown.bs.modal', () => {
+                const tr = $('#beer-factory__build-queue__manage-item__material-table').find('tr');
+
+                expect(tr.length, 'Materials not rendered').to.equal(1);
+                expect(tr.data('materialKey'), 'Wrong material rendered').to.equal('wood');
+
+                modal.off('shown.bs.modal');
+
+                done();
+            });
+
+            $('.build-queue__item-container[data-item-id=0]').find('.build-queue__manage-item').trigger('click');
+        }).timeout(2000);
+
+        it("Should pause a single material", function () {
+            const modal = $('#beer-factory__build-queue__manage-item-modal');
+
+            modal.find('.build-queue__manage-item__material__toggle-pause').trigger('click');
+
+            expect($('.build-queue__item-container[data-item-id=0]').find('li').hasClass('item__material-delivery__paused')).to.equal(true);
+        });
+
+        it("Should not deliver to paused materials", function () {
+            const buildQueue = beerFactory.state.getBuildQueue();
+
+            beerFactory.state.getMaterial('wood').amount = 4;
+            beerFactory.state.getMaterial('wood').total = 0;
+            beerFactory.state.getMaterial('strongWood').amount = 0;
+            beerFactory.state.getMaterial('strongWood').total = 0;
+
+            gameEventBus.emit(EVENTS.CORE.ITERATION);
+
+            expect(buildQueue[0].deliveredItems).to.equal(4);
+            expect(buildQueue[0].materials[0].delivered).to.equal(4);
+
+            expect(buildQueue[1].deliveredItems).to.equal(6);
+            expect(buildQueue[1].materials[0].delivered).to.equal(6);
+        });
+
+        it("Should enable a single material", function () {
+            const modal = $('#beer-factory__build-queue__manage-item-modal');
+
+            modal.find('.build-queue__manage-item__material__toggle-pause').trigger('click');
+
+            expect($('.build-queue__item-container[data-item-id=0]').find('li').hasClass('item__material-delivery__in-progress')).to.equal(true);
+        });
+
+        it("Should deliver to materials after they are enabled again", function () {
+            const buildQueue = beerFactory.state.getBuildQueue();
+
+            beerFactory.state.getMaterial('wood').amount = 4;
+            beerFactory.state.getMaterial('wood').total = 0;
+            beerFactory.state.getMaterial('strongWood').amount = 0;
+            beerFactory.state.getMaterial('strongWood').total = 0;
+
+            gameEventBus.emit(EVENTS.CORE.ITERATION);
+
+            expect(buildQueue[0].deliveredItems).to.equal(7);
+            expect(buildQueue[0].materials[0].delivered).to.equal(7);
+
+            expect(buildQueue[1].deliveredItems).to.equal(6);
+            expect(buildQueue[1].materials[0].delivered).to.equal(6);
+        });
+
+        it("Should close the modal for item management", function (done) {
+            const modal = $('#beer-factory__build-queue__manage-item-modal');
+
+            modal.on('hidden.bs.modal', () => {
+                modal.off('hidden.bs.modal');
+                done();
+            });
+
+            modal.find('.modal-content').find('> button').trigger('click');
+        }).timeout(2000);
+
+        it("Should show a warning modal when attempting to delete a job which already has delivered materials", function (done) {
+            const modal = $('#beer-factory__build-queue-item__delete-warn-modal');
+
+            modal.on('shown.bs.modal', () => {
+                modal.off('shown.bs.modal');
+                expect(beerFactory.state.getBuildQueue().length).to.equal(2);
+                done();
+            });
+
+            $('.build-queue__item-container[data-item-id=0]').find('.build-queue__drop-job').trigger('click');
+        }).timeout(2000);
+
+        it("Should close the modal and cancel the delete on cancel click", function (done) {
+            const modal = $('#beer-factory__build-queue-item__delete-warn-modal');
+
+            modal.on('hidden.bs.modal', () => {
+                modal.off('hidden.bs.modal');
+                expect(beerFactory.state.getBuildQueue().length).to.equal(2);
+                done();
+            });
+
+            $('#beer-factory__build-queue-item__cancel-delete').trigger('click');
+
+            expect(beerFactory.state.getBuildQueue().length).to.equal(2);
+        }).timeout(2000);
+
+        it("Should delete on delete click", function (done) {
+            const modal = $('#beer-factory__build-queue-item__delete-warn-modal');
+
+            modal.on('shown.bs.modal', () => {
+                $('#beer-factory__build-queue-item__delete').trigger('click');
+                modal.off('shown.bs.modal');
+
+                modal.on('hidden.bs.modal', () => {
+                    modal.off('hidden.bs.modal');
+
+                    expect(beerFactory.state.getBuildQueue().length).to.equal(1);
+                    expect($('#build-queue__queued-jobs').text()).to.equal('1');
+                    expect($('#enter-beer-factory__queued-jobs').text()).to.equal('1');
+
+                    done();
+                });
+            });
+
+            $('.build-queue__item-container[data-item-id=0]').find('.build-queue__drop-job').trigger('click');
+        }).timeout(2000);
+
+        it("Should shift remaining jobs up if a job is deleted", function () {
+            const buildQueue = beerFactory.state.getBuildQueue();
+
+            expect(buildQueue[0].deliveredItems).to.equal(6);
+            expect(buildQueue[0].materials[0].delivered).to.equal(6);
+        });
+
+        it("Should delete a job which has no delivered materials without a warning", function () {
+            $('#beer-factory__wood').find('.beer-factory__queue-build').trigger('click');
+
+            const queuedJobsBuildQueue = $('#build-queue__queued-jobs'),
+                  queuedJobs           = $('#enter-beer-factory__queued-jobs')
+
+            expect(beerFactory.state.getBuildQueue().length).to.equal(2);
+            expect(queuedJobsBuildQueue.text()).to.equal('2');
+            expect(queuedJobs.text()).to.equal('2');
+
+            $('.build-queue__item-container[data-item-id=1]').find('.build-queue__drop-job').trigger('click');
+
+            expect(beerFactory.state.getBuildQueue().length).to.equal(1);
+            expect(queuedJobsBuildQueue.text()).to.equal('1');
+            expect(queuedJobs.text()).to.equal('1');
+        });
+    });
+
+    describe("The Storage Place", function () {
+        it("Should unlock after three Lumberjacks are finished", function () {
+            $('#beer-factory__wood').find('.beer-factory__queue-build').trigger('click');
+
+            const buildQueue = beerFactory.state.getBuildQueue();
+
+            beerFactory.state.getMaterial('wood').amount = 4;
+            beerFactory.state.getMaterial('wood').total = 0;
+            beerFactory.state.getMaterial('strongWood').amount = 0;
+            beerFactory.state.getMaterial('strongWood').total = 0;
+
+            buildQueue[0].deliveredItems = 97;
+            buildQueue[0].materials[0].delivered = 97;
+            buildQueue[1].deliveredItems = 97;
+            buildQueue[1].materials[0].delivered = 97;
+
+            gameEventBus.emit(EVENTS.CORE.ITERATION);
+
+            expect(beerFactory.state.getBuildQueue().length, 'Build Queue not empty').to.equal(0);
+            expect(beerFactory.state.getMaterial('wood').total + beerFactory.state.getMaterial('strongWood').total).to.equal(3);
+
+            // four minus two delivered plus three produced (either wood or string wood)
+            expect(beerFactory.state.getMaterial('wood').amount + beerFactory.state.getMaterial('strongWood').amount).to.equal(5);
+            expect(parseInt($('#beer-factory__stock__amount-wood').text()) + parseInt($('#beer-factory__stock__amount-strongWood').text())).to.equal(5);
+
+            expect($('.beer-factory__building-container').length).to.equal(2);
+            expect($('#beer-factory__storage').length).to.equal(1);
+        });
+
+        it("Should be added to the Build Queue", function () {
+            $('#beer-factory__storage').find('.beer-factory__queue-build').trigger('click');
+
+            const buildQueue = beerFactory.state.getBuildQueue();
+
+            expect(buildQueue.length, 'Build Queue empty').to.equal(1);
+
+            expect(buildQueue[0].item).to.equal('storage');
+            expect(buildQueue[0].action).to.equal(BUILD_QUEUE__BUILD);
+            expect(buildQueue[0].requiredItems).to.equal(105);
+
+            expect(buildQueue[0].materials.length).to.equal(2);
+            expect(buildQueue[0].materials[0].key).to.equal('wood');
+            expect(buildQueue[0].materials[0].required).to.equal(75);
+            expect(buildQueue[0].materials[1].key).to.equal('strongWood');
+            expect(buildQueue[0].materials[1].required).to.equal(30);
+        });
+
+        it("should get different materials delivered in a single iteration", function () {
+            beerFactory.state.getMaterial('wood').amount = 2;
+            beerFactory.state.getMaterial('strongWood').amount = 2;
+
+            const buildQueue = beerFactory.state.getBuildQueue();
+
+            gameEventBus.emit(EVENTS.CORE.ITERATION);
+
+            expect(buildQueue[0].deliveredItems).to.equal(3);
+            expect(buildQueue[0].materials[0].delivered).to.equal(2);
+            expect(buildQueue[0].materials[1].delivered).to.equal(1);
+        });
+
+        it("Should be finished with different materials", function () {
+            beerFactory.state.getMaterial('wood').amount = 2;
+            beerFactory.state.getMaterial('strongWood').amount = 2;
+
+            const buildQueue = beerFactory.state.getBuildQueue();
+
+            buildQueue[0].deliveredItems = 103;
+            buildQueue[0].materials[0].delivered = 74;
+            buildQueue[0].materials[1].delivered = 29;
+
+            gameEventBus.emit(EVENTS.CORE.ITERATION);
+
+            expect(beerFactory.state.getBuildQueue().length).to.equal(0);
+            expect(beerFactory.state.getFactory('storage').amount).to.equal(1);
+        });
+
+        it("Should extend the storage capacity", function () {
+            ['wood', 'strongWood'].forEach(
+                (material) =>
+                    expect(
+                        $(`.beer-factory__stock__container[data-material="${material}"]`)
+                            .find('td:nth-of-type(2)')
+                            .text()
+                            .match(/\d+ \/ (\d+)/)[1]
+                    ).to.equal('150')
+            );
         });
     });
 });
