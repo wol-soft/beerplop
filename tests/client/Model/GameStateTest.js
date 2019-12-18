@@ -27,6 +27,8 @@ describe('GameState', function () {
         let gameEventBusManualClickSpy = sinon.spy();
 
         it('should give one plop', function () {
+            $('.manual-plop').remove();
+
             gameEventBus.on(EVENTS.CORE.CLICK, gameEventBusManualClickSpy);
             $('#beer').find('use').trigger('click');
 
@@ -49,8 +51,9 @@ describe('GameState', function () {
         });
 
         it('should spawn a plop flyout label', function () {
-            expect($('#flyout-text__1').length).to.equal(1);
-            expect(getPlopsFromLabel($('#flyout-text__1'))).to.equal(1);
+            const plopLabel = $('.manual-plop');
+            expect(plopLabel.length).to.equal(1);
+            expect(getPlopsFromLabel(plopLabel)).to.equal(1);
         });
 
         it('should trigger the manual-click event', function () {
