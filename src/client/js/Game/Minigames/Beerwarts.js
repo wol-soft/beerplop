@@ -1191,7 +1191,7 @@
      * @private
      */
     Beerwarts.prototype._getTrainingDuration = function (magicianId, skill, autoTraining = false) {
-        return Math.max(
+        return Math.min(
             this.skills[skill].baseTrainingTime
                 * Math.pow(
                     this.skills[skill].trainingTimeMultiplier,
