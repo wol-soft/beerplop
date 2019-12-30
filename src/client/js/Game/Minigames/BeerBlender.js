@@ -8,6 +8,7 @@
         bottleCaps: CV_BOTTLE_CAP,
         mana:       CV_MANA,
         beerBank:   CV_BEER_BANK,
+        factory:    CV_FACTORY,
     };
 
     const MAX_SLOTS = 4;

@@ -270,6 +270,16 @@
                 );
             }).bind(this));
         }).bind(this));
+        
+        // These lines are necessary because the ComposedValueRegistry seems to be buggy.
+        // Specifically, the modification triggers do not call the onValueChange callback function the way they should.
+        // The same seems to be true for CV_MANA -- see Beerwarts.js. -- 2ndK16, 30.12.2019
+        this.gameEventBus.on(EVENTS.BEER_BLENDER.UPDATE, this.updateMultiplier.bind(this));
+        this.gameEventBus.on(EVENTS.CORE.BUFF.CLICKED, this.updateMultiplier.bind(this));
+        
+        ComposedValueRegistry.getComposedValue(CV_FACTORY)
+            .onValueChange(this.updateMultiplier.bind(this))
+            .addModifier('BeerFactory_GameSpeed', () => this.state.getGameSpeed())
     };
 
     /**
@@ -301,6 +311,7 @@
         return this.slot;
     };
 
+    // should be obsolete now and is replaced by updateMultiplier -- 2ndK16, 30.12.2019
     BeerFactory.prototype.addMultiplier = function (multiplier) {
         this.state.multiplier += multiplier;
 
@@ -312,8 +323,27 @@
         }
     };
 
+    // should be obsolete now and is replaced by updateMultiplier -- 2ndK16, 30.12.2019
     BeerFactory.prototype.removeMultiplier = function (multiplier) {
         this.state.multiplier -= multiplier;
+
+        this.stock.clearStockOverflow();
+        this.cache.resetCache();
+        this.trader.recalculateAutoMaxDeals(false);
+
+        if (this.render.isOverlayVisible()) {
+            this.render.renderOverlay();
+        }
+    };
+    
+    // updates the multiplier. Should be triggered by modifications of CV_FACTORY
+    // (cf. ll. 280ff.)
+    BeerFactory.prototype.updateMultiplier = function (newValue = null) {
+        
+        if (isNaN(newValue)) {
+            newValue = ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue();
+        }
+        this.state.multiplier = newValue;
 
         this.stock.clearStockOverflow();
         this.cache.resetCache();

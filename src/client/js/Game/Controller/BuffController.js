@@ -31,6 +31,7 @@
     BuffController.prototype.autoClickPossibility    = 0;
 
     BuffController.prototype.beerBankBoost = 1;
+    BuffController.prototype.beerFactoryBoost = 1;
 
     BuffController.prototype.additionalBuffs = {
         stockMarketLobby: false,
@@ -98,6 +99,7 @@
         }).bind(this));
 
         ComposedValueRegistry.getComposedValue(CV_BEER_BANK).addModifier('Buff', () => this.beerBankBoost);
+        ComposedValueRegistry.getComposedValue(CV_FACTORY).addModifier('Buff', () => this.beerFactoryBoost - (this.beerFactoryBoost > 1));
     }
 
     /**
@@ -512,9 +514,11 @@
             case 'beerFactory':
                 // store in a separate value so there will no problems if an upgrade is purchased while a mana boost
                 // is active
+                // included buff-bottle-related multipliers into CV_FACTORY -- 2ndK16, 30.12.2019
                 const beerFactoryMultiplier = this.assemblyLinePower;
 
-                (new Minigames.BeerFactory()).addMultiplier(beerFactoryMultiplier);
+                this.beerFactoryBoost += beerFactoryMultiplier;
+                ComposedValueRegistry.getComposedValue(CV_FACTORY).triggerModifierChange('Buff');
 
                 buffText = translator.translate(
                     'buff.beerFactory',
@@ -525,7 +529,8 @@
 
                 this.buffIntervals[buffProgressId] = window.setTimeout(
                     (function () {
-                        (new Minigames.BeerFactory()).removeMultiplier(beerFactoryMultiplier);
+                        this.beerFactoryBoost -= beerFactoryMultiplier;
+                        ComposedValueRegistry.getComposedValue(CV_FACTORY).triggerModifierChange('Buff');
 
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];

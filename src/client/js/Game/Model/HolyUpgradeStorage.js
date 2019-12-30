@@ -1447,7 +1447,8 @@
                 coordinates: [900, 1500],
                 depends: [
                     'bb_grape',
-                    'beerFactoryBoost'
+                    'beerFactoryBoost',
+                    'beerwarts'
                 ]
             },
             bb_preset1: {
