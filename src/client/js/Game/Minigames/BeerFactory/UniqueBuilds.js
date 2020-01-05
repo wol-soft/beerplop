@@ -145,7 +145,7 @@
         );
         ComposedValueRegistry.getComposedValue(CV_FACTORY).addModifier(
             'BeerFactory_UniqueBuild',
-            () => this.getMultiplier('/*was*/')
+            () => this.getMultiplier('was')
         );
     }
 
