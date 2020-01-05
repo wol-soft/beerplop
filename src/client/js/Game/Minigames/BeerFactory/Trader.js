@@ -546,7 +546,7 @@
               tradableValue = 50
                 * tradingPost.amount
                 * Math.pow(2, tradingPost.upgrades.double)
-                * this.beerFactoryState.getGameSpeed();
+                * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue();
 
         return Math.ceil(tradableValue / TRADE_VALUE[sellMaterial]);
     };

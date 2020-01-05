@@ -46,7 +46,7 @@
         return Math.floor(
             (100 + storage.amount * 50)
                 * Math.pow(4, storage.upgrades.double)
-                * this.state.getGameSpeed()
+                * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue()
                 / MATERIAL_STORAGE_DIVIDENT[material]
         );
     };

@@ -519,6 +519,7 @@
 
                 this.beerFactoryBoost += beerFactoryMultiplier;
                 ComposedValueRegistry.getComposedValue(CV_FACTORY).triggerModifierChange('Buff');
+                (new Minigames.BeerFactory()).updateMultiplier();
 
                 buffText = translator.translate(
                     'buff.beerFactory',
@@ -531,6 +532,7 @@
                     (function () {
                         this.beerFactoryBoost -= beerFactoryMultiplier;
                         ComposedValueRegistry.getComposedValue(CV_FACTORY).triggerModifierChange('Buff');
+                        (new Minigames.BeerFactory()).updateMultiplier();
 
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];

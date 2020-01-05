@@ -95,7 +95,7 @@
             return false;
         }
 
-        let availableAmountToDeliver = factoryData.amount * 5 * this.state.getGameSpeed(),
+        let availableAmountToDeliver = factoryData.amount * 5 * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),
             updateStockTable         = false,
             checkFinished            = false;
 
@@ -167,7 +167,7 @@
                 // TODO: cache labels
                 this.stock.addToStock(
                     Object.keys(EXTENSIONS[proxiedExtension].produces)[0],
-                    this.state.getGameSpeed(),
+                    ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),
                     translator.translate('beerFactory.factory.' + factoryKey) + ': ' +
                         translator.translate(`beerFactory.extension.${proxiedExtension}`),
                     false
@@ -309,7 +309,7 @@
         factoryKey,
         factoryData
     ) {
-        let multiplier = this.state.getGameSpeed()
+        let multiplier = this.state.ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue()
             * this.cache.getBackRoomMultiplier(factoryKey)
             * (this.state.getExtensionStorage(extension).boost || 1);
 

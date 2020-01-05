@@ -114,6 +114,8 @@
 
                 ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP)
                     .triggerModifierChange('BeerFactory_UniqueBuild');
+                ComposedValueRegistry.getComposedValue(CV_FACTORY)
+                    .triggerModifierChange('BeerFactory_UniqueBuild');
             }
         }).bind(this));
 
@@ -140,6 +142,10 @@
         ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).addModifier(
             'BeerFactory_UniqueBuild',
             () => this.getMultiplier('djed')
+        );
+        ComposedValueRegistry.getComposedValue(CV_FACTORY).addModifier(
+            'BeerFactory_UniqueBuild',
+            () => this.getMultiplier('/*was*/')
         );
     }
 
