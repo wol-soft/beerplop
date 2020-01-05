@@ -309,7 +309,7 @@
         factoryKey,
         factoryData
     ) {
-        let multiplier = this.state.ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue()
+        let multiplier = ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue()
             * this.cache.getBackRoomMultiplier(factoryKey)
             * (this.state.getExtensionStorage(extension).boost || 1);
 
