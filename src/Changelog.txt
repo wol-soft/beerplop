@@ -1,3 +1,7 @@
+**1.67.0**
+* Bugfixes:
+    - Equipping the Blueberry at the Beer Blender Bar leads to a NaN Mana per second display error
+
 **1.66.0** - 15.12.2019
 * Added cloning to Bottle Cap Factories (#87)
 * Balanced Beerwarts
