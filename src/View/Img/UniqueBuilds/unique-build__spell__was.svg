@@ -34,21 +34,6 @@
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1.107742,0,0,1.1351303,3.9405335,-12.293004)" />
   </defs>
-<<<<<<< HEAD
-  <metadata
-     id="metadata3147">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-=======
->>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <rect
      style="fill:url(#linearGradient9308);fill-opacity:1;stroke:none;stroke-width:1.18676472;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
      id="rect9300"

@@ -12,21 +12,6 @@
    width="40mm">
   <defs
      id="defs17" />
-<<<<<<< HEAD
-  <metadata
-     id="metadata3147">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-=======
->>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <path
      style="fill:#b3b3b3;stroke:none;stroke-width:0.27747732px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="m 6.1901197,34.148128 h 5.6312373 c 1.40781,0 1.40781,0 1.40781,-1.367261 V 16.373744 c 0,-2.734522 -2.815619,-4.375234 -2.815619,-5.742494 l -2.7406315,0 c 10e-8,1.36726 -2.8874148,3.015 -2.8878709,5.749519 l -0.00273,16.400098 c -2.281e-4,1.367261 0,1.367261 1.407809,1.367261 z"

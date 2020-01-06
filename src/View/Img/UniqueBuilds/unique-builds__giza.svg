@@ -63,21 +63,6 @@
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1,0,0,1.1052634,73.818754,-70.324082)" />
   </defs>
-<<<<<<< HEAD
-  <metadata
-     id="metadata1363">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-=======
->>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <g
      id="layer1"
      transform="translate(0,-197)">

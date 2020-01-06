@@ -93,21 +93,6 @@
          id="stop16" />
     </linearGradient>
   </defs>
-<<<<<<< HEAD
-  <metadata
-     id="metadata3147">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-=======
->>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <path
      style="fill:#a41919;fill-opacity:1;stroke:none;stroke-width:0.23479439px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="m 7.276042,26.325917 v -16.20573 c 0,0 0,-2.3151037 2.38125,-2.3151037 2.38125,0 2.38125,1.1575521 2.38125,1.1575521 0,0 0,-2.3151041 2.38125,-2.3151041 2.38125,0 2.38125,2.3151041 2.38125,2.3151041 0,0 0,-1.1575521 2.38125,-1.1575521 2.38125,0 2.38125,2.3151037 2.38125,2.3151037 v 16.20573"

@@ -34,21 +34,6 @@
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1.10291,0,0,1.0953418,-1.1276271,-283.23683)" />
   </defs>
-<<<<<<< HEAD
-  <metadata
-     id="metadata3147">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-=======
->>>>>>> 004ba540292a083cf727a3dd51cbe9e8e2701fe3
   <g
      id="crib"
      class="holy-upgrade-item">
