@@ -635,10 +635,8 @@
         } else {
             $('#beerwarts__magician-in-training__container').addClass('d-none');
         }
-        
-        // replaced "newValue === null" with isNaN(newValue) because newValue usually didn't carry the CV value but a Beerplop object.
-        // Effect: the mana production would be displayed as NaN for a second. Works now. -- 2ndK16, 30.12.2019
-        if (isNaN(newValue)) {
+
+        if (newValue === null) {
             newValue = ComposedValueRegistry.getComposedValue(CV_MANA).getValue();
         }
 

@@ -254,7 +254,6 @@
     State.prototype.beerFactoryCache = null;
 
     State.prototype.initialState = null;
-//     State.prototype.multiplier   = 0;
 
     State.prototype.cache = {
         uniqueBuildMultiplier: 1,
