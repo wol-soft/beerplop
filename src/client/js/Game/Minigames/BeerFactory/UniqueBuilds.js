@@ -45,6 +45,14 @@
             ]
         }
     };
+    
+    const COMPOSED_VALUE_MODIFIER_KEY = 'BeerFactory_UniqueBuild';
+    // A list of all composed values which may be affected by Unique Builds.
+    // If a spell is selected, an update for all these values is triggered
+    const AFFECTED_COMPOSED_VALUES_MAP = {
+        CV_BOTTLE_CAP:  'djed',
+        CV_FACTORY:     'was',
+    };
 
     UniqueBuilds.prototype.buildQueue            = null;
     UniqueBuilds.prototype.gameEventBus          = null;
@@ -112,10 +120,10 @@
                     this._renderUniqueBuildOverviewModal();
                 }
 
-                ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP)
-                    .triggerModifierChange('BeerFactory_UniqueBuild');
-                ComposedValueRegistry.getComposedValue(CV_FACTORY)
-                    .triggerModifierChange('BeerFactory_UniqueBuild');
+
+                $.each(AFFECTED_COMPOSED_VALUES_MAP, (composedValueKey, effectKey) =>
+                    ComposedValueRegistry.getComposedValue(composedValueKey).triggerModifierChange(COMPOSED_VALUE_MODIFIER_KEY)
+                );
             }
         }).bind(this));
 
@@ -139,13 +147,11 @@
             }).bind(this));
         }).bind(this));
 
-        ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).addModifier(
-            'BeerFactory_UniqueBuild',
-            () => this.getMultiplier('djed')
-        );
-        ComposedValueRegistry.getComposedValue(CV_FACTORY).addModifier(
-            'BeerFactory_UniqueBuild',
-            () => this.getMultiplier('was')
+        $.each(AFFECTED_COMPOSED_VALUES_MAP, (composedValueKey, effectKey) =>
+            ComposedValueRegistry.getComposedValue(composedValueKey).addModifier(
+                COMPOSED_VALUE_MODIFIER_KEY,
+                () => this.getMultiplier(effectKey),
+            )
         );
     }
 
