@@ -227,7 +227,6 @@
                 .triggerModifierChange('Beerwarts_manaProductionUpgradeMultiplier');
         }).bind(this));
 
-        this.gameEventBus.on(EVENTS.BEER_BLENDER.UPDATE, this._updateBeerwartsView.bind(this));
         this.gameEventBus.on(EVENTS.CORE.BUILDING.PURCHASED, () => this.cache.buildingMultiplier = {});
         this.gameEventBus.on(EVENTS.CORE.BOTTLE_CAP.PURCHASED, () => {
             this.cache.buildingMultiplier = {};
@@ -1194,7 +1193,7 @@
      * @private
      */
     Beerwarts.prototype._getTrainingDuration = function (magicianId, skill, autoTraining = false) {
-        return Math.max(
+        return Math.min(
             this.skills[skill].baseTrainingTime
                 * Math.pow(
                     this.skills[skill].trainingTimeMultiplier,

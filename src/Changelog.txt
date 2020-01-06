@@ -1,20 +1,22 @@
 **1.67.0**
+* Add a new ingredient to the Beer Blender Bar
+* Refactored Beer Factories to represent the current factory production, storage and transport multiplier as a ComposedValue.
+* Bugfixes:
+    - Equipping the Blueberry at the Beer Blender Bar leads to a NaN Mana per second display error
+
+**1.66.0** - 15.12.2019
+* Added cloning to Bottle Cap Factories (#87)
 * Balanced Beerwarts
     - Increased magician price growing
     - Increased training price growing
     - Limited the training duration to max. 1000 days (#54)
 * Moved the ComposedValueRegistry into a separate library
 * Refactored BeerBank to represent the current investment as a ComposedValue
-* Refactored Beer Factories to represent the current factory production, storage and transport multiplier as a ComposedValue.
-* Add a new ingredient to the Beer Blender Bar
-* Bugfixes:
-    - The owned plops label isn't reset after a sacrifice
-    - Automated Bottle Cap Factory level up doesn't check if there are enough Bottle Cap Factories to level up
-
-**1.66.0**
 * Remove translated labels from the save state (#47)
 * Update to Twig 3.0
 * Bugfixes:
+    - The owned plops label isn't reset after a sacrifice
+    - Automated Bottle Cap Factory level up doesn't check if there are enough Bottle Cap Factories to level up
     - Recursion without break condition for build automation
 
 **1.65.0** - 05.12.2019
