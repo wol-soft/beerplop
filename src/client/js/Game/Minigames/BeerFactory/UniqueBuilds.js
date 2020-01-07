@@ -120,13 +120,9 @@
                     this._renderUniqueBuildOverviewModal();
                 }
 
-
-                $.each(AFFECTED_COMPOSED_VALUES_MAP, (composedValueKey, effectKey) =>
-                    ComposedValueRegistry.getComposedValue(composedValueKey).triggerModifierChange(COMPOSED_VALUE_MODIFIER_KEY)
-                );
             }
         }).bind(this));
-
+        
         this.gameEventBus.on(EVENTS.CORE.ITERATION, (function updateUniqueBuildsTimeSpans () {
             if (!this.modalOpened) {
                 return;
@@ -359,6 +355,10 @@
 
             modal.modal('hide');
             this._renderUniqueBuildOverviewModal();
+            
+            $.each(AFFECTED_COMPOSED_VALUES_MAP, (composedValueKey, effectKey) =>
+                ComposedValueRegistry.getComposedValue(composedValueKey).triggerModifierChange(COMPOSED_VALUE_MODIFIER_KEY)
+            );
 
             this.gameEventBus.emit(EVENTS.BEER_FACTORY.UNIQUE_BUILD.UPDATED);
         }).bind(this));
