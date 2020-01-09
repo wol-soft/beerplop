@@ -290,7 +290,10 @@
 
         this.autoCloneSemaphore = true;
 
-        const defaultPriority = {};
+        const defaultPriority = {
+            bottleCapFactory: 1,
+        };
+
         this.gameState.getBuildings().forEach(building => defaultPriority[building] = 1);
 
         let cloned = false;

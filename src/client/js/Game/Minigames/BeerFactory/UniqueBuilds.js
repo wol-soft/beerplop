@@ -111,9 +111,6 @@
                 if (this.modalOpened) {
                     this._renderUniqueBuildOverviewModal();
                 }
-
-                ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP)
-                    .triggerModifierChange('BeerFactory_UniqueBuild');
             }
         }).bind(this));
 
@@ -349,6 +346,8 @@
             this._renderUniqueBuildOverviewModal();
 
             this.gameEventBus.emit(EVENTS.BEER_FACTORY.UNIQUE_BUILD.UPDATED);
+
+            ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).triggerModifierChange('BeerFactory_UniqueBuild');
         }).bind(this));
 
         const parentModal = $('#beer-factory__unique-builds-modal');

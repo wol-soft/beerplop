@@ -480,7 +480,7 @@
                 return;
             }
 
-            if (newAmount === route.amount) {
+            if (!route.purchase || newAmount === route.amount) {
                 return;
             }
 
