@@ -375,15 +375,15 @@
         }).bind(this));
 
         this.mainStockChart = Highcharts.chart('stock-market-main-diagram', {
-
             title: {
                 text: 'Stock market courses'
             },
-
             tooltip: {
                 pointFormat: "{point.y:,.2f}"
             },
-
+            credits: {
+                enabled: false
+            },
             series: series,
         });
     };
@@ -393,11 +393,12 @@
             title: {
                 text: translator.translate('stockMarket.' + stock) + ' course'
             },
-
             tooltip: {
                 pointFormat: "{point.y:,.2f}"
             },
-
+            credits: {
+                enabled: false
+            },
             series: [{
                 name: translator.translate('stockMarket.' + stock),
                 data: this.stocks[stock].history
@@ -412,16 +413,16 @@
             title: {
                 text: translator.translate('stockMarket.' + hold.stock) + ' course for investment #' + holdId
             },
-
             tooltip: {
                 pointFormat: "{point.y:,.2f}"
             },
-
+            credits: {
+                enabled: false
+            },
             series: [{
                 name: translator.translate('stockMarket.' + hold.stock),
                 data: this.stocks[hold.stock].history
             }],
-
             yAxis: {
                 plotLines: [{
                     color: 'red',

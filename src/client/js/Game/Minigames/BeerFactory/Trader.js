@@ -218,6 +218,9 @@
                     return `${this.point.name}:<br />${numberFormatter.formatInt(this.point.y)} (${numberFormatter.format(this.point.percentage)}%)`;
                 },
             },
+            credits: {
+                enabled: false
+            },
             plotOptions: {
                 pie: {
                     colors: colors,

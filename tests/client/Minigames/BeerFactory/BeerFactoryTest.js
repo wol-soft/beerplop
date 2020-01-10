@@ -13,7 +13,6 @@ describe('Beer Factories', function () {
             beerFactory.unlockBeerFactory();
             expect($('#enter-beer-factory').hasClass('d-none')).to.equal(false);
             expect($('#enter-beer-factory__queued-jobs').text()).to.equal('0');
-            expect($('#beer-factory-container').text().trim()).to.equal('');
         });
 
         it('should open the Beer Factories overlay when being clicked', function () {

@@ -378,6 +378,9 @@
                 data: graphData,
                 type: 'sankey',
             }],
+            credits: {
+                enabled: false
+            },
             colorByPoint: true,
             colors: ['#7cb5ec'],
             tooltip: {
