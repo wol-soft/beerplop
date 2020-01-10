@@ -156,7 +156,7 @@
                     }
 
                     this.gameEventBus.emit(EVENTS.SAVE.LOAD.FINISHED, interpolateDuration);
-                    
+
                     // force a recalculation of each composed value to avoid keeping cached values from the old state
                     [CV_BEER_BANK, CV_BOTTLE_CAP, CV_MANA, CV_MANUAL_PLOP, CV_FACTORY].forEach(
                         (cv) => ComposedValueRegistry.getComposedValue(cv).recalculate()

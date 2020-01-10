@@ -265,7 +265,7 @@
 
         this.initialState = $.extend(true, {}, this.state);
 
-        this.gameEventBus.on('finish-load-savestate beer-factory__unique-build__update', (function () {
+        this.gameEventBus.on(EVENTS.SAVE.LOAD.FINISHED + ' ' + EVENTS.BEER_FACTORY.UNIQUE_BUILD.UPDATED, (function () {
             this.cache.uniqueBuildMultiplier = this.uniqueBuild.getMultiplier('was');
 
             this.beerFactoryCache.resetCache();
