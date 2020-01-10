@@ -185,7 +185,7 @@
 
         return Math.ceil(
             this.state.getState().extensionStorageCapacity
-            * this.state.getGameSpeed()
+            * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue()
             * Object.keys(EXTENSIONS[extension].consumes).length
             / 2
         );

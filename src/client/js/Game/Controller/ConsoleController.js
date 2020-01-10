@@ -47,6 +47,7 @@
                 break;
             case 'factory-speedup':
                 this.gameState.state.gameSpeed = 250;
+                ComposedValueRegistry.getComposedValue(CV_FACTORY).triggerModifierChange('GameSpeed');
 
                 (new Minigames.BeerFactory()).cache.cache = {
                     productionAmountCache: {},

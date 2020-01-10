@@ -270,6 +270,12 @@
                 );
             }).bind(this));
         }).bind(this));
+        
+        this.gameEventBus.on(EVENTS.BEER_BLENDER.UPDATE, this.updateMultiplier.bind(this));
+        this.gameEventBus.on(EVENTS.BEER_FACTORY.UNIQUE_BUILD.UPDATED, this.updateMultiplier.bind(this));
+        
+        ComposedValueRegistry.getComposedValue(CV_FACTORY)
+            .addModifier('GameSpeed', () => this.state.gameState.getGameSpeed())
     };
 
     /**
@@ -301,20 +307,11 @@
         return this.slot;
     };
 
-    BeerFactory.prototype.addMultiplier = function (multiplier) {
-        this.state.multiplier += multiplier;
-
-        this.cache.resetCache();
-        this.trader.recalculateAutoMaxDeals(false);
-
-        if (this.render.isOverlayVisible()) {
-            this.render.renderOverlay();
-        }
-    };
-
-    BeerFactory.prototype.removeMultiplier = function (multiplier) {
-        this.state.multiplier -= multiplier;
-
+    /**
+     * updates the Beer Factory view after a multiplier change
+     * e.g. after a Buff Bottle has been clicked or a Beer Blender ingredient change
+     */
+    BeerFactory.prototype.updateMultiplier = function () {
         this.stock.clearStockOverflow();
         this.cache.resetCache();
         this.trader.recalculateAutoMaxDeals(false);

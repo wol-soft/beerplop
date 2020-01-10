@@ -254,7 +254,6 @@
     State.prototype.beerFactoryCache = null;
 
     State.prototype.initialState = null;
-    State.prototype.multiplier   = 0;
 
     State.prototype.cache = {
         uniqueBuildMultiplier: 1,
@@ -429,10 +428,6 @@
 
     State.prototype.getExtensionStorage = function (extension) {
         return this.getState().extensionStorage[extension];
-    };
-
-    State.prototype.getGameSpeed = function () {
-        return this.gameState.getGameSpeed() * this.cache.uniqueBuildMultiplier * (this.multiplier || 1);
     };
 
     State.prototype.setUniqueBuild = function (uniqueBuild) {

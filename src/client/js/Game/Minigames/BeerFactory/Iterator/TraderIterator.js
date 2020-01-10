@@ -26,7 +26,7 @@
             const sellMaterial     = this.state.getMaterial(route.sell),
                   purchaseMaterial = this.state.getMaterial(route.purchase);
 
-            let possibleSellAmount     = Math.min(route.amount * this.state.getGameSpeed(), sellMaterial.amount),
+            let possibleSellAmount     = Math.min(route.amount * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(), sellMaterial.amount),
                 possiblePurchaseAmount = this.trader.getTradedAmount(route.sell, route.purchase, possibleSellAmount),
                 purchaseAmount         = Math.min(
                     possiblePurchaseAmount,

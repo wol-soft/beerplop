@@ -8,6 +8,7 @@
         bottleCaps: CV_BOTTLE_CAP,
         mana:       CV_MANA,
         beerBank:   CV_BEER_BANK,
+        factory:    CV_FACTORY,
     };
 
     const MAX_SLOTS = 4;
@@ -80,6 +81,14 @@
                 plop: -0.1,
                 mana: -0.1,
                 beerBank: 0.2,
+            },
+        },
+         egg: {
+            effect: {
+                bottleCaps: -0.1,
+                plop: -0.1,
+                mana: -0.1,
+                factory: 0.2,
             },
         },
     };

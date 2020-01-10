@@ -45,7 +45,7 @@
                 )
                 * Math.pow(2, state.factories.transport.upgrades.double)
                 * Math.pow(1 + state.factories.lodge.upgrades.comfort * 0.05, state.factories.lodge.amount)
-                * this.state.getGameSpeed();
+                * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue();
         }
 
         return this.cache.deliverCapacity;
@@ -69,7 +69,7 @@
                   lodge              = this.state.getFactory('lodge'),
                   backRoomMultiplier = this.getBackRoomMultiplier(factory);
 
-            let multiplier = this.state.getGameSpeed()
+            let multiplier = ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue()
                 * Math.pow(lodge.productionMultiplier, lodge.amount)
                 * backRoomMultiplier;
 
@@ -188,7 +188,7 @@
                 EXTENSIONS[extension].produces,
                 (function updateFactoryProductionCache(material, amount) {
                     production[material] = {
-                        amount: amount * this.state.getGameSpeed(),
+                        amount: amount * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),
                         boost:  (this.state.getExtensionStorage(extension).multiplier || 1),
                     };
                 }).bind(this)

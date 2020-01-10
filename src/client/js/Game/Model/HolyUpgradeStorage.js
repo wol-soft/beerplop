@@ -720,7 +720,7 @@
                     (new Minigames.BeerBank()).addHolyUpgradeBeerBankBoost(0.05);
                 }).bind(this),
                 costs: 25e7,
-                coordinates: [1650, 1325],
+                coordinates: [1700, 1375],
                 depends: [
                     'beerBank'
                 ]
@@ -731,7 +731,7 @@
                     (new Minigames.BeerBank()).addHolyUpgradeBeerBankBoost(0.1);
                 }).bind(this),
                 costs: 1e9,
-                coordinates: [1600, 1450],
+                coordinates: [1650, 1500],
                 depends: [
                     'accountAgreement'
                 ]
@@ -742,7 +742,7 @@
                     (new Minigames.BeerBank()).addHolyUpgradeBeerBankBoost(0.15);
                 }).bind(this),
                 costs: 5e9,
-                coordinates: [1550, 1575],
+                coordinates: [1600, 1625],
                 depends: [
                     'cod'
                 ]
@@ -753,7 +753,7 @@
                     this.upgradeController.getUpgradeStorage().addUpgradeReductionFromHolyUpgrades(0.01);
                 }).bind(this),
                 costs: 5000,
-                coordinates: [1100, 800],
+                coordinates: [1200, 900],
                 depends: [
                     'beerRain'
                 ]
@@ -764,7 +764,7 @@
                     this.upgradeController.getUpgradeStorage().addUpgradeReductionFromHolyUpgrades(0.02);
                 }).bind(this),
                 costs: 2e4,
-                coordinates: [1200, 900],
+                coordinates: [1300, 1000],
                 depends: [
                     'industrialRevolution'
                 ]
@@ -775,7 +775,7 @@
                     this.upgradeController.getUpgradeStorage().addUpgradeReductionFromHolyUpgrades(0.03);
                 }).bind(this),
                 costs: 1e5,
-                coordinates: [1300, 1000],
+                coordinates: [1400, 1100],
                 depends: [
                     'industrialRevolution2'
                 ]
@@ -786,7 +786,7 @@
                     this.upgradeController.getUpgradeStorage().addUpgradeReductionFromHolyUpgrades(0.04);
                 }).bind(this),
                 costs: 5e5,
-                coordinates: [1400, 1100],
+                coordinates: [1500, 1200],
                 depends: [
                     'digitalRevolution'
                 ]
@@ -797,7 +797,7 @@
                     this.gameState.addUpgradeAutoPlopMultiplier(this.gameState.getBuildingData('opener').amount * 0.0005, 'openerStudy');
                 }).bind(this),
                 costs: 5e3,
-                coordinates: [950, 750],
+                coordinates: [850, 750],
                 depends: [
                     'smallHelper'
                 ]
@@ -808,7 +808,7 @@
                     this.gameState.addUpgradeAutoPlopMultiplier(this.gameState.getBuildingData('dispenser').amount * 0.0005, 'dispenserFactory');
                 }).bind(this),
                 costs: 15e3,
-                coordinates: [750, 800],
+                coordinates: [800, 900],
                 depends: [
                     'mediumHelper'
                 ]
@@ -819,7 +819,7 @@
                     this.gameState.addUpgradeAutoPlopMultiplier(this.gameState.getBuildingData('serviceAssistant').amount * 0.0005, 'beerAcademy');
                 }).bind(this),
                 costs: 5e4,
-                coordinates: [550, 850],
+                coordinates: [750, 1075],
                 depends: [
                     'bigHelper'
                 ]
@@ -830,7 +830,7 @@
                     this.gameState.addUpgradeAutoPlopMultiplier(0.1, 'holy');
                 }).bind(this),
                 costs: 1e5,
-                coordinates: [700, 975],
+                coordinates: [600, 950],
                 depends: [
                     'openerStudy',
                     'dispenserFactory',
@@ -843,7 +843,7 @@
                     this.gameState.addUpgradeAutoPlopMultiplier(0.15, 'holy');
                 }).bind(this),
                 costs: 5e5,
-                coordinates: [650, 1100],
+                coordinates: [550, 1075],
                 depends: [
                     'wisdom'
                 ]
@@ -854,7 +854,7 @@
                     this.gameState.addUpgradeAutoPlopMultiplier(0.2, 'holy');
                 }).bind(this),
                 costs: 2e6,
-                coordinates: [600, 1225],
+                coordinates: [500, 1200],
                 depends: [
                     'inspiration'
                 ]
@@ -865,7 +865,7 @@
                     this.gameState.addUpgradeAutoPlopMultiplier(0.25, 'holy');
                 }).bind(this),
                 costs: 1e7,
-                coordinates: [550, 1350],
+                coordinates: [450, 1325],
                 depends: [
                     'theosophical'
                 ]
@@ -1187,7 +1187,7 @@
                     }
                 }).bind(this),
                 costs: 1e3,
-                coordinates: [1000, 600],
+                coordinates: [1050, 700],
                 depends: [
                     'sourceOfLife'
                 ]
@@ -1200,7 +1200,7 @@
                     }
                 }).bind(this),
                 costs: 3e3,
-                coordinates: [800, 650],
+                coordinates: [1000, 850],
                 depends: [
                     'smallHelper'
                 ]
@@ -1213,7 +1213,7 @@
                     }
                 }).bind(this),
                 costs: 1e4,
-                coordinates: [600, 700],
+                coordinates: [950, 1000],
                 depends: [
                     'mediumHelper'
                 ]
@@ -1224,7 +1224,7 @@
                     (new Minigames.BeerFactory()).unlockBeerFactory();
                 },
                 costs: 5e4,
-                coordinates: [400, 750],
+                coordinates: [900, 1150],
                 depends: [
                     'bigHelper'
                 ]
@@ -1233,7 +1233,7 @@
                 reached: false,
                 upgrade: () => this.buffController.enableAdditionalBuff('beerFactory'),
                 costs: 5e6,
-                coordinates: [200, 800],
+                coordinates: [850, 1300],
                 depends: [
                     'beerFactory'
                 ]
@@ -1334,7 +1334,7 @@
                     (new Minigames.BeerBlender()).unlockBeerBlender();
                 }).bind(this),
                 costs: 15e3,
-                coordinates: [1050, 1000],
+                coordinates: [1200, 1100],
                 depends: [
                     'industrialRevolution'
                 ]
@@ -1345,7 +1345,7 @@
                     (new Minigames.BeerBlender()).unlockAdditionalSlot(2);
                 }).bind(this),
                 costs: 1e5,
-                coordinates: [1150, 1150],
+                coordinates: [1300, 1200],
                 depends: [
                     'bb'
                 ]
@@ -1356,7 +1356,7 @@
                     (new Minigames.BeerBlender()).unlockAdditionalSlot(3);
                 }).bind(this),
                 costs: 1e6,
-                coordinates: [1150, 1300],
+                coordinates: [1400, 1300],
                 depends: [
                     'bb2'
                 ]
@@ -1367,7 +1367,7 @@
                     (new Minigames.BeerBlender()).unlockAdditionalIngredient('cherry');
                 }).bind(this),
                 costs: 6e7,
-                coordinates: [1250, 1450],
+                coordinates: [1500, 1400],
                 depends: [
                     'bb3',
                     'beerBank'
@@ -1379,7 +1379,7 @@
                     (new Minigames.BeerBlender()).unlockAdditionalIngredient('pear');
                 }).bind(this),
                 costs: 75e3,
-                coordinates: [950, 1150],
+                coordinates: [1100, 1200],
                 depends: [
                     'bb'
                 ]
@@ -1390,7 +1390,7 @@
                     (new Minigames.BeerBlender()).unlockAdditionalIngredient('chili');
                 }).bind(this),
                 costs: 25e4,
-                coordinates: [950, 1300],
+                coordinates: [1100, 1350],
                 depends: [
                     'bb_pear'
                 ]
@@ -1401,7 +1401,7 @@
                     (new Minigames.BeerBlender()).unlockAdditionalIngredient('grape');
                 }).bind(this),
                 costs: 1e6,
-                coordinates: [950, 1450],
+                coordinates: [1100, 1500],
                 depends: [
                     'bb_chili'
                 ]
@@ -1412,7 +1412,7 @@
                     (new Minigames.BeerBlender()).unlockAdditionalIngredient('melon');
                 }).bind(this),
                 costs: 35e6,
-                coordinates: [950, 1600],
+                coordinates: [1100, 1650],
                 depends: [
                     'bb_grape'
                 ]
@@ -1435,10 +1435,23 @@
                     (new Minigames.BeerBlender()).unlockAdditionalIngredient('woodruff');
                 }).bind(this),
                 costs: 75e8,
-                coordinates: [1150, 1675],
+                coordinates: [1300, 1500],
                 depends: [
                     'bb_melon',
                     'bb_cherry'
+                ]
+            },
+            bb_egg: {
+                reached: false,
+                upgrade: (function () {
+                    (new Minigames.BeerBlender()).unlockAdditionalIngredient('egg');
+                }).bind(this),
+                costs: 75e7,
+                coordinates: [900, 1500],
+                depends: [
+                    'bb_grape',
+                    'beerFactoryBoost',
+                    'beerwarts'
                 ]
             },
             bb_preset1: {
