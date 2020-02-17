@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /apps/mediacenter/
-Disallow: /apps/user/
-Disallow: /apps/admin/
-Disallow: /apps/chat/
-Disallow: /apps/dev/
-Sitemap: https://wol-soft.de/sitemap.xml

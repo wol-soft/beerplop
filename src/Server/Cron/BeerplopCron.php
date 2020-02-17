@@ -17,7 +17,7 @@ App::getInstance('beerplop');
 
 $jobby->add('NotifyOfflineSaveStates', [
     'closure' => function () use ($confPath) {
-        // as the cron is executed in a separate process teh config needs to be included again
+        // as the cron is executed in a separate process the config needs to be included again
         require_once $confPath;
 
         $notifiedSaveStates = (new SaveStateService())->notifyOfflineSaveStates();

@@ -45,7 +45,6 @@ class Conf extends Singleton
     public $profile           = false;
     public $profileLogFile    = '/var/log/wolsoft/profiling.log';
     public $profileDatabase   = false;
-    public $activityStreamLog = false;
 
     public $applicationHomeRoute = '';
 

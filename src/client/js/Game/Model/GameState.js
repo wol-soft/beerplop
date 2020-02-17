@@ -463,12 +463,14 @@
 
         this.buildingLevelController.resetInitialState();
         this._initUpgradeBoosts();
+
+        // TODO: duplicate call when called from sacrifice. Maybe not required in this place
         this._updateUI();
     };
 
     GameState.prototype._updateUI = function () {
         this.recalculateAutoPlopsPerSecond();
-        this._recalculateAllCostNext();
+        this._recalculateAllCostNext(true);
         this._updateBuyButtons();
 
         $.each(this.state.buildings, (function updateBuildingUI(building, buildingData) {
@@ -875,13 +877,12 @@
      *
      * @private
      */
-    GameState.prototype._recalculateAllCostNext = function () {
+    GameState.prototype._recalculateAllCostNext = function (forceMaxAvailableUpdate = false) {
         if (this.updateSemaphore) {
             return;
         }
 
-        let forceMaxAvailableUpdate = false,
-            toggleCostsLabel        = false;
+        let toggleCostsLabel        = false;
 
         // the recalculation was triggered by a buy amount charge switch. So check, if a switch between MAX and a
         // constant number happened and update everything accordingly to the change
