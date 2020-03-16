@@ -17,14 +17,19 @@ const puppeteer = require('puppeteer');
     console.log('Init Puppeteer');
     const browser = await puppeteer.launch({
         headless: true,
-        // de specific number parsing
-        args: ['--lang=de-DE']
     });
     const page = await browser.newPage();
 
     page.on('console', msg => console.log('PAGE LOG:', msg.text()));
     page.on('error', msg => console.log('PAGE ERROR:', msg.message));
     page.on('pageerror', msg => console.log('PAGE ERROR:', msg.message));
+
+    // de specific number parsing in tests
+    await page.evaluateOnNewDocument(() => Object.defineProperty(navigator, "languages", {
+        get: function() {
+            return ["de-DE", "de"];
+        }
+    }));
 
     await page.setViewport({
         width: 1920,
