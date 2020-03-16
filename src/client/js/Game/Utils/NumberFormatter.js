@@ -35,6 +35,8 @@
 
         this.language = (navigator.languages != undefined ? navigator.languages[0] : (navigator.language || 'en'));
 
+        console.log('Initializing number formatter module with language ' + this.language);
+
         this.intlFormatter = new Intl.NumberFormat(
             this.language,
             {
