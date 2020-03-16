@@ -27,7 +27,6 @@ module.exports = function(grunt) {
                     'node_modules/compare-versions/index.js',
                     'node_modules/snackbarjs/dist/snackbar.min.js',
                     'node_modules/composed-value-registry/src/ComposedValueRegistry.js',
-                    'node_modules/@babel/polyfill/dist/polyfill.min.js',
                     'build/Game/__init.js',
                     'build/Game/**/**/*.js',
                     'build/Game/**/*.js',
