@@ -354,18 +354,18 @@
                     },
                     7: {
                         costs: {
-                            wood: 525_000_000,
-                            strongWood: 225_000_000,
-                            woodenBeam: 225_000_000,
-                            stone: 450_000_000,
-                            granite: 255_000_000,
-                            iron: 340_500_000,
+                            wood: 1_525_000_000,
+                            strongWood: 625_000_000,
+                            woodenBeam: 625_000_000,
+                            stone: 1_250_000_000,
+                            granite: 755_000_000,
+                            iron: 1_040_500_000,
                             charcoal: 1_650_000,
                             tools: 1_575_000,
-                            gold: 52_500_000,
-                            copper: 52_500_000,
+                            gold: 152_500_000,
+                            copper: 152_500_000,
                             marble: 1_500_000,
-                            diamond: 18_000_000,
+                            diamond: 58_000_000,
                             medallion: 150_000,
                         },
                         requires: {
@@ -376,23 +376,67 @@
                     },
                     8: {
                         costs: {
-                            wood: 7_875_000_000,
-                            strongWood: 3_375_000_000,
-                            woodenBeam: 3_375_000_000,
-                            stone: 6_750_000_000,
-                            granite: 3_825_000_000,
-                            iron: 5_107_500_000,
+                            wood: 50_875_000_000,
+                            strongWood: 25_375_000_000,
+                            woodenBeam: 25_375_000_000,
+                            stone: 40_750_000_000,
+                            granite: 24_825_000_000,
+                            iron: 37_107_500_000,
                             charcoal: 24_750_000,
                             tools: 23_625_000,
                             gold: 787_500_000,
-                            copper: 787_500_000,
+                            copper: 4_787_500_000,
                             marble: 22_500_000,
-                            diamond: 270_000_000,
+                            diamond: 1_270_000_000,
                             medallion: 2_250_000,
                         },
                         requires: {
                             wood: {
                                 amount: 40,
+                            },
+                        }
+                    },
+                    9: {
+                        costs: {
+                            wood: 2_712_250_000_000,
+                            strongWood: 955_250_000_000,
+                            woodenBeam: 955_250_000_000,
+                            stone: 2_470_500_000_000,
+                            granite: 907_550_000_000,
+                            iron: 1_519_505_000_000,
+                            charcoal: 346_500_000,
+                            tools: 330_750_000,
+                            gold: 41_025_000_000,
+                            copper: 67_025_000_000,
+                            marble: 315_000_000,
+                            diamond: 50_780_000_000,
+                            medallion: 31_500_000,
+                        },
+                        requires: {
+                            wood: {
+                                amount: 45,
+                            },
+                        }
+                    },
+                    10: {
+                        costs: {
+                            wood: 35_259_250_000_000,
+                            strongWood: 12_418_250_000_000,
+                            woodenBeam: 12_418_250_000_000,
+                            stone: 32_116_500_000_000,
+                            granite: 11_798_150_000_000,
+                            iron: 19_753_565_000_000,
+                            charcoal: 4_504_500_000,
+                            tools: 4_299_750_000,
+                            gold: 533_325_000_000,
+                            copper: 871_325_000_000,
+                            marble: 4_095_000_000,
+                            diamond: 660_140_000_000,
+                            medallion: 409_500_000,
+                        },
+                        requires: {
+                            wood: {
+                                amount: 50,
                             },
                         }
                     },
@@ -543,6 +587,29 @@
                         },
                         callback: () => raiseFactoryExtensionProductionMultiplier('charcoal'),
                     },
+                    7: {
+                        costs: {
+                            wood: 490_000_000_000,
+                            strongWood: 210_000_000_000,
+                            woodenBeam: 210_000_000_000,
+                            stone: 420_000_000_000,
+                            granite: 230_800_000_000,
+                            iron: 310_780_000_000,
+                            charcoal: 154_000_000,
+                            tools: 147_000_000,
+                            gold: 40_900_000_000,
+                            copper: 90_900_000_000,
+                            marble: 140_000_000,
+                            diamond: 9_680_000_000,
+                            medallion: 14_000_000,
+                        },
+                        requires: {
+                            wood: {
+                                amount: 42,
+                            },
+                        },
+                        callback: () => raiseFactoryExtensionProductionMultiplier('charcoal'),
+                    },
                 },
             },
             stone: {
@@ -644,17 +711,17 @@
                     },
                     6: {
                         costs: {
-                            wood: 200_000_000,
-                            strongWood: 120_000_000,
-                            woodenBeam: 120_000_000,
-                            stone: 170_000_000,
-                            granite: 75_000_000,
-                            iron: 95_000_000,
-                            gold: 15_000_000,
+                            wood: 400_000_000,
+                            strongWood: 220_000_000,
+                            woodenBeam: 220_000_000,
+                            stone: 300_000_000,
+                            granite: 175_000_000,
+                            iron: 195_000_000,
+                            gold: 35_000_000,
                             charcoal: 230_000,
                             tools: 200_000,
                             marble: 200_000,
-                            diamond: 7_000_000,
+                            diamond: 17_000_000,
                             medallion: 80_000,
                         },
                         requires: {
@@ -665,23 +732,67 @@
                     },
                     7: {
                         costs: {
-                            wood: 2_600_000_000,
-                            strongWood: 1_560_000_000,
-                            woodenBeam: 1_560_000_000,
-                            stone: 2_210_000_000,
-                            granite: 975_000_000,
-                            iron: 1_235_000_000,
-                            gold: 195_000_000,
-                            copper: 195_000_000,
+                            wood: 10_600_000_000,
+                            strongWood: 5_560_000_000,
+                            woodenBeam: 5_560_000_000,
+                            stone: 4_210_000_000,
+                            granite: 1_975_000_000,
+                            iron: 5_235_000_000,
+                            gold: 895_000_000,
+                            copper: 995_000_000,
                             charcoal: 2_990_000,
                             tools: 2_600_000,
                             marble: 2_600_000,
-                            diamond: 91_000_000,
+                            diamond: 391_000_000,
                             medallion: 1_040_000,
                         },
                         requires: {
                             stone: {
                                 amount: 35,
+                            }
+                        },
+                    },
+                    8: {
+                        costs: {
+                            wood: 390_000_000_000,
+                            strongWood: 230_400_000_000,
+                            woodenBeam: 230_400_000_000,
+                            stone: 330_150_000_000,
+                            granite: 140_625_000_000,
+                            iron: 180_525_000_000,
+                            gold: 20_925_000_000,
+                            copper: 30_925_000_000,
+                            charcoal: 44_850_000,
+                            tools: 39_000_000,
+                            marble: 39_000_000,
+                            diamond: 20_365_000_000,
+                            medallion: 15_600_000,
+                        },
+                        requires: {
+                            stone: {
+                                amount: 40,
+                            }
+                        },
+                    },
+                    9: {
+                        costs: {
+                            wood: 5_850_000_000_000,
+                            strongWood: 3_456_000_000_000,
+                            woodenBeam: 3_456_000_000_000,
+                            stone: 4_952_250_000_000,
+                            granite: 2_109_375_000_000,
+                            iron: 2_707_875_000_000,
+                            gold: 313_875_000_000,
+                            copper: 463_875_000_000,
+                            charcoal: 672_750_000,
+                            tools: 585_000_000,
+                            marble: 585_000_000,
+                            diamond: 305_475_000_000,
+                            medallion: 234_000_000,
+                        },
+                        requires: {
+                            stone: {
+                                amount: 45,
                             }
                         },
                     },
@@ -876,7 +987,53 @@
                         },
                         requires: {
                             stone: {
-                                amount: 37,
+                                amount: 38,
+                            },
+                        },
+                        callback: () => raiseFactoryExtensionProductionMultiplier('basePlate'),
+                    },
+                    9: {
+                        costs: {
+                            wood: 900_000_000_000,
+                            strongWood: 410_400_000_000,
+                            woodenBeam: 410_400_000_000,
+                            stone: 750_600_000_000,
+                            granite: 340_200_000_000,
+                            iron: 470_700_000_000,
+                            gold: 70_020_000_000,
+                            copper: 70_020_000_000,
+                            charcoal: 99_000_000,
+                            tools: 64_800_000,
+                            marble: 75_600_000,
+                            diamond: 20_790_000_000,
+                            medallion: 16_200_000,
+                        },
+                        requires: {
+                            stone: {
+                                amount: 42,
+                            },
+                        },
+                        callback: () => raiseFactoryExtensionProductionMultiplier('mason'),
+                    },
+                    10: {
+                        costs: {
+                            wood: 7_200_000_000,
+                            strongWood: 3_312_000_000,
+                            woodenBeam: 3_312_000_000,
+                            stone: 6_048_000_000,
+                            granite: 2_736_000_000,
+                            iron: 3_816_000_000,
+                            gold: 561_600_000,
+                            copper: 561_600_000,
+                            charcoal: 7_920_000,
+                            tools: 5_184_000,
+                            marble: 6_048_000,
+                            diamond: 223_200_000,
+                            medallion: 1_296_000,
+                        },
+                        requires: {
+                            stone: {
+                                amount: 45,
                             },
                         },
                         callback: () => raiseFactoryExtensionProductionMultiplier('basePlate'),
@@ -1068,6 +1225,52 @@
                         requires: {
                             storage: {
                                 amount: 40,
+                            },
+                        },
+                        callback: () => this.render.updateStockTable(),
+                    },
+                    9: {
+                        costs: {
+                            wood: 262_440_000_000,
+                            strongWood: 150_903_000_000,
+                            woodenBeam: 150_903_000_000,
+                            stone: 216_513_000_000,
+                            granite: 91_854_000_000,
+                            iron: 114_817_500_000,
+                            gold: 18_370_800_000,
+                            copper: 18_370_800_000,
+                            charcoal: 255_879_000,
+                            tools: 27_051_300,
+                            marble: 27_144_000,
+                            diamond: 11_481_750_000,
+                            medallion: 10_188_000,
+                        },
+                        requires: {
+                            storage: {
+                                amount: 45,
+                            },
+                        },
+                        callback: () => this.render.updateStockTable(),
+                    },
+                    10: {
+                        costs: {
+                            wood: 13_500_000_000_000,
+                            strongWood: 6_156_000_000_000,
+                            woodenBeam: 6_156_000_000_000,
+                            stone: 11_259_000_000_000,
+                            granite: 5_103_000_000_000,
+                            iron: 7_060_500_000_000,
+                            gold: 1_050_300_000_000,
+                            copper: 1_050_300_000_000,
+                            charcoal: 1_485_000_000,
+                            tools: 972_000_000,
+                            marble: 1_134_000_000,
+                            diamond: 311_850_000_000,
+                            medallion: 243_000_000,
+                        },
+                        requires: {
+                            storage: {
+                                amount: 50,
                             },
                         },
                         callback: () => this.render.updateStockTable(),
@@ -1468,6 +1671,52 @@
                         },
                         callback: this.cache.resetDeliverCapacityCache.bind(this.cache),
                     },
+                    11: {
+                        costs: {
+                            wood: 3_072_000_000_000,
+                            strongWood: 1_658_880_000_000,
+                            woodenBeam: 1_658_880_000_000,
+                            stone: 2_396_160_000_000,
+                            granite: 1_044_480_000_000,
+                            iron: 1_259_520_000_000,
+                            gold: 202_752_000_000,
+                            copper: 202_752_000_000,
+                            charcoal: 3_010_560_000,
+                            tools: 176_160_000,
+                            marble: 169_800_000,
+                            diamond: 125_952_000_000,
+                            medallion: 11_040_000,
+                        },
+                        requires: {
+                            transport: {
+                                amount: 46,
+                            }
+                        },
+                        callback: this.cache.resetDeliverCapacityCache.bind(this.cache),
+                    },
+                    12: {
+                        costs: {
+                            wood: 46_080_000_000_000,
+                            strongWood: 24_883_200_000_000,
+                            woodenBeam: 24_883_200_000_000,
+                            stone: 35_942_400_000_000,
+                            granite: 15_667_200_000_000,
+                            iron: 18_892_800_000_000,
+                            gold: 3_041_280_000_000,
+                            copper: 3_041_280_000_000,
+                            charcoal: 45_158_400_000,
+                            tools: 2_642_400_000,
+                            marble: 2_547_000_000,
+                            diamond: 1_889_280_000_000,
+                            medallion: 165_600_000,
+                        },
+                        requires: {
+                            transport: {
+                                amount: 50,
+                            }
+                        },
+                        callback: this.cache.resetDeliverCapacityCache.bind(this.cache),
+                    },
                 },
                 diversify: {
                     1: {
@@ -1551,6 +1800,29 @@
                         requires: {
                             transport: {
                                 amount: 30,
+                            },
+                        },
+                        callback: () => this.state.getState().extensionTransportDividend -= 1,
+                    },
+                    5: {
+                        costs: {
+                            wood: 1_024_000_000_000,
+                            strongWood: 552_960_000_000,
+                            woodenBeam: 552_960_000_000,
+                            stone: 798_720_000_000,
+                            granite: 348_160_000_000,
+                            iron: 419_840_000_000,
+                            gold: 67_584_000_000,
+                            copper: 67_584_000_000,
+                            charcoal: 1_003_520_000,
+                            tools: 58_720_000,
+                            marble: 56_600_000,
+                            diamond: 41_984_000_000,
+                            medallion: 3_680_000,
+                        },
+                        requires: {
+                            transport: {
+                                amount: 40,
                             },
                         },
                         callback: () => this.state.getState().extensionTransportDividend -= 1,
@@ -1693,23 +1965,67 @@
                     },
                     7: {
                         costs: {
-                            wood: 3_840_000_000,
-                            strongWood: 2_073_600_000,
-                            woodenBeam: 2_073_600_000,
-                            stone: 2_995_200_000,
-                            granite: 1_305_600_000,
-                            iron: 1_574_400_000,
-                            gold: 253_440_000,
-                            copper: 253_440_000,
+                            wood: 30_840_000_000,
+                            strongWood: 16_073_600_000,
+                            woodenBeam: 16_073_600_000,
+                            stone: 20_995_200_000,
+                            granite: 10_305_600_000,
+                            iron: 10_574_400_000,
+                            gold: 2_503_440_000,
+                            copper: 2_503_440_000,
                             charcoal: 3_763_200,
                             tools: 2_995_200,
                             marble: 3_456_000,
-                            diamond: 157_440_000,
+                            diamond: 1_257_440_000,
                             medallion: 768_000,
                         },
                         requires: {
                             iron: {
                                 amount: 34,
+                            },
+                        },
+                    },
+                    8: {
+                        costs: {
+                            wood: 2_162_600_000_000,
+                            strongWood: 841_104_000_000,
+                            woodenBeam: 841_104_000_000,
+                            stone: 1_614_928_000_000,
+                            granite: 654_584_000_000,
+                            iron: 658_616_000_000,
+                            gold: 137_551_600_000,
+                            copper: 137_551_600_000,
+                            charcoal: 56_448_000,
+                            tools: 44_928_000,
+                            marble: 51_840_000,
+                            diamond: 218_861_600_000,
+                            medallion: 11_520_000,
+                        },
+                        requires: {
+                            iron: {
+                                amount: 38,
+                            },
+                        },
+                    },
+                    9: {
+                        costs: {
+                            wood: 32_439_000_000_000,
+                            strongWood: 12_616_560_000_000,
+                            woodenBeam: 12_616_560_000_000,
+                            stone: 24_223_920_000_000,
+                            granite: 9_818_760_000_000,
+                            iron: 9_879_240_000_000,
+                            gold: 2_063_274_000_000,
+                            copper: 2_063_274_000_000,
+                            charcoal: 846_720_000,
+                            tools: 673_920_000,
+                            marble: 777_600_000,
+                            diamond: 3_282_924_000_000,
+                            medallion: 172_800_000,
+                        },
+                        requires: {
+                            iron: {
+                                amount: 42,
                             },
                         },
                     },
@@ -2245,6 +2561,28 @@
                         requires: {
                             mine: {
                                 amount: 25,
+                            },
+                        },
+                    },
+                    6: {
+                        costs: {
+                            wood: 1_900_125_000_000,
+                            strongWood: 830_655_000_000,
+                            woodenBeam: 930_161_250_000,
+                            stone: 1_782_520_000_000,
+                            granite: 600_916_625_000,
+                            marble: 251_875_000,
+                            iron: 1_304_228_750_000,
+                            charcoal: 370_518_750,
+                            tools: 407_265_000,
+                            gold: 351_333_750_000,
+                            diamond: 150_456_875_000,
+                            copper: 190_012_500_000,
+                            medallion: 36_050_000,
+                        },
+                        requires: {
+                            mine: {
+                                amount: 30,
                             },
                         },
                     },

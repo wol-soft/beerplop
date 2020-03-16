@@ -1,4 +1,9 @@
-**1.67.0**
+**1.68.0** - 16.03.2020
+* Add additional upgrade paths to the Beer Factories
+* Update dependencies
+* Update build process of the application
+
+**1.67.0** - 10.01.2020
 * Add a new ingredient to the Beer Blender Bar (#67)
 * Refactored Beer Factories to represent the current factory production, storage and transport multiplier as a ComposedValue
 * Bugfixes:
