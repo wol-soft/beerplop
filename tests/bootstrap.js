@@ -12,7 +12,7 @@ const puppeteer = require('puppeteer');
     setTimeout(() => {
         console.log('Test timeout');
         process.exit(1);
-    }, 60_000);
+    }, 60000);
 
     console.log('Init Puppeteer');
     const browser = await puppeteer.launch({
@@ -50,14 +50,17 @@ const puppeteer = require('puppeteer');
                     suites => Object.values(suites).map(
                         suite => ({
                             label: $(suite).find('> h1').text(),
-                            groups: $(suite).find('.suite').map(
-                                (index, group) => ({
+                            groups: Object.values($(suite).find('.suite')).map(
+                                group => ({
                                     label: $(group).find('> h1').text(),
-                                    tests: $(group).find('li.test.fail').map(
-                                        (index, test) => $(test).find('> h2').text().trim()
-                                    ),
+                                    tests: Object.values($(group).find('li.test.fail'))
+                                        .map(test => ({
+                                            assertion: $(test).find('> h2').text().trim(),
+                                            error: $(test).find('> pre.error').text(),
+                                        }))
+                                        .filter(test => test.assertion.length > 0),
                                 })
-                            ).filter((index, group) => group.tests && group.tests.length > 0)
+                            ).filter(group => group.tests && group.tests.length > 0)
                         })
                     ).filter(suite => suite.groups && suite.groups.length > 0)
                 );
@@ -65,11 +68,14 @@ const puppeteer = require('puppeteer');
                 failedTests.forEach(suite => {
                     if (suite.groups) {
                         console.log(suite.label);
-                        Object.values(suite.groups).forEach((group) => {
+                        suite.groups.forEach((group) => {
                             if (group.tests) {
                                 console.log('  ' + group.label);
-                                Object.values(group.tests).forEach(
-                                    (error) => console.log(error)
+                                group.tests.forEach(
+                                    (test) => {
+                                        console.log('    ' + test.assertion);
+                                        console.log('      ' + test.error);
+                                    }
                                 );
                                 console.log();
                             }
