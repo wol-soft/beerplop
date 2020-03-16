@@ -12,7 +12,7 @@ const puppeteer = require('puppeteer');
     setTimeout(() => {
         console.log('Test timeout');
         process.exit(1);
-    }, 60000);
+    }, 60_000);
 
     console.log('Init Puppeteer');
     const browser = await puppeteer.launch({

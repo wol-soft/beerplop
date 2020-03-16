@@ -49,7 +49,7 @@
                         this.gameEventBus.emit(EVENTS.SAVE.AUTOSAVE);
                     }
                 }).bind(this),
-                30000
+                30_000
             );
         }
 

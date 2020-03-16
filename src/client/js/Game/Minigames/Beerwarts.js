@@ -1200,7 +1200,7 @@
                 * (autoTraining ? this.autoTrainingReductionMultiplier : 1)
                 * Math.pow(this.cribReductionMultiplier, this._getCurrentSessions(skill)),
             // limit the training duration to a max of 1000 days
-            86400000
+            86_400_000
         );
     };
 
