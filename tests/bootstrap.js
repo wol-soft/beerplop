@@ -69,7 +69,7 @@ const puppeteer = require('puppeteer');
                             if (group.tests) {
                                 console.log('  ' + group.label);
                                 Object.values(group.tests).forEach(
-                                    (error) => console.log('    ' + error)
+                                    (error) => console.log(error)
                                 );
                                 console.log();
                             }
