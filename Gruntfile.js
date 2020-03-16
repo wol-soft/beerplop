@@ -8,7 +8,8 @@ module.exports = function(grunt) {
             beerplopInit: {
                 src: [
                     'node_modules/jquery/dist/jquery.min.js',
-                    'src/client/js/Init/__init.js',
+                    'node_modules/@babel/polyfill/dist/polyfill.min.js',
+                    'build/Init/__init.js',
                     'vendor/wol-soft/wol-soft-core/src/js/*.js',
                     'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js',
                 ],
@@ -26,9 +27,10 @@ module.exports = function(grunt) {
                     'node_modules/compare-versions/index.js',
                     'node_modules/snackbarjs/dist/snackbar.min.js',
                     'node_modules/composed-value-registry/src/ComposedValueRegistry.js',
-                    'src/client/js/Game/__init.js',
-                    'src/client/js/Game/**/**/*.js',
-                    'src/client/js/Game/**/*.js',
+                    'node_modules/@babel/polyfill/dist/polyfill.min.js',
+                    'build/Game/__init.js',
+                    'build/Game/**/**/*.js',
+                    'build/Game/**/*.js',
                 ],
                 dest: 'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>.min.js'
             },
@@ -49,8 +51,9 @@ module.exports = function(grunt) {
                     'node_modules/jquery/dist/jquery.min.js',
                     'node_modules/popper.js/dist/umd/popper.js',
                     'node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js',
-                    'src/client/js/Lobby/__init.js',
-                    'src/client/js/Lobby/*.js',
+                    'node_modules/@babel/polyfill/dist/polyfill.min.js',
+                    'build/Lobby/__init.js',
+                    'build/Lobby/*.js',
                     'vendor/wol-soft/wol-soft-core/src/js/*.js',
                     'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js'
                 ],
@@ -64,21 +67,18 @@ module.exports = function(grunt) {
                     'node_modules/chai/chai.js',
                     'node_modules/sinon/pkg/sinon.js',
                 ],
-                dest: 'htdocs/dist/js/beerplop-test-<%= pkg.beerplopversion %>.min.js'
+                dest: 'htdocs/dist/js/beerplop-test-<%= pkg.beerplopversion %>.js'
             },
             beerplopTestCases: {
                 src: [
                     'tests/client/**/*.js'
                 ],
-                dest: 'htdocs/dist/js/beerplop<%= pkg.beerplopversion %>-testcases.min.js'
+                dest: 'htdocs/dist/js/beerplop<%= pkg.beerplopversion %>-testcases.js'
             },
         },
-        uglify: {
+        terser: {
             options: {
-                banner:
-                    '<% var subtask = uglify[grunt.task.current.target]; %>' +
-                    '/*! <%= pkg.name %> <%= subtask.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
-                mangle: false
+                mangle: false,
             },
             beerplop: {
                 name: 'Beerplop',
@@ -87,6 +87,31 @@ module.exports = function(grunt) {
                     'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>.min.js': ['<%= concat.beerplop.dest %>'],
                     'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>-deferred.min.js': ['<%= concat.beerplopDeferred.dest %>'],
                 }
+            },
+        },
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: [
+                    '@babel/preset-env'
+                ],
+                plugins: [
+                    '@babel/plugin-proposal-numeric-separator',
+                ]
+            },
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src/client/js',
+                        src: [
+                            '**/**/**/*.js',
+                            '**/**/*.js',
+                            '**/*.js',
+                        ],
+                        dest: 'build/',
+                    },
+                ],
             },
         },
         sass: {
@@ -189,6 +214,7 @@ module.exports = function(grunt) {
         },
         clean: {
             beerplop: [
+                'build',
                 'htdocs/dist',
                 'htdocs/client/style'
             ],
@@ -230,7 +256,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-uglify-es');
+    grunt.loadNpmTasks('grunt-terser');
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -253,6 +280,7 @@ module.exports = function(grunt) {
     grunt.registerTask(
         'build-script',
         [
+            'babel',
             'concat:beerplop',
             'concat:beerplopInit',
             'concat:beerplopDeferred',
@@ -276,7 +304,7 @@ module.exports = function(grunt) {
             'build-test-script',
             'build-style',
             'svgstore:beerplop',
-            'uglify:beerplop',
+            'terser:beerplop',
             'copy:beerplop',
         ]
     );

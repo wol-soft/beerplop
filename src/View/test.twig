@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="dist/js/beerplop-test-{{ app.conf.beerplopversion }}.min.js"></script>
+    <script type="text/javascript" src="dist/js/beerplop-test-{{ app.conf.beerplopversion }}.js"></script>
     <script>
         if (typeof(Storage) !== 'undefined') {
             localStorage.removeItem('beerplop.test');
@@ -50,7 +50,7 @@
             });
 
             $.getScript(
-                'dist/js/beerplop{{ app.conf.beerplopversion }}-testcases.min.js',
+                'dist/js/beerplop{{ app.conf.beerplopversion }}-testcases.js',
                 () => {
                     TESTMODE = true;
 

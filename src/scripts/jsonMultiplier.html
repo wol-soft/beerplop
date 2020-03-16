@@ -18,14 +18,22 @@
                 document.getElementById('source').value
                     .replace(/([a-z]+)/ig, '"$1"')
                     .replace(/\s/g, '')
+                    .replace(/_/g, '')
                     .replace(',}', '}')
               ),
               multiplicand = parseFloat(document.getElementById('multiplicand').value);
 
           Object.keys(source).forEach((key) => source[key] = Math.round(source[key] * multiplicand));
-          document.getElementById('dest').value = JSON.stringify(source, null, 4)
+          let result = JSON.stringify(source, null, 4)
               .replace(/"/g, '')
               .replace(/(\d+)(\s)/g, '$1,$2');
+
+          const longNumberRegEx = /(\d)(\d{3}[^\d])/g;
+          while (result.match(longNumberRegEx)) {
+              result = result.replace(longNumberRegEx, '$1_$2');
+          }
+
+          document.getElementById('dest').value = result;
       });
     </script>
   </body>
