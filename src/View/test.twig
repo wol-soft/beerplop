@@ -35,12 +35,17 @@
                       setTimeout(waitForEmittedEvent, 30);
                   })();
               }),
-              getPlopsFromLabel = (selector) => parseFloat(
-                  selector.text()
-                      .match(/([\d,.]+)/g)[0]
-                      .replace('.', '')
-                      .replace(',', '.')
-              );
+              getPlopsFromLabel = (selector) => {
+                  let result = parseFloat(
+                      selector.text()
+                          .match(/([\d,.]+)/g)[0]
+                          .replace('.', '')
+                          .replace(',', '.')
+                  );
+
+                  console.log('parsePlopFromLabel text ' + selector.text() + ' parsed into ' + result + ' (selector ' + selector + ')');
+                  return result;
+              };
 
         window.onGameJsLoaded = () => {};
         window.onCoreInitialized = () => {
