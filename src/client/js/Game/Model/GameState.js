@@ -682,9 +682,9 @@
                 this.state.customBuyCharge = Math.floor($('#buy-amount-configure').val());
                 this._updateCustomBuyAmountButton();
 
-                this.buyAmount = this.state.customBuyCharge;
-
                 if ($('#buy-amount-custom').hasClass('active')) {
+                    this.buyAmount = this.state.customBuyCharge;
+
                     gameState._recalculateAllCostNext();
                     gameState.gameEventBus.emit(EVENTS.CORE.BUY_AMOUNT_UPDATED, this.state.customBuyCharge);
                 }

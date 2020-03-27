@@ -22,7 +22,6 @@ describe('GameState', function () {
             expect(getPlopsFromLabel($('#cost-next-opener'))).to.equal(10);
         });
     });
-
     describe('A click on the beer without buildings', function () {
         let gameEventBusManualClickSpy = sinon.spy();
 
@@ -325,84 +324,6 @@ describe('GameState', function () {
             $('#beer').find('use').trigger('click');
             expect(gameState.getPlops()).to.be.closeTo(1.38, 0.01);
             expect(ComposedValueRegistry.getComposedValue(CV_MANUAL_PLOP).getValue()).to.be.closeTo(1.38, 0.01);
-        });
-    });
-
-    describe('Switch to a custom buy charge', function () {
-        let gameEventBusUpdateBuyAmountSpy = sinon.spy();
-
-        it('should be preconfigured', function () {
-            gameState.resetInitialState();
-            const button = $('#buy-amount-custom');
-            expect(button.data('amount')).to.equal(50);
-            expect(button.text()).to.equal('50');
-        });
-
-        it('should raise the price for the next opener', function () {
-            gameEventBus.on(EVENTS.CORE.BUY_AMOUNT_UPDATED, gameEventBusUpdateBuyAmountSpy);
-
-            $('#buy-amount-custom').trigger('click');
-            expect(getPlopsFromLabel($('#cost-next-opener'))).to.equal(11665);
-        });
-
-        it ('should update the buy amount', function () {
-            expect(gameState.getBuyAmount()).to.equal(50);
-            expect(gameState.isBuyChargeOnMaxBuyAmount()).to.equal(false);
-        });
-
-        it('should trigger the update-buy-amount event', function () {
-            expect(gameEventBusUpdateBuyAmountSpy.callCount).to.equal(1);
-            expect(gameEventBusUpdateBuyAmountSpy.getCall(0).args[1]).to.equal(50);
-
-            gameEventBus.off(EVENTS.CORE.BUILDING.PURCHASED, gameEventBusUpdateBuyAmountSpy);
-        });
-    });
-
-    describe('Configure a custom buy charge', function () {
-        let gameEventBusUpdateBuyAmountSpy = sinon.spy();
-
-        it('should be available via the configure button', function (done) {
-            $('#buy-amount-custom__configure').trigger('click');
-
-            $('#buy-amount-configure-modal').on('shown.bs.modal', () => {
-                done();
-            });
-        }).timeout(2000);
-
-        it('should be prefilled with the currently configured custom buy charge', function () {
-            expect($('#buy-amount-configure').val()).to.equal('50');
-        });
-
-        it('should update the custom buy charge button', function (done) {
-            gameEventBus.on(EVENTS.CORE.BUY_AMOUNT_UPDATED, gameEventBusUpdateBuyAmountSpy);
-
-            const modal  = $('#buy-amount-configure-modal'),
-                  button = $('#buy-amount-custom');
-
-            $('#buy-amount-configure').val(2);
-            modal.find('.btn-success').trigger('click');
-
-            expect(button.data('amount')).to.equal(2);
-            expect(button.text()).to.equal('2');
-
-            modal.on('hidden.bs.modal', () => {
-                done();
-            });
-        }).timeout(2000);
-
-        it('should update the price for openers', function () {
-            expect(getPlopsFromLabel($('#cost-next-opener'))).to.equal(21);
-        });
-
-        it ('should update the buy amount', function () {
-            expect(gameState.getBuyAmount()).to.equal(2);
-        });
-
-        it('should trigger the update-buy-amount event', function () {
-            expect(gameEventBusUpdateBuyAmountSpy.callCount).to.equal(1);
-            expect(gameEventBusUpdateBuyAmountSpy.getCall(0).args[1]).to.equal(2);
-
-            gameEventBus.off(EVENTS.CORE.BUILDING.PURCHASED, gameEventBusUpdateBuyAmountSpy);
         });
     });
 
