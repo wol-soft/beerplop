@@ -1,7 +1,7 @@
 {% verbatim %}
   <script id="stock-market-hold-history-template" type="text/template">
     <br />
-    {{ #t }}"stockMarket.totalBalance"{{ /t }}: {{ #t }}"plopValue", {"__PLOPS__": "{{{ balance }}}"}{{ /t }}
+    {{ #t }}"stockMarket.totalBalance"{{ /t }}: {{ #t }}"plopValue", {"__VALUE__": "{{{ balance }}}"}{{ /t }}
     <button id="stock-market__clear-history" class="btn btn-raised btn-warning float-right">
       {{ #t }}"stockMarket.clearHistory"{{ /t }}
     </button>
@@ -30,7 +30,7 @@
             <td class="d-none d-sm-table-cell">{{ investment }}</td>
             <td class="d-none d-md-table-cell">{{ startValue }}</td>
             <td class="d-none d-md-table-cell">{{ endValue }}</td>
-            <td>{{ #t }}"plopValue", {"__PLOPS__": "{{{ balance }}}"}{{ /t }}</td>
+            <td>{{ #t }}"plopValue", {"__VALUE__": "{{{ balance }}}"}{{ /t }}</td>
             <td>
               {{ #autoClose }}
                 {{ #t }}"stockMarket.closed.system"{{ /t }}

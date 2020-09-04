@@ -323,13 +323,13 @@
                 let key  = 1,
                     data = {
                     __PRODUCTION_BOOST__: this.numberFormatter.formatInt(
-                        Math.pow(lodge.productionMultiplier, lodge.amount) * 100
+                        (Math.pow(lodge.productionMultiplier, lodge.amount) - 1) * 100,
                     ),
                 };
 
                 if (lodge.upgrades.comfort) {
                     data['__TRANSPORT_BOOST__'] = this.numberFormatter.formatInt(
-                        Math.pow(1 + lodge.upgrades.comfort * 0.05, lodge.amount) * 100
+                        (Math.pow(1 + lodge.upgrades.comfort * 0.05, lodge.amount) - 1) * 100,
                     );
 
                     key = 2;

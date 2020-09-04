@@ -65,7 +65,7 @@
                 {{ translator.translate('costs') }}: {{
                   translator.translate(
                     'plopValue',
-                    {'__PLOPS__': '<span class="cost-next-bottle-cap-factory label-cost">100</span>'}
+                    {'__VALUE__': '<span class="cost-next-bottle-cap-factory label-cost">100</span>'}
                   ) | raw
                 }}
               </span>
@@ -199,7 +199,7 @@
               {{ translator.translate('beerBank.invested') }}: {{
                 translator.translate(
                   'plopValue',
-                  {'__PLOPS__': '<span class="beer-bank-account">0</span>'}
+                  {'__VALUE__': '<span class="beer-bank-account">0</span>'}
                 ) | raw
               }}<br />
               {{ translator.translate('beerBank.boost') }}: <span class="beer-bank-boost">0</span>%<br />
@@ -223,7 +223,7 @@
               {{ translator.translate('costs') }}: {{
                 translator.translate(
                   'plopValue',
-                  {'__PLOPS__': '<span id="beer-bank__cost-next-banker" class="label-cost"></span>'}
+                  {'__VALUE__': '<span id="beer-bank__cost-next-banker" class="label-cost"></span>'}
                 ) | raw
               }}<br /><br />
 
@@ -231,7 +231,7 @@
               {{ translator.translate('beerBankBanker.totalBalance') }}: {{
                 translator.translate(
                   'plopValue',
-                  {'__PLOPS__': '<span id="beer-bank__banker__balance">0</span>'}
+                  {'__VALUE__': '<span id="beer-bank__banker__balance">0</span>'}
                 ) | raw
               }}<br /><br />
 
@@ -249,13 +249,13 @@
               {{ translator.translate('beerBankBanker.invested') }}: {{
                 translator.translate(
                   'plopValue',
-                  {'__PLOPS__': '<span id="beer-bank__banker__current-investment">0</span>'}
+                  {'__VALUE__': '<span id="beer-bank__banker__current-investment">0</span>'}
                 ) | raw
               }}<br />
               {{ translator.translate('beerBankBanker.balance') }}: {{
                 translator.translate(
                   'plopValue',
-                  {'__PLOPS__': '<span id="beer-bank__banker__current-balance">0</span>'}
+                  {'__VALUE__': '<span id="beer-bank__banker__current-balance">0</span>'}
                 ) | raw
               }}<br />
 
@@ -326,7 +326,7 @@
               {{ translator.translate('costs') }}: {{
                 translator.translate(
                   'plopValue',
-                  {'__PLOPS__': '<span id="beerwarts__cost-next-magician" class="label-cost"></span>'}
+                  {'__VALUE__': '<span id="beerwarts__cost-next-magician" class="label-cost"></span>'}
                 ) | raw
               }}<br /><br />
               {{ translator.translate('beerwarts.mana') }}: <span class="beerwarts__mana">0</span><br />
@@ -654,7 +654,7 @@
                         {{ translator.translate('costs') }}: {{
                           translator.translate(
                             'plopValue',
-                            {'__PLOPS__': '<span id="cost-next-' ~ building ~ '" class="label-cost"></span>'}
+                            {'__VALUE__': '<span id="cost-next-' ~ building ~ '" class="label-cost"></span>'}
                           ) | raw
                         }}
                       </span>

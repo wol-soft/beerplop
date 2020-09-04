@@ -1,3 +1,10 @@
+**1.69.0** -
+* Updated dependencies
+* Bugfixes:
+    - Building statistic graphs for Bottle Cap Factories show "plops" (#94)
+    - Workers' Lodges initially dispaly a 100% production boost (#98)
+    - Project based factory extension popover content positioning (#102)
+
 **1.68.0** - 16.03.2020
 * Add additional upgrade paths to the Beer Factories
 * Update dependencies

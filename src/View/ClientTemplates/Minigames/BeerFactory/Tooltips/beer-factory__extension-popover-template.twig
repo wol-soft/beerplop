@@ -15,7 +15,7 @@
       <div class="beer-factory__extension-popover__flex-container
                   {{ #listProductionPerSecond }}flex-column{{ /listProductionPerSecond }}"
       >
-        <table class="table table-sm">
+        <table class="table table-sm {{ ^listProductionPerSecond }}w-50{{ /listProductionPerSecond }}">
           <tr>
             <th colspan="2">{{ #t }}"beerFactory.popover.extension.storage"{{ /t }}:</th>
           </tr>
@@ -42,7 +42,7 @@
         {{ /listProductionPerSecond }}
 
         {{ ^listProductionPerSecond }}
-          <table class="table table-sm">
+          <table class="table table-sm w-50">
             <tr>
               <th colspan="2">{{ #t }}"beerFactory.popover.extension.progress"{{ /t }}:</th>
             </tr>

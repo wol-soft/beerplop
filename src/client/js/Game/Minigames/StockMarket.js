@@ -738,8 +738,8 @@
                 investment: translator.translate(
                     'plopValue',
                     {
-                        __PLOPS__: this.numberFormatter.format(hold.startValue * hold.amount)
-                    }
+                        __VALUE__: this.numberFormatter.format(hold.startValue * hold.amount),
+                    },
                 ),
                 startValue: this.numberFormatter.format(hold.startValueWithoutFee),
                 breakEven:  this.numberFormatter.format(hold.startValue)
@@ -777,8 +777,8 @@
                 investment:   translator.translate(
                     'plopValue',
                     {
-                        __PLOPS__: this.numberFormatter.format(hold.startValueWithoutFee * hold.amount)
-                    }
+                        __VALUE__: this.numberFormatter.format(hold.startValueWithoutFee * hold.amount),
+                    },
                 ),
                 balance:    `<span class='${this.numberFormatter.getBalanceClass(hold.balance)}'>${this.numberFormatter.format(hold.balance)}</span>`,
                 startValue: this.numberFormatter.format(hold.startValue),

@@ -39,37 +39,37 @@
                             value: translator.translate(
                                 'plopValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(this.gameState.getPlops()),
-                                }
-                            )
+                                    __VALUE__: numberFormatter.format(this.gameState.getPlops()),
+                                },
+                            ),
                         },
                         {
                             label: translator.translate('stats.pps'),
                             value: translator.translate(
                                 'stats.ppsValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(this.gameState.getAutoPlopsPerSecond(true)),
+                                    __VALUE__: numberFormatter.format(this.gameState.getAutoPlopsPerSecond(true)),
                                     __MULTIPLIER__: numberFormatter.format((this.gameState.getExternalAutoPlopsMultiplier() - 1) * 100),
-                                }
-                            )
+                                },
+                            ),
                         },
                         {
                             label: translator.translate('stats.allTimePlops'),
                             value: translator.translate(
                                 'plopValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(this.gameState.getAllTimePlops()),
-                                }
-                            )
+                                    __VALUE__: numberFormatter.format(this.gameState.getAllTimePlops()),
+                                },
+                            ),
                         },
                         {
                             label: translator.translate('stats.periodPlops'),
                             value: translator.translate(
                                 'plopValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(this.gameState.getTotalPlops()),
-                                }
-                            )
+                                    __VALUE__: numberFormatter.format(this.gameState.getTotalPlops()),
+                                },
+                            ),
                         },
                         {
                             label: translator.translate('stats.buildings'),
@@ -94,9 +94,9 @@
                             value: translator.translate(
                                 'plopValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(this.gameState.getManualPlops()),
-                                }
-                            )
+                                    __VALUE__: numberFormatter.format(this.gameState.getManualPlops()),
+                                },
+                            ),
                         },
                         {
                             label: translator.translate('stats.plopsPerClick'),
@@ -142,9 +142,9 @@
                             value: translator.translate(
                                 'plopValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(this.levelController.getAutoPlopsLastPeriod()),
-                                }
-                            )
+                                    __VALUE__: numberFormatter.format(this.levelController.getAutoPlopsLastPeriod()),
+                                },
+                            ),
                         },
                     ],
                 researchProjectStats = [
@@ -157,10 +157,10 @@
                             value: translator.translate(
                                 'plopValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(researchProject.getTotalInvestedPlops()),
-                                }
-                            )
-                        }
+                                    __VALUE__: numberFormatter.format(researchProject.getTotalInvestedPlops()),
+                                },
+                            ),
+                        },
                     ],
                 beerBankStats = [
                         {
@@ -168,9 +168,9 @@
                             value: translator.translate(
                                 'plopValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(beerBank.getInvestedPlops()),
-                                }
-                            )
+                                    __VALUE__: numberFormatter.format(beerBank.getInvestedPlops()),
+                                },
+                            ),
                         },
                         {
                             label: translator.translate('stats.beerBankBoost'),
@@ -211,10 +211,10 @@
                             value: translator.translate(
                                 'plopValue',
                                 {
-                                    __PLOPS__: numberFormatter.format(stockMarket.getStats().balance),
-                                }
-                            )
-                        }
+                                    __VALUE__: numberFormatter.format(stockMarket.getStats().balance),
+                                },
+                            ),
+                        },
                     ];
 
                 const researchProjectsEnabled = !$('#research-project-control').hasClass('d-none');

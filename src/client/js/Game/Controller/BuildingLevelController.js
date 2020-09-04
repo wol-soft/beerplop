@@ -595,7 +595,7 @@
 
                 $('#special-building-bottle-cap-factory').find('.fieldset-buy').prop('disabled', true);
                 $('#available-bottle-cap-factories').text(
-                    '0 (' + translator.translate('plopValue', {__PLOPS__: 0}) + ')'
+                    '0 (' + translator.translate('plopValue', {__VALUE__: 0}) + ')',
                 );
 
                 this.autoBuildSemaphore = false;

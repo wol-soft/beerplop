@@ -953,7 +953,7 @@
 
                 $('#building-container-' + building).find('.fieldset-buy').prop('disabled', true);
                 $('#available-buildings-' + building).text(
-                    '0 (' + translator.translate('plopValue', {__PLOPS__: 0}) + ')'
+                    '0 (' + translator.translate('plopValue', {__VALUE__: 0}) + ')',
                 );
 
                 this.cache.maxBuildingsAvailable[building] = 0;
@@ -980,7 +980,7 @@
                 translator.translate(
                     'plopValue',
                     {
-                        __PLOPS__: this.numberFormatter.format(this.cache.maxBuildingsCost[building][availableAmount])
+                        __VALUE__: this.numberFormatter.format(this.cache.maxBuildingsCost[building][availableAmount])
                     }
                 ) + ')'
             );
@@ -1440,7 +1440,7 @@
             translator.translate(
                 'abstinenceHint',
                 {
-                    __PLOPS__: this.numberFormatter.format(interpolatedPlops),
+                    __VALUE__: this.numberFormatter.format(interpolatedPlops),
                 }
             ),
             window.innerWidth / 2,

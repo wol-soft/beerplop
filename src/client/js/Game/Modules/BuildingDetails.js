@@ -118,7 +118,10 @@
                 $('#building-details-modal__graph__owned').text(translator.translate('stats.noData'));
             } else {
                 const numberFormatter     = this.numberFormatter,
-                      productionGraphType = this.gameOptions.getProductionStatisticsType();
+                      productionGraphType = this.gameOptions.getProductionStatisticsType(),
+                      valueLabel          = this.building === 'bottleCapFactory' ? 'bottleCapValue' : 'plopValue';
+
+                console.log(this.building, valueLabel);
 
                 // reset the internal charts array for correct indices when adding new data points
                 this.charts = [];
@@ -132,10 +135,10 @@
                         },
                         function() {
                             return translator.translate(
-                                'plopValue',
+                                valueLabel,
                                 {
-                                    __PLOPS__: numberFormatter.format(this.y),
-                                }
+                                    __VALUE__: numberFormatter.format(this.y),
+                                },
                             );
                         },
                         productionGraphType
@@ -151,10 +154,10 @@
                         },
                         function() {
                             return translator.translate(
-                                'plopValue',
+                                valueLabel,
                                 {
-                                    __PLOPS__: numberFormatter.format(this.y),
-                                }
+                                    __VALUE__: numberFormatter.format(this.y),
+                                },
                             );
                         },
                         productionGraphType

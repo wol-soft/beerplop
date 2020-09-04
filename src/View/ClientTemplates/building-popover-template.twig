@@ -12,7 +12,7 @@
           <td>
             {{ #t }}
               "plopValue",
-              {"__PLOPS__": "<span id='total-production-{{ buildingKey }}'>{{ totalProduction }}</span>"}
+              {"__VALUE__": "<span id='total-production-{{ buildingKey }}'>{{ totalProduction }}</span>"}
             {{ /t }}
           </td>
         </tr>
@@ -30,7 +30,7 @@
         </tr>
         <tr>
           <td>{{ #t }}"building.details.productionEach"{{ /t }}:</td>
-          <td>{{ #t }}"plopValue", {"__PLOPS__": "<span id='production-each-{{ buildingKey }}'>{{ productionEach }}</span>"}{{ /t }}</td>
+          <td>{{ #t }}"plopValue", {"__VALUE__": "<span id='production-each-{{ buildingKey }}'>{{ productionEach }}</span>"}{{ /t }}</td>
         </tr>
       </table>
     {{ /showBuildingStats }}

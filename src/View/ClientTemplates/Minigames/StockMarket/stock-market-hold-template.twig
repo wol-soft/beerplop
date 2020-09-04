@@ -1,6 +1,6 @@
 {% verbatim %}
   <script id="stock-market-hold-template" type="text/template">
-    <br />{{ #t }}"stockMarket.activeBalance"{{ /t }}: {{ #t }}"plopValue", {"__PLOPS__": "<span class='stock-market-balance'>0</span>"}{{ /t }}<br /><br />
+    <br />{{ #t }}"stockMarket.activeBalance"{{ /t }}: {{ #t }}"plopValue", {"__VALUE__": "<span class='stock-market-balance'>0</span>"}{{ /t }}<br /><br />
     <table id="stock-market-hold-table" class="table table-hover">
       <thead>
         <tr>
@@ -23,7 +23,7 @@
             <td class="d-none d-sm-table-cell">{{ method }}</td>
             <td class="d-none d-xl-table-cell">{{ amount }}</td>
             <td class="d-none d-md-table-cell">1:{{ lever }}</td>
-            <td>{{ #t }}"plopValue", {"__PLOPS__": "<span class='stock-market-balance__{{ id }}'>0</span>"}{{ /t }}</td>
+            <td>{{ #t }}"plopValue", {"__VALUE__": "<span class='stock-market-balance__{{ id }}'>0</span>"}{{ /t }}</td>
             <td class="d-none d-lg-table-cell">{{ investment }}</td>
             <td class="d-none d-lg-table-cell">{{ startValue }}</td>
             <td class="d-none d-sm-table-cell {{ key }}-value"></td>

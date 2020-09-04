@@ -549,8 +549,8 @@
                     buffText = translator.translate(
                         'buff.luckyBottle',
                         {
-                            __PLOPS__: numberFormatter.format(2000)
-                        }
+                            __VALUE__: numberFormatter.format(2000),
+                        },
                     );
                     this.gameState.addPlops(2000);
                     break;
@@ -591,8 +591,8 @@
                 buffText = translator.translate(
                     'buff.luckyBottle',
                     {
-                        __PLOPS__: numberFormatter.format(plops)
-                    }
+                        __VALUE__: numberFormatter.format(plops),
+                    },
                 );
 
                 this.gameState.addPlops(plops);
@@ -609,8 +609,8 @@
                 buffText = translator.translate(
                     'buff.bottleChain',
                     {
-                        __PLOPS__: numberFormatter.format(baseBottlePlops)
-                    }
+                        __VALUE__: numberFormatter.format(baseBottlePlops),
+                    },
                 );
 
                 this.gameState.addPlops(baseBottlePlops);
@@ -633,11 +633,11 @@
                                             translator.translate(
                                                 'plops.add',
                                                 {
-                                                    __PLOPS__: numberFormatter.format(baseBottlePlops)
-                                                }
+                                                    __VALUE__: numberFormatter.format(baseBottlePlops),
+                                                },
                                             ),
                                             clickEvent.clientX || x,
-                                            (clickEvent.clientY || y) - 25
+                                            (clickEvent.clientY || y) - 25,
                                         );
 
                                         nextChainStep();
@@ -646,8 +646,8 @@
                                             translator.translate(
                                                 'buff.bottleChainOver',
                                                 {
-                                                    __PLOPS__: numberFormatter.format(completePlops)
-                                                }
+                                                    __VALUE__: numberFormatter.format(completePlops),
+                                                },
                                             ),
                                             clickEvent.clientX || x,
                                             (clickEvent.clientY || y) - 25,
@@ -663,11 +663,11 @@
                                         translator.translate(
                                             'buff.bottleChainOver',
                                             {
-                                                __PLOPS__: numberFormatter.format(completePlops)
-                                            }
+                                                __VALUE__: numberFormatter.format(completePlops),
+                                            },
                                         ),
                                         clickEvent.clientX || x,
-                                        (clickEvent.clientY || y) - 25
+                                        (clickEvent.clientY || y) - 25,
                                     );
 
                                     delete this.buffIntervals[buffProgressId];
