@@ -20,10 +20,10 @@
 
     "ext-json": "*",
 
-    "wol-soft/wol-soft-core": "^4.0",
+    "wol-soft/wol-soft-core": "^4.5",
     "twig/twig": "^3.0",
     "wol-soft/twig-include-dir": "^2.0",
-    "hellogerard/jobby": "^3.4",
+    "hellogerard/jobby": "^3.5",
     "erusev/parsedown": "^1.7",
     "guzzlehttp/guzzle": "^6.3"
   },
