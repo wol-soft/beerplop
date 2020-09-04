@@ -48,6 +48,6 @@
     "puppeteer": "^5.2.1",
     "sass": "^1.26.10",
     "sinon": "^9.0.3",
-    "snackbarjs": "^1.1.0"
+    "snackbarjs": "git://github.com/wol-soft/snackbarjs.git#1.2.0"
   }
 }

@@ -22,18 +22,18 @@ services:
     ports:
       - "8082:3306"
 
-  node:
-    image: node:12
-    container_name: beerplop-node
-    depends_on:
-      - redis
-    volumes:
-      - .:/var/www/beerplop/
-    working_dir: /var/www/beerplop/
-    command: node index.js
-    restart: on-failure
-    ports:
-      - "8081:81"
+#  node:
+#    image: node:12
+#    container_name: beerplop-node
+#    depends_on:
+#      - redis
+#    volumes:
+#      - .:/var/www/beerplop/
+#    working_dir: /var/www/beerplop/
+#    command: node index.js
+#    restart: on-failure
+#    ports:
+#      - "8081:81"
 
   php:
     build:
@@ -59,16 +59,16 @@ services:
     container_name: beerplop-apache
 
   # js build container
-  grunt:
-    build:
-      context: '.'
-      dockerfile: './docker/Dockerfile_grunt'
-    container_name: beerplop-grunt
-    volumes:
-      - .:/var/www/beerplop/
-    working_dir: /var/www/beerplop/
-    restart: on-failure
-    command: bash -c "npm ci -verbose && grunt start"
+#  grunt:
+#    build:
+#      context: '.'
+#      dockerfile: './docker/Dockerfile_grunt'
+#    container_name: beerplop-grunt
+#    volumes:
+#      - .:/var/www/beerplop/
+#    working_dir: /var/www/beerplop/
+#    restart: on-failure
+#    command: bash -c "npm ci -verbose && grunt start"
 
   # install php dependencies via composer
   composer:
