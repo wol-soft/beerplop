@@ -2010,6 +2010,24 @@
                     backRoom: {
                         reached: false,
                     },
+                    crop: {
+                        reached: false,
+                    },
+                    orchard: {
+                        reached: false,
+                    },
+                    greenhouse: {
+                        reached: false,
+                    },
+                    fisherman: {
+                        reached: false,
+                    },
+                    cattle: {
+                        reached: false,
+                    },
+                    restaurant: {
+                        reached: false,
+                    },
                     charcoal: {
                         reached: false,
                     },
@@ -2023,6 +2041,21 @@
                         reached: false,
                     },
                     medallion: {
+                        reached: false,
+                    },
+                    bakery: {
+                        reached: false,
+                    },
+                    grandma: {
+                        reached: false,
+                    },
+                    shed: {
+                        reached: false,
+                    },
+                    smokehouse: {
+                        reached: false,
+                    },
+                    slaughter: {
                         reached: false,
                     },
                     hydrolysis: {
@@ -2176,6 +2209,73 @@
                     },
                     // https://en.wikipedia.org/wiki/Lobbying_in_the_United_States#Key_players
                     backRoom: {
+                        5: {
+                            reached: false,
+                        },
+                        10: {
+                            reached: false,
+                        },
+                        20: {
+                            reached: false,
+                        },
+                    },
+                    // https://www.inspection.gc.ca/plant-health/grains-and-field-crops/list-of-grains-and-field-crops/eng/1323244558875/1323244642996
+                    crop: {
+                        5: {
+                            reached: false,
+                        },
+                        10: {
+                            reached: false,
+                        },
+                        20: {
+                            reached: false,
+                        },
+                    },
+                    orchard: {
+                        5: {
+                            reached: false,
+                        },
+                        10: {
+                            reached: false,
+                        },
+                        20: {
+                            reached: false,
+                        },
+                    },
+                    greenhouse: {
+                        5: {
+                            reached: false,
+                        },
+                        10: {
+                            reached: false,
+                        },
+                        20: {
+                            reached: false,
+                        },
+                    },
+                    fisherman: {
+                        5: {
+                            reached: false,
+                        },
+                        10: {
+                            reached: false,
+                        },
+                        20: {
+                            reached: false,
+                        },
+                    },
+                    cattle: {
+                        5: {
+                            reached: false,
+                        },
+                        10: {
+                            reached: false,
+                        },
+                        20: {
+                            reached: false,
+                        },
+                    },
+                    restaurant: {
                         5: {
                             reached: false,
                         },

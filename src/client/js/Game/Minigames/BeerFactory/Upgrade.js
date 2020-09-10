@@ -3412,6 +3412,97 @@
                     },
                 },
             },
+            crop: {
+                double: {
+                },
+                diversify: {
+                    1: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            crop: {
+                                amount: 5,
+                            },
+                        },
+                        callback: () => enableFactoryExtension('crop', 'bakery'),
+                    },
+                },
+            },
+            orchard: {
+                double: {
+                },
+                diversify: {
+                    1: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            orchard: {
+                                amount: 5,
+                            },
+                        },
+                        callback: () => enableFactoryExtension('orchard', 'grandma'),
+                    },
+                },
+            },
+            greenhouse: {
+                double: {
+                },
+                diversify: {
+                    1: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            greenhouse: {
+                                amount: 5,
+                            },
+                        },
+                        callback: () => enableFactoryExtension('greenhouse', 'shed'),
+                    },
+                },
+            },
+            fisherman: {
+                double: {
+                },
+                diversify: {
+                    1: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            fisherman: {
+                                amount: 5,
+                            },
+                        },
+                        callback: () => enableFactoryExtension('fisherman', 'smokehouse'),
+                    },
+                },
+            },
+            cattle: {
+                double: {
+                },
+                diversify: {
+                    1: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            cattle: {
+                                amount: 5,
+                            },
+                        },
+                        callback: () => enableFactoryExtension('cattle', 'slaughter'),
+                    },
+                },
+            },
+            restaurant: {
+                double: {
+                },
+                diversify: {
+                },
+            },
         };
     };
 

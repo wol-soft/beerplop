@@ -74,10 +74,63 @@
                 amount: 0,
                 total: 0,
             },
+            // primary foods
+            crop: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            fruit: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            vegetable: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            fish: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            meat: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            // secondary foods
+            bread: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            jam: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            salad: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            smokedFish: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            steak: {
+                enabled: false,
+                amount: 0,
+                total: 0,
+            },
+            // hidden materials
             knowledge: {
                 amount: 0,
                 total: 0,
-            }
+            },
         },
         factories: {
             wood: {
@@ -216,6 +269,76 @@
                     influence: 0,
                 },
                 lobbyists: [],
+            },
+            // food factories
+            crop: {
+                enabled: false,
+                production: {
+                    crop: 1
+                },
+                amount: 0,
+                upgrades: {
+                    double: 0,
+                    diversify: 0,
+                },
+                extensions: [],
+            },
+            orchard: {
+                enabled: false,
+                production: {
+                    fruit: 1
+                },
+                amount: 0,
+                upgrades: {
+                    double: 0,
+                    diversify: 0,
+                },
+                extensions: [],
+            },
+            greenhouse: {
+                enabled: false,
+                production: {
+                    vegetable: 1
+                },
+                amount: 0,
+                upgrades: {
+                    double: 0,
+                    diversify: 0,
+                },
+                extensions: [],
+            },
+            fisherman: {
+                enabled: false,
+                production: {
+                    fish: 1
+                },
+                amount: 0,
+                upgrades: {
+                    double: 0,
+                    diversify: 0,
+                },
+                extensions: [],
+            },
+            cattle: {
+                enabled: false,
+                production: {
+                    meat: 1
+                },
+                amount: 0,
+                upgrades: {
+                    double: 0,
+                    diversify: 0,
+                },
+                extensions: [],
+            },
+            restaurant: {
+                enabled: false,
+                production: false,
+                amount: 0,
+                upgrades: {
+                    double: 0,
+                    diversify: 0,
+                },
             },
         },
         equippedBuildings: {},

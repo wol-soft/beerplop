@@ -49,6 +49,25 @@
         backRoom: {
             tradingPost: 5,
         },
+        crop: {
+            academy: 10,
+        },
+        orchard: {
+            crop: 5,
+        },
+        greenhouse: {
+            orchard: 5,
+        },
+        fisherman: {
+            greenhouse: 5,
+        },
+        cattle: {
+            fisherman: 5,
+        },
+        restaurant: {
+            crop: 10,
+            greenhouse: 5,
+        },
     };
 
     BuildQueue.prototype.state                 = null;

@@ -115,6 +115,42 @@ const FACTORY_DATA_FIX = {
         factory: true,
         buildable: true,
     },
+    // food factories
+    crop: {
+        manual: true,
+        factory: true,
+        buildable: true,
+        enableMaterial: ['crop'],
+    },
+    orchard: {
+        manual: true,
+        factory: true,
+        buildable: true,
+        enableMaterial: ['fruit'],
+    },
+    greenhouse: {
+        manual: true,
+        factory: true,
+        buildable: true,
+        enableMaterial: ['vegetable'],
+    },
+    fisherman: {
+        manual: true,
+        factory: true,
+        buildable: true,
+        enableMaterial: ['fish'],
+    },
+    cattle: {
+        manual: true,
+        factory: true,
+        buildable: true,
+        enableMaterial: ['meat'],
+    },
+    restaurant: {
+        manual: false,
+        factory: true,
+        buildable: true,
+    },
 };
 
 const MATERIAL_DATA_CONST = {
@@ -197,6 +233,65 @@ const EXTENSIONS = {
         },
         produces: {
             medallion: 1,
+        },
+    },
+    bakery: {
+        enableMaterial: ['bread'],
+        productionType: EXTENSION_PRODUCTION__DIRECT,
+        type: EXTENSION_TYPE__PRODUCTION,
+        consumes: {
+            crop: 3,
+            wood: 2,
+        },
+        produces: {
+            bread: 1,
+        },
+    },
+    grandma: {
+        enableMaterial: ['jam'],
+        productionType: EXTENSION_PRODUCTION__DIRECT,
+        type: EXTENSION_TYPE__PRODUCTION,
+        consumes: {
+            fruit: 3,
+            wood: 1,
+        },
+        produces: {
+            jam: 1,
+        },
+    },
+    shed: {
+        enableMaterial: ['salad'],
+        productionType: EXTENSION_PRODUCTION__DIRECT,
+        type: EXTENSION_TYPE__PRODUCTION,
+        consumes: {
+            vegetable: 3,
+        },
+        produces: {
+            salad: 1,
+        },
+    },
+    smokehouse: {
+        enableMaterial: ['smokedFish'],
+        productionType: EXTENSION_PRODUCTION__DIRECT,
+        type: EXTENSION_TYPE__PRODUCTION,
+        consumes: {
+            fish: 3,
+            wood: 3,
+        },
+        produces: {
+            smokedFish: 1,
+        },
+    },
+    slaughter: {
+        enableMaterial: ['steak'],
+        productionType: EXTENSION_PRODUCTION__DIRECT,
+        type: EXTENSION_TYPE__PRODUCTION,
+        consumes: {
+            meat: 3,
+            tools: 1,
+        },
+        produces: {
+            steak: 1,
         },
     },
     coworker: {
