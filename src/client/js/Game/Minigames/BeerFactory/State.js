@@ -412,13 +412,21 @@
             produced: {},
         };
 
-        $.each(EXTENSIONS[proxiedExtension].consumes, (function (material) {
+        $.each(EXTENSIONS[proxiedExtension].consumes || [], (function (material) {
             this.state.extensionStorage[extension].materials[material] = 0;
         }).bind(this));
 
-        $.each(EXTENSIONS[proxiedExtension].produces, (function (material) {
+        $.each(EXTENSIONS[proxiedExtension].produces || [], (function (material) {
             this.state.extensionStorage[extension].produced[material] = 0;
         }).bind(this));
+
+        // check if a project production queue must be initialized
+        if (extension === proxiedExtension &&
+            EXTENSIONS[extension].productionType === EXTENSION_PRODUCTION__PROJECT &&
+            EXTENSIONS[extension].hasProjectQueue
+        ) {
+            this.state.extensionStorage[extension].queue = [];
+        }
     };
 
     State.prototype.getState = function () {

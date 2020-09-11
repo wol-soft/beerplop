@@ -155,7 +155,7 @@
             let consumption = {};
 
             $.each(
-                EXTENSIONS[extension].consumes,
+                EXTENSIONS[extension].consumes || [],
                 (function updateFactoryConsumptionCache(material, amount) {
                     consumption[material] = Math.ceil(amount / (this.state.getExtensionStorage(extension).boost || 1));
                 }).bind(this)

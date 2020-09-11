@@ -73,26 +73,12 @@
         extensionStorage,
         proxiedExtension
     ) {
-        if (proxiedExtension === null) {
+        if (proxiedExtension === null || extensionStorage.paused) {
             return false;
         }
 
         if (!extensionStorage.project || extensionStorage.project.finished) {
-            extensionStorage.project = {
-                materials: {},
-                finished: false,
-            };
-
-            $.each(this.cache.getFactoryExtensionConsumption(proxiedExtension), function (material, required) {
-                extensionStorage.project.materials[material] = {
-                    required: required,
-                    delivered: 0,
-                }
-            });
-        }
-
-        if (extensionStorage.paused) {
-            return false;
+            this._startExtensionProject(extensionStorage, proxiedExtension);
         }
 
         let availableAmountToDeliver = factoryData.amount * 5 * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),
@@ -183,6 +169,57 @@
 
         return updateStockTable;
     };
+
+    /**
+     * Start a new project for a project-based factory extension
+     *
+     * @param {object} extensionStorage
+     * @param {string} proxiedExtension
+     *
+     * @private
+     */
+    FactoryExtensionProductionIterator.prototype._startExtensionProject = function (
+        extensionStorage,
+        proxiedExtension,
+    ) {
+        extensionStorage.project = {
+            materials: {},
+            finished: false,
+        };
+
+        let requiredMaterials;
+
+        // if the extension constructs projects from a queue with various materials pop an entry from the queue.
+        // Otherwise use the consumption from the extension definition to determine the required materials
+        if (EXTENSIONS[proxiedExtension].productionType === EXTENSION_PRODUCTION__PROJECT &&
+            EXTENSIONS[proxiedExtension].hasProjectQueue
+        ) {
+            // the queue is hold centralized. Consequently a proxied extension must look up the queue from the mirrored
+            // factory extension
+            const queue = this.state.getExtensionStorage(proxiedExtension).queue;
+
+            if (!queue.length) {
+                extensionStorage.project = null;
+                return;
+            }
+
+            const nextProject = queue.shift();
+            requiredMaterials = nextProject.materials;
+
+            $.extend(true, extensionStorage.project, nextProject.data);
+
+            // TODO: UI
+        } else {
+            requiredMaterials = this.cache.getFactoryExtensionConsumption(proxiedExtension);
+        }
+
+        $.each(requiredMaterials, function (material, required) {
+            extensionStorage.project.materials[material] = {
+                required: required,
+                delivered: 0,
+            }
+        });
+    }
 
     /**
      * Check the direct production of items of a factory extension

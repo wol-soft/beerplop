@@ -235,6 +235,14 @@ const EXTENSIONS = {
             medallion: 1,
         },
     },
+    managerAcademy: {
+        productionType: EXTENSION_PRODUCTION__PROJECT,
+        hasProjectQueue: true,
+        type: EXTENSION_TYPE__PRODUCTION,
+        consumes: {
+            knowledge: 0,
+        },
+    },
     bakery: {
         enableMaterial: ['bread'],
         productionType: EXTENSION_PRODUCTION__DIRECT,

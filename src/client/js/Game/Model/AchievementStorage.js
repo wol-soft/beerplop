@@ -2043,6 +2043,9 @@
                     medallion: {
                         reached: false,
                     },
+                    managerAcademy: {
+                        reached: false,
+                    },
                     bakery: {
                         reached: false,
                     },

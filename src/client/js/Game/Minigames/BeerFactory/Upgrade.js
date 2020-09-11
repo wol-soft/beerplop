@@ -182,7 +182,7 @@
                 } else {
                     this.state.initExtensionStorage(extension, extension);
 
-                    $.each(EXTENSIONS[extension].enableMaterial, (function (index, material) {
+                    $.each(EXTENSIONS[extension].enableMaterial || [], (function (index, material) {
                         this.state.getMaterial(material).enabled = true;
                     }).bind(this));
                 }
@@ -3025,6 +3025,28 @@
                                 amount: 8,
                             },
                         },
+                    },
+                    3: {
+                        costs: {
+                            wood: 27_000_000,
+                            strongWood: 12_000_000,
+                            woodenBeam: 9_000_000,
+                            stone: 21_000_000,
+                            granite: 9_300_000,
+                            iron: 17_835_000,
+                            charcoal: 426_000,
+                            tools: 306_000,
+                            marble: 287_500,
+                            gold: 5_940_000,
+                            diamond: 2_415_000,
+                            knowledge: 3_000_000,
+                        },
+                        requires: {
+                            academy: {
+                                amount: 10,
+                            },
+                        },
+                        callback: () => enableFactoryExtension('academy', 'managerAcademy'),
                     },
                 },
                 explore: {

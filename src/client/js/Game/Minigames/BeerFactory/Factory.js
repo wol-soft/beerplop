@@ -276,6 +276,27 @@
     };
 
     /**
+     * Adds a new project to the queue of a queue based factory extension
+     *
+     * @param {string} extension
+     * @param {object} project
+     *
+     * @return {boolean}
+     */
+    Factory.prototype.addProjectToExtensionQueue = function (extension, project) {
+        if (EXTENSIONS[extension].productionType !== EXTENSION_PRODUCTION__PROJECT ||
+            !EXTENSIONS[extension].hasProjectQueue
+        ) {
+            return false;
+        }
+
+        this.state.getExtensionStorage(extension).queue.push(project);
+
+        // TODO: UI
+        return true;
+    };
+
+    /**
      * Calculate the required materials for a new factory construction job
      *
      * @param {string} factory The key of the requested factory
