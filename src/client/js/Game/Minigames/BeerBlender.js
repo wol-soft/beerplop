@@ -91,9 +91,37 @@
                 factory: 0.2,
             },
         },
+        // TODO: define effects
+        // TODO: create ingredient icons
+        grainSchnapps: {
+            effect: {
+
+            },
+        },
+        obstler: {
+            effect: {
+
+            },
+        },
+        melonLiqueur: {
+            effect: {
+
+            },
+        },
+        fishWine: {
+            effect: {
+
+            },
+        },
+        bacon: {
+            effect: {
+
+            },
+        },
     };
 
-    BeerBlender.prototype._instance = null;
+    BeerBlender.prototype._instance            = null;
+    BeerBlender.prototype.isBeerBlenderEnabled = false;
 
     BeerBlender.prototype.gameEventBus          = null;
     BeerBlender.prototype.achievementController = null;
@@ -141,7 +169,13 @@
         );
     }
 
+    BeerBlender.prototype.isEnabled = function () {
+        return this.isBeerBlenderEnabled;
+    };
+
     BeerBlender.prototype.unlockBeerBlender = function () {
+        this.isBeerBlenderEnabled = true;
+
         this.achievementController.checkAchievement(
             this.achievementController.getAchievementStorage().achievements.special.beerBlender.unlocked
         );

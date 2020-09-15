@@ -90,6 +90,8 @@
 
         let isAvailable = true;
 
+        // check if another upgrade for the requested factory is currently under construction (only one upgrade at a
+        // time per factory is allowed)
         $.each(this.state.getBuildQueue(), function checkUpgradeForFactoryQueued() {
             if (this.action === BUILD_QUEUE__UPGRADE && this.item.factory === factory) {
                 isAvailable = false;
@@ -101,6 +103,8 @@
             return false;
         }
 
+        // check each requirement concerning factory amounts and upgrade paths which must be fulfilled to unlock the
+        // requested upgrade path
         $.each(
             this.upgradePath[factory][upgrade][level].requires,
             (function checkUpgradeRequirements(requiredFactory, settings) {
@@ -116,6 +120,12 @@
                 return isAvailable;
             }).bind(this)
         );
+
+        // check if a custom callback function is defined which must be evaluated to check the availability of the
+        // requested upgrade path
+        if (isAvailable && this.upgradePath[factory][upgrade][level].requiresCallback) {
+            return this.upgradePath[factory][upgrade][level].requiresCallback();
+        }
 
         return isAvailable;
     };
@@ -3434,6 +3444,10 @@
                     },
                 },
             },
+            // TODO: define double upgrade paths
+            // TODO: translations for diversify updates
+            // TODO: define costs for diversify upgrades
+            // TODO: create factory extension icons
             crop: {
                 double: {
                 },
@@ -3448,6 +3462,18 @@
                             },
                         },
                         callback: () => enableFactoryExtension('crop', 'bakery'),
+                    },
+                    2: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            crop: {
+                                amount: 10,
+                            },
+                        },
+                        requiresCallback: () => (new Minigames.BeerBlender()).isEnabled(),
+                        callback: () => (new Minigames.BeerBlender()).unlockAdditionalIngredient('grainSchnapps'),
                     },
                 },
             },
@@ -3466,6 +3492,18 @@
                         },
                         callback: () => enableFactoryExtension('orchard', 'grandma'),
                     },
+                    2: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            orchard: {
+                                amount: 10,
+                            },
+                        },
+                        requiresCallback: () => (new Minigames.BeerBlender()).isEnabled(),
+                        callback: () => (new Minigames.BeerBlender()).unlockAdditionalIngredient('obstler'),
+                    },
                 },
             },
             greenhouse: {
@@ -3482,6 +3520,18 @@
                             },
                         },
                         callback: () => enableFactoryExtension('greenhouse', 'shed'),
+                    },
+                    2: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            greenhouse: {
+                                amount: 10,
+                            },
+                        },
+                        requiresCallback: () => (new Minigames.BeerBlender()).isEnabled(),
+                        callback: () => (new Minigames.BeerBlender()).unlockAdditionalIngredient('melonLiqueur'),
                     },
                 },
             },
@@ -3500,6 +3550,18 @@
                         },
                         callback: () => enableFactoryExtension('fisherman', 'smokehouse'),
                     },
+                    2: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            fisherman: {
+                                amount: 10,
+                            },
+                        },
+                        requiresCallback: () => (new Minigames.BeerBlender()).isEnabled(),
+                        callback: () => (new Minigames.BeerBlender()).unlockAdditionalIngredient('fishWine'),
+                    },
                 },
             },
             cattle: {
@@ -3517,8 +3579,21 @@
                         },
                         callback: () => enableFactoryExtension('cattle', 'slaughter'),
                     },
+                    2: {
+                        costs: {
+                            wood: 1,
+                        },
+                        requires: {
+                            cattle: {
+                                amount: 10,
+                            },
+                        },
+                        requiresCallback: () => (new Minigames.BeerBlender()).isEnabled(),
+                        callback: () => (new Minigames.BeerBlender()).unlockAdditionalIngredient('bacon'),
+                    },
                 },
             },
+            // TODO: define upgrades
             restaurant: {
                 double: {
                 },
