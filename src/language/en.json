@@ -1653,7 +1653,7 @@
     "achievements.special.noClick.title": "No click in this period",
     "achievements.special.noClick.description": "Play a round without clicking once",
     "achievements.special.automation.title": "Fully automated",
-    "achievements.special.automation.description": "Play a round without clicking and without purchasing a building, a upgrade or a level up manually",
+    "achievements.special.automation.description": "Play a round without clicking and without purchasing a building, an upgrade or a level up manually",
     "achievements.special.config.title": "Give me my own button",
     "achievements.special.config.description": "Configure a custom buy charge",
     "achievements.special.doubleConfig.title": "I need two of them",
