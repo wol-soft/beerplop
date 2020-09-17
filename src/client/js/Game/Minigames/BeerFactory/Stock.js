@@ -205,12 +205,19 @@
      * Adds all event listeners required for the stock table partial view
      */
     Stock.prototype.initStockTableEventListener = function () {
-        $('#beer-factory__transport-preference').on('change', (function (event) {
+        $('#beer-factory__transport-preference').on('change', (function toggleTransportPreference(event) {
             this.state.getState().deliveryPreferQueue = $(event.target).is(':checked');
         }).bind(this));
 
-        $('.beer-factory__stock__container').on('click', (function (event) {
+        $('.beer-factory__stock__container').on('click', (function openMaterialFlowGraph(event) {
             this._initMaterialFlowGraph($(event.target).closest('.beer-factory__stock__container').data('material'));
+        }).bind(this));
+
+        $('.beer-factory__stock-section__toggle-collapse').on('click', (function updateMaterialSectionCollapsed(event) {
+            const key = $(event.target).closest('table').data('materialSectionKey'),
+                  state = this.state.getState();
+
+            state.collapsedMaterialSections[key] = !state.collapsedMaterialSections[key];
         }).bind(this));
     };
 

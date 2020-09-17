@@ -21,22 +21,37 @@
     <br /><br />
 
     <h4>{{ #t }}"beerFactory.stock.current"{{ /t }}:</h4>
-    <table class="table">
-      <tbody>
-        {{ #materials }}
-          {{ #enabled }}
-            {{ ^hidden }}
-              <tr class="beer-factory__stock__container" data-material="{{ key }}">
-                <td>{{ name }}</td>
-                <td>
-                  <span id="beer-factory__stock__amount-{{ key }}">{{ amount }}</span> / {{ capacity }}
-                </td>
-                <td id="beer-factory__stock__balance-{{ key }}"></td>
-              </tr>
-            {{ /hidden }}
-          {{ /enabled }}
-        {{ /materials }}
-      </tbody>
-    </table>
+    {{ #sections }}
+      <table class="table" data-material-section-key="{{ key }}">
+        <thead>
+          <tr>
+            <th colspan="3"
+                data-toggle="collapse"
+                class="beer-factory__stock-section__toggle-collapse clickable"
+                href="#beer-factory__stock-section__{{ key }}__collapse"
+            >
+              {{ #t }}"beerFactory.materialSection.{{ key }}"{{ /t }}
+            </th>
+          </tr>
+        </thead>
+        <tbody id="beer-factory__stock-section__{{ key }}__collapse"
+               class="collapse {{ ^collapsed }}show{{ /collapsed }}"
+        >
+          {{ #materials }}
+            {{ #enabled }}
+              {{ ^hidden }}
+                <tr class="beer-factory__stock__container" data-material="{{ key }}">
+                  <td>{{ name }}</td>
+                  <td>
+                    <span id="beer-factory__stock__amount-{{ key }}">{{ amount }}</span> / {{ capacity }}
+                  </td>
+                  <td id="beer-factory__stock__balance-{{ key }}"></td>
+                </tr>
+              {{ /hidden }}
+            {{ /enabled }}
+          {{ /materials }}
+        </tbody>
+      </table>
+    {{ /sections }}
   </script>
 {% endverbatim %}

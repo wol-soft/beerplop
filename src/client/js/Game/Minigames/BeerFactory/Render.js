@@ -162,6 +162,40 @@
 
     Render.prototype.renderStockTable = function () {
         const state = this.state.getState();
+        const sections = Object.keys(state.materials)
+            .map(
+                (function createMaterialsList(material) {
+                    return $.extend(
+                        {
+                            key:  material,
+                            name: translator.translate('beerFactory.material.' + material),
+                        },
+                        this.state.getMaterial(material),
+                        MATERIAL_DATA_CONST[material] || {},
+                        {
+                            amount:   this.numberFormatter.formatInt(this.state.getMaterial(material).amount),
+                            capacity: this.numberFormatter.formatInt(this.stock.getMaterialStockCapacity(material)),
+                        }
+                    );
+                }).bind(this)
+            ).reduce(
+                (function groupMaterialsBySection(groupedMaterials, material) {
+                    let key = material.section || MATERIAL_SECTION__BASE;
+
+                    if (!groupedMaterials[key]) {
+                        groupedMaterials[key] = {
+                            key: key,
+                            materials: [],
+                            collapsed: this.state.getState().collapsedMaterialSections[key],
+                        };
+                    }
+
+                    groupedMaterials[key].materials.push(material);
+
+                    return groupedMaterials;
+                }).bind(this),
+                {}
+            );
 
         return Mustache.render(
             TemplateStorage.get('beer-factory__stock-template'),
@@ -170,136 +204,136 @@
                 deliveryPreferQueue:  state.deliveryPreferQueue,
                 currentStock:         this.numberFormatter.formatInt(this.stock.amount),
                 deliveryCapacity:     this.numberFormatter.formatInt(this.cache.getDeliverCapacity()),
-                materials:            Object.keys(state.materials).map(
-                    (function createMaterialsList(material) {
-                        return $.extend(
-                            {
-                                key:  material,
-                                name: translator.translate('beerFactory.material.' + material),
-                            },
-                            this.state.getMaterial(material),
-                            MATERIAL_DATA_CONST[material] || {},
-                            {
-                                amount:   this.numberFormatter.formatInt(this.state.getMaterial(material).amount),
-                                capacity: this.numberFormatter.formatInt(this.stock.getMaterialStockCapacity(material)),
-                            }
-                        );
-                    }).bind(this)
-                ),
+                sections:             Object.values(sections),
             }
         )
     };
 
+    // TODO: function is called twice during game initialization which is useless
     Render.prototype.renderFactoriesMap = function () {
         const queuedBuilds = this.buildQueue.getQueuedBuilds();
+        const sections = Object.keys(this.state.getFactories()).map((function createFactoriesList(factoryKey) {
+            const upgradePaths = this.upgrade.getUpgradePaths(factoryKey),
+                  factory      = this.state.getFactory(factoryKey);
+
+            return $.extend(
+                {
+                    key:                factoryKey,
+                    name:               translator.translate('beerFactory.factory.' + factoryKey),
+                    queuedBuilds:       queuedBuilds[factoryKey] || false,
+                    queuedBuildsPlural: queuedBuilds[factoryKey] > 1,
+                    expanded:           this.expandedFactoryViews[factoryKey],
+                    level:              this.numberFormatter.romanize(
+                        Object.values(factory.upgrades).reduce((a, b) => a + b, 0)
+                    ),
+                },
+                factory,
+                FACTORY_DATA_FIX[factoryKey],
+                {
+                    description:   this._descriptionDecorator(factoryKey),
+                    maxProduction: this.numberFormatter.formatInt(
+                        this.cache.getProducedAmount(factoryKey)
+                    ),
+                    producedMaterials: factory.production
+                        ? Object.entries(factory.production).map((function (entry) {
+                            return {
+                                name:       translator.translate('beerFactory.material.' + entry[0]),
+                                percentage: this.numberFormatter.formatInt(
+                                    entry[1] / this.cache.getProducedMaterialCache(factoryKey).length * 100
+                                ),
+                            };
+                        }).bind(this))
+                        : false,
+                    amount:           this.numberFormatter.formatInt(factory.amount),
+                    upgradePaths:     upgradePaths,
+                    hasUpgradePaths:  upgradePaths.length > 0,
+                    upgradeAvailable: upgradePaths.length > 0 &&
+                        upgradePaths.reduce(
+                            (availablePath, upgradePath) => availablePath || !(upgradePath.completed || upgradePath.locked),
+                            false
+                        ),
+                    materialMissing: this.factory.hasFactoryExtensionMissingMaterials(factoryKey),
+                    hasExtensions:   (factory.extensions || []).length > 0,
+                    extensions:      (factory.extensions || []).map((function (extension) {
+                        const proxiedExtension = this.state.getState().proxyExtension[extension]
+                                ? this.state.getState().proxyExtension[extension].extension
+                                : extension;
+
+                        let data = {
+                            storageLimit:             this.state.getState().extensionStorageCapacity,
+                            key:                      extension,
+                            isProxyExtension:         EXTENSIONS[extension].type === EXTENSION_TYPE__PROXY,
+                            isEquippedProxyExtension: EXTENSIONS[extension].type === EXTENSION_TYPE__PROXY
+                                && this.state.getState().proxyExtension[extension].extension,
+                            proxyKey:        proxiedExtension,
+                            activeExtension: false,
+                            name:            translator.translate(`beerFactory.extension.${extension}`),
+                            description:     translator.translate(`beerFactory.extension.${extension}.description`),
+                        };
+
+                        if (proxiedExtension) {
+                            const extensionStorage = this.state.getExtensionStorage(extension);
+
+                            data = $.extend(
+                                true,
+                                data,
+                                {
+                                    activeExtension: true,
+                                    storage:         extensionStorage.stored,
+                                    materials:       extensionStorage.materials,
+                                    paused:          extensionStorage.paused,
+                                }
+                            );
+                        }
+
+                        return $.extend(
+                            data,
+                            EXTENSIONS[extension],
+                            {
+                                consumes: proxiedExtension === null ? [] : Object
+                                    .entries(this.cache.getFactoryExtensionConsumption(proxiedExtension))
+                                    .map((function (entry) {
+                                        const missingMaterials = this.factory.getMissingMaterials(extension);
+
+                                        return {
+                                            material:    translator.translate('beerFactory.material.' + entry[0]),
+                                            amount:      this.numberFormatter.formatInt(entry[1]),
+                                            materialKey: entry[0],
+                                            missing:     !!missingMaterials && missingMaterials[entry[0]] > MISSING_MATERIAL_BUFFER,
+                                        };
+                                    }).bind(this)),
+                                produces: proxiedExtension === null ? [] : Object
+                                    .entries(this.cache.getFactoryExtensionProduction(proxiedExtension))
+                                    .map((function (entry) {
+                                        return {
+                                            material: translator.translate('beerFactory.material.' + entry[0]),
+                                            amount:   this.numberFormatter.formatInt(entry[1].amount * entry[1].boost),
+                                        };
+                                    }).bind(this)),
+                            }
+                        );
+                    }).bind(this)),
+                },
+            );
+        }).bind(this)).reduce(function groupFactoriesBySection(groupedFactories, factory) {
+            let key = 0;
+
+            if (factory.section) {
+                if (!groupedFactories[factory.section]) {
+                    groupedFactories[factory.section] = {key: factory.section, factories: []};
+                }
+                key = factory.section;
+            }
+
+            groupedFactories[key].factories.push(factory);
+
+            return groupedFactories;
+        }, {0: {key: null, factories: []}});
 
         return Mustache.render(
             TemplateStorage.get('beer-factory__factories-map-template'),
             {
-                factories: Object.keys(this.state.getFactories()).map((function createFactoriesList(factoryKey) {
-                    const upgradePaths = this.upgrade.getUpgradePaths(factoryKey),
-                          factory      = this.state.getFactory(factoryKey);
-
-                    return $.extend(
-                        {
-                            key:                factoryKey,
-                            name:               translator.translate('beerFactory.factory.' + factoryKey),
-                            queuedBuilds:       queuedBuilds[factoryKey] || false,
-                            queuedBuildsPlural: queuedBuilds[factoryKey] > 1,
-                            expanded:           this.expandedFactoryViews[factoryKey],
-                            level:              this.numberFormatter.romanize(
-                                Object.values(factory.upgrades).reduce((a, b) => a + b, 0)
-                            ),
-                        },
-                        factory,
-                        FACTORY_DATA_FIX[factoryKey],
-                        {
-                            description:   this._descriptionDecorator(factoryKey),
-                            maxProduction: this.numberFormatter.formatInt(
-                                this.cache.getProducedAmount(factoryKey)
-                            ),
-                            producedMaterials: factory.production
-                                ? Object.entries(factory.production).map((function (entry) {
-                                    return {
-                                        name:       translator.translate('beerFactory.material.' + entry[0]),
-                                        percentage: this.numberFormatter.formatInt(
-                                            entry[1] / this.cache.getProducedMaterialCache(factoryKey).length * 100
-                                        ),
-                                    };
-                                }).bind(this))
-                                : false,
-                            amount:           this.numberFormatter.formatInt(factory.amount),
-                            upgradePaths:     upgradePaths,
-                            hasUpgradePaths:  upgradePaths.length > 0,
-                            upgradeAvailable: upgradePaths.length > 0 &&
-                            upgradePaths.reduce(
-                                (availablePath, upgradePath) => availablePath || !(upgradePath.completed || upgradePath.locked),
-                                false
-                            ),
-                            materialMissing: this.factory.hasFactoryExtensionMissingMaterials(factoryKey),
-                            hasExtensions:   (factory.extensions || []).length > 0,
-                            extensions:      (factory.extensions || []).map((function (extension) {
-                                const proxiedExtension = this.state.getState().proxyExtension[extension]
-                                    ? this.state.getState().proxyExtension[extension].extension
-                                    : extension;
-
-                                let data = {
-                                    storageLimit:             this.state.getState().extensionStorageCapacity,
-                                    key:                      extension,
-                                    isProxyExtension:         EXTENSIONS[extension].type === EXTENSION_TYPE__PROXY,
-                                    isEquippedProxyExtension: EXTENSIONS[extension].type === EXTENSION_TYPE__PROXY
-                                        && this.state.getState().proxyExtension[extension].extension,
-                                    proxyKey:        proxiedExtension,
-                                    activeExtension: false,
-                                    name:            translator.translate(`beerFactory.extension.${extension}`),
-                                    description:     translator.translate(`beerFactory.extension.${extension}.description`),
-                                };
-
-                                if (proxiedExtension) {
-                                    const extensionStorage = this.state.getExtensionStorage(extension);
-
-                                    data = $.extend(
-                                        true,
-                                        data,
-                                        {
-                                            activeExtension: true,
-                                            storage:         extensionStorage.stored,
-                                            materials:       extensionStorage.materials,
-                                            paused:          extensionStorage.paused,
-                                        }
-                                    );
-                                }
-
-                                return $.extend(
-                                    data,
-                                    EXTENSIONS[extension],
-                                    {
-                                        consumes: proxiedExtension === null ? [] : Object
-                                            .entries(this.cache.getFactoryExtensionConsumption(proxiedExtension))
-                                            .map((function (entry) {
-                                                const missingMaterials = this.factory.getMissingMaterials(extension);
-
-                                                return {
-                                                    material:    translator.translate('beerFactory.material.' + entry[0]),
-                                                    amount:      this.numberFormatter.formatInt(entry[1]),
-                                                    materialKey: entry[0],
-                                                    missing:     !!missingMaterials && missingMaterials[entry[0]] > MISSING_MATERIAL_BUFFER,
-                                                };
-                                            }).bind(this)),
-                                        produces: proxiedExtension === null ? [] : Object
-                                            .entries(this.cache.getFactoryExtensionProduction(proxiedExtension))
-                                            .map((function (entry) {
-                                                return {
-                                                    material: translator.translate('beerFactory.material.' + entry[0]),
-                                                    amount:   this.numberFormatter.formatInt(entry[1].amount * entry[1].boost),
-                                                };
-                                            }).bind(this)),
-                                    }
-                                );
-                            }).bind(this)),
-                        },
-                    );
-                }).bind(this)),
+                sections: Object.values(sections),
             }
         )
     };
@@ -322,10 +356,10 @@
 
                 let key  = 1,
                     data = {
-                    __PRODUCTION_BOOST__: this.numberFormatter.formatInt(
-                        (Math.pow(lodge.productionMultiplier, lodge.amount) - 1) * 100,
-                    ),
-                };
+                        __PRODUCTION_BOOST__: this.numberFormatter.formatInt(
+                            (Math.pow(lodge.productionMultiplier, lodge.amount) - 1) * 100,
+                        ),
+                    };
 
                 if (lodge.upgrades.comfort) {
                     data['__TRANSPORT_BOOST__'] = this.numberFormatter.formatInt(

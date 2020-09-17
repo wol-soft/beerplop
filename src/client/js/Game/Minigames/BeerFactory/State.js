@@ -368,6 +368,11 @@
         autoBuyerDisabled: false,
         autoLevelUpDisabled: false,
         autoUpgradeDisabled: false,
+        collapsedMaterialSections: {
+            base: false,
+            produced: false,
+            food: false,
+        },
     };
 
     State.prototype.gameState        = null;

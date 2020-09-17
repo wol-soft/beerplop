@@ -1,5 +1,6 @@
 **1.69.0** -
 * Updated dependencies
+* Beer Factory materials are grouped now. Each group can be collapsed
 * Bugfixes:
     - Building statistic graphs for Bottle Cap Factories show "plops" (#94)
     - Workers' Lodges initially dispaly a 100% production boost (#98)

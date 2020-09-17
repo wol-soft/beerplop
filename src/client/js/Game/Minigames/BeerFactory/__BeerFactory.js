@@ -29,6 +29,12 @@ const EQUIPMENT_ITEM__DIASTATIC    = 'diastatic';
 // auto level up
 const EQUIPMENT_ITEM__AMYLASE      = 'amylase';
 
+const FACTORY_SECTION__FOOD = 'food';
+
+const MATERIAL_SECTION__BASE = 'base';
+const MATERIAL_SECTION__PRODUCED = 'produced';
+const MATERIAL_SECTION__FOOD = 'food';
+
 const MATERIAL_STORAGE_DIVIDENT = {
     wood: 1,
     strongWood: 1,
@@ -45,6 +51,16 @@ const MATERIAL_STORAGE_DIVIDENT = {
     copper: 2.5,
     diamond: 2.5,
     medallion: 2.5,
+    crop: 5,
+    fruit: 5,
+    vegetable: 5,
+    fish: 5,
+    meat: 5,
+    bread: 10,
+    jam: 10,
+    salad: 10,
+    smokedFish: 10,
+    steak: 10,
 };
 
 const FACTORY_DATA_FIX = {
@@ -121,35 +137,41 @@ const FACTORY_DATA_FIX = {
         factory: true,
         buildable: true,
         enableMaterial: ['crop'],
+        section: FACTORY_SECTION__FOOD,
     },
     orchard: {
         manual: true,
         factory: true,
         buildable: true,
         enableMaterial: ['fruit'],
+        section: FACTORY_SECTION__FOOD,
     },
     greenhouse: {
         manual: true,
         factory: true,
         buildable: true,
         enableMaterial: ['vegetable'],
+        section: FACTORY_SECTION__FOOD,
     },
     fisherman: {
         manual: true,
         factory: true,
         buildable: true,
         enableMaterial: ['fish'],
+        section: FACTORY_SECTION__FOOD,
     },
     cattle: {
         manual: true,
         factory: true,
         buildable: true,
         enableMaterial: ['meat'],
+        section: FACTORY_SECTION__FOOD,
     },
     restaurant: {
         manual: false,
         factory: true,
         buildable: true,
+        section: FACTORY_SECTION__FOOD,
     },
 };
 
@@ -163,6 +185,51 @@ const MATERIAL_DATA_CONST = {
     knowledge: {
         enabled: true,
         hidden: true,
+    },
+    charcoal: {
+        section: MATERIAL_SECTION__PRODUCED,
+    },
+    marble: {
+        section: MATERIAL_SECTION__PRODUCED,
+    },
+    tools: {
+        section: MATERIAL_SECTION__PRODUCED,
+    },
+    medallion: {
+        section: MATERIAL_SECTION__PRODUCED,
+    },
+    basePlate: {
+        section: MATERIAL_SECTION__PRODUCED,
+    },
+    crop: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    fruit: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    vegetable: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    fish: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    meat: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    bread: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    jam: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    salad: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    smokedFish: {
+        section: MATERIAL_SECTION__FOOD,
+    },
+    steak: {
+        section: MATERIAL_SECTION__FOOD,
     },
 };
 
