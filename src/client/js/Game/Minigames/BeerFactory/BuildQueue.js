@@ -107,7 +107,7 @@
             }).bind(this))
         );
 
-        this.gameEventBus.on(EVENTS.CORE.INITIALIZED.GAME, (function () {
+        this.gameEventBus.on(EVENTS.CORE.INITIALIZED.GAME, (function checkUnlocksAfterInitialization() {
             if (this.getQueueLength()) {
                 this.checkQueueItemsFinished([...Object.keys(this.state.getBuildQueue())]);
             }

@@ -5,253 +5,251 @@
 
       <div class="beer-factory__section">
         {{ #factories }}
-          {{ #enabled }}
-            <div>
-              <div id="beer-factory__{{ key }}"
-                   class="beer-factory__building-container {{ #factory }}beer-factory__factory-enabled card{{ /factory }}"
-                   data-factory="{{ key }}"
-              >
-                <div class="beer-factory__building-container__flex-item">
-                  <div class="beer-factory__icon {{ #manual }}beer-factory__manual-harvest{{ /manual }}">
-                    {{ #manual }}<a class="svg-container">{{ /manual }}
-                      <svg data-svg-key="svg-beer-factory__{{ key }}"
-                           class="beer-factory__building__svg"
-                           viewBox="-2 -2 44 44"
-                      />
-                    {{ #manual }}</a>{{ /manual }}
-                  </div>
-
-                  <div class="factory-component">
-                    <h4>
-                      {{ name }}
-                      <span class="beer-factory__building__level float-right">
-                        {{ #t }}"beerFactory.factory.level"{{ /t }}: {{ level }}
-                        <div class="beer-factory__building__missing-resource
-                                    beer-factory__building__missing-resource__head
-                                    beer-factory__building__action-hint
-                                    float-right
-                                    {{ ^materialMissing }}d-none{{ /materialMissing }}"
-                        >
-                          <abbr title="{{ #t }}"beerFactory.factory.missingResources"{{ /t }}">
-                            <i class="fas fa-exclamation-triangle"></i>
-                          </abbr>
-                        </div>
-                        <div class="beer-factory__building__upgrade-available
-                                    beer-factory__building__action-hint
-                                    float-right
-                                    {{ ^upgradeAvailable }}d-none{{ /upgradeAvailable }}"
-                        >
-                          <abbr title="{{ #t }}"beerFactory.factory.upgradeAvailable"{{ /t }}">
-                            <span class="arrow-animation arrow-animation--primary bounce-alpha"></span>
-                            <span class="arrow-animation arrow-animation--secondary bounce-alpha"></span>
-                          </abbr>
-                        </div>
-                      </span>
-                    </h4>
-
-                    {{ #buildable }}
-                      <p>
-                        {{ #t }}"beerFactory.factory.owned"{{ /t }}: {{ amount }} {{ #queuedBuilds }}({{ #t }}
-                          "beerFactory.factory.queued",
-                          {"__AMOUNT__": {{ queuedBuilds }}},
-                          "",
-                          {{ queuedBuilds }}
-                        {{ /t }}){{ /queuedBuilds }}
-                      </p>
-                      <fieldset class="float-left">
-                        <button type="button"
-                                class="btn btn-raised btn-primary beer-factory__queue-build beer-factory__material-tooltip"
-                                data-factory="{{ key }}"
-                                data-toggle="tooltip"
-                                data-boundary="window"
-                                data-placement="right"
-                                data-html="true"
-                                data-job-type="factory"
-                        >
-                          {{ #t }}"beerFactory.factory.construct"{{ /t }}
-                        </button>
-                      </fieldset>
-                    {{ /buildable }}
-                    {{ ^buildable }}
-                      <p>&nbsp;</p>
-                    {{ /buildable }}
-
-                    <button type="button"
-                            class="btn btn-raised btn-secondary float-right beer-factory__toggle-collapsable-body"
-                            data-toggle="collapse"
-                            data-target="#beer-factory__{{ key }}-collapsable-body"
-                    >
-                      <i class="fa
-                                {{ #expanded }}fa-angle-double-up{{ /expanded }}
-                                {{ ^expanded }}fa-angle-double-down collapsed{{ /expanded }}
-                                beer-factory__toggle-collapsable-body__icon"
-                      ></i>
-                    </button>
-                  </div>
+          <div>
+            <div id="beer-factory__{{ key }}"
+                 class="beer-factory__building-container {{ #factory }}beer-factory__factory-enabled card{{ /factory }}"
+                 data-factory="{{ key }}"
+            >
+              <div class="beer-factory__building-container__flex-item">
+                <div class="beer-factory__icon {{ #manual }}beer-factory__manual-harvest{{ /manual }}">
+                  {{ #manual }}<a class="svg-container">{{ /manual }}
+                    <svg data-svg-key="svg-beer-factory__{{ key }}"
+                         class="beer-factory__building__svg"
+                         viewBox="-2 -2 44 44"
+                    />
+                  {{ #manual }}</a>{{ /manual }}
                 </div>
 
-                <div id="beer-factory__{{ key }}-collapsable-body"
-                     class="beer-factory__building-container__flex-item collapse {{ #expanded }}show{{ /expanded }}"
-                >
-                  <div class="beer-factory__collapsable-body__content-container">
-                    <p>{{{ description }}}</p>
-                    {{ #production }}
-                      <p>
-                        {{ #t }}
-                          "beerFactory.factory.production",
-                          {"__AMOUNT__": "<b class='beer-factory__building__production'>{{ maxProduction }}</b>"}
-                        {{ /t }}
-                      </p>
-                      <ul>
-                        {{ #producedMaterials }}
-                          <li>{{ name }}: <b>{{ percentage }}%</b></li>
-                        {{ /producedMaterials }}
-                      </ul>
-                    {{ /production }}
-
-                    {{ #hasUpgradePaths }}
-                      <div class="beer-factory__upgrade-container">
-                        <div class="w-100 d-flex flex-row">
-                          <h4 class="flex-fill">{{ #t }}"beerFactory.upgrades"{{ /t }}:</h4>
-                          <button class="btn btn-secondary btn-raised beer-factory__reached-upgrades">
-                            {{ #t }}"reached"{{ /t }}
-                          </button>
-                        </div>
-                        {{ #upgradePaths }}
-                          <div id="beer-factory__upgrade-{{ key }}__{{ upgrade }}"
-                               class="beer-factory__upgrade"
-                               data-factory="{{ key }}"
-                               data-upgrade="{{ upgrade }}"
-                          >
-                            <h6>{{ header }}</h6>
-                            <div class="card clickable">
-                              {{ #completed }}
-                                <p>{{ #t }}"beerFactory.upgrade.completed"{{ /t }}</p>
-                              {{ /completed }}
-                              {{ ^completed }}
-                                <div class="beer-factory__upgrade__locked-toggle
-                                            beer-factory__upgrade__locked
-                                            {{ ^locked }}d-none{{ /locked}}"
-                                >
-                                  <p>{{ #t }}"beerFactory.upgrade.locked"{{ /t }}</p>
-                                </div>
-                                <div class="beer-factory__upgrade__locked-toggle
-                                            beer-factory__material-tooltip
-                                            {{ #locked }}d-none{{ /locked}}"
-                                     data-toggle="tooltip"
-                                     data-boundary="window"
-                                     data-placement="right"
-                                     data-html="true"
-                                     data-job-type="upgrade"
-                                >
-                                  <h5>{{ title }}</h5>
-                                  <hr />
-                                  <p>{{ description }}</p>
-                                  <p>{{ effect }}</p>
-                                </div>
-                              {{ /completed}}
-                            </div>
-                          </div>
-                        {{ /upgradePaths }}
+                <div class="factory-component">
+                  <h4>
+                    {{ name }}
+                    <span class="beer-factory__building__level float-right">
+                      {{ #t }}"beerFactory.factory.level"{{ /t }}: {{ level }}
+                      <div class="beer-factory__building__missing-resource
+                                  beer-factory__building__missing-resource__head
+                                  beer-factory__building__action-hint
+                                  float-right
+                                  {{ ^materialMissing }}d-none{{ /materialMissing }}"
+                      >
+                        <abbr title="{{ #t }}"beerFactory.factory.missingResources"{{ /t }}">
+                          <i class="fas fa-exclamation-triangle"></i>
+                        </abbr>
                       </div>
-                    {{ /hasUpgradePaths }}
+                      <div class="beer-factory__building__upgrade-available
+                                  beer-factory__building__action-hint
+                                  float-right
+                                  {{ ^upgradeAvailable }}d-none{{ /upgradeAvailable }}"
+                      >
+                        <abbr title="{{ #t }}"beerFactory.factory.upgradeAvailable"{{ /t }}">
+                          <span class="arrow-animation arrow-animation--primary bounce-alpha"></span>
+                          <span class="arrow-animation arrow-animation--secondary bounce-alpha"></span>
+                        </abbr>
+                      </div>
+                    </span>
+                  </h4>
 
-                    {{ #hasExtensions }}
-                      <h4>{{ #t }}"beerFactory.factory.extensions"{{ /t }}:</h4>
-                      {{ #extensions }}
-                        <div id="beer-factory__extension-{{ key }}"
-                             class="card
-                                    beer-factory__building-container__extension
-                                    {{ #paused }}extension-paused{{ /paused }}"
+                  {{ #buildable }}
+                    <p>
+                      {{ #t }}"beerFactory.factory.owned"{{ /t }}: {{ amount }} {{ #queuedBuilds }}({{ #t }}
+                        "beerFactory.factory.queued",
+                        {"__AMOUNT__": {{ queuedBuilds }}},
+                        "",
+                        {{ queuedBuilds }}
+                      {{ /t }}){{ /queuedBuilds }}
+                    </p>
+                    <fieldset class="float-left">
+                      <button type="button"
+                              class="btn btn-raised btn-primary beer-factory__queue-build beer-factory__material-tooltip"
+                              data-factory="{{ key }}"
+                              data-toggle="tooltip"
+                              data-boundary="window"
+                              data-placement="right"
+                              data-html="true"
+                              data-job-type="factory"
+                      >
+                        {{ #t }}"beerFactory.factory.construct"{{ /t }}
+                      </button>
+                    </fieldset>
+                  {{ /buildable }}
+                  {{ ^buildable }}
+                    <p>&nbsp;</p>
+                  {{ /buildable }}
+
+                  <button type="button"
+                          class="btn btn-raised btn-secondary float-right beer-factory__toggle-collapsable-body"
+                          data-toggle="collapse"
+                          data-target="#beer-factory__{{ key }}-collapsable-body"
+                  >
+                    <i class="fa
+                              {{ #expanded }}fa-angle-double-up{{ /expanded }}
+                              {{ ^expanded }}fa-angle-double-down collapsed{{ /expanded }}
+                              beer-factory__toggle-collapsable-body__icon"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+
+              <div id="beer-factory__{{ key }}-collapsable-body"
+                   class="beer-factory__building-container__flex-item collapse {{ #expanded }}show{{ /expanded }}"
+              >
+                <div class="beer-factory__collapsable-body__content-container">
+                  <p>{{{ description }}}</p>
+                  {{ #production }}
+                    <p>
+                      {{ #t }}
+                        "beerFactory.factory.production",
+                        {"__AMOUNT__": "<b class='beer-factory__building__production'>{{ maxProduction }}</b>"}
+                      {{ /t }}
+                    </p>
+                    <ul>
+                      {{ #producedMaterials }}
+                        <li>{{ name }}: <b>{{ percentage }}%</b></li>
+                      {{ /producedMaterials }}
+                    </ul>
+                  {{ /production }}
+
+                  {{ #hasUpgradePaths }}
+                    <div class="beer-factory__upgrade-container">
+                      <div class="w-100 d-flex flex-row">
+                        <h4 class="flex-fill">{{ #t }}"beerFactory.upgrades"{{ /t }}:</h4>
+                        <button class="btn btn-secondary btn-raised beer-factory__reached-upgrades">
+                          {{ #t }}"reached"{{ /t }}
+                        </button>
+                      </div>
+                      {{ #upgradePaths }}
+                        <div id="beer-factory__upgrade-{{ key }}__{{ upgrade }}"
+                             class="beer-factory__upgrade"
+                             data-factory="{{ key }}"
+                             data-upgrade="{{ upgrade }}"
                         >
-                          <div class="beer-factory__icon
-                                      beer-factory__extension-popover
-                                      {{ #isProxyExtension }}beer-factory__proxy-extension-popover{{ /isProxyExtension }}"
-                               data-toggle="popover"
-                               data-trigger="hover"
-                               data-boundary="window"
-                               data-placement="right"
-                               title="{{ name }}"
-                               data-html="true"
-                               data-extension-key="{{ key }}"
-                          >
-                            <svg data-svg-key="svg-beer-factory__{{ proxyKey }}"
-                                 class="beer-factory__building__svg"
-                                 viewBox="-2 -2 44 44"
-                            />
+                          <h6>{{ header }}</h6>
+                          <div class="card clickable">
+                            {{ #completed }}
+                              <p>{{ #t }}"beerFactory.upgrade.completed"{{ /t }}</p>
+                            {{ /completed }}
+                            {{ ^completed }}
+                              <div class="beer-factory__upgrade__locked-toggle
+                                          beer-factory__upgrade__locked
+                                          {{ ^locked }}d-none{{ /locked}}"
+                              >
+                                <p>{{ #t }}"beerFactory.upgrade.locked"{{ /t }}</p>
+                              </div>
+                              <div class="beer-factory__upgrade__locked-toggle
+                                          beer-factory__material-tooltip
+                                          {{ #locked }}d-none{{ /locked}}"
+                                   data-toggle="tooltip"
+                                   data-boundary="window"
+                                   data-placement="right"
+                                   data-html="true"
+                                   data-job-type="upgrade"
+                              >
+                                <h5>{{ title }}</h5>
+                                <hr />
+                                <p>{{ description }}</p>
+                                <p>{{ effect }}</p>
+                              </div>
+                            {{ /completed}}
                           </div>
+                        </div>
+                      {{ /upgradePaths }}
+                    </div>
+                  {{ /hasUpgradePaths }}
 
-                          <div class="factory-component">
-                            <h4>{{ name }}</h4>
-                            <p>{{ description }}</p>
+                  {{ #hasExtensions }}
+                    <h4>{{ #t }}"beerFactory.factory.extensions"{{ /t }}:</h4>
+                    {{ #extensions }}
+                      <div id="beer-factory__extension-{{ key }}"
+                           class="card
+                                  beer-factory__building-container__extension
+                                  {{ #paused }}extension-paused{{ /paused }}"
+                      >
+                        <div class="beer-factory__icon
+                                    beer-factory__extension-popover
+                                    {{ #isProxyExtension }}beer-factory__proxy-extension-popover{{ /isProxyExtension }}"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-boundary="window"
+                             data-placement="right"
+                             title="{{ name }}"
+                             data-html="true"
+                             data-extension-key="{{ key }}"
+                        >
+                          <svg data-svg-key="svg-beer-factory__{{ proxyKey }}"
+                               class="beer-factory__building__svg"
+                               viewBox="-2 -2 44 44"
+                          />
+                        </div>
 
-                            {{ #activeExtension }}
-                              <table class="table">
-                                <tr><th>{{ #t }}"beerFactory.factory.extension.consumes"{{ /t }}</th><th></th></tr>
-                                {{ #consumes }}
-                                  <tr>
-                                    <td>{{ amount }}</td>
-                                    <td>{{ material }}</td>
-                                    <td id="beer-factory__extension__missing-resource-{{ key }}-{{ materialKey }}"
-                                        class="beer-factory__extension__missing-resource-container
-                                               {{ ^missing }}d-none{{ /missing }}"
-                                    >
-                                      <div class="beer-factory__building__missing-resource">
-                                        <abbr title="Missing resources">
-                                          <i class="fas fa-exclamation-triangle"></i>
-                                        </abbr>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                {{ /consumes }}
-                                <tr><th>{{ #t }}"beerFactory.factory.extension.produces"{{ /t }}</th><th></th></tr>
-                                {{ #produces }}
-                                  <tr><td>{{ amount }}</td><td>{{ material }}</td></tr>
-                                {{ /produces }}
-                              </table>
-                            {{ /activeExtension }}
+                        <div class="factory-component">
+                          <h4>{{ name }}</h4>
+                          <p>{{ description }}</p>
 
-                            <div class="button-container">
+                          {{ #activeExtension }}
+                            <table class="table">
+                              <tr><th>{{ #t }}"beerFactory.factory.extension.consumes"{{ /t }}</th><th></th></tr>
+                              {{ #consumes }}
+                                <tr>
+                                  <td>{{ amount }}</td>
+                                  <td>{{ material }}</td>
+                                  <td id="beer-factory__extension__missing-resource-{{ key }}-{{ materialKey }}"
+                                      class="beer-factory__extension__missing-resource-container
+                                             {{ ^missing }}d-none{{ /missing }}"
+                                  >
+                                    <div class="beer-factory__building__missing-resource">
+                                      <abbr title="Missing resources">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                      </abbr>
+                                    </div>
+                                  </td>
+                                </tr>
+                              {{ /consumes }}
+                              <tr><th>{{ #t }}"beerFactory.factory.extension.produces"{{ /t }}</th><th></th></tr>
+                              {{ #produces }}
+                                <tr><td>{{ amount }}</td><td>{{ material }}</td></tr>
+                              {{ /produces }}
+                            </table>
+                          {{ /activeExtension }}
+
+                          <div class="button-container">
+                            <button type="button"
+                                    class="btn
+                                           btn-raised
+                                           {{ #paused }}btn-success{{ /paused }}
+                                           {{ ^paused }}btn-info{{ /paused }}
+                                           beer-factory__extension__toggle-pause"
+                                    data-extension="{{ key }}"
+                            >
+                              <span class="toggle-pause__pause">
+                                <i class="fas fa-pause"></i>
+                                {{ #t }}"beerFactory.factory.extension.pause"{{ /t }}
+                              </span>
+                              <span class="toggle-pause__start">
+                                <i class="fas fa-play"></i>
+                                {{ #t }}"beerFactory.factory.extension.start"{{ /t }}
+                              </span>
+                            </button>
+
+                            {{ #isProxyExtension }}
                               <button type="button"
                                       class="btn
                                              btn-raised
-                                             {{ #paused }}btn-success{{ /paused }}
-                                             {{ ^paused }}btn-info{{ /paused }}
-                                             beer-factory__extension__toggle-pause"
-                                      data-extension="{{ key }}"
+                                             btn-secondary
+                                             float-left
+                                             beer-factory__proxy-extension-popover"
+                                      data-extension-key="{{ key }}"
                               >
-                                <span class="toggle-pause__pause">
-                                  <i class="fas fa-pause"></i>
-                                  {{ #t }}"beerFactory.factory.extension.pause"{{ /t }}
-                                </span>
-                                <span class="toggle-pause__start">
-                                  <i class="fas fa-play"></i>
-                                  {{ #t }}"beerFactory.factory.extension.start"{{ /t }}
-                                </span>
+                                {{ #t }}"beerFactory.factory.extension.equip"{{ /t }}
                               </button>
-
-                              {{ #isProxyExtension }}
-                                <button type="button"
-                                        class="btn
-                                               btn-raised
-                                               btn-secondary
-                                               float-left
-                                               beer-factory__proxy-extension-popover"
-                                        data-extension-key="{{ key }}"
-                                >
-                                  {{ #t }}"beerFactory.factory.extension.equip"{{ /t }}
-                                </button>
-                              {{ /isProxyExtension }}
-                            </div>
+                            {{ /isProxyExtension }}
                           </div>
                         </div>
-                      {{ /extensions }}
-                    {{ /hasExtensions }}
-                  </div>
+                      </div>
+                    {{ /extensions }}
+                  {{ /hasExtensions }}
                 </div>
               </div>
             </div>
-          {{ /enabled }}
+          </div>
         {{ /factories }}
       </div>
     {{ /sections }}

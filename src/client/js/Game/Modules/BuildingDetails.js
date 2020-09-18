@@ -121,8 +121,6 @@
                       productionGraphType = this.gameOptions.getProductionStatisticsType(),
                       valueLabel          = this.building === 'bottleCapFactory' ? 'bottleCapValue' : 'plopValue';
 
-                console.log(this.building, valueLabel);
-
                 // reset the internal charts array for correct indices when adding new data points
                 this.charts = [];
 

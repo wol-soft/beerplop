@@ -398,7 +398,9 @@
 
             this.beerFactoryCache.resetCache();
 
-            this.render.renderOverlay();
+            if (this.render.isOverlayVisible()) {
+                this.render.renderOverlay();
+            }
         }).bind(this));
     }
 

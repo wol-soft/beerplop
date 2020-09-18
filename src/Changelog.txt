@@ -6,6 +6,7 @@
     - Workers' Lodges initially dispaly a 100% production boost (#98)
     - Project based factory extension popover content positioning (#102)
     - Fix icon for blacksmith is missing the workpiece
+    - Skip unnecessary Beer Factory rendering during game initialization
 
 **1.68.0** - 16.03.2020
 * Add additional upgrade paths to the Beer Factories

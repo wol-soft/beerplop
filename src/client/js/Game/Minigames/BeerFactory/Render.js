@@ -209,7 +209,6 @@
         )
     };
 
-    // TODO: function is called twice during game initialization which is useless
     Render.prototype.renderFactoriesMap = function () {
         const queuedBuilds = this.buildQueue.getQueuedBuilds();
         const sections = Object.keys(this.state.getFactories()).map((function createFactoriesList(factoryKey) {
@@ -315,7 +314,10 @@
                     }).bind(this)),
                 },
             );
-        }).bind(this)).reduce(function groupFactoriesBySection(groupedFactories, factory) {
+        }).bind(this))
+        // filter out all locked factories
+        .filter((factory) => factory.enabled)
+        .reduce(function groupFactoriesBySection(groupedFactories, factory) {
             let key = 0;
 
             if (factory.section) {
