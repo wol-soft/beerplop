@@ -1,0 +1,29 @@
+{% verbatim %}
+  <script id="beer-factory__manager-management-modal-template" type="text/template">
+    <p>{{ #t }}"beerFactory.modal.manager.description", {"__FACTORY__": "{{ #t}}"beerFactory.factory.{{ factoryKey }}"{{ /t }}"}{{ /t }}</p>
+
+    <hr />
+    <h3>
+      {{ #t }}"beerFactory.modal.manager.factory", {"__FACTORY__": "{{ #t}}"beerFactory.factory.{{ factoryKey }}"{{ /t }}"}{{ /t }}:
+      <button class="btn btn-secondary btn-raised float-right">{{ #t }}"beerFactory.modal.manager.hire"{{ /t }}</button>
+    </h3>
+    {{ #factoryManagers }}
+    {{ /factoryManagers }}
+    {{ ^factoryManagers }}
+      {{ #t }}"beerFactory.modal.manager.noManager"{{ /t }}
+    {{ /factoryManagers }}
+
+    {{ #extensionManagers }}
+      <hr />
+      <h3>
+        {{ #t }}"beerFactory.modal.manager.extension", {"__EXTENSION__": "{{ #t}}"beerFactory.extension.{{ extensionKey }}"{{ /t }}"}{{ /t }}:
+        <button class="btn btn-secondary btn-raised float-right">{{ #t }}"beerFactory.modal.manager.hire"{{ /t }}</button>
+      </h3>
+      {{ #managers }}
+      {{ /managers }}
+      {{ ^managers }}
+        {{ #t }}"beerFactory.modal.manager.noManager"{{ /t }}
+      {{ /managers }}
+    {{ /extensionManagers }}
+  </script>
+{% endverbatim %}

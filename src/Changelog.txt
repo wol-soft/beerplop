@@ -1,12 +1,14 @@
 **1.69.0** -
 * Updated dependencies
 * Beer Factory materials are grouped now. Each group can be collapsed
+* Adjusted knowledge consumption
 * Bugfixes:
     - Building statistic graphs for Bottle Cap Factories show "plops" (#94)
     - Workers' Lodges initially dispaly a 100% production boost (#98)
     - Project based factory extension popover content positioning (#102)
-    - Fix icon for blacksmith is missing the workpiece
+    - Icon for blacksmith is missing the workpiece
     - Skip unnecessary Beer Factory rendering during game initialization
+    - Fixed some typos
 
 **1.68.0** - 16.03.2020
 * Add additional upgrade paths to the Beer Factories

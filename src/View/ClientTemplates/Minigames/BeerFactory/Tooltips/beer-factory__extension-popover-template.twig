@@ -9,6 +9,14 @@
           {{ /t }}
         </p>
       {{ /isProxyExtension }}
+
+      {{ #hasQueue }}
+        <p>{{ #t }}"beerFactory.popover.extension.queueSize"{{ /t }}: <b>{{ queueEntries }}</b></p>
+        {{ ^runningProject }}
+          {{ #t }}"beerFactory.popover.extension.queue.empty"{{ /t }}
+        {{ /runningProject }}
+      {{ /hasQueue }}
+
       <p>
         {{ #t }}"beerFactory.popover.extension.capacity"{{ /t }}: <span id="beer-factory__extension-popover__storage-{{ extension }}">{{ storedItems }}</span>/{{ storageCapacity }}
       </p>
@@ -42,21 +50,23 @@
         {{ /listProductionPerSecond }}
 
         {{ ^listProductionPerSecond }}
-          <table class="table table-sm w-50">
-            <tr>
-              <th colspan="2">{{ #t }}"beerFactory.popover.extension.progress"{{ /t }}:</th>
-            </tr>
-            {{ #projectProgress }}
+          {{ #runningProject }}
+            <table class="table table-sm w-50">
               <tr>
-                <td>{{ name }}</td>
-                <td>
-                  <span id="beer-factory__extension-popover__production-progress-{{ key }}"
-                        class="{{ progressClass }}"
-                  >{{ delivered }}</span>/{{ required}}
-                </td>
+                <th colspan="2">{{ #t }}"beerFactory.popover.extension.progress"{{ /t }}:</th>
               </tr>
-            {{ /projectProgress }}
-          </table>
+              {{ #projectProgress }}
+                <tr>
+                  <td>{{ name }}</td>
+                  <td>
+                    <span id="beer-factory__extension-popover__production-progress-{{ key }}"
+                          class="{{ progressClass }}"
+                    >{{ delivered }}</span>/{{ required}}
+                  </td>
+                </tr>
+              {{ /projectProgress }}
+            </table>
+          {{ /runningProject }}
         {{ /listProductionPerSecond }}
       </div>
     {{ /activeExtension }}

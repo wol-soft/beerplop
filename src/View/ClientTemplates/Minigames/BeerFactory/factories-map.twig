@@ -94,6 +94,18 @@
               >
                 <div class="beer-factory__collapsable-body__content-container">
                   <p>{{{ description }}}</p>
+
+                  {{ #managersEnabled }}
+                    <p>
+                      <button class="btn btn-secondary btn-raised float-right beer-factory__manage-managers">
+                        {{ #t }}"manage"{{ /t }}
+                      </button>
+
+                      {{ #t }}"beerFactory.factory.hiredManagers"{{ /t }}: <b>{{ hiredManagers }}</b><br />
+                      {{ #t }}"beerFactory.factory.managerLevel"{{ /t }}: <b>{{ managerLevel }}</b>
+                    </p>
+                  {{ /managersEnabled }}
+
                   {{ #production }}
                     <p>
                       {{ #t }}

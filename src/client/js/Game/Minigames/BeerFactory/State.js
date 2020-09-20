@@ -145,7 +145,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             storage: {
                 enabled: false,
@@ -155,7 +154,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             transport: {
                 enabled: false,
@@ -176,7 +174,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             iron: {
                 enabled: false,
@@ -188,7 +185,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             lodge: {
                 enabled: false,
@@ -199,7 +195,6 @@
                     comfort: 0,
                 },
                 productionMultiplier: 1.1,
-                extensions: [],
             },
             mine: {
                 enabled: false,
@@ -211,7 +206,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             queue: {
                 enabled: false,
@@ -281,7 +275,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             orchard: {
                 enabled: false,
@@ -293,7 +286,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             greenhouse: {
                 enabled: false,
@@ -305,7 +297,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             fisherman: {
                 enabled: false,
@@ -317,7 +308,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             cattle: {
                 enabled: false,
@@ -329,7 +319,6 @@
                     double: 0,
                     diversify: 0,
                 },
-                extensions: [],
             },
             restaurant: {
                 enabled: false,
@@ -552,20 +541,47 @@
         return this.getState().factories;
     };
 
-    State.prototype.getFactory = function (factory) {
-        return this.getFactories()[factory];
+    State.prototype.getFactory = function (factoryKey) {
+        return this.getFactories()[factoryKey];
+    };
+
+    /**
+     * Returns an array containing all managers of the provided factory key (including the managers of the factory
+     * extensions of the requested factory)
+     *
+     * @param {string} factoryKey
+     *
+     * @return {array}
+     */
+    State.prototype.getFactoryManagers = function (factoryKey) {
+        const result = [],
+              factory = this.getFactory(factoryKey);
+
+        result.push(
+            ...(factory.managers || [])
+                .map((manager) => $.extend(manager, {factory: factoryKey}))
+        );
+
+        $.each(factory.extensions, (index, extensionKey) => {
+            result.push(
+                ...(this.getExtensionStorage(extensionKey).managers || [])
+                    .map((manager) => $.extend(manager, {factory: extensionKey, extensionManager: true}))
+            );
+        });
+
+        return result;
     };
 
     State.prototype.getMaterials = function () {
         return this.getState().materials;
     };
 
-    State.prototype.getMaterial = function (material) {
-        return this.getState().materials[material];
+    State.prototype.getMaterial = function (materialKey) {
+        return this.getState().materials[materialKey];
     };
 
-    State.prototype.getExtensionStorage = function (extension) {
-        return this.getState().extensionStorage[extension];
+    State.prototype.getExtensionStorage = function (extensionKey) {
+        return this.getState().extensionStorage[extensionKey];
     };
 
     State.prototype.setUniqueBuild = function (uniqueBuild) {

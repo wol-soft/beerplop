@@ -213,7 +213,8 @@
         const queuedBuilds = this.buildQueue.getQueuedBuilds();
         const sections = Object.keys(this.state.getFactories()).map((function createFactoriesList(factoryKey) {
             const upgradePaths = this.upgrade.getUpgradePaths(factoryKey),
-                  factory      = this.state.getFactory(factoryKey);
+                  factory      = this.state.getFactory(factoryKey),
+                  managers     = this.state.getFactoryManagers(factoryKey);
 
             return $.extend(
                 {
@@ -228,6 +229,12 @@
                 },
                 factory,
                 FACTORY_DATA_FIX[factoryKey],
+                // manager data
+                {
+                    managersEnabled: this.state.getFactory('academy').upgrades.double >= 3,
+                    hiredManagers:   managers.length,
+                    managerLevel:    managers.reduce((level, manager) => level + manager.level, 0),
+                },
                 {
                     description:   this._descriptionDecorator(factoryKey),
                     maxProduction: this.numberFormatter.formatInt(
@@ -577,6 +584,12 @@
             );
         }).bind(this));
 
+        container.find('.beer-factory__manage-managers').on('click', (function showManagerManagementModal(event) {
+            this._showManagerManagementModal(
+                $(event.target).closest('.beer-factory__building-container').data('factory')
+            );
+        }).bind(this));
+
         const render = this;
 
         const tooltips = container.find('.beer-factory__material-tooltip:not(.d-none)');
@@ -714,7 +727,9 @@
                                 : false,
                             // TODO: show like in build queue. CONST class remove
                             progressClass: 'beer-factory__extension-popover__production-progress',
+                            // if the production is project-based and a project is running get the production progress
                             projectProgress: EXTENSIONS[proxiedExtension].productionType === EXTENSION_PRODUCTION__PROJECT
+                                                && state.getExtensionStorage(extension).project
                                 ? Object.entries(state.getExtensionStorage(extension).project.materials).map(
                                     function (entry) {
                                         return {
@@ -726,6 +741,13 @@
                                     }
                                 )
                                 : false,
+                            runningProject: EXTENSIONS[proxiedExtension].productionType === EXTENSION_PRODUCTION__PROJECT
+                                && state.getExtensionStorage(extension).project,
+                            // project queue data
+                            hasQueue:     EXTENSIONS[proxiedExtension].hasProjectQueue,
+                            queueEntries: EXTENSIONS[proxiedExtension].hasProjectQueue
+                                ? state.getExtensionStorage(proxiedExtension).queue.length
+                                : 0
                         }
                     );
                 }
@@ -743,18 +765,18 @@
         }).bind(this));
     };
 
-    Render.prototype._showReachedUpgradesModal = function (factory) {
+    Render.prototype._showReachedUpgradesModal = function (factoryKey) {
         const modal = $('#beer-factory__upgrades-modal');
         let upgradePaths = [];
 
-        $.each(this.state.getFactory(factory).upgrades, (upgradeKey, level) => {
+        $.each(this.state.getFactory(factoryKey).upgrades, (upgradeKey, level) => {
                 let paths = [];
 
                 for (let i = 1; i <= level; i++) {
                     paths.push({
-                        title:       translator.translate(`beerFactory.upgrade.${factory}.${upgradeKey}.${i}.title`),
-                        description: translator.translate(`beerFactory.upgrade.${factory}.${upgradeKey}.${i}.description`),
-                        effect:      translator.translate(`beerFactory.upgrade.${factory}.${upgradeKey}.${i}.effect`),
+                        title:       translator.translate(`beerFactory.upgrade.${factoryKey}.${upgradeKey}.${i}.title`),
+                        description: translator.translate(`beerFactory.upgrade.${factoryKey}.${upgradeKey}.${i}.description`),
+                        effect:      translator.translate(`beerFactory.upgrade.${factoryKey}.${upgradeKey}.${i}.effect`),
                     });
                 }
 
@@ -770,9 +792,45 @@
             Mustache.render(
                 TemplateStorage.get('beer-factory__upgrades-modal-template'),
                 {
-                    factory: factory,
+                    factoryKey:   factoryKey,
                     upgradePaths: upgradePaths,
-                }
+                },
+            )
+        );
+
+        modal.modal('show');
+    };
+
+    Render.prototype._showManagerManagementModal = function (factoryKey) {
+        const modal    = $('#beer-factory__manager-management-modal'),
+              managers = Object.values(
+                  this.state.getFactoryManagers(factoryKey)
+                      .reduce(function groupManagersByFactory(groupedManagers, manager) {
+                          groupedManagers[manager.factory].managers.push(manager);
+
+                          return groupedManagers;
+                      },
+                      $.extend(
+                          {[factoryKey]: {managers: []}},
+                          (this.state.getFactory(factoryKey).extensions || [])
+                              .reduce(
+                                  (carry, extensionKey) => (
+                                      {...carry, [extensionKey]: {managers: [], extensionKey: extensionKey}}
+                                  ),
+                                  {},
+                              ),
+                      ),
+                  ),
+              );
+
+        modal.find('.modal-body').html(
+            Mustache.render(
+                TemplateStorage.get('beer-factory__manager-management-modal-template'),
+                {
+                    factoryKey:        factoryKey,
+                    factoryManagers:   managers.shift().managers,
+                    extensionManagers: managers,
+                },
             )
         );
 

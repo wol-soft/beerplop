@@ -41,13 +41,15 @@
   }
 }
 
-#beer-factory__factories-map .beer-factory__section {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
+#beer-factory__factories-map {
   > h2 {
     margin-top: 1rem;
+  }
+
+  .beer-factory__section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 

@@ -79,6 +79,11 @@
 
         if (!extensionStorage.project || extensionStorage.project.finished) {
             this._startExtensionProject(extensionStorage, proxiedExtension);
+
+            // no project to start
+            if (!extensionStorage.project) {
+                return false;
+            }
         }
 
         let availableAmountToDeliver = factoryData.amount * 5 * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),

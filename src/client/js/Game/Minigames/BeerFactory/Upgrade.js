@@ -175,11 +175,15 @@
                 this.render.updateStockTable();
             }).bind(this),
 
-            enableFactoryExtension = (function (factory, extension) {
-                factory = this.state.getFactory(factory);
+            enableFactoryExtension = (function enableFactoryExtension(factoryKey, extension) {
+                const factory = this.state.getFactory(factoryKey);
+
+                if (!factory.extensions) {
+                    factory.extensions = [];
+                }
 
                 if ($.inArray(extension, factory.extensions) !== -1) {
-                    console.log('Extension already unlocked');
+                    console.warn(`Extension ${extension} for factory ${factoryKey} already unlocked`);
                     return;
                 }
 
@@ -3028,7 +3032,7 @@
                             marble: 122_500,
                             gold: 1_980_000,
                             diamond: 805_000,
-                            knowledge: 1_000_000
+                            knowledge: 1_500_000
                         },
                         requires: {
                             academy: {
@@ -3049,7 +3053,7 @@
                             marble: 287_500,
                             gold: 5_940_000,
                             diamond: 2_415_000,
-                            knowledge: 3_000_000,
+                            knowledge: 6_000_000,
                         },
                         requires: {
                             academy: {
@@ -3063,7 +3067,7 @@
                     1: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 25_000,
+                            knowledge: 35_000,
                         },
                         requires: {
                             academy: {
@@ -3082,7 +3086,7 @@
                     2: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 155_000,
+                            knowledge: 255_000,
                         },
                         requires: {
                             academy: {
@@ -3098,7 +3102,7 @@
                     3: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 1_355_000,
+                            knowledge: 3_355_000,
                         },
                         callback: (function () {
                             this.achievementController.checkAchievement(
@@ -3109,7 +3113,7 @@
                     4: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 24_550_000,
+                            knowledge: 64_550_000,
                         },
                         requires: {
                             academy: {
@@ -3125,7 +3129,7 @@
                     5: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 245_500_000,
+                            knowledge: 745_500_000,
                         },
                         requires: {
                             academy: {
@@ -3141,7 +3145,7 @@
                     6: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 845_500_000,
+                            knowledge: 1_645_500_000,
                         },
                         requires: {
                             academy: {
@@ -3157,7 +3161,7 @@
                     7: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 1_691_000_000,
+                            knowledge: 4_891_000_000,
                         },
                         requires: {
                             academy: {
@@ -3175,7 +3179,7 @@
                     8: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 3_382_000_000,
+                            knowledge: 14_673_000_000,
                         },
                         requires: {
                             academy: {
@@ -3193,7 +3197,7 @@
                     9: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 6_764_000_000,
+                            knowledge: 44_019_000_000,
                         },
                         requires: {
                             academy: {
