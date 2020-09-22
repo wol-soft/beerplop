@@ -8,6 +8,7 @@
     - Project based factory extension popover content positioning (#102)
     - Icon for blacksmith is missing the workpiece
     - Skip unnecessary Beer Factory rendering during game initialization
+    - Endless buff after sacrifice (#106)
     - Fixed some typos
 
 **1.68.0** - 16.03.2020
