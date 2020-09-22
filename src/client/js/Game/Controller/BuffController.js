@@ -82,7 +82,8 @@
             this.bottleChainPower  = 1;
 
             $.each(this.buffIntervals, function () {
-                window.clearInterval(this);
+                this.callback();
+                window.clearTimeout(this.timeout);
             });
 
             this.buffIntervals     = {};
@@ -338,13 +339,14 @@
                     }
                 );
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         this.gameState.removeManualClicksMultiplier(masterOpenerMultiplier);
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -362,13 +364,14 @@
                     }
                 );
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         this.gameState.removeBuffAutoPlopsMultiplier(assemblyLineMultiplier);
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -377,14 +380,15 @@
                 $('body').addClass('beer-sale');
                 buffText = translator.translate('buff.beerSale');
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         this.gameState.removeBuffBuildingReduction(0.15);
                         this._removeBuffProgress(buffProgressId);
                         $('body').removeClass('beer-sale');
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -409,7 +413,9 @@
                     }
                 );
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         this.gameState
                             .getBuildingLevelController()
@@ -417,7 +423,6 @@
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -436,14 +441,15 @@
                     }
                 );
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         this.beerBankBoost -= beerBankBoostMultiplier;
                         ComposedValueRegistry.getComposedValue(CV_BEER_BANK).triggerModifierChange('Buff');
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -461,7 +467,9 @@
                     }
                 );
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         (new Minigames.ResearchProject())
                             .removeResearchProjectInvestmentMultiplier(researchBoostMultiplier);
@@ -469,7 +477,6 @@
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -487,14 +494,15 @@
                     }
                 );
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         (new Minigames.Beerwarts()).removeManaProductionMultiplier(manaBoostBoostMultiplier);
 
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -528,7 +536,9 @@
                     }
                 );
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         this.beerFactoryBoost -= beerFactoryMultiplier;
                         ComposedValueRegistry.getComposedValue(CV_FACTORY).triggerModifierChange('Buff');
@@ -537,7 +547,6 @@
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -574,13 +583,14 @@
                     }
                 );
 
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         this.gameState.removeBuffAutoPlopsMultiplier(roundedBoost);
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -616,7 +626,9 @@
                 this.gameState.addPlops(baseBottlePlops);
                 
                 const nextChainStep = (function () {
-                    this.buffIntervals[buffProgressId] = window.setTimeout(
+                    this._addBuffFinishedCallback(
+                        buffProgressId,
+                        5000 + Math.random() * 1500,
                         (function () {
                             this.spawnBuffBottle(
                                 5,
@@ -674,7 +686,6 @@
                                 }).bind(this)
                             );
                         }).bind(this),
-                        5000 + Math.random() * 1500
                     );
                 }).bind(this);
 
@@ -686,13 +697,14 @@
 
                 stockMarket.addStockMarketBuff(stockMarketBuff);
                 buffText = translator.translate('buff.stockMarket');
-                this.buffIntervals[buffProgressId] = window.setTimeout(
+                this._addBuffFinishedCallback(
+                    buffProgressId,
+                    lifetime,
                     (function () {
                         stockMarket.removeStockMarketBuff(stockMarketBuff);
                         this._removeBuffProgress(buffProgressId);
                         delete this.buffIntervals[buffProgressId];
                     }).bind(this),
-                    lifetime
                 );
                 this._addBuffProgress(buffProgressId, lifetime, buffText, buff);
                 break;
@@ -702,6 +714,13 @@
 
         return buff;
     };
+
+    BuffController.prototype._addBuffFinishedCallback = function (buffProgressId, lifetime, callback) {
+        this.buffIntervals[buffProgressId] = {
+            callback: callback,
+            timeout:  window.setTimeout(callback, lifetime),
+        };
+    }
 
     BuffController.prototype._addBuffProgress = function (buffProgressId, lifetime, buffText, type) {
         let start           = new Date(),
