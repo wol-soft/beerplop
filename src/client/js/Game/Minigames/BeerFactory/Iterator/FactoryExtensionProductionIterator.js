@@ -245,6 +245,11 @@
 
             // TODO: UI
 
+            this.gameEventBus.emit(EVENTS.BEER_FACTORY.EXTENSION_QUEUE.STARTED, [
+                proxiedExtensionKey,
+                extensionStorage.project,
+            ]);
+
             (new Beerplop.Notification()).notify({
                 content: translator.translate(`beerFactory.extension.${proxiedExtensionKey}`) + ': ' +
                     translator.translate(

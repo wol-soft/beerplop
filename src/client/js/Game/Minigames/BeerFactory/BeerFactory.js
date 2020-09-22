@@ -53,7 +53,14 @@
         this.state   = new BeerFactoryGame.State(this.gameState, this.gameEventBus);
         this.cache   = new BeerFactoryGame.Cache(this.state, this.gameState);
         this.stock   = new BeerFactoryGame.Stock(this.state, this.cache, this.numberFormatter);
-        this.factory = new BeerFactoryGame.Factory(this.state, this.cache, this.achievementController);
+
+        this.factory = new BeerFactoryGame.Factory(
+            this.state,
+            this.cache,
+            this.gameEventBus,
+            this.achievementController
+        );
+
         this.manager = new BeerFactoryGame.Manager(this.state, this.cache, this.gameEventBus);
         this.trader  = new BeerFactoryGame.Trader(
             this.state,

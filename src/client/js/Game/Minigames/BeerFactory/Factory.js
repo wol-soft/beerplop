@@ -184,15 +184,17 @@
     Factory.prototype.upgrade = null;
     Factory.prototype.render  = null;
 
+    Factory.prototype.gameEventBus           = null;
     Factory.prototype.achievementController  = null;
 
     Factory.prototype.missingMaterials = {};
     Factory.prototype.averageFactoryExtensionProduction = {};
 
-    function Factory(state, cache, achievementController) {
+    function Factory(state, cache, gameEventBus, achievementController) {
         this.state   = state;
         this.cache   = cache;
 
+        this.gameEventBus          = gameEventBus;
         this.achievementController = achievementController;
     }
 
@@ -319,6 +321,8 @@
         extensionStorage.queue.push(project);
 
         // TODO: UI
+
+        this.gameEventBus.emit(EVENTS.BEER_FACTORY.EXTENSION_QUEUE.ADDED, [extensionKey, project]);
 
         (new Beerplop.Notification()).notify({
             content: translator.translate(`beerFactory.extension.${extensionKey}`) + ': ' +
