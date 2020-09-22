@@ -579,13 +579,13 @@
         }).bind(this));
 
         container.find('.beer-factory__reached-upgrades').on('click', (function showBeerFactoryUpgradesModal(event) {
-            this._showReachedUpgradesModal(
+            (new BeerFactoryGame.ReachedUpgradesModal(this.state)).render(
                 $(event.target).closest('.beer-factory__building-container').data('factory')
-            );
+            )
         }).bind(this));
 
         container.find('.beer-factory__manage-managers').on('click', (function showManagerManagementModal(event) {
-            this._showManagerManagementModal(
+            (new BeerFactoryGame.ManagerManagementModal(this.state, this.cache, this.factory)).render(
                 $(event.target).closest('.beer-factory__building-container').data('factory')
             );
         }).bind(this));
@@ -638,7 +638,10 @@
                 .trigger('click');
         });
 
-        $('#beer-factory__back-room__enter').on('click', this._renderBackRoomModal.bind(this));
+        $('#beer-factory__back-room__enter').on(
+            'click',
+            () => (new BeerFactoryGame.BackRoomModal(this.state, this.cache)).render(),
+        );
 
         this._initFactoryExtensionPopover();
         this.factory.initProxyFactoryExtensionEquipEventListener();
@@ -765,130 +768,23 @@
         }).bind(this));
     };
 
-    Render.prototype._showReachedUpgradesModal = function (factoryKey) {
-        const modal = $('#beer-factory__upgrades-modal');
-        let upgradePaths = [];
-
-        $.each(this.state.getFactory(factoryKey).upgrades, (upgradeKey, level) => {
-                let paths = [];
-
-                for (let i = 1; i <= level; i++) {
-                    paths.push({
-                        title:       translator.translate(`beerFactory.upgrade.${factoryKey}.${upgradeKey}.${i}.title`),
-                        description: translator.translate(`beerFactory.upgrade.${factoryKey}.${upgradeKey}.${i}.description`),
-                        effect:      translator.translate(`beerFactory.upgrade.${factoryKey}.${upgradeKey}.${i}.effect`),
-                    });
-                }
-
-                upgradePaths.push({
-                    title: translator.translate('beerFactory.upgrade.pathLabel.' + upgradeKey) +
-                        ' (' + this.numberFormatter.romanize(level) + ')',
-                    paths: paths,
-                });
-            }
-        );
-
-        modal.find('.modal-body').html(
-            Mustache.render(
-                TemplateStorage.get('beer-factory__upgrades-modal-template'),
-                {
-                    factoryKey:   factoryKey,
-                    upgradePaths: upgradePaths,
-                },
-            )
-        );
-
-        modal.modal('show');
-    };
-
-    Render.prototype._showManagerManagementModal = function (factoryKey) {
-        const modal    = $('#beer-factory__manager-management-modal'),
-              managers = Object.values(
-                  this.state.getFactoryManagers(factoryKey)
-                      .reduce(function groupManagersByFactory(groupedManagers, manager) {
-                          groupedManagers[manager.factory].managers.push(manager);
-
-                          return groupedManagers;
-                      },
-                      $.extend(
-                          {[factoryKey]: {managers: []}},
-                          (this.state.getFactory(factoryKey).extensions || [])
-                              .reduce(
-                                  (carry, extensionKey) => (
-                                      {...carry, [extensionKey]: {managers: [], extensionKey: extensionKey}}
-                                  ),
-                                  {},
-                              ),
-                      ),
-                  ),
-              );
-
-        modal.find('.modal-body').html(
-            Mustache.render(
-                TemplateStorage.get('beer-factory__manager-management-modal-template'),
-                {
-                    factoryKey:        factoryKey,
-                    factoryManagers:   managers.shift().managers,
-                    extensionManagers: managers,
-                },
-            )
-        );
-
-        modal.modal('show');
-    };
-
-    Render.prototype._renderBackRoomModal = function () {
-        const modal = $('#beer-factory__back-room-modal');
-
-        let index = 0;
-
-        modal.find('.modal-body').html(
-            Mustache.render(
-                TemplateStorage.get('beer-factory__back-room-modal-template'),
-                {
-                    lobbyists: this.state.getFactory('backRoom').lobbyists.map(lobbyist => {
-                        return {
-                            id:   index++,
-                            name: lobbyist.name,
-                        }
-                    }),
-                    factories: Object.entries(this.state.getFactories())
-                        .filter(factory => {
-                            const data = factory[1];
-                            return data.production !== false && data.enabled && data.amount > 0;
-                        })
-                        .map(factory => factory[0]),
-                }
-            )
-        );
-
-        $.each(this.state.getFactory('backRoom').lobbyists, (id, lobbyist) => {
-            $('#beer-factory__back-room__lobbyist--' + id).val(lobbyist.factory);
-        });
-
-        modal.modal('show');
-
-        modal.find('.beer-factory__back-room__lobbyist__factory').on('change', event => {
-            const select  = $(event.target),
-                  factory = select.val();
-
-            this.state.getFactory('backRoom').lobbyists[select.closest('.form-group').data('lobbyistId')].factory = factory;
-            this.cache.resetProductionAmountCache();
-
-            if (factory === 'academy') {
-                const achievementController = new Beerplop.AchievementController();
-                achievementController.checkAchievement(
-                    achievementController.getAchievementStorage().achievements.beerFactory.lobby.education
-                );
-            }
-        });
-
-        new Beerplop.ObjectNaming(
-            modal.find('.beer-factory__back-room__lobbyist__name'),
-            (id, name) => this.state.getFactory('backRoom').lobbyists[id].name = name,
-            'beerFactory.lobby.naming'
-        );
-    };
+    /**
+     * Get all variables required to render a notification for a project handled by a factory extension
+     *
+     *  @param {string} extensionKey
+     * @param {object} data
+     *
+     * @return {object}
+     */
+    Render.prototype.getFactoryExtensionProjectNotificationVariables = function (extensionKey, data) {
+        switch (extensionKey) {
+            case 'managerAcademy': return {
+                __FACTORY__: translator.translate(
+                    `beerFactory.${data.isExtension ? 'extension' : 'factory'}.${data.key}`
+                ),
+            };
+        }
+    }
 
     Render.prototype.isOverlayVisible = function () {
         return this._isOverlayVisible;

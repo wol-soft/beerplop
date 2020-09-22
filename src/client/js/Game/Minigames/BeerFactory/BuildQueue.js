@@ -165,7 +165,7 @@
         } catch (errorMessage) {
             (new Beerplop.Notification()).notify({
                 content: errorMessage,
-                style: 'snackbar-info',
+                style:   'snackbar-info',
                 timeout: 3000,
             });
 

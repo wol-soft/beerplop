@@ -8,8 +8,9 @@
     FactoryExtensionProductionIterator.prototype.cache   = null;
 
     FactoryExtensionProductionIterator.prototype.numberFormatter = null;
+    FactoryExtensionProductionIterator.prototype.gameEventBus    = null;
 
-    function FactoryExtensionProductionIterator(state, stock, render, factory, cache, numberFormatter) {
+    function FactoryExtensionProductionIterator(state, stock, render, factory, cache, numberFormatter, gameEventBus) {
         this.state   = state;
         this.stock   = stock;
         this.render  = render;
@@ -17,6 +18,7 @@
         this.cache   = cache;
 
         this.numberFormatter = numberFormatter;
+        this.gameEventBus    = gameEventBus;
     }
 
     /**
@@ -60,7 +62,7 @@
      * @param factoryData
      * @param extension
      * @param extensionStorage
-     * @param proxiedExtension
+     * @param proxiedExtensionKey
      *
      * @returns {boolean}
      *
@@ -71,14 +73,14 @@
         factoryData,
         extension,
         extensionStorage,
-        proxiedExtension
+        proxiedExtensionKey
     ) {
-        if (proxiedExtension === null || extensionStorage.paused) {
+        if (proxiedExtensionKey === null || extensionStorage.paused) {
             return false;
         }
 
         if (!extensionStorage.project || extensionStorage.project.finished) {
-            this._startExtensionProject(extensionStorage, proxiedExtension);
+            this._startExtensionProject(extensionStorage, proxiedExtensionKey);
 
             // no project to start
             if (!extensionStorage.project) {
@@ -95,7 +97,7 @@
                 (new Beerplop.ErrorReporter()).reportError(
                     'DEBUG',
                     'FactoryExtensionProductionIterator _checkFactoryExtensionProductionProject reset negative delivered',
-                    proxiedExtension + ' ' + material
+                    proxiedExtensionKey + ' ' + material
                 );
 
                 data.delivered = 0;
@@ -153,17 +155,7 @@
                 }
             });
 
-            // TODO: add with loop for project based extensions with multiple outputs
-            if (finished &&
-                // TODO: cache labels
-                this.stock.addToStock(
-                    Object.keys(EXTENSIONS[proxiedExtension].produces)[0],
-                    ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),
-                    translator.translate('beerFactory.factory.' + factoryKey) + ': ' +
-                        translator.translate(`beerFactory.extension.${proxiedExtension}`),
-                    false
-                )
-            ) {
+            if (finished && this._finishExtensionProject(extensionStorage, proxiedExtensionKey)) {
                 if (this.render.getVisibleExtensionPopover() === extension) {
                     $('.beer-factory__extension-popover__production-progress').text(0);
                 }
@@ -175,17 +167,55 @@
         return updateStockTable;
     };
 
+    FactoryExtensionProductionIterator.prototype._finishExtensionProject = function (
+        extensionStorage,
+        proxiedExtensionKey,
+    ) {
+        if (!EXTENSIONS[proxiedExtensionKey].hasProjectQueue) {
+            // TODO: add with loop for project based extensions with multiple outputs
+            // TODO: cache labels
+            return this.stock.addToStock(
+                Object.keys(EXTENSIONS[proxiedExtensionKey].produces)[0],
+                ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),
+                translator.translate('beerFactory.factory.' + factoryKey) + ': ' +
+                translator.translate(`beerFactory.extension.${proxiedExtensionKey}`),
+                false
+            );
+        }
+
+        this.gameEventBus.emit(EVENTS.BEER_FACTORY.EXTENSION_QUEUE.FINISHED, [
+            proxiedExtensionKey,
+            extensionStorage.project,
+        ]);
+
+        (new Beerplop.Notification()).notify({
+            content: translator.translate(`beerFactory.extension.${proxiedExtensionKey}`) + ': ' +
+                translator.translate(
+                    `beerFactory.projectQueue.${proxiedExtensionKey}.${extensionStorage.project.action}.finish`,
+                    this.render.getFactoryExtensionProjectNotificationVariables(
+                        proxiedExtensionKey,
+                        extensionStorage.project,
+                    ),
+                ),
+            style:   'snackbar-success',
+            timeout: 5000,
+            channel: 'beerFactory',
+        });
+
+        return true;
+    };
+
     /**
      * Start a new project for a project-based factory extension
      *
      * @param {object} extensionStorage
-     * @param {string} proxiedExtension
+     * @param {string} proxiedExtensionKey
      *
      * @private
      */
     FactoryExtensionProductionIterator.prototype._startExtensionProject = function (
         extensionStorage,
-        proxiedExtension,
+        proxiedExtensionKey,
     ) {
         extensionStorage.project = {
             materials: {},
@@ -196,12 +226,12 @@
 
         // if the extension constructs projects from a queue with various materials pop an entry from the queue.
         // Otherwise use the consumption from the extension definition to determine the required materials
-        if (EXTENSIONS[proxiedExtension].productionType === EXTENSION_PRODUCTION__PROJECT &&
-            EXTENSIONS[proxiedExtension].hasProjectQueue
+        if (EXTENSIONS[proxiedExtensionKey].productionType === EXTENSION_PRODUCTION__PROJECT &&
+            EXTENSIONS[proxiedExtensionKey].hasProjectQueue
         ) {
             // the queue is hold centralized. Consequently a proxied extension must look up the queue from the mirrored
             // factory extension
-            const queue = this.state.getExtensionStorage(proxiedExtension).queue;
+            const queue = this.state.getExtensionStorage(proxiedExtensionKey).queue;
 
             if (!queue.length) {
                 extensionStorage.project = null;
@@ -211,11 +241,25 @@
             const nextProject = queue.shift();
             requiredMaterials = nextProject.materials;
 
-            $.extend(true, extensionStorage.project, nextProject.data);
+            $.extend(true, extensionStorage.project, {action: nextProject.action}, nextProject.data || {});
 
             // TODO: UI
+
+            (new Beerplop.Notification()).notify({
+                content: translator.translate(`beerFactory.extension.${proxiedExtensionKey}`) + ': ' +
+                    translator.translate(
+                        `beerFactory.projectQueue.${proxiedExtensionKey}.${nextProject.action}.start`,
+                        this.render.getFactoryExtensionProjectNotificationVariables(
+                            proxiedExtensionKey,
+                            extensionStorage.project,
+                        ),
+                    ),
+                style:   'snackbar-info',
+                timeout: 5000,
+                channel: 'beerFactory',
+            });
         } else {
-            requiredMaterials = this.cache.getFactoryExtensionConsumption(proxiedExtension);
+            requiredMaterials = this.cache.getFactoryExtensionConsumption(proxiedExtensionKey);
         }
 
         $.each(requiredMaterials, function (material, required) {

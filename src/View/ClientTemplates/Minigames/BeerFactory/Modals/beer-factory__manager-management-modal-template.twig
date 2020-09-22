@@ -5,9 +5,16 @@
     <hr />
     <h3>
       {{ #t }}"beerFactory.modal.manager.factory", {"__FACTORY__": "{{ #t}}"beerFactory.factory.{{ factoryKey }}"{{ /t }}"}{{ /t }}:
-      <button class="btn btn-secondary btn-raised float-right">{{ #t }}"beerFactory.modal.manager.hire"{{ /t }}</button>
+      <button class="btn btn-secondary btn-raised float-right beer-factory__manager-management__hire"
+              data-factory-key="{{ factoryKey }}"
+      >
+        {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
+      </button>
     </h3>
     {{ #factoryManagers }}
+       <div class="form-group naming-container" data-naming-id="0-{{ factoryKey }}-{{ id }}" data-manager-id="{{ id }}">
+        <div class='beer-factory__manager__name'>{{ name }}</div>
+      </div>
     {{ /factoryManagers }}
     {{ ^factoryManagers }}
       {{ #t }}"beerFactory.modal.manager.noManager"{{ /t }}
@@ -17,7 +24,11 @@
       <hr />
       <h3>
         {{ #t }}"beerFactory.modal.manager.extension", {"__EXTENSION__": "{{ #t}}"beerFactory.extension.{{ extensionKey }}"{{ /t }}"}{{ /t }}:
-        <button class="btn btn-secondary btn-raised float-right">{{ #t }}"beerFactory.modal.manager.hire"{{ /t }}</button>
+        <button class="btn btn-secondary btn-raised float-right beer-factory__manager-management__hire"
+                data-extension-key="{{ extensionKey }}"
+        >
+          {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
+        </button>
       </h3>
       {{ #managers }}
       {{ /managers }}

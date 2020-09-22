@@ -278,21 +278,59 @@
     /**
      * Adds a new project to the queue of a queue based factory extension
      *
-     * @param {string} extension
-     * @param {object} project
+     * @param {string} extensionKey The extension which handles the project
+     * @param {object} project      The project object with the following structure:
+     *
+     * {
+     *     // the action key is used to keep apart different jobs.
+     *     action: 'Action-Key',
+     *     materials: {
+     *         wood: 100,
+     *         ....
+     *     },
+     *     // the data sub object will be stored in the queue and passed to the event handler for the finished project
+     *     data: {
+     *         myCustomData: null,
+     *         ...
+     *     },
+     * }
      *
      * @return {boolean}
      */
-    Factory.prototype.addProjectToExtensionQueue = function (extension, project) {
-        if (EXTENSIONS[extension].productionType !== EXTENSION_PRODUCTION__PROJECT ||
-            !EXTENSIONS[extension].hasProjectQueue
+    Factory.prototype.addProjectToExtensionQueue = function (extensionKey, project) {
+        if (EXTENSIONS[extensionKey].productionType !== EXTENSION_PRODUCTION__PROJECT ||
+            !EXTENSIONS[extensionKey].hasProjectQueue
         ) {
             return false;
         }
 
-        this.state.getExtensionStorage(extension).queue.push(project);
+        const extensionStorage  = this.state.getExtensionStorage(extensionKey),
+              maxActionsInQueue = this.state.getState().maxActionsInQueue;
+
+        if (extensionStorage.queue.length >= maxActionsInQueue) {
+            (new Beerplop.Notification()).notify({
+                content: translator.translate('beerFactory.queue.limit.max', {__AMOUNT__: maxActionsInQueue}),
+                style:   'snackbar-info',
+                timeout: 3000,
+            });
+
+            return false;
+        }
+        extensionStorage.queue.push(project);
 
         // TODO: UI
+
+        (new Beerplop.Notification()).notify({
+            content: translator.translate(`beerFactory.extension.${extensionKey}`) + ': ' +
+                translator.translate('beerFactory.projectQueue.add') + ' - ' +
+                translator.translate(
+                    `beerFactory.projectQueue.${extensionKey}.${project.action}`,
+                    this.render.getFactoryExtensionProjectNotificationVariables(extensionKey, project.data || {}),
+                ),
+            style:   'snackbar-info',
+            timeout: 5000,
+        });
+
         return true;
     };
 

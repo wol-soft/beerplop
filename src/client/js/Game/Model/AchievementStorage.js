@@ -2974,6 +2974,11 @@
                         reached: false,
                     },
                 },
+                manager: {
+                    naming: {
+                        reached: false,
+                    },
+                },
             },
             researchProjects: {
                 started: {

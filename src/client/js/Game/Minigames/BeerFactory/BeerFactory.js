@@ -13,14 +13,15 @@
     BeerFactory.prototype.achievementController = null;
 
     // Internal dependencies
-    BeerFactory.prototype.state       = {};
-    BeerFactory.prototype.cache       = {};
-    BeerFactory.prototype.buildQueue  = {};
-    BeerFactory.prototype.upgrade     = {};
-    BeerFactory.prototype.render      = {};
-    BeerFactory.prototype.slot        = {};
-    BeerFactory.prototype.trader      = {};
-    BeerFactory.prototype.uniqueBuild = {};
+    BeerFactory.prototype.state       = null;
+    BeerFactory.prototype.cache       = null;
+    BeerFactory.prototype.buildQueue  = null;
+    BeerFactory.prototype.upgrade     = null;
+    BeerFactory.prototype.render      = null;
+    BeerFactory.prototype.slot        = null;
+    BeerFactory.prototype.trader      = null;
+    BeerFactory.prototype.manager     = null;
+    BeerFactory.prototype.uniqueBuild = null;
 
     // iterators which handle the ticks of the factories
     BeerFactory.prototype.buildQueueIterator                       = null;
@@ -53,6 +54,7 @@
         this.cache   = new BeerFactoryGame.Cache(this.state, this.gameState);
         this.stock   = new BeerFactoryGame.Stock(this.state, this.cache, this.numberFormatter);
         this.factory = new BeerFactoryGame.Factory(this.state, this.cache, this.achievementController);
+        this.manager = new BeerFactoryGame.Manager(this.state, this.cache, this.gameEventBus);
         this.trader  = new BeerFactoryGame.Trader(
             this.state,
             this.gameEventBus,
@@ -208,6 +210,7 @@
             this.factory,
             this.cache,
             this.numberFormatter,
+            this.gameEventBus,
         );
         this.factoryExtensionMaterialDeliveryIterator = new BeerFactoryGame.FactoryExtensionMaterialDeliveryIterator(
             this.state,
