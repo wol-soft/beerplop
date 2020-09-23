@@ -681,31 +681,32 @@
 
         popoverElements.popover({
             content: function () {
-                const extension        = $(this).data('extensionKey'),
-                      proxiedExtension = state.getState().proxyExtension[extension]
-                          ? state.getState().proxyExtension[extension].extension
-                          : extension;
+                const extensionKey        = $(this).data('extensionKey'),
+                      factoryKey          = $(this).closest('.beer-factory__building-container').data('factory'),
+                      proxiedExtensionKey = state.getState().proxyExtension[extensionKey]
+                          ? state.getState().proxyExtension[extensionKey].extension
+                          : extensionKey;
 
                 let data = {
-                    extension:       extension,
+                    extension:       extensionKey,
                     activeExtension: false,
                 };
 
-                if (proxiedExtension) {
+                if (proxiedExtensionKey) {
                     data = $.extend(
                         true,
                         data,
                         {
                             activeExtension:   true,
-                            isProxyExtension:  state.getState().proxyExtension[extension],
-                            mirroredExtension: translator.translate(`beerFactory.extension.${proxiedExtension}`),
+                            isProxyExtension:  state.getState().proxyExtension[extensionKey],
+                            mirroredExtension: translator.translate(`beerFactory.extension.${proxiedExtensionKey}`),
                             storageCapacity:   numberFormatter.formatInt(
-                                render.factory.getFactoryExtensionStorageCapacity(proxiedExtension)
+                                render.factory.getFactoryExtensionStorageCapacity(factoryKey, proxiedExtensionKey)
                             ),
                             storedItems: numberFormatter.formatInt(
-                                state.getExtensionStorage(extension).stored
+                                state.getExtensionStorage(extensionKey).stored
                             ),
-                            storage: Object.entries(state.getExtensionStorage(extension).materials).map(
+                            storage: Object.entries(state.getExtensionStorage(extensionKey).materials).map(
                                 (function (entry) {
                                     return {
                                         name:   translator.translate('beerFactory.material.' + entry[0]),
@@ -714,14 +715,14 @@
                                     };
                                 }).bind(this)
                             ),
-                            listProductionPerSecond: EXTENSIONS[proxiedExtension].productionType === EXTENSION_PRODUCTION__DIRECT,
-                            production: EXTENSIONS[proxiedExtension].productionType === EXTENSION_PRODUCTION__DIRECT
-                                ? Object.entries(render.factory.getAverageFactoryExtensionProduction(extension)).map(
+                            listProductionPerSecond: EXTENSIONS[proxiedExtensionKey].productionType === EXTENSION_PRODUCTION__DIRECT,
+                            production: EXTENSIONS[proxiedExtensionKey].productionType === EXTENSION_PRODUCTION__DIRECT
+                                ? Object.entries(render.factory.getAverageFactoryExtensionProduction(extensionKey)).map(
                                     function (entry) {
                                         return {
                                             key:    entry[0],
                                             name:   translator.translate('beerFactory.material.' + entry[0]),
-                                            amount: state.getExtensionStorage(extension).paused
+                                            amount: state.getExtensionStorage(extensionKey).paused
                                                 ? 0
                                                 : numberFormatter.formatInt(entry[1]),
                                         };
@@ -731,9 +732,9 @@
                             // TODO: show like in build queue. CONST class remove
                             progressClass: 'beer-factory__extension-popover__production-progress',
                             // if the production is project-based and a project is running get the production progress
-                            projectProgress: EXTENSIONS[proxiedExtension].productionType === EXTENSION_PRODUCTION__PROJECT
-                                                && state.getExtensionStorage(extension).project
-                                ? Object.entries(state.getExtensionStorage(extension).project.materials).map(
+                            projectProgress: EXTENSIONS[proxiedExtensionKey].productionType === EXTENSION_PRODUCTION__PROJECT
+                                                && state.getExtensionStorage(extensionKey).project
+                                ? Object.entries(state.getExtensionStorage(extensionKey).project.materials).map(
                                     function (entry) {
                                         return {
                                             name:      translator.translate('beerFactory.material.' + entry[0]),
@@ -744,12 +745,12 @@
                                     }
                                 )
                                 : false,
-                            runningProject: EXTENSIONS[proxiedExtension].productionType === EXTENSION_PRODUCTION__PROJECT
-                                && state.getExtensionStorage(extension).project,
+                            runningProject: EXTENSIONS[proxiedExtensionKey].productionType === EXTENSION_PRODUCTION__PROJECT
+                                && state.getExtensionStorage(extensionKey).project,
                             // project queue data
-                            hasQueue:     EXTENSIONS[proxiedExtension].hasProjectQueue,
-                            queueEntries: EXTENSIONS[proxiedExtension].hasProjectQueue
-                                ? state.getExtensionStorage(proxiedExtension).queue.length
+                            hasQueue:     EXTENSIONS[proxiedExtensionKey].hasProjectQueue,
+                            queueEntries: EXTENSIONS[proxiedExtensionKey].hasProjectQueue
+                                ? state.getExtensionStorage(proxiedExtensionKey).queue.length
                                 : 0
                         }
                     );

@@ -46,28 +46,28 @@
     /**
      * Deliver material to the given extension.
      *
-     * @param {string} factory   The factory the extension belongs to for providing missing material hints
-     * @param {string} extension The extension to deliver materials to
+     * @param {string} factoryKey   The factory the extension belongs to for providing missing material hints
+     * @param {string} extensionKey The extension to deliver materials to
      *
      * @returns {boolean}
      * @private
      */
     FactoryExtensionMaterialDeliveryIterator.prototype._checkFactoryExtensionMaterialDelivery = function (
-        factory,
-        extension
+        factoryKey,
+        extensionKey,
     ) {
-        let state            = this.state,
-            proxiedExtension = state.getState().proxyExtension[extension]
-                ? state.getState().proxyExtension[extension].extension
-                : extension;
+        let state               = this.state,
+            proxiedExtensionKey = state.getState().proxyExtension[extensionKey]
+                ? state.getState().proxyExtension[extensionKey].extension
+                : extensionKey;
 
-        if (!proxiedExtension) {
+        if (!proxiedExtensionKey) {
             return false;
         }
 
         let updateStockTable         = false,
-            extensionStorage         = state.getExtensionStorage(extension),
-            extensionStorageCapacity = this.factory.getFactoryExtensionStorageCapacity(proxiedExtension),
+            extensionStorage         = state.getExtensionStorage(extensionKey),
+            extensionStorageCapacity = this.factory.getFactoryExtensionStorageCapacity(factoryKey, proxiedExtensionKey),
             maxTransportToExtension  = Math.min(
                 Math.ceil(this.cache.getDeliverCapacity() / state.getState().extensionTransportDividend),
                 extensionStorageCapacity - extensionStorage.stored
@@ -80,9 +80,9 @@
         const shuffleArray          = arr => arr.sort(() => Math.random() - 0.5),
               materials             = Object.keys(extensionStorage.materials),
               // avoid filling up the complete storage with a single material which would stuck the extension
-              maxStoragePerMaterial = Math.floor(extensionStorageCapacity * .9 / materials.length);
+              maxStoragePerMaterial = Math.floor(extensionStorageCapacity / materials.length);
 
-        // gather materials for the extension
+        // gather materials for the extCension
         $.each(shuffleArray(materials), (function gatherMaterialsForFactoryExtension(index, material) {
             // if a larger amount than possible is stored reset the storage (possible eg. after a boost is disabled)
             if (extensionStorage.materials[material] > maxStoragePerMaterial) {
@@ -103,30 +103,30 @@
                         // TODO: make factory extension max transport percentage configurable
                         Math.floor(state.getMaterial(material).amount * 0.8),
                     ),
-                    translator.translate('beerFactory.factory.' + factory) + ': ' +
-                        translator.translate(`beerFactory.extension.${proxiedExtension}`),
+                    translator.translate('beerFactory.factory.' + factoryKey) + ': ' +
+                        translator.translate(`beerFactory.extension.${proxiedExtensionKey}`),
                     false
                 );
 
             if (deliveredAmount === 0) {
                 if (requestedAmount > 0) {
-                    if (!this.factory.missingMaterials[extension]) {
-                        this.factory.missingMaterials[extension] = {};
-                        $.each(this.cache.getFactoryExtensionConsumption(proxiedExtension), (function (material) {
-                            this.factory.missingMaterials[extension][material] = 0;
+                    if (!this.factory.missingMaterials[extensionKey]) {
+                        this.factory.missingMaterials[extensionKey] = {};
+                        $.each(this.cache.getFactoryExtensionConsumption(proxiedExtensionKey), (function (material) {
+                            this.factory.missingMaterials[extensionKey][material] = 0;
                         }).bind(this));
                     }
 
-                    this.factory.missingMaterials[extension][material]++;
-                    if (!this.internalCache.missingMaterialsHintCache[extension + '-' + material] &&
-                        this.factory.missingMaterials[extension][material] > MISSING_MATERIAL_BUFFER &&
-                        extensionStorage.materials[material] < this.cache.getFactoryExtensionConsumption(proxiedExtension)[material]
+                    this.factory.missingMaterials[extensionKey][material]++;
+                    if (!this.internalCache.missingMaterialsHintCache[extensionKey + '-' + material] &&
+                        this.factory.missingMaterials[extensionKey][material] > MISSING_MATERIAL_BUFFER &&
+                        extensionStorage.materials[material] < this.cache.getFactoryExtensionConsumption(proxiedExtensionKey)[material]
                     ) {
-                        $('#beer-factory__extension__missing-resource-' + extension + '-' + material)
+                        $('#beer-factory__extension__missing-resource-' + extensionKey + '-' + material)
                             .removeClass('d-none');
 
-                        this.render.getFactoryMissingMaterialHintElement(factory).removeClass('d-none');
-                        this.internalCache.missingMaterialsHintCache[extension + '-' + material] = true;
+                        this.render.getFactoryMissingMaterialHintElement(factoryKey).removeClass('d-none');
+                        this.internalCache.missingMaterialsHintCache[extensionKey + '-' + material] = true;
                     }
                 }
 
@@ -138,32 +138,32 @@
             extensionStorage.stored              += deliveredAmount;
             updateStockTable = true;
 
-            if (this.render.getVisibleExtensionPopover() === extension) {
+            if (this.render.getVisibleExtensionPopover() === extensionKey) {
                 $('#beer-factory__extension-popover__storage-' + material).text(
                     this.numberFormatter.formatInt(extensionStorage.materials[material])
                 );
             }
 
             // TODO: better API to handle missing materials storage
-            if (this.factory.missingMaterials[extension] &&
-                this.factory.missingMaterials[extension][material] > 0
+            if (this.factory.missingMaterials[extensionKey] &&
+                this.factory.missingMaterials[extensionKey][material] > 0
             ) {
-                if (this.factory.missingMaterials[extension][material] > MISSING_MATERIAL_BUFFER) {
-                    $('#beer-factory__extension__missing-resource-' + extension + '-' + material)
+                if (this.factory.missingMaterials[extensionKey][material] > MISSING_MATERIAL_BUFFER) {
+                    $('#beer-factory__extension__missing-resource-' + extensionKey + '-' + material)
                         .addClass('d-none');
                 }
 
-                this.factory.missingMaterials[extension][material] = 0;
-                this.internalCache.missingMaterialsHintCache[extension + '-' + material] = false;
+                this.factory.missingMaterials[extensionKey][material] = 0;
+                this.internalCache.missingMaterialsHintCache[extensionKey + '-' + material] = false;
 
-                if (!this.factory.hasFactoryExtensionMissingMaterials(factory)) {
-                    this.render.getFactoryMissingMaterialHintElement(factory).addClass('d-none');
+                if (!this.factory.hasFactoryExtensionMissingMaterials(factoryKey)) {
+                    this.render.getFactoryMissingMaterialHintElement(factoryKey).addClass('d-none');
                 }
             }
         }).bind(this));
 
-        if (updateStockTable && this.render.getVisibleExtensionPopover() === extension) {
-            $('#beer-factory__extension-popover__storage-' + extension).text(
+        if (updateStockTable && this.render.getVisibleExtensionPopover() === extensionKey) {
+            $('#beer-factory__extension-popover__storage-' + extensionKey).text(
                 this.numberFormatter.formatInt(extensionStorage.stored)
             );
         }

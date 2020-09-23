@@ -311,6 +311,7 @@
                 // reset all production amount caches to recalculate them to cover dependencies between buildings
                 // (eg. lodges boost other building productions)
                 this.cache.resetProductionAmountCache();
+                this.cache.resetDeliverCapacityCache();
 
                 break;
             case BUILD_QUEUE__CONSTRUCT_SLOT:

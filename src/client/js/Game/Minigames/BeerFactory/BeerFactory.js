@@ -281,9 +281,14 @@
             }).bind(this));
         }).bind(this));
         
-        this.gameEventBus.on(EVENTS.BEER_BLENDER.UPDATE, this.updateMultiplier.bind(this));
-        this.gameEventBus.on(EVENTS.BEER_FACTORY.UNIQUE_BUILD.UPDATED, this.updateMultiplier.bind(this));
-        
+        this.gameEventBus.on(
+            [
+                EVENTS.BEER_BLENDER.UPDATE,
+                EVENTS.BEER_FACTORY.UNIQUE_BUILD.UPDATED,
+            ].join(' '),
+            this.updateMultiplier.bind(this)
+        );
+
         ComposedValueRegistry.getComposedValue(CV_FACTORY)
             .addModifier('GameSpeed', () => this.state.gameState.getGameSpeed())
     };

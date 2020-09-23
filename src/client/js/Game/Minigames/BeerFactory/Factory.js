@@ -259,21 +259,23 @@
     /**
      * Get the maximum amount a factory extension can store
      *
-     * @param {string} extension
+     * @param {string} factoryKey
+     * @param {string} extensionKey
      *
      * @returns {number}
      * @private
      */
-    Factory.prototype.getFactoryExtensionStorageCapacity = function (extension) {
-        if (extension === null) {
+    Factory.prototype.getFactoryExtensionStorageCapacity = function (factoryKey, extensionKey) {
+        if (extensionKey === null) {
             return 0;
         }
 
         return Math.ceil(
             this.state.getState().extensionStorageCapacity
-            * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue()
-            * Object.keys(EXTENSIONS[extension].consumes).length
-            / 2
+                * this.state.getFactory(factoryKey).amount
+                * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue()
+                * Object.keys(EXTENSIONS[extensionKey].consumes).length
+                / 2
         );
     };
 

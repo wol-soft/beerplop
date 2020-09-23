@@ -2,6 +2,9 @@
 * Updated dependencies
 * Beer Factory materials are grouped now. Each group can be collapsed
 * Adjusted knowledge consumption
+* Adjusted Factory Extension production rate:
+    - Factory Extensions can store more materials depending on the amount of factories the extension belongs to
+    - Factory Extensions can handle more materials in a single iteration
 * Bugfixes:
     - Building statistic graphs for Bottle Cap Factories show "plops" (#94)
     - Workers' Lodges initially dispaly a 100% production boost (#98)

@@ -8,6 +8,7 @@
         // Cache the amount of consumed/produced materials for a factory extension production cycle including boosts
         factoryExtensionConsumptionCache: {},
         factoryExtensionProductionCache: {},
+        factoryExtensionDeliverCapacityCache: {},
         // cache the multipliers an equipped carbonation item results in for faster auto plop calculation
         carbonationBuildingAmountCache: null,
     };
@@ -24,6 +25,9 @@
         this.numberFormatter = new Beerplop.NumberFormatter();
 
         this.emptyState = $.extend(true, {}, this.cache);
+
+        // reset all caches to make sure all caches including the modifier will update with the changed value
+        ComposedValueRegistry.getComposedValue(CV_FACTORY).onValueChange(this.resetCache.bind(this));
     }
 
     Cache.prototype.resetCache = function () {
@@ -51,8 +55,29 @@
         return this.cache.deliverCapacity;
     };
 
+    /**
+     * get the internal extension deliver capacity from the extension storage to the production
+     *
+     * @param {string} factoryKey
+     * @param {string} extensionKey
+     *
+     * @return {Number}
+     */
+    Cache.prototype.getFactoryExtensionDeliverCapacity = function (factoryKey, extensionKey) {
+        if (!this.cache.factoryExtensionDeliverCapacityCache[extensionKey]) {
+            const state = this.state.getState();
+
+            this.cache.factoryExtensionDeliverCapacityCache[extensionKey] = state.getFactory(factoryKey).amount
+                * state.getFactory('storage').amount
+                * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue();
+        }
+
+        return this.cache.factoryExtensionDeliverCapacityCache[extensionKey];
+    };
+
     Cache.prototype.resetDeliverCapacityCache = function () {
         delete this.cache['deliverCapacity'];
+        this.cache.factoryExtensionDeliverCapacityCache = {};
     };
 
     /**

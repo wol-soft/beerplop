@@ -88,7 +88,7 @@
             }
         }
 
-        let availableAmountToDeliver = factoryData.amount * 5 * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),
+        let availableAmountToDeliver = this.cache.getFactoryExtensionDeliverCapacity(factoryKey, proxiedExtensionKey),
             updateStockTable         = false,
             checkFinished            = false;
 
