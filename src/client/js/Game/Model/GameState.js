@@ -18,9 +18,6 @@
     GameState.prototype.flyoutText              = null;
     GameState.prototype.productionStatistics    = null;
 
-    GameState.prototype.buyAmount        = 1;
-    GameState.prototype.isOnMaxBuyAmount = false;
-
     GameState.prototype.buildingReductionFromBuffBottle = 0;
 
     GameState.prototype.coreIterations    = 0;
@@ -54,6 +51,9 @@
         buildingReduction: 0,
         buildingReductionFromHolyUpgrades: 0,
         buildingReductionFromResearchProject: 0,
+        buyAmount: 1,
+        isOnMaxBuyAmount: false,
+        isOnCustomBuyCharge: false,
         customBuyCharge: 50,
         interpolate: {
             percentage: 0.05,
@@ -262,17 +262,12 @@
                 return this._minifyState();
             }.bind(this)),
             (function setGameStateData(loadedData) {
-                // TODO: remove code, prevent easy achievement reaching by sacrificing after updating to latest version
-                // (1.62.0)
-                if (typeof loadedData.manualPurchase === 'undefined') {
-                    loadedData.manualPurchase = true;
-                }
-
                 this.state = $.extend(true, {}, this.initialState, loadedData);
 
                 this._initUpgradeBoosts();
                 this._initPopoverCallbacks();
                 this._updateCustomBuyAmountButton();
+                this._updateBuyAmountButtons();
 
                 $('#current-plops').text(this.numberFormatter.format(this.state.plops));
                 $('#total-plops').text(this.numberFormatter.format(this.state.totalPlops));
@@ -646,11 +641,11 @@
             button.on('click', function buyBuildingButtonClick() {
                 let amount, plops;
 
-                if (gameState.isOnMaxBuyAmount) {
+                if (gameState.state.isOnMaxBuyAmount) {
                     amount = gameState.cache.maxBuildingsAvailable[building];
                     plops  = gameState.cache.maxBuildingsCost[building][amount];
                 } else {
-                    amount = gameState.buyAmount;
+                    amount = gameState.state.buyAmount;
                     plops  = gameState.state.buildings[building].costNext;
                 }
 
@@ -683,7 +678,7 @@
                 this._updateCustomBuyAmountButton();
 
                 if ($('#buy-amount-custom').hasClass('active')) {
-                    this.buyAmount = this.state.customBuyCharge;
+                    this.state.buyAmount = this.state.customBuyCharge;
 
                     gameState._recalculateAllCostNext();
                     gameState.gameEventBus.emit(EVENTS.CORE.BUY_AMOUNT_UPDATED, this.state.customBuyCharge);
@@ -716,10 +711,11 @@
 
             $('.buy-amount.active').removeClass('active');
             amountSelection.addClass('active');
-            gameState.buyAmount = amountSelection.data('amount');
+            gameState.state.buyAmount           = amountSelection.data('amount');
+            gameState.state.isOnCustomBuyCharge = amountSelection.attr('id') === 'buy-amount-custom';
 
             gameState._recalculateAllCostNext();
-            gameState.gameEventBus.emit(EVENTS.CORE.BUY_AMOUNT_UPDATED, gameState.buyAmount);
+            gameState.gameEventBus.emit(EVENTS.CORE.BUY_AMOUNT_UPDATED, gameState.state.buyAmount);
         });
 
         $('#buy-control__advanced-control-toggle').on('click', function () {
@@ -733,6 +729,15 @@
         customBuyAmountButton.data('amount', this.state.customBuyCharge);
         customBuyAmountButton.text(this.numberFormatter.formatInt(this.state.customBuyCharge));
     };
+
+    GameState.prototype._updateBuyAmountButtons = function () {
+        $('#buy-amount-' + (this.state.isOnCustomBuyCharge ? 'custom' : this.state.buyAmount)).addClass('active');
+
+        if (this.state.isOnMaxBuyAmount) {
+            $('.building-container__costs-label').toggleClass('d-none');
+        }
+    }
+
     /**
      * Initialize popover callback functions to display additional hints in building popovers
      *
@@ -886,11 +891,11 @@
 
         // the recalculation was triggered by a buy amount charge switch. So check, if a switch between MAX and a
         // constant number happened and update everything accordingly to the change
-        if (this.buyAmount === 'max' ? !this.isOnMaxBuyAmount : this.isOnMaxBuyAmount) {
-            this.isOnMaxBuyAmount = !this.isOnMaxBuyAmount;
-            toggleCostsLabel      = true;
+        if (this.state.buyAmount === 'max' ? !this.state.isOnMaxBuyAmount : this.state.isOnMaxBuyAmount) {
+            this.state.isOnMaxBuyAmount = !this.state.isOnMaxBuyAmount;
+            toggleCostsLabel            = true;
 
-            if (this.isOnMaxBuyAmount) {
+            if (this.state.isOnMaxBuyAmount) {
                 forceMaxAvailableUpdate = true;
             }
         }
@@ -902,7 +907,7 @@
             // always keep track of the max available cache for auto buyer
             this._updateMaxAvailableBuildings(building, forceMaxAvailableUpdate);
 
-            if (!this.isOnMaxBuyAmount) {
+            if (!this.state.isOnMaxBuyAmount) {
                 this.calculateCostNext(building);
             }
         }).bind(this));
@@ -965,7 +970,7 @@
             this.autoBuySemaphore = null;
         }
 
-        if (this.isOnMaxBuyAmount &&
+        if (this.state.isOnMaxBuyAmount &&
             (forceMaxAvailableUpdate || availableAmount !== this.cache.maxBuildingsAvailable[building])
         ) {
             if (this.cache.maxBuildingsAvailable[building] === 0 && availableAmount > 0) {
@@ -1042,7 +1047,7 @@
     };
 
     GameState.prototype.updateCosts = function (building) {
-        if (!this.isOnMaxBuyAmount) {
+        if (!this.state.isOnMaxBuyAmount) {
             this.calculateCostNext(building);
         }
 
@@ -1056,7 +1061,7 @@
 
     GameState.prototype.calculateCostNext = function (building) {
         let costNext = 0;
-        for (let counter = 0; counter < this.buyAmount; counter++) {
+        for (let counter = 0; counter < this.state.buyAmount; counter++) {
             costNext += Math.ceil(
                 this.state.buildings[building].baseCost *
                 Math.pow(1.1, this.state.buildings[building].amount + counter)
@@ -1353,7 +1358,7 @@
                 .sort(building => this.slotController.isAutoBuyerEnabled(building) ? -1 : 1)
                 .forEach(building => this._updateMaxAvailableBuildings(building));
 
-            if (!this.isOnMaxBuyAmount) {
+            if (!this.state.isOnMaxBuyAmount) {
                 this._updateBuyButtons();
             }
 
@@ -1371,7 +1376,7 @@
         $.each($('#buildings-container').find('.buy'), function updateBuyButtonDisabledState() {
             $(this).closest('fieldset').prop(
                 'disabled',
-                gameState.isOnMaxBuyAmount
+                gameState.state.isOnMaxBuyAmount
                     ? gameState.cache.maxBuildingsAvailable[$(this).data('building')] === 0
                     : gameState.state.buildings[$(this).data('building')].costNext > gameState.state.plops
             );
@@ -1798,11 +1803,11 @@
     };
 
     GameState.prototype.getBuyAmount = function () {
-        return this.buyAmount;
+        return this.state.buyAmount;
     };
 
     GameState.prototype.isBuyChargeOnMaxBuyAmount = function () {
-        return this.isOnMaxBuyAmount;
+        return this.state.isOnMaxBuyAmount;
     };
 
     GameState.prototype.debug = function () {

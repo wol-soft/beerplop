@@ -1,4 +1,5 @@
 **1.69.0** -
+* Store the selected buy charge in the save state so it's still selected after a reload
 * Updated dependencies
 * Beer Factory materials are grouped now. Each group can be collapsed
 * Adjusted knowledge consumption
