@@ -32,12 +32,11 @@
         let updateStockTable = false;
 
         $.each(this.state.getFactories(), (function checkFactoryExtensionMaterialDelivery(factory, factoryData) {
-            if (factoryData.extensions && factoryData.extensions.length > 0)
-                $.each(factoryData.extensions, (function checkFactoryExtensionMaterialDelivery(index, extension) {
-                    if (this._checkFactoryExtensionMaterialDelivery(factory, extension)) {
-                        updateStockTable = true;
-                    }
-                }).bind(this));
+            $.each((factoryData.extensions || []), (function checkFactoryExtensionMaterialDelivery(index, extension) {
+                if (this._checkFactoryExtensionMaterialDelivery(factory, extension)) {
+                    updateStockTable = true;
+                }
+            }).bind(this));
         }).bind(this));
 
         return updateStockTable;

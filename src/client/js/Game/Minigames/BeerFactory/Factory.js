@@ -331,7 +331,7 @@
                 translator.translate('beerFactory.projectQueue.add') + ' - ' +
                 translator.translate(
                     `beerFactory.projectQueue.${extensionKey}.${project.action}`,
-                    this.render.getFactoryExtensionProjectNotificationVariables(extensionKey, project.data || {}),
+                    this.render.getFactoryExtensionProjectNotificationVariables(extensionKey, project),
                 ),
             style:   'snackbar-info',
             timeout: 5000,

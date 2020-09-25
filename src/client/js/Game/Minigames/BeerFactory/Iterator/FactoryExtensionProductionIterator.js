@@ -155,7 +155,7 @@
                 }
             });
 
-            if (finished && this._finishExtensionProject(extensionStorage, proxiedExtensionKey)) {
+            if (finished && this._finishExtensionProject(factoryKey, extensionStorage, proxiedExtensionKey)) {
                 if (this.render.getVisibleExtensionPopover() === extension) {
                     $('.beer-factory__extension-popover__production-progress').text(0);
                 }
@@ -168,6 +168,7 @@
     };
 
     FactoryExtensionProductionIterator.prototype._finishExtensionProject = function (
+        factoryKey,
         extensionStorage,
         proxiedExtensionKey,
     ) {
@@ -179,7 +180,7 @@
                 ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue(),
                 translator.translate('beerFactory.factory.' + factoryKey) + ': ' +
                 translator.translate(`beerFactory.extension.${proxiedExtensionKey}`),
-                false
+                false,
             );
         }
 
@@ -241,7 +242,7 @@
             const nextProject = queue.shift();
             requiredMaterials = nextProject.materials;
 
-            $.extend(true, extensionStorage.project, {action: nextProject.action}, nextProject.data || {});
+            $.extend(true, extensionStorage.project, nextProject);
 
             // TODO: UI
 

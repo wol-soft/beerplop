@@ -1,36 +1,47 @@
 {% verbatim %}
   <script id="beer-factory__manager-management-modal-template" type="text/template">
-    <p>{{ #t }}"beerFactory.modal.manager.description", {"__FACTORY__": "{{ #t}}"beerFactory.factory.{{ factoryKey }}"{{ /t }}"}{{ /t }}</p>
+    <p>{{ #t }}"beerFactory.modal.manager.description", {"__FACTORY__": "{{ #t }}"beerFactory.factory.{{ factoryKey }}"{{ /t }}"}{{ /t }}</p>
 
     <hr />
     <h3>
-      {{ #t }}"beerFactory.modal.manager.factory", {"__FACTORY__": "{{ #t}}"beerFactory.factory.{{ factoryKey }}"{{ /t }}"}{{ /t }}:
-      <button class="btn btn-secondary btn-raised float-right beer-factory__manager-management__hire"
-              data-factory-key="{{ factoryKey }}"
-      >
-        {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
-      </button>
+      {{ #t }}"beerFactory.modal.manager.factory", {"__FACTORY__": "{{ #t }}"beerFactory.factory.{{ factoryKey }}"{{ /t }}"}{{ /t }}:
+      <div class="float-right flex-column">
+        <button class="btn btn-secondary btn-raised beer-factory__manager-management__hire"
+                data-factory-key="{{ factoryKey }}"
+        >
+          {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
+        </button>
+        <p>{{ inHire }}</p>
+        <p>{{ costNext }}</p>
+      </div>
     </h3>
-    {{ #factoryManagers }}
-       <div class="form-group naming-container" data-naming-id="0-{{ factoryKey }}-{{ id }}" data-manager-id="{{ id }}">
+    {{ #managers }}
+       <div class="form-group naming-container" data-naming-id="{{ factoryKey }}-{{ id }}" data-manager-id="{{ id }}">
         <div class='beer-factory__manager__name'>{{ name }}</div>
       </div>
-    {{ /factoryManagers }}
-    {{ ^factoryManagers }}
+    {{ /managers }}
+    {{ ^managers }}
       {{ #t }}"beerFactory.modal.manager.noManager"{{ /t }}
-    {{ /factoryManagers }}
+    {{ /managers }}
 
     {{ #extensionManagers }}
       <hr />
       <h3>
-        {{ #t }}"beerFactory.modal.manager.extension", {"__EXTENSION__": "{{ #t}}"beerFactory.extension.{{ extensionKey }}"{{ /t }}"}{{ /t }}:
-        <button class="btn btn-secondary btn-raised float-right beer-factory__manager-management__hire"
-                data-extension-key="{{ extensionKey }}"
-        >
-          {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
-        </button>
+        {{ #t }}"beerFactory.modal.manager.extension", {"__EXTENSION__": "{{ #t }}"beerFactory.extension.{{ extensionKey }}"{{ /t }}"}{{ /t }}:
+        <div class="float-right flex-column">
+          <button class="btn btn-secondary btn-raised beer-factory__manager-management__hire"
+                  data-extension-key="{{ extensionKey }}"
+          >
+            {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
+          </button>
+          <p>{{ inHire }}</p>
+          <p>{{ costNext }}</p>
+        </div>
       </h3>
       {{ #managers }}
+       <div class="form-group naming-container" data-naming-id="{{ extensionKey }}-{{ id }}" data-manager-id="{{ id }}">
+        <div class='beer-factory__manager__name'>{{ name }}</div>
+      </div>
       {{ /managers }}
       {{ ^managers }}
         {{ #t }}"beerFactory.modal.manager.noManager"{{ /t }}

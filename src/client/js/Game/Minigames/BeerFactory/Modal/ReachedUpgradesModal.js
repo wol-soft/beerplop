@@ -3,8 +3,11 @@
 
     ReachedUpgradesModal.prototype.state = null;
 
+    ReachedUpgradesModal.prototype.numberFormatter = null;
+
     function ReachedUpgradesModal(state) {
-        this.state = state;
+        this.state           = state;
+        this.numberFormatter = new Beerplop.NumberFormatter();
     }
 
     ReachedUpgradesModal.prototype.render = function (factoryKey) {

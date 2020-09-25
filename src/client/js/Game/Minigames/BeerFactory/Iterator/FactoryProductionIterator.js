@@ -47,15 +47,13 @@
             }
 
             // factories may have extensions even if they aren't producing factories (proxy extensions)
-            if (factoryData.extensions && factoryData.extensions.length > 0) {
-                $.each(factoryData.extensions, (function checkFactoryExtensionProduction(index, extension) {
-                    if (this.factoryExtensionProductionIterator
-                            .checkFactoryExtensionProduction(factory, factoryData, extension)
-                    ) {
-                        updateStockTable = true;
-                    }
-                }).bind(this));
-            }
+            $.each((factoryData.extensions || []), (function checkFactoryExtensionProduction(index, extension) {
+                if (this.factoryExtensionProductionIterator
+                        .checkFactoryExtensionProduction(factory, factoryData, extension)
+                ) {
+                    updateStockTable = true;
+                }
+            }).bind(this));
         }).bind(this));
 
         // if the delivery to the factory extensions is preferred over the build queue check the

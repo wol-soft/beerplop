@@ -61,7 +61,7 @@
             this.achievementController
         );
 
-        this.manager = new BeerFactoryGame.Manager(this.state, this.cache, this.gameEventBus);
+        this.manager = new BeerFactoryGame.Manager(this.state, this.cache, this.factory, this.gameEventBus);
         this.trader  = new BeerFactoryGame.Trader(
             this.state,
             this.gameEventBus,
@@ -107,6 +107,7 @@
             this.achievementController,
             this.flyoutText,
             this.trader,
+            this.manager,
             this.uniqueBuild,
         );
 

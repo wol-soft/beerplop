@@ -65,10 +65,8 @@
      */
     Cache.prototype.getFactoryExtensionDeliverCapacity = function (factoryKey, extensionKey) {
         if (!this.cache.factoryExtensionDeliverCapacityCache[extensionKey]) {
-            const state = this.state.getState();
-
-            this.cache.factoryExtensionDeliverCapacityCache[extensionKey] = state.getFactory(factoryKey).amount
-                * state.getFactory('storage').amount
+            this.cache.factoryExtensionDeliverCapacityCache[extensionKey] = this.state.getFactory(factoryKey).amount
+                * this.state.getFactory('storage').amount
                 * ComposedValueRegistry.getComposedValue(CV_FACTORY).getValue();
         }
 

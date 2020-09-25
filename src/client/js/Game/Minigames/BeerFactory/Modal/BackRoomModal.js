@@ -46,7 +46,7 @@
     BackRoomModal.prototype._initEventListener = function (modal) {
         modal.find('.beer-factory__back-room__lobbyist__factory').on('change', event => {
             const select  = $(event.target),
-                factory = select.val();
+                  factory = select.val();
 
             this.state.getFactory('backRoom').lobbyists[select.closest('.form-group').data('lobbyistId')].factory = factory;
             this.cache.resetProductionAmountCache();

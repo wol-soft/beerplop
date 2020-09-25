@@ -545,33 +545,6 @@
         return this.getFactories()[factoryKey];
     };
 
-    /**
-     * Returns an array containing all managers of the provided factory key (including the managers of the factory
-     * extensions of the requested factory)
-     *
-     * @param {string} factoryKey
-     *
-     * @return {array}
-     */
-    State.prototype.getFactoryManagers = function (factoryKey) {
-        const result = [],
-              factory = this.getFactory(factoryKey);
-
-        result.push(
-            ...(factory.managers || [])
-                .map((manager) => $.extend(manager, {factory: factoryKey}))
-        );
-
-        $.each(factory.extensions, (index, extensionKey) => {
-            result.push(
-                ...(this.getExtensionStorage(extensionKey).managers || [])
-                    .map((manager) => $.extend(manager, {factory: extensionKey, extensionManager: true}))
-            );
-        });
-
-        return result;
-    };
-
     State.prototype.getMaterials = function () {
         return this.getState().materials;
     };

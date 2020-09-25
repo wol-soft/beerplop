@@ -14,6 +14,7 @@
     Render.prototype.upgrade     = null;
     Render.prototype.cache       = null;
     Render.prototype.trader      = null;
+    Render.prototype.manager     = null;
     Render.prototype.uniqueBuild = null;
 
     Render.prototype.numberFormatter       = null;
@@ -31,7 +32,8 @@
         achievementController,
         flyoutText,
         trader,
-        uniqueBuild
+        manager,
+        uniqueBuild,
     ) {
         this.state       = state;
         this.stock       = stock;
@@ -40,6 +42,7 @@
         this.factory     = factory;
         this.cache       = cache;
         this.trader      = trader;
+        this.manager     = manager;
         this.uniqueBuild = uniqueBuild;
 
         this.numberFormatter       = numberFormatter;
@@ -214,7 +217,7 @@
         const sections = Object.keys(this.state.getFactories()).map((function createFactoriesList(factoryKey) {
             const upgradePaths = this.upgrade.getUpgradePaths(factoryKey),
                   factory      = this.state.getFactory(factoryKey),
-                  managers     = this.state.getFactoryManagers(factoryKey);
+                  managers     = this.manager.getFactoryManagers(factoryKey);
 
             return $.extend(
                 {
@@ -585,7 +588,7 @@
         }).bind(this));
 
         container.find('.beer-factory__manage-managers').on('click', (function showManagerManagementModal(event) {
-            (new BeerFactoryGame.ManagerManagementModal(this.state, this.cache, this.factory)).render(
+            this.manager.showManagerManagementModal(
                 $(event.target).closest('.beer-factory__building-container').data('factory')
             );
         }).bind(this));
