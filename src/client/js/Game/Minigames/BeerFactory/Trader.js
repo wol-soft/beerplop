@@ -316,8 +316,9 @@
                 TemplateStorage.get('beer-factory__trading-route-modal__body-template'),
                 {
                     empty:     route.sell === null,
-                    materials: TRADABLE_MATERIALS.map(
-                        function (material) {
+                    materials: TRADABLE_MATERIALS
+                        .filter((material) => this.beerFactoryState.getMaterial(material).enabled)
+                        .map((material) => {
                             return {
                                 key:   material,
                                 label: translator.translate('beerFactory.material.' + material),
