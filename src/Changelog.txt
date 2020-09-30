@@ -7,13 +7,14 @@
     - Factory Extensions can store more materials depending on the amount of factories the extension belongs to
     - Factory Extensions can handle more materials in a single iteration
 * Bugfixes:
-    - Building statistic graphs for Bottle Cap Factories show "plops" (#94)
     - Workers' Lodges initially dispaly a 100% production boost (#98)
     - Project based factory extension popover content positioning (#102)
     - Icon for blacksmith is missing the workpiece
     - Skip unnecessary Beer Factory rendering during game initialization
-    - Endless buff after sacrifice (#106)
     - Trading posts provide access to materials which aren't yet unlocked
+    - Building statistic graphs for Bottle Cap Factories show "plops" (#94)
+    - Endless buff after sacrifice (#106)
+    - Beer Blender Bar: Chili doesn't affect the price of Bottle Cap Factories
     - Fixed some typos
 
 **1.68.0** - 16.03.2020

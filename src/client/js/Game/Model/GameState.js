@@ -377,15 +377,16 @@
             }).bind(this)
         );
 
-        this.gameEventBus.on(EVENTS.BEER_FACTORY.UNIQUE_BUILD.UPDATED, (function () {
-            this._recalculateAllCostNext();
-            this.updatePlopsPerSecond();
-        }).bind(this));
-
-        this.gameEventBus.on(EVENTS.BEER_BLENDER.UPDATE, (function () {
-            this._recalculateAllCostNext();
-            this.updatePlopsPerSecond();
-        }).bind(this));
+        this.gameEventBus.on(
+            [
+                EVENTS.BEER_FACTORY.UNIQUE_BUILD.UPDATED,
+                EVENTS.BEER_BLENDER.UPDATE,
+            ].join(' '),
+            () => {
+                this._recalculateAllCostNext();
+                this.updatePlopsPerSecond();
+            }
+        );
 
         this.gameEventBus.on(EVENTS.BEER_FACTORY.AUTO_BUYER, (function (event, context) {
             if (!context.enabled || context.building === 'bottleCapFactory') {

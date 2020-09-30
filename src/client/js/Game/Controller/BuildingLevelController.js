@@ -123,16 +123,22 @@
             }
         );
 
-        this.gameEventBus.on(EVENTS.CORE.BUY_AMOUNT_UPDATED, (function () {
-            this.updateCostNext(true);
+        this.gameEventBus.on(
+            [
+                EVENTS.CORE.BUY_AMOUNT_UPDATED,
+                EVENTS.BEER_BLENDER.UPDATE,
+            ].join(' '),
+            (function () {
+                this.updateCostNext(true);
 
-            $('#buy-bottle-cap-factory').closest('fieldset').prop(
-                'disabled',
-                this.gameState.isBuyChargeOnMaxBuyAmount()
-                    ? this.cache.maxFactoriesAvailable === 0
-                    : this.gameState.getPlops() < this.state.costNext
-            );
-        }).bind(this));
+                $('#buy-bottle-cap-factory').closest('fieldset').prop(
+                    'disabled',
+                    this.gameState.isBuyChargeOnMaxBuyAmount()
+                        ? this.cache.maxFactoriesAvailable === 0
+                        : this.gameState.getPlops() < this.state.costNext
+                );
+            }).bind(this)
+        );
 
         // register the controller so the internal data will be saved
         (new Beerplop.GamePersistor()).registerModule(
@@ -555,6 +561,7 @@
     BuildingLevelController.prototype._getExternalFactoryReductionMultiplier = function () {
         return this.bottleCapFactoryReduction
             * this.buffFottleCapFactoryReduction
+            * this.gameState.beerBlender.getEffect('buildings')
             * this.gameState.beerwarts.getBuildingReduction('bottleCapFactory');
     };
 
