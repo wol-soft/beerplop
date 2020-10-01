@@ -2,7 +2,6 @@
 * Store the selected buy charge in the save state so it's still selected after a reload
 * Updated dependencies
 * Beer Factory materials are grouped now. Each group can be collapsed
-* Adjusted knowledge consumption
 * Adjusted Factory Extension production rate:
     - Factory Extensions can store more materials depending on the amount of factories the extension belongs to
     - Factory Extensions can handle more materials in a single iteration
@@ -16,6 +15,7 @@
     - Building statistic graphs for Bottle Cap Factories show "plops" (#94)
     - Endless buff after sacrifice (#106)
     - Beer Blender Bar: Chili doesn't affect the price of Bottle Cap Factories
+    - The displayed progress of a restarted research project after a reload is calculated wrong
     - Fixed some typos
 
 **1.68.0** - 16.03.2020

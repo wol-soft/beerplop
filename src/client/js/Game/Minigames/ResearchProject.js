@@ -695,9 +695,7 @@
                                                 && this.projects[project].repeatable
                                                 && (projectData.stage < this.projects[project].maxStage)
                                                 && isFinite(projectCosts),
-                        completedPercentage: this.numberFormatter.format(
-                                                projectData.invested / this.projects[project].costs * 100
-                                             ),
+                        completedPercentage: this.numberFormatter.format(projectData.invested / projectCosts * 100),
                         additionalText:      this.projects[project].additionalInfoText
                                                 ? this.projects[project].additionalInfoText()
                                                 : '',
