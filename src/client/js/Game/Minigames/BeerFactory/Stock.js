@@ -351,7 +351,9 @@
             return;
         }
 
-        let   graphData       = [];
+        let   graphData       = [],
+              production      = 0,
+              consumption     = 0;
         const average         = array => array.reduce((a, b) => a + b, 0) / array.length,
               numberFormatter = this.numberFormatter,
               stockLabel      = translator.translate('beerFactory.stock');
@@ -361,15 +363,20 @@
 
             if (amount > 0) {
                 graphData.push([location, stockLabel, amount]);
+                production += amount;
             }
         });
         $.each(this.materialFlowGraph[PRODUCTION_BALANCE__REMOVE], function(location, data) {
             const amount = average(data.amount);
 
             if (amount > 0) {
+                consumption += amount;
                 graphData.push([stockLabel, location, amount]);
             }
         });
+
+        $('#beer-factory__material-flow__production').text(this.numberFormatter.formatInt(production));
+        $('#beer-factory__material-flow__consumption').text(this.numberFormatter.formatInt(consumption));
 
         if (this.materialFlowGraph.chart) {
             this.materialFlowGraph.chart.series[0].setData(graphData);

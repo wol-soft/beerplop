@@ -10,6 +10,14 @@
 
       <div class="modal-body">
         <div class="beer-factory__material-flow__toggle d-none">
+          <div style="height: 40px">
+            <p class="float-left">
+              {{ translator.translate('beerFactory.modal.materialFlow.production') }}: <b id="beer-factory__material-flow__production"></b>
+            </p>
+            <p class="float-right">
+              {{ translator.translate('beerFactory.modal.materialFlow.consumption') }}: <b id="beer-factory__material-flow__consumption"></b>
+            </p>
+          </div>
           <div id="beer-factory__material-flow-graph"></div>
         </div>
         <div class="beer-factory__material-flow__toggle text-center m-5">

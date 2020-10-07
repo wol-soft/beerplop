@@ -2,6 +2,7 @@
 * Store the selected buy charge in the save state so it's still selected after a reload
 * Updated dependencies
 * Beer Factory materials are grouped now. Each group can be collapsed
+* Added total production/consumption of materials to Beer Factory material flow graphs
 * Adjusted Factory Extension production rate:
     - Factory Extensions can store more materials depending on the amount of factories the extension belongs to
     - Factory Extensions can handle more materials in a single iteration

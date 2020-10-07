@@ -3367,6 +3367,8 @@
     "beerFactory.modal.materialFlow.title": "Material Flow Of __MATERIAL__",
     "beerFactory.modal.materialFlow.loading": "Collecting material flow data...",
     "beerFactory.modal.materialFlow.distribution": "Material distribution",
+    "beerFactory.modal.materialFlow.production": "Material production",
+    "beerFactory.modal.materialFlow.consumption": "Material consumption",
     "beerFactory.modal.tradingRoutes.title": "Manage your trading routes",
     "beerFactory.modal.tradingRoute.title": "Manage your trading route to __ROUTE__",
     "beerFactory.modal.tradingRoutesStats.title": "Statistics of your trading routes",
