@@ -198,7 +198,7 @@
 
                           {{ #activeExtension }}
                             <table class="table">
-                              <tr><th>{{ #t }}"beerFactory.factory.extension.consumes"{{ /t }}</th><th></th></tr>
+                              <tr><th colspan="2">{{ #t }}"beerFactory.factory.extension.consumes"{{ /t }}</th></tr>
                               {{ #consumes }}
                                 <tr>
                                   <td>{{ amount }}</td>
@@ -215,10 +215,37 @@
                                   </td>
                                 </tr>
                               {{ /consumes }}
-                              <tr><th>{{ #t }}"beerFactory.factory.extension.produces"{{ /t }}</th><th></th></tr>
-                              {{ #produces }}
-                                <tr><td>{{ amount }}</td><td>{{ material }}</td></tr>
-                              {{ /produces }}
+
+                              {{ ^isProjectQueueExtension }}
+                                <tr><th colspan="2">{{ #t }}"beerFactory.factory.extension.produces"{{ /t }}</th></tr>
+                                {{ #produces }}
+                                  <tr><td>{{ amount }}</td><td>{{ material }}</td></tr>
+                                {{ /produces }}
+                              {{ /isProjectQueueExtension }}
+
+                              {{ #isProjectQueueExtension }}
+                                <tr>
+                                  <th colspan="2">{{ #t }}"beerFactory.factory.extension.producesProjects"{{ /t }}</th>
+                                </tr>
+                                <tr>
+                                  <td id="beer-factory__extension__{{ key }}__queue-size">{{ queueEntries }}</td>
+                                  <td>{{ #t }}"beerFactory.popover.extension.queueSize"{{ /t }}</td>
+                                </tr>
+                                <tr>
+                                  <td colspan="2">
+                                    <button type="button"
+                                            class="btn
+                                                   btn-raised
+                                                   btn-secondary
+                                                   float-left
+                                                   beer-factory__extension__manage-queue"
+                                            data-extension-key="{{ proxyKey }}"
+                                    >
+                                      {{ #t }}"beerFactory.popover.extension.queue.manage"{{ /t }}
+                                    </button>
+                                  </td>
+                                </tr>
+                              {{ /isProjectQueueExtension }}
                             </table>
                           {{ /activeExtension }}
 

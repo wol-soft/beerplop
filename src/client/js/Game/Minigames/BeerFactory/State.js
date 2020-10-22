@@ -417,10 +417,7 @@
         }).bind(this));
 
         // check if a project production queue must be initialized
-        if (extension === proxiedExtension &&
-            EXTENSIONS[extension].productionType === EXTENSION_PRODUCTION__PROJECT &&
-            EXTENSIONS[extension].hasProjectQueue
-        ) {
+        if (extension === proxiedExtension && EXTENSIONS[extension].hasProjectQueue) {
             this.state.extensionStorage[extension].queue = [];
         }
     };

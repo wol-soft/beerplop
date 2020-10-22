@@ -263,25 +263,29 @@
                         ),
                     materialMissing: this.factory.hasFactoryExtensionMissingMaterials(factoryKey),
                     hasExtensions:   (factory.extensions || []).length > 0,
-                    extensions:      (factory.extensions || []).map((function (extension) {
-                        const proxiedExtension = this.state.getState().proxyExtension[extension]
-                                ? this.state.getState().proxyExtension[extension].extension
-                                : extension;
+                    extensions:      (factory.extensions || []).map((function (extensionKey) {
+                        const proxiedExtensionKey = this.state.getState().proxyExtension[extensionKey]
+                                ? this.state.getState().proxyExtension[extensionKey].extension
+                                : extensionKey;
 
                         let data = {
                             storageLimit:             this.state.getState().extensionStorageCapacity,
-                            key:                      extension,
-                            isProxyExtension:         EXTENSIONS[extension].type === EXTENSION_TYPE__PROXY,
-                            isEquippedProxyExtension: EXTENSIONS[extension].type === EXTENSION_TYPE__PROXY
-                                && this.state.getState().proxyExtension[extension].extension,
-                            proxyKey:        proxiedExtension,
+                            key:                      extensionKey,
+                            isProxyExtension:         EXTENSIONS[extensionKey].type === EXTENSION_TYPE__PROXY,
+                            isEquippedProxyExtension: EXTENSIONS[extensionKey].type === EXTENSION_TYPE__PROXY
+                                && this.state.getState().proxyExtension[extensionKey].extension,
+                            isProjectQueueExtension:  EXTENSIONS[proxiedExtensionKey].hasProjectQueue,
+                            queueEntries: EXTENSIONS[proxiedExtensionKey].hasProjectQueue
+                                ? this.state.getExtensionStorage(proxiedExtensionKey).queue.length
+                                : 0,
+                            proxyKey:        proxiedExtensionKey,
                             activeExtension: false,
-                            name:            translator.translate(`beerFactory.extension.${extension}`),
-                            description:     translator.translate(`beerFactory.extension.${extension}.description`),
+                            name:            translator.translate(`beerFactory.extension.${extensionKey}`),
+                            description:     translator.translate(`beerFactory.extension.${extensionKey}.description`),
                         };
 
-                        if (proxiedExtension) {
-                            const extensionStorage = this.state.getExtensionStorage(extension);
+                        if (proxiedExtensionKey) {
+                            const extensionStorage = this.state.getExtensionStorage(extensionKey);
 
                             data = $.extend(
                                 true,
@@ -297,22 +301,22 @@
 
                         return $.extend(
                             data,
-                            EXTENSIONS[extension],
+                            EXTENSIONS[extensionKey],
                             {
-                                consumes: proxiedExtension === null ? [] : Object
-                                    .entries(this.cache.getFactoryExtensionConsumption(proxiedExtension))
+                                consumes: proxiedExtensionKey === null ? [] : Object
+                                    .entries(this.cache.getFactoryExtensionConsumption(proxiedExtensionKey))
                                     .map((function (entry) {
-                                        const missingMaterials = this.factory.getMissingMaterials(extension);
+                                        const missingMaterials = this.factory.getMissingMaterials(extensionKey);
 
                                         return {
                                             material:    translator.translate('beerFactory.material.' + entry[0]),
-                                            amount:      this.numberFormatter.formatInt(entry[1]),
+                                            amount:      entry[1] > 0 ? this.numberFormatter.formatInt(entry[1]) : '-',
                                             materialKey: entry[0],
                                             missing:     !!missingMaterials && missingMaterials[entry[0]] > MISSING_MATERIAL_BUFFER,
                                         };
                                     }).bind(this)),
-                                produces: proxiedExtension === null ? [] : Object
-                                    .entries(this.cache.getFactoryExtensionProduction(proxiedExtension))
+                                produces: proxiedExtensionKey === null ? [] : Object
+                                    .entries(this.cache.getFactoryExtensionProduction(proxiedExtensionKey))
                                     .map((function (entry) {
                                         return {
                                             material: translator.translate('beerFactory.material.' + entry[0]),
@@ -530,7 +534,16 @@
                 icon.toggleClass('fa-angle-double-down fa-angle-double-up');
 
                 this.expandedFactoryViews[container.data('factory')] = icon.hasClass('fa-angle-double-up');
-            }).bind(this)
+            }).bind(this),
+        );
+
+        container.find('.beer-factory__extension__manage-queue').on(
+            'click',
+            (function openFactoryExtensionQueueProjectManagementModal(event) {
+                (new BeerFactoryGame.FactoryExtensionProjectQueueManagementModal(this.state)).render(
+                    $(event.target).data('extensionKey'),
+                );
+            }).bind(this),
         );
 
         container.find('.beer-factory__extension__toggle-pause').on(
@@ -553,7 +566,7 @@
                     : extensionContainer.removeClass('extension-paused');
 
                 button.toggleClass('btn-info btn-success');
-            }).bind(this)
+            }).bind(this),
         );
 
         container.find('.beer-factory__upgrade').on('click', (function initFactoryUpgrade(event) {
@@ -583,13 +596,13 @@
 
         container.find('.beer-factory__reached-upgrades').on('click', (function showBeerFactoryUpgradesModal(event) {
             (new BeerFactoryGame.ReachedUpgradesModal(this.state)).render(
-                $(event.target).closest('.beer-factory__building-container').data('factory')
-            )
+                $(event.target).closest('.beer-factory__building-container').data('factory'),
+            );
         }).bind(this));
 
         container.find('.beer-factory__manage-managers').on('click', (function showManagerManagementModal(event) {
             this.manager.showManagerManagementModal(
-                $(event.target).closest('.beer-factory__building-container').data('factory')
+                $(event.target).closest('.beer-factory__building-container').data('factory'),
             );
         }).bind(this));
 

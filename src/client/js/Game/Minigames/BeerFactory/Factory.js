@@ -302,9 +302,7 @@
      * @return {boolean}
      */
     Factory.prototype.addProjectToExtensionQueue = function (extensionKey, project) {
-        if (EXTENSIONS[extensionKey].productionType !== EXTENSION_PRODUCTION__PROJECT ||
-            !EXTENSIONS[extensionKey].hasProjectQueue
-        ) {
+        if (!EXTENSIONS[extensionKey].hasProjectQueue) {
             return false;
         }
 
@@ -322,7 +320,7 @@
         }
         extensionStorage.queue.push(project);
 
-        // TODO: UI
+        $(`#beer-factory__extension__${extensionKey}__queue-size`).text(extensionStorage.queue.length);
 
         this.gameEventBus.emit(EVENTS.BEER_FACTORY.EXTENSION_QUEUE.ADDED, [extensionKey, project]);
 

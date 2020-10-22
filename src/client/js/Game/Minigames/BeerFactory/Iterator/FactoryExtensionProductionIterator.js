@@ -227,9 +227,7 @@
 
         // if the extension constructs projects from a queue with various materials pop an entry from the queue.
         // Otherwise use the consumption from the extension definition to determine the required materials
-        if (EXTENSIONS[proxiedExtensionKey].productionType === EXTENSION_PRODUCTION__PROJECT &&
-            EXTENSIONS[proxiedExtensionKey].hasProjectQueue
-        ) {
+        if (EXTENSIONS[proxiedExtensionKey].hasProjectQueue) {
             // the queue is hold centralized. Consequently a proxied extension must look up the queue from the mirrored
             // factory extension
             const queue = this.state.getExtensionStorage(proxiedExtensionKey).queue;

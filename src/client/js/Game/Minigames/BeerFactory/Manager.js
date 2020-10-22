@@ -106,14 +106,19 @@
             Mustache.render(
                 TemplateStorage.get('beer-factory__manager-management-modal-template'),
                 {
-                    factoryKey: factoryKey,
-                    managers:   this._mapManagersForView(managers.shift().managers),
-                    inHire:     this._getManagersInHiringProcess(factoryKey),
-                    costNext:   this._getRequiredKnowledgeForHiringManager(factoryKey),
-                    extensionManagers:     managers.map((extensionManagers) => {
+                    factoryKey:        factoryKey,
+                    managers:          this._mapManagersForView(managers.shift().managers),
+                    inHire:            this._getManagersInHiringProcess(factoryKey),
+                    costNext:          this.numberFormatter.formatInt(
+                        this._getRequiredKnowledgeForHiringManager(factoryKey)
+                    ),
+                    extensionManagers: managers.map((extensionManagers) => {
                         extensionManagers.managers = this._mapManagersForView(extensionManagers.managers);
                         extensionManagers.inHire   = this._getManagersInHiringProcess(extensionManagers.extensionKey);
-                        extensionManagers.costNext = this._getRequiredKnowledgeForHiringManager(extensionManagers.extensionKey);
+                        extensionManagers.costNext = this.numberFormatter.formatInt(
+                            this._getRequiredKnowledgeForHiringManager(extensionManagers.extensionKey)
+                        );
+
                         return extensionManagers;
                     }),
                 },

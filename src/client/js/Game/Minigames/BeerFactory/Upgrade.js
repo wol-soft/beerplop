@@ -3067,7 +3067,7 @@
                     1: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 35_000,
+                            knowledge: 25_000,
                         },
                         requires: {
                             academy: {
@@ -3086,7 +3086,7 @@
                     2: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 255_000,
+                            knowledge: 155_000,
                         },
                         requires: {
                             academy: {
@@ -3102,7 +3102,7 @@
                     3: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 3_355_000,
+                            knowledge: 1_355_000,
                         },
                         callback: (function () {
                             this.achievementController.checkAchievement(
@@ -3113,7 +3113,7 @@
                     4: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 64_550_000,
+                            knowledge: 24_550_000,
                         },
                         requires: {
                             academy: {
@@ -3129,7 +3129,7 @@
                     5: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 745_500_000,
+                            knowledge: 245_500_000,
                         },
                         requires: {
                             academy: {
@@ -3145,7 +3145,7 @@
                     6: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 1_645_500_000,
+                            knowledge: 845_500_000,
                         },
                         requires: {
                             academy: {
@@ -3161,7 +3161,7 @@
                     7: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 4_891_000_000,
+                            knowledge: 1_691_000_000,
                         },
                         requires: {
                             academy: {
@@ -3179,7 +3179,7 @@
                     8: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 14_673_000_000,
+                            knowledge: 3_382_000_000,
                         },
                         requires: {
                             academy: {
@@ -3197,7 +3197,7 @@
                     9: {
                         fixCosts: true,
                         costs: {
-                            knowledge: 44_019_000_000,
+                            knowledge: 6_764_000_000,
                         },
                         requires: {
                             academy: {

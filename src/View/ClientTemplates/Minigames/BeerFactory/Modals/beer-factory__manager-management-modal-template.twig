@@ -5,15 +5,6 @@
     <hr />
     <h3>
       {{ #t }}"beerFactory.modal.manager.factory", {"__FACTORY__": "{{ #t }}"beerFactory.factory.{{ factoryKey }}"{{ /t }}"}{{ /t }}:
-      <div class="float-right flex-column">
-        <button class="btn btn-secondary btn-raised beer-factory__manager-management__hire"
-                data-factory-key="{{ factoryKey }}"
-        >
-          {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
-        </button>
-        <p>{{ inHire }}</p>
-        <p>{{ costNext }}</p>
-      </div>
     </h3>
     {{ #managers }}
        <div class="form-group naming-container" data-naming-id="{{ factoryKey }}-{{ id }}" data-manager-id="{{ id }}">
@@ -23,20 +14,22 @@
     {{ ^managers }}
       {{ #t }}"beerFactory.modal.manager.noManager"{{ /t }}
     {{ /managers }}
+    <div class="mt-4">
+      <button class="btn btn-secondary btn-raised beer-factory__manager-management__hire"
+              data-factory-key="{{ factoryKey }}"
+      >
+        {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
+      </button>
+      <div class="float-right">
+        <p>{{ #t }}"beerFactory.modal.manager.inHire"{{ /t }}: {{ inHire }}</p>
+        <p>{{ #t }}"beerFactory.modal.manager.costNext"{{ /t }}: {{ costNext }}</p>
+      </div>
+    </div>
 
     {{ #extensionManagers }}
-      <hr />
+      <hr style="clear: both" />
       <h3>
         {{ #t }}"beerFactory.modal.manager.extension", {"__EXTENSION__": "{{ #t }}"beerFactory.extension.{{ extensionKey }}"{{ /t }}"}{{ /t }}:
-        <div class="float-right flex-column">
-          <button class="btn btn-secondary btn-raised beer-factory__manager-management__hire"
-                  data-extension-key="{{ extensionKey }}"
-          >
-            {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
-          </button>
-          <p>{{ inHire }}</p>
-          <p>{{ costNext }}</p>
-        </div>
       </h3>
       {{ #managers }}
        <div class="form-group naming-container" data-naming-id="{{ extensionKey }}-{{ id }}" data-manager-id="{{ id }}">
@@ -46,6 +39,18 @@
       {{ ^managers }}
         {{ #t }}"beerFactory.modal.manager.noManager"{{ /t }}
       {{ /managers }}
+
+      <div class="mt-4">
+        <button class="btn btn-secondary btn-raised beer-factory__manager-management__hire"
+                data-extension-key="{{ extensionKey }}"
+        >
+          {{ #t }}"beerFactory.modal.manager.hire"{{ /t }}
+        </button>
+        <div class="float-right">
+          <p>{{ #t }}"beerFactory.modal.manager.inHire"{{ /t }}: {{ inHire }}</p>
+          <p>{{ #t }}"beerFactory.modal.manager.costNext"{{ /t }}: {{ costNext }}</p>
+        </div>
+      </div>
     {{ /extensionManagers }}
   </script>
 {% endverbatim %}
