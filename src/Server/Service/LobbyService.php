@@ -2,6 +2,7 @@
 
 namespace Beerplop\Service;
 
+use WOLSoftCore\Server\DBAL\DataFetcher;
 use WOLSoftCore\Server\Model\WOLSoftApplication;
 
 /**
@@ -18,7 +19,7 @@ class LobbyService extends WOLSoftApplication
      */
     public function getRanking(string $lobbyId): array
     {
-        return (array) $this->app->getDataFetcher()->fetchAll(
+        return (array) DataFetcher::getInstance('beerplop')->fetchAll(
             'SELECT `name`, `plops`, `active` FROM `beerplop_savestate`
                 JOIN `user` ON `user`.`id` = `userId`
                 WHERE `lobbyId` = :lobbyId
@@ -37,7 +38,7 @@ class LobbyService extends WOLSoftApplication
      */
     public function isUserInLobby(int $userId, string $lobbyId): bool
     {
-        return $this->app->getDataFetcher()->fetchOne(
+        return DataFetcher::getInstance('beerplop')->fetchOne(
             'SELECT COUNT(`id`) FROM `beerplop_savestate` WHERE `userId` = :userId AND `lobbyId` = :lobbyId',
             [':userId' => $userId, ':lobbyId' => $lobbyId]
         ) > 0;

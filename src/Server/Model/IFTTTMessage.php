@@ -15,7 +15,8 @@ class IFTTTMessage extends WOLSoftModel
 {
     use CreatedAwareTrait, UserAwareTrait;
 
-    protected const TABLE = 'beerplop_ifttt_message';
+    protected const TABLE    = 'beerplop_ifttt_message';
+    protected const DATABASE = 'beerplop';
 
     /** @var string */
     protected $_message = '';

@@ -18,7 +18,8 @@ class IFTTTAuth extends ObjectPluginModel
 
     public const BASE_MODEL = User::class;
 
-    protected const TABLE = 'beerplop_ifttt_auth';
+    protected const TABLE    = 'beerplop_ifttt_auth';
+    protected const DATABASE = 'beerplop';
 
     /** @var string */
     protected $_token = '';
