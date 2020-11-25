@@ -1,4 +1,12 @@
 module.exports = function(grunt) {
+    const fileExistentFilter = function (filepath) {
+        if (!grunt.file.exists(filepath)) {
+            grunt.fail.warn('Could not find: ' + filepath);
+        } else {
+            return true;
+        }
+    };
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
@@ -13,7 +21,9 @@ module.exports = function(grunt) {
                     'vendor/wol-soft/wol-soft-core/src/js/*.js',
                     'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js',
                 ],
-                dest: 'htdocs/dist/js/beerplop-init-<%= pkg.beerplopversion %>.min.js'
+                dest: 'htdocs/dist/js/beerplop-init-<%= pkg.beerplopversion %>.min.js',
+                nonull: true,
+                filter: fileExistentFilter,
             },
             beerplop: {
                 src: [
@@ -31,7 +41,9 @@ module.exports = function(grunt) {
                     'build/Game/**/**/*.js',
                     'build/Game/**/*.js',
                 ],
-                dest: 'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>.min.js'
+                dest: 'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>.min.js',
+                nonull: true,
+                filter: fileExistentFilter,
             },
             beerplopDeferred: {
                 src: [
@@ -43,7 +55,9 @@ module.exports = function(grunt) {
                     // TODO: Edge doesn't support the indexedDB getAll method yet...
                     'node_modules/indexeddb-getall-shim/IndexedDB-getAll-shim.js'
                 ],
-                dest: 'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>-deferred.min.js'
+                dest: 'htdocs/dist/js/beerplop-game-<%= pkg.beerplopversion %>-deferred.min.js',
+                nonull: true,
+                filter: fileExistentFilter,
             },
             beerplopLobby: {
                 src: [
@@ -56,7 +70,9 @@ module.exports = function(grunt) {
                     'vendor/wol-soft/wol-soft-core/src/js/*.js',
                     'vendor/wol-soft/wol-soft-core/src/User/client/js/*.js'
                 ],
-                dest: 'htdocs/dist/js/beerplop-lobby-<%= pkg.beerplopversion %>.min.js'
+                dest: 'htdocs/dist/js/beerplop-lobby-<%= pkg.beerplopversion %>.min.js',
+                nonull: true,
+                filter: fileExistentFilter,
             },
             beerplopTest: {
                 src: [
@@ -66,13 +82,17 @@ module.exports = function(grunt) {
                     'node_modules/chai/chai.js',
                     'node_modules/sinon/pkg/sinon.js',
                 ],
-                dest: 'htdocs/dist/js/beerplop-test-<%= pkg.beerplopversion %>.js'
+                dest: 'htdocs/dist/js/beerplop-test-<%= pkg.beerplopversion %>.js',
+                nonull: true,
+                filter: fileExistentFilter,
             },
             beerplopTestCases: {
                 src: [
                     'tests/client/**/*.js'
                 ],
-                dest: 'htdocs/dist/js/beerplop<%= pkg.beerplopversion %>-testcases.js'
+                dest: 'htdocs/dist/js/beerplop<%= pkg.beerplopversion %>-testcases.js',
+                nonull: true,
+                filter: fileExistentFilter,
             },
         },
         terser: {
@@ -141,17 +161,17 @@ module.exports = function(grunt) {
                     'node_modules/snackbarjs/dist/snackbar.min.css',
                     'htdocs/client/style/**/*.css',
                     'htdocs/client/style/*.css',
-                    'htdocs/apps/user/client/style/login.css',
-                    'src/style/messages.css'
                 ],
-                dest: 'htdocs/dist/css/beerplop<%= pkg.beerplopversion%>.css'
+                dest: 'htdocs/dist/css/beerplop<%= pkg.beerplopversion%>.css',
+                nonull: true,
             },
             beerplopTest: {
                 src: [
                     'htdocs/dist/css/beerplop<%= pkg.beerplopversion%>.css',
                     'node_modules/mocha/mocha.css'
                 ],
-                dest: 'htdocs/dist/css/beerplop<%= pkg.beerplopversion%>-test.css'
+                dest: 'htdocs/dist/css/beerplop<%= pkg.beerplopversion%>-test.css',
+                nonull: true,
             },
         },
         cssmin: {
