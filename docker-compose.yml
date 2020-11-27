@@ -13,7 +13,9 @@ services:
     container_name: beerplop-mysql
     restart: always
     volumes:
-      - ./mysql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./vendor/wol-soft/wol-soft-core/mysql/schema.sql:/docker-entrypoint-initdb.d/01-schema-core.sql
+      - ./mysql/schema.sql:/docker-entrypoint-initdb.d/02-schema.sql
+      - ./mysql/rights.sql:/docker-entrypoint-initdb.d/03-rights.sql
     environment:
       - MYSQL_ROOT_PASSWORD=beerplopRoot
       - MYSQL_DATABASE=beerplop

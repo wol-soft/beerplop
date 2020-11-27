@@ -9,6 +9,7 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use WOLSoftCore\Server\Controller\Controller;
+use WOLSoftCore\Server\DBAL\DataFetcher;
 use WOLSoftCore\Server\Exception\NoSessionException;
 use WOLSoftCore\Server\Exception\PermissionDeniedException;
 use WOLSoftCore\Server\Exception\RequiredParameterNotSetException;
@@ -46,7 +47,7 @@ class IFTTTMessageController extends Controller
 
         $timezone = new DateTimeZone($request->requiredJson('timezone'));
 
-        $this->app->getDataFetcher()->startTransaction();
+        DataFetcher::getInstance('beerplop')->startTransaction();
         foreach ($request->requiredJson('messages') as $message) {
             IFTTTMessage::create()
                 ->setMessage($message['message'])
@@ -56,7 +57,7 @@ class IFTTTMessageController extends Controller
                 ->persist();
         }
 
-        if (!$this->app->getDataFetcher()->commitTransaction()) {
+        if (!DataFetcher::getInstance('beerplop')->commitTransaction()) {
             return (new JSONResponse())->setStatus(false)->setStatusCode(502);
         }
 

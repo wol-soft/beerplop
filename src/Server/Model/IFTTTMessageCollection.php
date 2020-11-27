@@ -12,7 +12,9 @@ use WOLSoftCore\Server\Model\Collection\WOLSoftModelCollection;
 class IFTTTMessageCollection extends WOLSoftModelCollection
 {
     public    const COLLECTION_MODEL = IFTTTMessage::class;
-    protected const TABLE = 'beerplop_ifttt_message';
+
+    protected const TABLE    = 'beerplop_ifttt_message';
+    protected const DATABASE = 'beerplop';
 
     /** @var string */
     protected $_primaryColumn = 'userId';

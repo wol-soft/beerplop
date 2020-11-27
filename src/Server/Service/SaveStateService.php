@@ -2,6 +2,7 @@
 
 namespace Beerplop\Service;
 
+use WOLSoftCore\Server\DBAL\DataFetcher;
 use WOLSoftCore\Server\Model\WOLSoftApplication;
 
 /**
@@ -21,7 +22,7 @@ class SaveStateService extends WOLSoftApplication
      */
     public function notifyOfflineSaveStates(): int
     {
-        $this->app->getDataFetcher()->query(
+        DataFetcher::getInstance('beerplop')->query(
             'INSERT INTO `beerplop_ifttt_message` (userId, message, channel) 
                 SELECT bss.userId, CONCAT_WS("", "Save state \"", bss.title, "\" offline"), "Save state"
                   FROM beerplop_savestate AS bss
@@ -30,16 +31,16 @@ class SaveStateService extends WOLSoftApplication
                   AND bss.modified < DATE_SUB(CURRENT_TIME(), INTERVAL ' . self::OFFLINE_TRIGGER_TIME . ' MINUTE)'
         );
 
-        $notifiedOfflineSaveStates = $this->app->getDataFetcher()->getRowCount();
+        $notifiedOfflineSaveStates = DataFetcher::getInstance('beerplop')->getRowCount();
 
-        $userIds = $this->app->getDataFetcher()->fetchColumn(
+        $userIds = DataFetcher::getInstance('beerplop')->fetchColumn(
             'SELECT DISTINCT userId FROM beerplop_savestate AS bss
                 RIGHT JOIN beerplop_ifttt_auth AS bia ON bia.id = bss.`userId`
                 WHERE notifiedOffline = FALSE
                   AND bss.modified < DATE_SUB(CURRENT_TIME(), INTERVAL ' . self::OFFLINE_TRIGGER_TIME . ' MINUTE)'
         );
 
-        $this->app->getDataFetcher()->query(
+        DataFetcher::getInstance('beerplop')->query(
             'UPDATE beerplop_savestate SET notifiedOffline = TRUE
                 WHERE notifiedOffline = FALSE
                   AND id > 0

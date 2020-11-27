@@ -15,7 +15,8 @@ class SaveState extends WOLSoftModel
 {
     use UserAwareTrait, TimeAwareTrait;
 
-    protected const TABLE = 'beerplop_savestate';
+    protected const TABLE    = 'beerplop_savestate';
+    protected const DATABASE = 'beerplop';
 
     /** @var string */
     protected $_title = '';
