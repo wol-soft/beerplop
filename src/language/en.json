@@ -107,7 +107,7 @@
     "reached.amount": "__REACHED__ reached",
     "abstinenceHint": "__VALUE__ Plops gained during your abstinence phase",
     "mobile.button.special": "Special Buildings",
-    "mobile.button.buildings": "Buildings",
+    "buildings": "Buildings",
     "buildings.buyCharge": "Buy Charge",
     "buildings.buyCharge.max": "Max",
     "buildings.buyCharge.configure": "Configure custom buy charge",

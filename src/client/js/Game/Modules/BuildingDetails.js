@@ -400,10 +400,3 @@
 
     beerplop.BuildingDetails = BuildingDetails;
 })(Beerplop);
-
-$(function() {
-    $('.details-modal-button').on(
-        'click',
-        event => new Beerplop.BuildingDetails($(event.target).closest('.details-modal-button').data('buildingKey'))
-    );
-});

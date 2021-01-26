@@ -286,11 +286,12 @@
             this.productionStatistics,
         );
 
-        this._initBuyBuildings();
         this._initBuyAmountControl();
         this._initUpgradeBoosts();
         this._initPopoverCallbacks();
         this._initSacrifice();
+
+        assetPromises['client-templates'].then(() => this._renderBuildings());
 
         $('#beer').find('svg').on('click', (function manualBeerClick(event) {
             event.preventDefault();
@@ -411,6 +412,29 @@
 
         GameState.prototype._instance = this;
     }
+
+    GameState.prototype._renderBuildings = function () {
+        $('#buildings-container').html(
+            Mustache.render(
+                TemplateStorage.get('building-template'),
+                {
+                    buildings: this.getBuildings().map((key) => { return {key}; }),
+                },
+            ),
+        );
+
+        this._initBuyBuildings();
+        this.buildingLevelController.initBuyControl();
+
+        new Beerplop.TooltipController(this, this.beerFactory).initPopover();
+
+        $('.details-modal-button').on(
+            'click',
+            (event) => new Beerplop.BuildingDetails(
+                $(event.target).closest('.details-modal-button').data('buildingKey'),
+            ),
+        );
+    };
 
     GameState.prototype._initSacrifice = function () {
         this.gameEventBus.on(EVENTS.CORE.SACRIFICE, (function handleSacrificeForGameState() {

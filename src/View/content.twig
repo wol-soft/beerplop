@@ -537,7 +537,7 @@
             <a class="nav-link">{{ translator.translate('mobile.button.special') }}</a>
           </li>
           <li class="nav-item d-md-none toggle-overlay" data-target="buildings">
-            <a class="nav-link">{{ translator.translate('mobile.button.buildings') }}</a>
+            <a class="nav-link">{{ translator.translate('buildings') }}</a>
           </li>
         </ul>
       </div>
@@ -549,7 +549,7 @@
   >
     <div class="flex-container">
       <div class="close-overlay">
-        <h2 class="overlay-title">{{ translator.translate('mobile.button.buildings') }}</h2>
+        <h2 class="overlay-title">{{ translator.translate('buildings') }}</h2>
         <button type="button" class="close" aria-label="{{ translator.translate('aria.close') }}" data-target="buildings">
           <span>&times;</span>
         </button>
@@ -617,97 +617,7 @@
 
         <div class="buildings-flex-container">
           <div style="width: 100%">
-            <div id="buildings-container">
-              <h3>Buildings:</h3>
-              {% for building in buildings %}
-                <div class="building-container clearfix" data-building-key="{{ building }}">
-                  <div id="building-container-popover-{{ building }}"
-                       class="building-container-popover details-modal-button"
-                       data-toggle="popover"
-                       data-trigger="hover"
-                       data-boundary="window"
-                       data-placement="left"
-                       title="{{ translator.translate('building.' ~ building ~ '.plural') }}"
-                       data-html="true"
-                       data-building-key="{{ building }}"
-                  >
-                    <svg aria-label="{{ translator.translate(
-                        'aria.buildingDetails',
-                        {'__BUILDING__': translator.translate('building.' ~ building ~ '.plural')}
-                      ) }}"
-                    >
-                      <use xlink:href="#svg-{{ building }}"></use>
-                    </svg>
-                  </div>
-
-                  <div id="building-container-{{ building }}" class="building">
-                    <div class="float-right beerwarts__enchant-building-container d-none">
-                      <i class="fas fa-magic beerwarts__enchant-building" data-building-key="{{ building }}"></i>
-                      <span class="enchantment-level">
-                        (<span class="enchantment-level__{{ building }}"></span>)
-                      </span>
-                    </div>
-
-                    <p>
-                      {{ translator.translate('building.' ~ building ~ '.plural') }}: <span class="amount-{{ building }}">0</span><br />
-                      <span class="building-container__costs-label">
-                        {{ translator.translate('costs') }}: {{
-                          translator.translate(
-                            'plopValue',
-                            {'__VALUE__': '<span id="cost-next-' ~ building ~ '" class="label-cost"></span>'}
-                          ) | raw
-                        }}
-                      </span>
-                      <span class="building-container__costs-label d-none">
-                        {{ translator.translate('available') }}: <span id="available-buildings-{{ building }}"></span>
-                      </span>
-                    </p>
-                    <div class="building-container__cloning-container">
-                      <fieldset class="float-left fieldset-buy" disabled>
-                        <button id="buy-building-{{ building }}"
-                                type="button"
-                                class="btn btn-raised btn-primary buy"
-                                data-building="{{ building }}"
-                        >
-                          {{ translator.translate('building.' ~ building) }}
-                        </button>
-                      </fieldset>
-                      <div class="level-up-tooltip float-right"
-                           data-toggle="tooltip"
-                           data-boundary="window"
-                           data-placement="left"
-                           data-html="true"
-                      >
-                        <fieldset disabled>
-                          <button id="level-up-{{ building }}"
-                                  type="button"
-                                  class="btn btn-raised btn-secondary level-up"
-                                  data-building="{{ building }}"
-                          >
-                            {{ translator.translate('building.levelUp', {'__LEVEL__': 'I'}) }}
-                          </button>
-                        </fieldset>
-                      </div>
-                    </div>
-
-                    {% include "/View/Modules/cloning-container.twig" %}
-                  </div>
-
-                  <div class="toggle-minigame d-none"
-                       data-toggle="collapse"
-                       data-target="#minigame-collapse__{{ building }}"
-                  >
-                    {{ translator.translate('minigame') }}
-                  </div>
-                </div>
-              {% endfor %}
-
-              <div class="adv">
-                <a href="https://shop.spreadshirt.de/beerplop/" target="_blank">
-                  <img src="img/shirt__wish-you-were-beer.jpeg" />
-                </a>
-              </div>
-            </div>
+            <div id="buildings-container"></div>
           </div>
         </div>
       </div>

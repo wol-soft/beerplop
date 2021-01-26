@@ -47,23 +47,6 @@ class IndexController extends Controller
                 'translator' => Translator::getInstance(null, Translator::LNG_ENGLISH, __DIR__ . '/../../language/'),
                 'saveStateId' => $saveStateId,
                 'app' => $this->app,
-                // TODO: render buildings client side and fetch buildings from GameState to avoid duplicated
-                // TODO: definition of existing buildings
-                'buildings' => [
-                    'opener',
-                    'dispenser',
-                    'serviceAssistant',
-                    'automatedBar',
-                    'deliveryTruck',
-                    'tankerTruck',
-                    'beerPipeline',
-                    'cellarBrewery',
-                    'automatedBrewery',
-                    'pharmaceuticalBeer',
-                    'drinkingWaterLine',
-                    'beerTeleporter',
-                    'beerCloner',
-                ]
             ]);
     }
 
