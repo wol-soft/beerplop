@@ -15,6 +15,7 @@ use WOLSoftCore\Server\Exception\PermissionDeniedException;
 use WOLSoftCore\Server\Exception\RequiredParameterNotSetException;
 use WOLSoftCore\Server\Model\Request\Request;
 use WOLSoftCore\Server\Model\Response\JSONResponse;
+use WOLSoftCore\Server\Router\Attribute\Route;
 
 /**
  * Class IFTTTMessageController
@@ -24,8 +25,6 @@ use WOLSoftCore\Server\Model\Response\JSONResponse;
 class IFTTTMessageController extends Controller
 {
     /**
-     * @Route POST /messages
-     *
      * @param Request $request
      *
      * @return JSONResponse
@@ -35,6 +34,7 @@ class IFTTTMessageController extends Controller
      * @throws RequiredParameterNotSetException
      * @throws Exception
      */
+    #[Route(Request::POST, '/messages')]
     public function addMessagesAction(Request $request): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {

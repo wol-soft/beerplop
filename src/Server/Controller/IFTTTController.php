@@ -16,6 +16,8 @@ use WOLSoftCore\Server\Model\Request\Request;
 use WOLSoftCore\Server\Model\Response\HTTPResponse;
 use WOLSoftCore\Server\Model\Response\JSONResponse;
 use WOLSoftCore\Server\Model\Response\Response;
+use WOLSoftCore\Server\Router\Attribute\Route;
+use WOLSoftCore\Server\Router\Attribute\RouteGroup;
 use WOLSoftCore\User\Server\Model\User;
 
 /**
@@ -23,15 +25,15 @@ use WOLSoftCore\User\Server\Model\User;
  *
  * @package Beerplop\Server\Controller
  */
+#[RouteGroup('/ifttt/v1')]
 class IFTTTController extends Controller
 {
     /**
-     * @Route GET /ifttt/v1/status
-     *
      * @param Request $request
      *
      * @return HTTPResponse
      */
+    #[Route(Request::GET, '/status')]
     public function statusAction(Request $request): HTTPResponse
     {
         if ($request->getHeader('Ifttt-Channel-Key') !== $this->app->getConf()->iftttServiceKey) {
@@ -42,12 +44,11 @@ class IFTTTController extends Controller
     }
 
     /**
-     * @Route POST /ifttt/v1/test/setup
-     *
      * @param Request $request
      *
      * @return JSONResponse
      */
+    #[Route(Request::GET, '/test/setup')]
     public function setupAction(Request $request): JSONResponse
     {
         if ($request->getHeader('Ifttt-Channel-Key') !== $this->app->getConf()->iftttServiceKey) {
@@ -61,14 +62,13 @@ class IFTTTController extends Controller
     }
 
     /**
-     * @Route GET /ifttt/v1/user/info
-     *
      * @param Request $request
      *
      * @return JSONResponse
      *
      * @throws Response
      */
+    #[Route(Request::GET, '/user/info')]
     public function userAction(Request $request): JSONResponse
     {
         if (!($user = $this->_getAuthenticatedUser($request))) {
@@ -82,15 +82,11 @@ class IFTTTController extends Controller
     }
 
     /**
-     * @Route POST /ifttt/v1/triggers/message
-     *
      * @param Request $request
      *
      * @return JSONResponse
-     *
-     * @throws NoSessionException
-     * @throws PermissionDeniedException
      */
+    #[Route(Request::GET, '/triggers/message')]
     public function messageAction(Request $request): JSONResponse
     {
         if (!($user = $this->_getAuthenticatedUser($request))) {
@@ -127,7 +123,7 @@ class IFTTTController extends Controller
     {
         $iftttAuth = IFTTTAuth::create()->findBy(
             'token',
-            str_replace('Bearer ', '', $request->getHeader('Authorization'))
+            str_replace('Bearer ', '', $request->getHeader('Authorization')),
         );
 
         if ($iftttAuth === Result::NOT_FOUND) {

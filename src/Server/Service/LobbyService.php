@@ -24,7 +24,7 @@ class LobbyService extends WOLSoftApplication
                 JOIN `user` ON `user`.`id` = `userId`
                 WHERE `lobbyId` = :lobbyId
                 ORDER BY `plops` DESC',
-            [':lobbyId' => $lobbyId]
+            [':lobbyId' => $lobbyId],
         );
     }
 

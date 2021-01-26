@@ -28,7 +28,7 @@ class SaveStateService extends WOLSoftApplication
                   FROM beerplop_savestate AS bss
                 RIGHT JOIN beerplop_ifttt_auth AS bia ON bia.id = bss.`userId`
                 WHERE notifiedOffline = FALSE
-                  AND bss.modified < DATE_SUB(CURRENT_TIME(), INTERVAL ' . self::OFFLINE_TRIGGER_TIME . ' MINUTE)'
+                  AND bss.modified < DATE_SUB(CURRENT_TIME(), INTERVAL ' . self::OFFLINE_TRIGGER_TIME . ' MINUTE)',
         );
 
         $notifiedOfflineSaveStates = DataFetcher::getInstance('beerplop')->getRowCount();
@@ -37,14 +37,14 @@ class SaveStateService extends WOLSoftApplication
             'SELECT DISTINCT userId FROM beerplop_savestate AS bss
                 RIGHT JOIN beerplop_ifttt_auth AS bia ON bia.id = bss.`userId`
                 WHERE notifiedOffline = FALSE
-                  AND bss.modified < DATE_SUB(CURRENT_TIME(), INTERVAL ' . self::OFFLINE_TRIGGER_TIME . ' MINUTE)'
+                  AND bss.modified < DATE_SUB(CURRENT_TIME(), INTERVAL ' . self::OFFLINE_TRIGGER_TIME . ' MINUTE)',
         );
 
         DataFetcher::getInstance('beerplop')->query(
             'UPDATE beerplop_savestate SET notifiedOffline = TRUE
                 WHERE notifiedOffline = FALSE
                   AND id > 0
-                  AND modified < DATE_SUB(CURRENT_TIME(), INTERVAL ' . self::OFFLINE_TRIGGER_TIME . ' MINUTE)'
+                  AND modified < DATE_SUB(CURRENT_TIME(), INTERVAL ' . self::OFFLINE_TRIGGER_TIME . ' MINUTE)',
         );
 
         $iftttService = new IFTTTService();

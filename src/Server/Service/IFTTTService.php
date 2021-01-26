@@ -33,9 +33,9 @@ class IFTTTService extends WOLSoftApplication
                 'data' => [
                     [
                         'user_id' => (string) $userId,
-                    ]
+                    ],
                 ],
-            ])
+            ]),
         );
 
         try {

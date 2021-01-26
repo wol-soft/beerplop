@@ -9,6 +9,7 @@ use WOLSoftCore\Server\Exception\NoSessionException;
 use WOLSoftCore\Server\Model\Request\Request;
 use WOLSoftCore\Server\Model\Response\HTMLResponse;
 use WOLSoftCore\Server\Model\Response\JSONResponse;
+use WOLSoftCore\Server\Router\Attribute\Route;
 use WOLSoftCore\Server\Utils\Translator;
 
 /**
@@ -19,11 +20,10 @@ use WOLSoftCore\Server\Utils\Translator;
 class LobbyController extends Controller
 {
     /**
-     * @Route GET /lobby
-     *
      * @return HTMLResponse
      * @throws NoSessionException
      */
+    #[Route(Request::GET, '/lobby')]
     public function createLobby(): HTMLResponse
     {
         if (!$this->app->isUserLoggedIn()) {
@@ -36,20 +36,18 @@ class LobbyController extends Controller
             ->setTemplate('View/lobby.twig')
             ->addVariable(
                 'translator',
-                Translator::getInstance(null, Translator::LNG_ENGLISH, __DIR__ . '/../../language/')
+                Translator::getInstance(null, Translator::LNG_ENGLISH, __DIR__ . '/../../language/'),
             );
     }
 
     /**
-     * @Route GET /lobby/{regex("[\w-]+")|$lobbyId}
-     *
-     * @param Request $request
-     * @param string  $lobbyId
+     * @param string $lobbyId
      *
      * @return HTMLResponse
      * @throws NoSessionException
      */
-    public function joinLobby(Request $request, string $lobbyId): HTMLResponse
+    #[Route(Request::GET, '/lobby/{regex("[\w-]+")|$lobbyId}')]
+    public function joinLobby(string $lobbyId): HTMLResponse
     {
         if (!$this->app->isUserLoggedIn()) {
             throw new NoSessionException();
@@ -62,18 +60,17 @@ class LobbyController extends Controller
             ->setTemplate('View/lobby.twig')
             ->addVariable(
                 'translator',
-                Translator::getInstance(null, Translator::LNG_ENGLISH, __DIR__ . '/../../language/')
+                Translator::getInstance(null, Translator::LNG_ENGLISH, __DIR__ . '/../../language/'),
             );
     }
 
     /**
-     * @Route POST /lobby/{regex("[\w-]+")|$lobbyId}/save
-     *
      * @param Request $request
      * @param string  $lobbyId
      *
      * @return JSONResponse
      */
+    #[Route(Request::POST, '/lobby/{regex("[\w-]+")|$lobbyId}/save')]
     public function createSaveStatesForLobby(Request $request, string $lobbyId): JSONResponse
     {
         $saveStateList = [];
@@ -95,14 +92,12 @@ class LobbyController extends Controller
     }
 
     /**
-     * @Route GET /lobby/{regex("[\w-]+")|$lobbyId}/ranking
-     *
-     * @param Request $request
-     * @param string  $lobbyId
+     * @param string $lobbyId
      *
      * @return JSONResponse
      */
-    public function getLobbyRanking(Request $request, string $lobbyId): JSONResponse
+    #[Route(Request::GET, '/lobby/{regex("[\w-]+")|$lobbyId}/ranking')]
+    public function getLobbyRanking(string $lobbyId): JSONResponse
     {
         $lobbyService = new LobbyService();
 
