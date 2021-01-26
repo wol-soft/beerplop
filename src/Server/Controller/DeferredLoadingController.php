@@ -4,7 +4,10 @@ namespace Beerplop\Controller;
 
 use Parsedown;
 use WOLSoftCore\Server\Controller\Controller;
+use WOLSoftCore\Server\Model\Request\Request;
 use WOLSoftCore\Server\Model\Response\HTMLResponse;
+use WOLSoftCore\Server\Router\Attribute\Route;
+use WOLSoftCore\Server\Router\Attribute\RouteGroup;
 use WOLSoftCore\Server\Utils\Translator;
 
 /**
@@ -12,14 +15,14 @@ use WOLSoftCore\Server\Utils\Translator;
  *
  * @package Beerplop\Server\Controller
  */
+#[RouteGroup('/deferred')]
 class DeferredLoadingController extends Controller
 {
     /**
      * Requires providing a version for a working cache
-     *
-     * @Route GET /deferred/client-templates/{regex("[\d.]+")|version}
      */
-    public function clientTemplatesAction(): HTMLResponse
+    #[Route(Request::GET, '/client-templates/{regex("[\d.]+")|version}')]
+    public function clientTemplatesAction($version): HTMLResponse
     {
         return (new HTMLResponse())
             ->setTemplate('View/Deferred/clientTemplates.twig')
@@ -28,10 +31,9 @@ class DeferredLoadingController extends Controller
 
     /**
      * Requires providing a version for a working cache
-     *
-     * @Route GET /deferred/images/{regex("[\d.]+")|version}
      */
-    public function imagesAction(): HTMLResponse
+    #[Route(Request::GET, '/images/{regex("[\d.]+")|version}')]
+    public function imagesAction($version): HTMLResponse
     {
         return (new HTMLResponse())
             ->setTemplate('View/Deferred/svg.twig')
@@ -40,10 +42,9 @@ class DeferredLoadingController extends Controller
 
     /**
      * Requires providing a version for a working cache
-     *
-     * @Route GET /deferred/modals/{regex("[\d.]+")|version}
      */
-    public function modalsAction()
+    #[Route(Request::GET, '/modals/{regex("[\d.]+")|version}')]
+    public function modalsAction($version): HTMLResponse
     {
         return (new HTMLResponse())
             ->addVariable(

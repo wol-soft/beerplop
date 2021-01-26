@@ -61,10 +61,6 @@
             .addModifier('BuildingLevelController__Factory-Buff',          () => this.buffBottleCapProductionMultiplier || 1)
             .addModifier('BuildingLevelController__Game-Speed',            () => this.gameState.getGameSpeed());
 
-        this._initLevelBuildingUp();
-        this._initBuyBottleCapFactory();
-        this._initLevelBottleFactoryUp();
-
         this.gameEventBus.on(
             EVENTS.CORE.ITERATION,
             () => this.addBottleCaps(ComposedValueRegistry.getComposedValue(CV_BOTTLE_CAP).getValue())
@@ -173,6 +169,12 @@
             this.updateCostNext(true);
             this._updateUI();
         });
+    }
+
+    BuildingLevelController.prototype.initBuyControl = function () {
+        this._initLevelBuildingUp();
+        this._initBuyBottleCapFactory();
+        this._initLevelBottleFactoryUp();
     }
 
     BuildingLevelController.prototype.resetInitialState = function () {

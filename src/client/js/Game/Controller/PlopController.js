@@ -39,7 +39,6 @@
             .setBeerFactory(beerFactory)
             .setAutomatedBar(automatedBar);
 
-        new Beerplop.TooltipController(gameState, beerFactory).initPopover();
         new Beerplop.OverlayController();
 
         beerBlender.setAchievementController(achievementController);

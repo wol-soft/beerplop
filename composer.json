@@ -16,11 +16,9 @@
     }
   ],
   "require": {
-    "php": ">=7.4.0",
+    "php": ">=8.0.0",
 
-    "ext-json": "*",
-
-    "wol-soft/wol-soft-core": "^4.5",
+    "wol-soft/wol-soft-core": "^6.0.3",
     "twig/twig": "^3.0",
     "wol-soft/twig-include-dir": "^2.0",
     "hellogerard/jobby": "^3.5",

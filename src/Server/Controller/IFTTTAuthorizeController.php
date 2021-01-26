@@ -13,6 +13,8 @@ use WOLSoftCore\Server\Model\Request\Request;
 use WOLSoftCore\Server\Model\Response\HTMLResponse;
 use WOLSoftCore\Server\Model\Response\HTTPResponse;
 use WOLSoftCore\Server\Model\Response\JSONResponse;
+use WOLSoftCore\Server\Router\Attribute\Route;
+use WOLSoftCore\Server\Router\Attribute\RouteGroup;
 use WOLSoftCore\Server\Utils\ActivityStreamLogger;
 use WOLSoftCore\Server\Utils\Translator;
 
@@ -21,11 +23,10 @@ use WOLSoftCore\Server\Utils\Translator;
  *
  * @package Beerplop\Server\Controller
  */
+#[RouteGroup('/ifttt')]
 class IFTTTAuthorizeController extends Controller
 {
     /**
-     * @Route GET /ifttt/authorize
-     *
      * @param Request $request
      *
      * @return HTMLResponse
@@ -34,6 +35,7 @@ class IFTTTAuthorizeController extends Controller
      * @throws PermissionDeniedException
      * @throws RequiredParameterNotSetException
      */
+    #[Route(Request::GET, '/authorize')]
     public function showIFTTTAuthorizeAction(Request $request): HTMLResponse
     {
         if (!$this->app->isUserLoggedIn()) {
@@ -56,18 +58,17 @@ class IFTTTAuthorizeController extends Controller
             ->addVariable('app', $this->app)
             ->addVariable(
                 'translator',
-                Translator::getInstance(null, Translator::LNG_ENGLISH, __DIR__ . '/../../language/')
+                Translator::getInstance(null, Translator::LNG_ENGLISH, __DIR__ . '/../../language/'),
             );
     }
 
     /**
-     * @Route POST /ifttt/authorize
-     *
      * @return HTTPResponse
      *
      * @throws NoSessionException
      * @throws Exception
      */
+    #[Route(Request::POST, '/authorize')]
     public function authorizeIFTTTAction(): HTTPResponse
     {
         if (!$this->app->isUserLoggedIn()) {
@@ -84,18 +85,17 @@ class IFTTTAuthorizeController extends Controller
 
         return (new HTTPResponse())->setRedirectTo(
             $this->app->getSessionEntry('IFTTT-redirect-URI') . "?code={$iftttAuth->getTokenRequestCode()}&state=" .
-            $this->app->getSessionEntry('IFTTT-state')
+            $this->app->getSessionEntry('IFTTT-state'),
         );
     }
 
     /**
-     * @Route GET /ifttt/authorized
-     *
      * @return JSONResponse
      *
      * @throws NoSessionException
      * @throws Exception
      */
+    #[Route(Request::GET, '/authorized')]
     public function authorizedIFTTTAction(): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {
@@ -112,8 +112,6 @@ class IFTTTAuthorizeController extends Controller
     }
 
     /**
-     * @Route POST /ifttt/token
-     *
      * @param Request $request
      *
      * @return JSONResponse
@@ -121,7 +119,9 @@ class IFTTTAuthorizeController extends Controller
      * @throws PermissionDeniedException
      * @throws NotFoundException
      * @throws RequiredParameterNotSetException
+     * @throws NoSessionException
      */
+    #[Route(Request::POST, '/token')]
     public function tokenAction(Request $request): JSONResponse
     {
         if ($request->post('client_id') !== $this->app->getConf()->oAuthClientId ||

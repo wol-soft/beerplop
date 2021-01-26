@@ -12,16 +12,29 @@ class Conf extends Singleton
     }
 
     // Login server/database
-    public $host         = 'beerplop-mysql';
-    public $port         = '3306';
-    public $user         = 'beerplop';
-    public $password     = 'beerplop';
-    public $database     = 'beerplop';
+    public $databases = [
+        'core' => [
+            'database' => 'wol-soft-core',
+            'host'     => 'beerplop-mysql',
+            'port'     => 3306,
+            'user'     => 'beerplop',
+            'password' => 'beerplop',
+        ],
+        'beerplop' => [
+            'database' => 'beerplop',
+            'host'     => 'beerplop-mysql',
+            'port'     => 3306,
+            'user'     => 'beerplop',
+            'password' => 'beerplop',
+        ],
+    ];
 
-    public $redisHost    = 'beerplop-redis';
-    public $redisPort    = '6379';
-    public $redisEnabled = true;
-    public $redisPrefix  = '';
+    public $redis = [
+        'host'   => 'beerplop-redis',
+        'port'   => '6379',
+        'prefix' => 'beerplop',
+        'db'     => 1,
+    ];
 
     // nodeJS server for remote connection and data tunneling
     public $nodeServer = [

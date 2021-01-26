@@ -12,7 +12,7 @@
     - Icon for blacksmith is missing the workpiece
     - Skip unnecessary Beer Factory rendering during game initialization
     - Trading posts provide access to materials which aren't yet unlocked
-    - Game Speed modifier is applied twice to the traded amount of trading posts
+    - Trading amount is affected multiple times by multipliers (#110)
     - Building statistic graphs for Bottle Cap Factories show "plops" (#94)
     - Endless buff after sacrifice (#106)
     - Beer Blender Bar: Chili doesn't affect the price of Bottle Cap Factories

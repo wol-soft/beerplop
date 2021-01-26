@@ -11,6 +11,7 @@ use WOLSoftCore\Server\Exception\PermissionDeniedException;
 use WOLSoftCore\Server\Exception\RequiredParameterNotSetException;
 use WOLSoftCore\Server\Model\Request\Request;
 use WOLSoftCore\Server\Model\Response\JSONResponse;
+use WOLSoftCore\Server\Router\Attribute\Route;
 
 /**
  * Class SaveStateController
@@ -20,8 +21,6 @@ use WOLSoftCore\Server\Model\Response\JSONResponse;
 class SaveStateController extends Controller
 {
     /**
-     * @Route POST /save
-     *
      * @param Request $request
      *
      * @return JSONResponse
@@ -29,6 +28,7 @@ class SaveStateController extends Controller
      * @throws RequiredParameterNotSetException
      * @throws NoSessionException
      */
+    #[Route(Request::POST, '/save')]
     public function createSaveState(Request $request): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {
@@ -58,8 +58,6 @@ class SaveStateController extends Controller
     }
 
     /**
-     * @Route PUT /save/{int|$id}
-     *
      * @param Request $request
      * @param int     $saveStateId
      *
@@ -68,6 +66,7 @@ class SaveStateController extends Controller
      * @throws RequiredParameterNotSetException
      * @throws NoSessionException
      */
+    #[Route(Request::PUT, '/save/{int|$id}')]
     public function updateSaveState(Request $request, int $saveStateId): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {
@@ -99,12 +98,10 @@ class SaveStateController extends Controller
     }
 
     /**
-     * @Route GET /save
-     *
      * @return JSONResponse
-     * @throws NoSessionException
      * @throws PermissionDeniedException
      */
+    #[Route(Request::GET, '/save')]
     public function loadAvailableSaveStates(): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {
@@ -116,13 +113,11 @@ class SaveStateController extends Controller
                 array_map(
                     fn ($state) => ['id' => $state['id'], 'title' => $state['title'], 'modified' => $state['modified']],
                     (new SaveStateCollection($this->app->getUser()->getId()))->toArray()
-                )
+                ),
             );
     }
 
     /**
-     * @Route GET /save/{int|$id}
-     *
      * @param Request $request
      * @param int     $saveStateId
      *
@@ -130,6 +125,7 @@ class SaveStateController extends Controller
      * @throws PermissionDeniedException
      * @throws NoSessionException
      */
+    #[Route(Request::GET, '/save/{int|$id}')]
     public function loadSaveState(Request $request, int $saveStateId): JSONResponse
     {
         $saveState = SaveState::create($saveStateId);
@@ -150,13 +146,11 @@ class SaveStateController extends Controller
 
         return $this->_rankingResponseDecorator(
             (new JSONResponse())->setData($saveState->toArray()),
-            $saveState
+            $saveState,
         );
     }
 
     /**
-     * @Route DELETE /save/{int|$id}
-     *
      * @param Request $request
      * @param int     $saveStateId
      *
@@ -164,6 +158,7 @@ class SaveStateController extends Controller
      * @throws PermissionDeniedException
      * @throws NoSessionException
      */
+    #[Route(Request::DELETE, '/save/{int|$id}')]
     public function deleteSaveState(Request $request, int $saveStateId): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {

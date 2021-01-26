@@ -26,7 +26,7 @@ module.exports = function(io, $, uuid, request) {
             io.to(socket.id).emit('beerplop.createdLobby', lobbyId);
             io.to(socket.id).emit(
                 'beerplop.connectedPlayersList',
-                JSON.stringify([{userId: req.userId, nickName: req.nickName}])
+                JSON.stringify([{userId: req.userId, nickName: req.nickName}]),
             );
         });
 
@@ -61,7 +61,7 @@ module.exports = function(io, $, uuid, request) {
                     $.each(lobbies[req.lobbyId].connectedUser, function (userId, userData) {
                         io.to(userData.socketId).emit('beerplop.startMatch', data.data[userId]);
                     });
-                }
+                },
             );
         });
 
@@ -85,7 +85,7 @@ module.exports = function(io, $, uuid, request) {
                     JSON.stringify({
                         nickName: req.nickName,
                         userId:   req.userId
-                    })
+                    }),
                 );
             });
 
@@ -142,7 +142,7 @@ module.exports = function(io, $, uuid, request) {
                     // emit user left message
                     io.to(this.socketId).emit(
                         leavingUser.isAdmin ? 'beerplop.lobbyClosed' : 'beerplop.userLeft',
-                        leavingUser.userId
+                        leavingUser.userId,
                     );
                 });
 

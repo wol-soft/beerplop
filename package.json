@@ -1,7 +1,7 @@
 {
   "name": "beerplop",
   "license": "MIT",
-  "beerplopversion": "1.68.1",
+  "beerplopversion": "1.68.3",
   "userversion": "3.1.4",
   "author": "Enno Woortmann",
   "dependencies": {
@@ -9,7 +9,7 @@
     "jquery": "^3.5.1",
     "jsdom": "^16.4.0",
     "node-uuid": "^1.4.8",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

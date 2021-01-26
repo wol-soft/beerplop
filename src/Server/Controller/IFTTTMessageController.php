@@ -9,11 +9,13 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use WOLSoftCore\Server\Controller\Controller;
+use WOLSoftCore\Server\DBAL\DataFetcher;
 use WOLSoftCore\Server\Exception\NoSessionException;
 use WOLSoftCore\Server\Exception\PermissionDeniedException;
 use WOLSoftCore\Server\Exception\RequiredParameterNotSetException;
 use WOLSoftCore\Server\Model\Request\Request;
 use WOLSoftCore\Server\Model\Response\JSONResponse;
+use WOLSoftCore\Server\Router\Attribute\Route;
 
 /**
  * Class IFTTTMessageController
@@ -23,8 +25,6 @@ use WOLSoftCore\Server\Model\Response\JSONResponse;
 class IFTTTMessageController extends Controller
 {
     /**
-     * @Route POST /messages
-     *
      * @param Request $request
      *
      * @return JSONResponse
@@ -34,6 +34,7 @@ class IFTTTMessageController extends Controller
      * @throws RequiredParameterNotSetException
      * @throws Exception
      */
+    #[Route(Request::POST, '/messages')]
     public function addMessagesAction(Request $request): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {
@@ -46,7 +47,7 @@ class IFTTTMessageController extends Controller
 
         $timezone = new DateTimeZone($request->requiredJson('timezone'));
 
-        $this->app->getDataFetcher()->startTransaction();
+        DataFetcher::getInstance('beerplop')->startTransaction();
         foreach ($request->requiredJson('messages') as $message) {
             IFTTTMessage::create()
                 ->setMessage($message['message'])
@@ -56,7 +57,7 @@ class IFTTTMessageController extends Controller
                 ->persist();
         }
 
-        if (!$this->app->getDataFetcher()->commitTransaction()) {
+        if (!DataFetcher::getInstance('beerplop')->commitTransaction()) {
             return (new JSONResponse())->setStatus(false)->setStatusCode(502);
         }
 
