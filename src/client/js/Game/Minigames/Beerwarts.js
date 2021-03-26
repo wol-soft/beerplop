@@ -125,6 +125,10 @@
         );
 
         assetPromises['modals'].then(this._initBeerwartsSacrifice.bind(this));
+
+        // make sure the base production is set to 0 by default. On unlock the base production callback is changed to
+        // start the production. Otherwise mana might be produced via external modifiers even before Beerwarts unlock
+        ComposedValueRegistry.getComposedValue(CV_MANA).addModifier('Beerwarts_BaseProduction', () => 0);
     }
 
     Beerwarts.prototype._initBeerwartsSacrifice = function () {

@@ -7,7 +7,7 @@
     - Factory Extensions can store more materials depending on the amount of factories the extension belongs to
     - Factory Extensions can handle more materials in a single iteration
 * Bugfixes:
-    - Workers' Lodges initially dispaly a 100% production boost (#98)
+    - Workers' Lodges initially display a 100% production boost (#98)
     - Project based factory extension popover content positioning (#102)
     - Icon for blacksmith is missing the workpiece
     - Skip unnecessary Beer Factory rendering during game initialization
@@ -17,6 +17,7 @@
     - Endless buff after sacrifice (#106)
     - Beer Blender Bar: Chili doesn't affect the price of Bottle Cap Factories
     - The displayed progress of a restarted research project after a reload is calculated wrong
+    - Mana is produced before the Beerwarts minigame is unlocked
     - Fixed some typos
 
 **1.68.0** - 16.03.2020
