@@ -3452,7 +3452,7 @@
             // TODO: translations for diversify updates
             // TODO: define costs for diversify upgrades
             // TODO: create factory extension icons
-            crop: {
+    /*        crop: {
                 double: {
                 },
                 diversify: {
@@ -3603,7 +3603,7 @@
                 },
                 diversify: {
                 },
-            },
+            },*/
         };
     };
 

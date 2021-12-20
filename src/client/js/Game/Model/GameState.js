@@ -457,6 +457,8 @@
                   achievementBoost   = this.state.achievementMultiplier,
                   startTime          = this.state.startTime,
                   autoBuyerBuildings = this.state.autoBuyerBuildings,
+                  isOnMaxBuy         = this.state.isOnMaxBuyAmount,
+                  buyAmount          = this.state.buyAmount,
                   gameSpeed          = this.state.gameSpeed;
 
             this.resetInitialState();
@@ -466,6 +468,8 @@
             this.state.startTime             = startTime;
             this.state.gameSpeed             = gameSpeed;
             this.state.autoBuyerBuildings    = autoBuyerBuildings;
+            this.state.buyAmount             = buyAmount;
+            this.state.isOnMaxBuyAmount      = isOnMaxBuy;
 
             this.cache.maxBuildingsAvailable = {};
             this.cache.maxBuildingsCost      = {};
@@ -914,6 +918,7 @@
 
         let toggleCostsLabel        = false;
 
+        console.log(this.state.buyAmount, this.state.isOnMaxBuyAmount);
         // the recalculation was triggered by a buy amount charge switch. So check, if a switch between MAX and a
         // constant number happened and update everything accordingly to the change
         if (this.state.buyAmount === 'max' ? !this.state.isOnMaxBuyAmount : this.state.isOnMaxBuyAmount) {

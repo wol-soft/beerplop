@@ -93,7 +93,7 @@
         },
         // TODO: define effects
         // TODO: create ingredient icons
-        grainSchnapps: {
+   /*     grainSchnapps: {
             effect: {
 
             },
@@ -117,7 +117,7 @@
             effect: {
 
             },
-        },
+        },*/
     };
 
     BeerBlender.prototype._instance            = null;

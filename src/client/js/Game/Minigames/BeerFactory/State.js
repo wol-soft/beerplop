@@ -75,7 +75,7 @@
                 total: 0,
             },
             // primary foods
-            crop: {
+     /*       crop: {
                 enabled: false,
                 amount: 0,
                 total: 0,
@@ -125,7 +125,7 @@
                 enabled: false,
                 amount: 0,
                 total: 0,
-            },
+            },*/
             // hidden materials
             knowledge: {
                 amount: 0,
@@ -265,7 +265,7 @@
                 lobbyists: [],
             },
             // food factories
-            crop: {
+    /*        crop: {
                 enabled: false,
                 production: {
                     crop: 1
@@ -328,7 +328,7 @@
                     double: 0,
                     diversify: 0,
                 },
-            },
+            },*/
         },
         equippedBuildings: {},
         buildQueue: [],
@@ -360,7 +360,7 @@
         collapsedMaterialSections: {
             base: false,
             produced: false,
-            food: false,
+       //     food: false,
         },
     };
 

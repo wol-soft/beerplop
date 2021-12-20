@@ -135,7 +135,7 @@ const FACTORY_DATA_FIX = {
         buildable: true,
     },
     // food factories
-    crop: {
+/*    crop: {
         manual: true,
         factory: true,
         buildable: true,
@@ -175,7 +175,7 @@ const FACTORY_DATA_FIX = {
         factory: true,
         buildable: true,
         section: FACTORY_SECTION__FOOD,
-    },
+    }, */
 };
 
 const MATERIAL_DATA_CONST = {
@@ -204,7 +204,7 @@ const MATERIAL_DATA_CONST = {
     basePlate: {
         section: MATERIAL_SECTION__PRODUCED,
     },
-    crop: {
+ /*   crop: {
         section: MATERIAL_SECTION__FOOD,
     },
     fruit: {
@@ -233,7 +233,7 @@ const MATERIAL_DATA_CONST = {
     },
     steak: {
         section: MATERIAL_SECTION__FOOD,
-    },
+    },*/
 };
 
 const EXTENSIONS = {
@@ -305,7 +305,7 @@ const EXTENSIONS = {
             medallion: 1,
         },
     },
-    managerAcademy: {
+ /*   managerAcademy: {
         productionType: EXTENSION_PRODUCTION__PROJECT,
         hasProjectQueue: true,
         type: EXTENSION_TYPE__PRODUCTION,
@@ -371,7 +371,7 @@ const EXTENSIONS = {
         produces: {
             steak: 1,
         },
-    },
+    }, */
     coworker: {
         type: EXTENSION_TYPE__PROXY,
     },
