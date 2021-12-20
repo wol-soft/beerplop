@@ -14,8 +14,8 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@master
       with:
-        php-version: '8.0'
-        extension-csv: mbstring
+        php-version: '8.1'
+        extensions: mbstring
     - name: install composer dependencies
       run: composer install
     - name: Setup node
