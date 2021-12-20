@@ -21,7 +21,7 @@ class DeferredLoadingController extends Controller
     /**
      * Requires providing a version for a working cache
      */
-    #[Route(Request::GET, '/client-templates/{regex("[\d.]+")|version}')]
+    #[Route(Request::GET, '/client-templates/{regex("[\d.]+")|$version}')]
     public function clientTemplatesAction($version): HTMLResponse
     {
         return (new HTMLResponse())
@@ -32,7 +32,7 @@ class DeferredLoadingController extends Controller
     /**
      * Requires providing a version for a working cache
      */
-    #[Route(Request::GET, '/images/{regex("[\d.]+")|version}')]
+    #[Route(Request::GET, '/images/{regex("[\d.]+")|$version}')]
     public function imagesAction($version): HTMLResponse
     {
         return (new HTMLResponse())
@@ -43,7 +43,7 @@ class DeferredLoadingController extends Controller
     /**
      * Requires providing a version for a working cache
      */
-    #[Route(Request::GET, '/modals/{regex("[\d.]+")|version}')]
+    #[Route(Request::GET, '/modals/{regex("[\d.]+")|$version}')]
     public function modalsAction($version): HTMLResponse
     {
         return (new HTMLResponse())

@@ -59,7 +59,7 @@ class SaveStateController extends Controller
 
     /**
      * @param Request $request
-     * @param int     $saveStateId
+     * @param int     $id
      *
      * @return JSONResponse
      * @throws PermissionDeniedException
@@ -67,13 +67,13 @@ class SaveStateController extends Controller
      * @throws NoSessionException
      */
     #[Route(Request::PUT, '/save/{int|$id}')]
-    public function updateSaveState(Request $request, int $saveStateId): JSONResponse
+    public function updateSaveState(Request $request, int $id): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {
             throw new NoSessionException();
         }
 
-        $saveState = SaveState::create($saveStateId);
+        $saveState = SaveState::create($id);
 
         if (empty($saveState->getId()) || $saveState->getUserId() !== $this->app->getUser()->getId()) {
             throw new PermissionDeniedException();
@@ -119,16 +119,16 @@ class SaveStateController extends Controller
 
     /**
      * @param Request $request
-     * @param int     $saveStateId
+     * @param int     $id
      *
      * @return JSONResponse
      * @throws PermissionDeniedException
      * @throws NoSessionException
      */
     #[Route(Request::GET, '/save/{int|$id}')]
-    public function loadSaveState(Request $request, int $saveStateId): JSONResponse
+    public function loadSaveState(Request $request, int $id): JSONResponse
     {
-        $saveState = SaveState::create($saveStateId);
+        $saveState = SaveState::create($id);
 
         if (!$saveState->isDemoSaveState()) {
             if (!$this->app->isUserLoggedIn()) {
@@ -152,20 +152,20 @@ class SaveStateController extends Controller
 
     /**
      * @param Request $request
-     * @param int     $saveStateId
+     * @param int     $id
      *
      * @return JSONResponse
      * @throws PermissionDeniedException
      * @throws NoSessionException
      */
     #[Route(Request::DELETE, '/save/{int|$id}')]
-    public function deleteSaveState(Request $request, int $saveStateId): JSONResponse
+    public function deleteSaveState(Request $request, int $id): JSONResponse
     {
         if (!$this->app->isUserLoggedIn()) {
             throw new NoSessionException();
         }
 
-        $saveState = SaveState::create($saveStateId);
+        $saveState = SaveState::create($id);
 
         if (empty($saveState->getId()) || $saveState->getUserId() !== $this->app->getUser()->getId()) {
             throw new PermissionDeniedException();
