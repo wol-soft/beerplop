@@ -264,9 +264,13 @@
                     materialMissing: this.factory.hasFactoryExtensionMissingMaterials(factoryKey),
                     hasExtensions:   (factory.extensions || []).length > 0,
                     extensions:      (factory.extensions || []).map((function (extensionKey) {
-                        const proxiedExtensionKey = this.state.getState().proxyExtension[extensionKey]
+                        let proxiedExtensionKey = this.state.getState().proxyExtension[extensionKey]
                                 ? this.state.getState().proxyExtension[extensionKey].extension
                                 : extensionKey;
+
+                        if (!proxiedExtensionKey) {
+                            proxiedExtensionKey = extensionKey;
+                        }
 
                         let data = {
                             storageLimit:             this.state.getState().extensionStorageCapacity,

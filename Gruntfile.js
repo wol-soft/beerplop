@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                     'node_modules/popper.js/dist/umd/popper.js',
                     'node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js',
                     'node_modules/bootstrap-slider/dist/bootstrap-slider.min.js',
-                    'node_modules/decimal.js/decimal.min.js',
+                    'node_modules/decimal.js/decimal.js',
                     'node_modules/compare-versions/index.js',
                     'node_modules/snackbarjs/dist/snackbar.min.js',
                     'node_modules/composed-value-registry/src/ComposedValueRegistry.js',

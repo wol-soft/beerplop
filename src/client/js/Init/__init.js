@@ -26,9 +26,7 @@ $(function() {
 
     assetPromises['modals'] = new Promise(resolve =>
         $.get('deferred/modals/' + version).then(response => {
-            const modalContainer = $('#modal-container');
-            modalContainer.html(response);
-            modalContainer.bootstrapMaterialDesign();
+            $('#modal-container').html(response);
 
             $('#load-asset__modals').html('&#127866;');
 
@@ -65,6 +63,8 @@ $(function() {
     });
 
     $.when(...Object.values(assetPromises)).then(() => {
+        $('#modal-container').bootstrapMaterialDesign();
+
         if (dragscroll) {
             dragscroll.reset();
         }

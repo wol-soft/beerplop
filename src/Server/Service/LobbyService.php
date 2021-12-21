@@ -21,7 +21,7 @@ class LobbyService extends WOLSoftApplication
     {
         return (array) DataFetcher::getInstance('beerplop')->fetchAll(
             'SELECT `name`, `plops`, `active` FROM `beerplop_savestate`
-                JOIN `user` ON `user`.`id` = `userId`
+                JOIN `core`.`user` ON `user`.`id` = `userId`
                 WHERE `lobbyId` = :lobbyId
                 ORDER BY `plops` DESC',
             [':lobbyId' => $lobbyId],
