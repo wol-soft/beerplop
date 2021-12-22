@@ -286,6 +286,12 @@
                     0
                 ));
             },
+            '1.69.3': function () {
+                (new Beerplop.GameEventBus()).on(EVENTS.SAVE.LOAD.FINISHED, () => window.setTimeout(
+                    () => (new Minigames.BeerFactory()).state.state.factories.academy.extensions = [],
+                    0
+                ));
+            }
         };
     };
 

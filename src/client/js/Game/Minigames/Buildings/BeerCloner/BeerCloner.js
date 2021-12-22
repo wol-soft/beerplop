@@ -73,11 +73,20 @@
             }.bind(this))
         );
 
+        ComposedValueRegistry
+            .getComposedValue(CV_BOTTLE_CAP)
+            .addModifier('Cloning', () => this.getBuildingBoostByCloning('bottleCapFactory'), false);
+
+        BeerCloner.prototype._instance = this;
+    }
+
+    BeerCloner.prototype.initEventListener = function () {
         $('#special-building-bottle-cap-factory, #buildings-container')
             .find('.building-container__clone-building')
             .on('click', (function (event) {
                 const building = $(event.target).closest('.building-container__clone-building').data('buildingKey');
 
+                console.log('clone', building);
                 if (!building) {
                     return;
                 }
@@ -87,13 +96,7 @@
 
                 this.addCloning(building);
             }).bind(this));
-
-        ComposedValueRegistry
-            .getComposedValue(CV_BOTTLE_CAP)
-            .addModifier('Cloning', () => this.getBuildingBoostByCloning('bottleCapFactory'), false);
-
-        BeerCloner.prototype._instance = this;
-    }
+    };
 
     BeerCloner.prototype.unlock = function () {
         window.setTimeout(() => this._enableCloning(), 0);

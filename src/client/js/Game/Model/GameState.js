@@ -426,6 +426,7 @@
 
         this._initBuyBuildings();
         this.buildingLevelController.initBuyControl();
+        this.beerCloner.initEventListener();
 
         new Beerplop.TooltipController(this, this.beerFactory).initPopover();
 
@@ -918,7 +919,6 @@
 
         let toggleCostsLabel        = false;
 
-        console.log(this.state.buyAmount, this.state.isOnMaxBuyAmount);
         // the recalculation was triggered by a buy amount charge switch. So check, if a switch between MAX and a
         // constant number happened and update everything accordingly to the change
         if (this.state.buyAmount === 'max' ? !this.state.isOnMaxBuyAmount : this.state.isOnMaxBuyAmount) {

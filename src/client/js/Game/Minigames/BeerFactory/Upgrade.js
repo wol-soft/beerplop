@@ -3040,7 +3040,7 @@
                             },
                         },
                     },
-                    3: {
+                   /* 3: {
                         costs: {
                             wood: 27_000_000,
                             strongWood: 12_000_000,
@@ -3061,7 +3061,7 @@
                             },
                         },
                         callback: () => enableFactoryExtension('academy', 'managerAcademy'),
-                    },
+                    },*/
                 },
                 explore: {
                     1: {
