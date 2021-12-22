@@ -781,13 +781,17 @@ describe('Beer Factories', function () {
             expect(buildQueue[0].action).to.equal(BUILD_QUEUE__BUILD);
             expect(buildQueue[0].requiredItems).to.equal(330);
 
-            expect(buildQueue[0].materials.length).to.equal(3);
-            expect(buildQueue[0].materials[0].key).to.equal('strongWood');
-            expect(buildQueue[0].materials[0].required).to.equal(30);
-            expect(buildQueue[0].materials[1].key).to.equal('stone');
-            expect(buildQueue[0].materials[1].required).to.equal(50);
-            expect(buildQueue[0].materials[2].key).to.equal('wood');
-            expect(buildQueue[0].materials[2].required).to.equal(250);
+            // sort materials for safe comparison
+            buildQueue[0].materials = buildQueue[0].materials.sort((a, b) => a.key.localeCompare(b.key));
+            const materials = buildQueue[0].materials;
+
+            expect(materials.length).to.equal(3);
+            expect(materials[0].key).to.equal('stone');
+            expect(materials[0].required).to.equal(50);
+            expect(materials[1].key).to.equal('strongWood');
+            expect(materials[1].required).to.equal(30);
+            expect(materials[2].key).to.equal('wood');
+            expect(materials[2].required).to.equal(250);
         });
 
         it("Should raise the transport capacity after a Transport System is finished", function () {
@@ -796,8 +800,8 @@ describe('Beer Factories', function () {
             const buildQueue = beerFactory.state.getBuildQueue();
 
             buildQueue[0].deliveredItems = 328;
-            buildQueue[0].materials[0].delivered = 30;
-            buildQueue[0].materials[1].delivered = 50;
+            buildQueue[0].materials[0].delivered = 50;
+            buildQueue[0].materials[1].delivered = 30;
             buildQueue[0].materials[2].delivered = 248;
 
             gameEventBus.emit(EVENTS.CORE.ITERATION);
