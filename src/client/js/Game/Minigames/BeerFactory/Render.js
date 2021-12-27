@@ -268,18 +268,14 @@
                                 ? this.state.getState().proxyExtension[extensionKey].extension
                                 : extensionKey;
 
-                        if (!proxiedExtensionKey) {
-                            proxiedExtensionKey = extensionKey;
-                        }
-
                         let data = {
                             storageLimit:             this.state.getState().extensionStorageCapacity,
                             key:                      extensionKey,
                             isProxyExtension:         EXTENSIONS[extensionKey].type === EXTENSION_TYPE__PROXY,
                             isEquippedProxyExtension: EXTENSIONS[extensionKey].type === EXTENSION_TYPE__PROXY
                                 && this.state.getState().proxyExtension[extensionKey].extension,
-                            isProjectQueueExtension:  EXTENSIONS[proxiedExtensionKey].hasProjectQueue,
-                            queueEntries: EXTENSIONS[proxiedExtensionKey].hasProjectQueue
+                            isProjectQueueExtension:  proxiedExtensionKey && EXTENSIONS[proxiedExtensionKey].hasProjectQueue,
+                            queueEntries:             proxiedExtensionKey && EXTENSIONS[proxiedExtensionKey].hasProjectQueue
                                 ? this.state.getExtensionStorage(proxiedExtensionKey).queue.length
                                 : 0,
                             proxyKey:        proxiedExtensionKey,
