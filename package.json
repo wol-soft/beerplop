@@ -27,7 +27,7 @@
     "content-type-parser": "^1.0.2",
     "decimal.js": "^10.3.1",
     "dragscroll": "0.0.8",
-    "grunt": "^1.4.1",
+    "grunt": "^1.5.2",
     "grunt-babel": "^8.0.0",
     "grunt-concat-css": "*",
     "grunt-contrib-clean": "*",
