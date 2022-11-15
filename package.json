@@ -9,7 +9,7 @@
     "jquery": "^3.6.0",
     "jsdom": "^19.0.0",
     "node-uuid": "^1.4.8",
-    "socket.io": "^2.4.0"
+    "socket.io": "^2.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
