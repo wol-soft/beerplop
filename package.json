@@ -45,7 +45,7 @@
     "mocha": "8.1.3",
     "mustache": "^4.2.0",
     "popper.js": "^1.16.1",
-    "puppeteer": "^13.0.0",
+    "puppeteer": "^13.7.0",
     "sass": "^1.45.1",
     "sinon": "^12.0.1",
     "snackbarjs": "github:wol-soft/snackbarjs.git#1.2.0"
